@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ManagerHomeScreenController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background.png" />
+         </image>
+      </ImageView>
+      <Button id="btnDevice" fx:id="btnDevice" layoutX="205.0" layoutY="109.0" mnemonicParsing="false" onAction="#Click" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnInventory" fx:id="btnLiquidation" layoutX="537.0" layoutY="109.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnHistory" fx:id="btnHistory" layoutX="205.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnLiquidation" fx:id="btnInventory" layoutX="866.0" layoutY="109.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnAccount" fx:id="btnAccount" layoutX="866.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnRepair" fx:id="btnRepair" layoutX="535.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+   </children>
+</AnchorPane>

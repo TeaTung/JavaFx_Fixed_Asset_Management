@@ -1,0 +1,33 @@
+#btnDevice{
+    -fx-background-image: url('device.png');
+}
+
+#btnLiquidation{
+    -fx-background-image: url('liquidation.png');
+}
+
+#btnInventory{
+    -fx-background-image: url('inventory.png');
+}
+
+#btnHistory{
+    -fx-background-image: url('history.png');
+}
+
+#btnRepair{
+    -fx-background-image: url('repair.png');
+}
+
+
+#btnAccount{
+    -fx-background-image: url('account.png');
+}
+.btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30px;
+    -fx-background-size: 100%;
+}
+
+.btn:hover{
+    -fx-background-color: #d5f4f5;
+}
