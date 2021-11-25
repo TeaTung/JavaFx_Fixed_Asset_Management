@@ -12,8 +12,8 @@
             <Image url="@background.png" />
          </image>
       </ImageView>
-      <Button id="btnDevice" fx:id="btnDevice" layoutX="205.0" layoutY="109.0" mnemonicParsing="false" onAction="#Click" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
-      <Button id="btnInventory" fx:id="btnLiquidation" layoutX="537.0" layoutY="109.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnDevice" fx:id="btnDevice" layoutX="205.0" layoutY="109.0" mnemonicParsing="false" onAction="#openDeviceScreenButtonAction" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnInventory" fx:id="btnLiquidation" onAction="#openInventoryScreenButtonAction" layoutX="537.0" layoutY="109.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
       <Button id="btnHistory" fx:id="btnHistory" layoutX="205.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
       <Button id="btnLiquidation" fx:id="btnInventory" layoutX="866.0" layoutY="109.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
       <Button id="btnAccount" fx:id="btnAccount" layoutX="866.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
