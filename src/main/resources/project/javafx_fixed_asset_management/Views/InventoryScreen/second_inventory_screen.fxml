@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.SecondInventoryScreenController">
+   <children>
+      <Text layoutX="428.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT DEVICE TO BE INVENTORY" wrappingWidth="425.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <TableView fx:id="deviceTB" layoutX="50.0" layoutY="124.0" prefHeight="482.0" prefWidth="539.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="159.0" text="Name" />
+            <TableColumn prefWidth="112.0" text="Department" />
+            <TableColumn prefWidth="88.0" text="Type" />
+            <TableColumn prefWidth="104.0" text="Status" />
+        </columns>
+      </TableView>
+      <Text layoutX="50.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device list">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="692.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device to be inventory list" wrappingWidth="211.8828125">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="deviceNameTF" layoutX="50.0" layoutY="638.0" prefHeight="33.0" prefWidth="439.0" promptText="Device name" />
+      <Button fx:id="searchBtn" layoutX="502.0" layoutY="638.0" mnemonicParsing="false" onAction="#searchBtnAction" prefHeight="33.0" prefWidth="89.0" text="Search">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="addBtn" layoutX="614.0" layoutY="309.0" mnemonicParsing="false" onAction="#addBtnAction" prefHeight="33.0" prefWidth="54.0" text="&gt;&gt;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="removeBtn" layoutX="614.0" layoutY="363.0" mnemonicParsing="false" onAction="#removeBtnAction" prefHeight="33.0" prefWidth="54.0" text="&lt;&lt;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="continueBtn" layoutX="1143.0" layoutY="638.0" mnemonicParsing="false" onAction="#continueBtnAction" prefHeight="33.0" prefWidth="89.0" text="Continue" textFill="#0d00ff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TableView fx:id="inventoryDeviceTB" layoutX="692.0" layoutY="124.0" prefHeight="482.0" prefWidth="539.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="ID" />
+            <TableColumn prefWidth="159.0" text="Name" />
+            <TableColumn prefWidth="112.0" text="Department" />
+            <TableColumn prefWidth="88.0" text="Type" />
+            <TableColumn prefWidth="104.0" text="Status" />
+         </columns>
+      </TableView>
+      <Text fx:id="errorLabel" fill="RED" layoutX="1040.0" layoutY="626.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add at least one device to continue!" />
+   </children>
+</AnchorPane>
