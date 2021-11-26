@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import project.javafx_fixed_asset_management.Main;
-import project.javafx_fixed_asset_management.Models.Device;
 
 import java.io.IOException;
 import java.net.URL;

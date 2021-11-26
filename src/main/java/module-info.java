@@ -5,6 +5,7 @@ module project.javafx_fixed_asset_management {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens project.javafx_fixed_asset_management to javafx.fxml;
     exports project.javafx_fixed_asset_management;
