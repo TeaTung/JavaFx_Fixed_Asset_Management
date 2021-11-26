@@ -6,10 +6,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.DeviceScreenController">
    <children>
-      <TableView fx:id="deviceTableView" layoutX="11.0" layoutY="51.0" prefHeight="592.0" prefWidth="1259.0">
+      <TableView fx:id="deviceTableView" layoutX="11.0" layoutY="132.0" prefHeight="511.0" prefWidth="1259.0">
         <columns>
           <TableColumn fx:id="deviceNameColumn" prefWidth="190.0" text="Device Name" />
           <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="41.0" text="ID" />
@@ -23,24 +24,32 @@
             <TableColumn fx:id="ebitdaColumn" minWidth="0.0" prefWidth="61.0" text="EBITDA" />
         </columns>
       </TableView>
-      <Button fx:id="addBtn" onAction="#addDeviceButtonAction" layoutX="970.0" layoutY="656.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Add">
+      <Button fx:id="addBtn" layoutX="981.0" layoutY="658.0" mnemonicParsing="false" onAction="#addDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Add">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font></Button>
-      <Button fx:id="updateBtn" onAction="#updateDeviceButtonAction" layoutX="1170.0" layoutY="656.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Update">
+      <Button fx:id="updateBtn" layoutX="1181.0" layoutY="658.0" mnemonicParsing="false" onAction="#updateDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Update">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font></Button>
-      <Button fx:id="backBtn" onAction="#backDeviceButtonAction" layoutX="32.0" layoutY="656.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="46.0" text="&lt;">
+      <Button fx:id="backBtn" layoutX="11.0" layoutY="657.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="35.0" prefWidth="70.0" text="Back">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="deleteBtn" onAction="#deleteDeviceButtonAction" layoutX="1070.0" layoutY="656.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Delete">
+      <Button fx:id="deleteBtn" layoutX="1081.0" layoutY="658.0" mnemonicParsing="false" onAction="#deleteDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Delete">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font></Button>
-      <TextField fx:id="searchTF" layoutX="1009.0" layoutY="14.0" prefHeight="25.0" prefWidth="172.0" />
-      <Button fx:id="searchBtn" onAction="#searchDeviceButtonAction" layoutX="1195.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Search" />
+      <TextField fx:id="searchTF" layoutX="844.0" layoutY="78.0" prefHeight="33.0" prefWidth="319.0" promptText="Device name" />
+      <Button fx:id="searchBtn" layoutX="1181.0" layoutY="78.0" mnemonicParsing="false" onAction="#searchDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Search">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Text layoutX="438.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT DEVICE TO BE INVENTORY" wrappingWidth="425.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
