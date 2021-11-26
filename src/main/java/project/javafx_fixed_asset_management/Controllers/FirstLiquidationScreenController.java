@@ -10,46 +10,42 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.controlsfx.control.action.Action;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
 
-public class FirstInventoryScreenController {
+public class FirstLiquidationScreenController {
     @FXML
-    TableView<?> inventoryPeopleTV;
-
-    @FXML
-    TextField nameTF;
-
-    @FXML
-    TextField departmentTF;
-
-    @FXML
-    DatePicker dateOfInventoryDtp;
+    TableView<?> liquidationPeopleTV;
 
     @FXML
     Button addBtn;
 
     @FXML
-    Button deleteBtn;
-
-    @FXML
     Button backBtn;
 
     @FXML
-    Button continueBtn;
+    DatePicker dateOfInventoryDtp;
 
     @FXML
-    public void addPeopleButtonAction (ActionEvent event) {
+    Button deleteBtn;
+
+    @FXML
+    TextField departmentTF;
+
+    @FXML
+    TextField nameTF;
+
+    @FXML
+    Button nextBtn;
+
+    @FXML
+    void addPeopleButtonAction(ActionEvent event) {
 
     }
-    @FXML
-    public void deletePeopleButtonAction (ActionEvent event) {
 
-    }
     @FXML
-    public void backButtonAction (ActionEvent event) {
+    void backButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -62,9 +58,10 @@ public class FirstInventoryScreenController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void continueButtonAction (ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/InventoryScreen/second_inventory_screen.fxml"));
+    void continueButtonAction(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/second_liquidation_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
@@ -76,6 +73,10 @@ public class FirstInventoryScreenController {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    @FXML
+    void deletePeopleButtonAction(ActionEvent event) {
 
     }
 }

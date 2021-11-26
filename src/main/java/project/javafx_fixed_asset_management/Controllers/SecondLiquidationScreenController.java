@@ -6,33 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.controlsfx.control.action.Action;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
 
-public class FirstInventoryScreenController {
-    @FXML
-    TableView<?> inventoryPeopleTV;
-
-    @FXML
-    TextField nameTF;
-
-    @FXML
-    TextField departmentTF;
-
-    @FXML
-    DatePicker dateOfInventoryDtp;
+public class SecondLiquidationScreenController {
 
     @FXML
     Button addBtn;
-
-    @FXML
-    Button deleteBtn;
 
     @FXML
     Button backBtn;
@@ -41,16 +26,31 @@ public class FirstInventoryScreenController {
     Button continueBtn;
 
     @FXML
-    public void addPeopleButtonAction (ActionEvent event) {
+    TextField deviceNameTF;
+
+    @FXML
+    TableView<?> deviceTB;
+
+    @FXML
+    Text errorLabel;
+
+    @FXML
+    TableView<?> liquidationDeviceTB;
+
+    @FXML
+    Button removeBtn;
+
+    @FXML
+    Button searchBtn;
+
+    @FXML
+    void addBtnAction(ActionEvent event) {
 
     }
-    @FXML
-    public void deletePeopleButtonAction (ActionEvent event) {
 
-    }
     @FXML
-    public void backButtonAction (ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
+    void backButtonAction(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/first_liquidation_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
@@ -62,9 +62,10 @@ public class FirstInventoryScreenController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void continueButtonAction (ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/InventoryScreen/second_inventory_screen.fxml"));
+    void continueBtnAction(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/third_liquidation_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
@@ -75,7 +76,16 @@ public class FirstInventoryScreenController {
         }
         stage.setScene(scene);
         stage.show();
+    }
 
+    @FXML
+    void removeBtnAction(ActionEvent event) {
 
     }
+
+    @FXML
+    void searchBtnAction(ActionEvent event) {
+
+    }
+
 }
