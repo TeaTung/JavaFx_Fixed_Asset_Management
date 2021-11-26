@@ -27,6 +27,7 @@ public class Utils {
     }
 
     public static ArrayList<UNIT> mapResultToObject(ResultSet resultSet) {
+        printResultSet(resultSet);
         ArrayList<UNIT> units = new ArrayList<>();
         try {
             while ( resultSet.next()){

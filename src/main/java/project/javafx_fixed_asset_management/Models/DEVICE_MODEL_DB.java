@@ -14,7 +14,57 @@ public class DEVICE_MODEL_DB extends CONNECT_DB {
     int quantity;
     String modelName;
 
-    public DEVICE_MODEL_DB() {
+    public String getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
+    }
+
+    public String getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(String unitId) {
+        this.unitId = unitId;
+    }
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+
+
+    /*public DEVICE_MODEL_DB() {
     }
 
 
@@ -77,5 +127,5 @@ public class DEVICE_MODEL_DB extends CONNECT_DB {
         }
         return result;
     }
-
+*/
 }
