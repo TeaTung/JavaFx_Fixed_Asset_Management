@@ -6,40 +6,35 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.controlsfx.control.action.Action;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
 
-public class FirstInventoryScreenController {
-//    public TableView<Device> deviceTableView;
-//
-//    public TableColumn<Device, String> deviceNameColumn;
-//    public TableColumn<Device, Integer> idColumn;
+public class AccountScreenController {
+    @FXML
+    Label nameLbl;
 
     @FXML
-    public TextField nameTF;
-    public TextField departmentTF;
+    Label ageLbl;
 
-    public DatePicker dateOfInventoryDtp;
+    @FXML
+    Label emailLbl;
 
-    public Button addBtn;
-    public Button deleteBtn;
-    public Button backBtn;
-    public Button continueBtn;
+    @FXML
+    Label phoneNumberLbl;
 
+    @FXML
+    Label addressLbl;
 
-    public void addPeopleButtonAction (ActionEvent event) {
+    @FXML
+    Button backBtn;
 
-    }
+    @FXML
+    Button updateBtn;
 
-    public void deletePeopleButtonAction (ActionEvent event) {
-
-    }
-
+    @FXML
     public void backButtonAction (ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
         Node node = (Node) event.getSource();
@@ -54,17 +49,19 @@ public class FirstInventoryScreenController {
         stage.show();
     }
 
-    public void continueButtonAction (ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/InventoryScreen/second_inventory_screen.fxml"));
+    @FXML
+    public void updateButtonAction (ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AccountScreen/update_account_information_dialog.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
+            scene = new Scene(fxmlLoader.load(), 550, 442);
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setScene(scene);
         stage.show();
     }
+
 }

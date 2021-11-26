@@ -22,7 +22,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
+        launch();
         CRUD_DATABASE.crud_database.select("", new String[]{},
                 "tbUnit","", "", "" );
 

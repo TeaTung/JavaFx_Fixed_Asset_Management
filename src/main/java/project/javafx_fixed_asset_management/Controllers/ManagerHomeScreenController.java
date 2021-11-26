@@ -33,6 +33,8 @@ public class ManagerHomeScreenController {
     @FXML
     Button btnRepair;
 
+
+
     public void openDeviceScreenButtonAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
         Node node = (Node) event.getSource();
@@ -54,6 +56,34 @@ public class ManagerHomeScreenController {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void openTransferScreenButtonAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/TransferScreen/transfer_devices_screen.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1280, 720);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void openAccountScreenButtonAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AccountScreen/account_screen.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 550, 442);
         } catch (IOException e) {
             e.printStackTrace();
         }

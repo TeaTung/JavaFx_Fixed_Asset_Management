@@ -15,7 +15,7 @@ public abstract class CONNECT_DB {
     // Kích hoạt tài khỏan SA trên SQL Server
     public CONNECT_DB() {
         this.setAll("localhost\\HELLO",
-                1400,
+                1433,
                 "sa",
                 "1234",
                 "FIXED_ASSETS_DATABASE");

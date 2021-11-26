@@ -13,10 +13,12 @@
          </image>
       </ImageView>
       <Button id="btnDevice" fx:id="btnDevice" layoutX="205.0" layoutY="109.0" mnemonicParsing="false" onAction="#openDeviceScreenButtonAction" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
-      <Button id="btnInventory" fx:id="btnLiquidation" onAction="#openInventoryScreenButtonAction" layoutX="537.0" layoutY="109.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnInventory" fx:id="btnLiquidation" layoutX="537.0" layoutY="109.0" mnemonicParsing="false" onAction="#openInventoryScreenButtonAction" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
       <Button id="btnHistory" fx:id="btnHistory" layoutX="205.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
       <Button id="btnLiquidation" fx:id="btnInventory" layoutX="866.0" layoutY="109.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
-      <Button id="btnAccount" fx:id="btnAccount" layoutX="866.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnAccount" fx:id="btnAccount" layoutX="866.0" layoutY="402.0" mnemonicParsing="false" onAction="#openTransferScreenButtonAction" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
       <Button id="btnRepair" fx:id="btnRepair" layoutX="535.0" layoutY="402.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnDevice" fx:id="btnDevice1" layoutX="215.0" layoutY="119.0" mnemonicParsing="false" onAction="#openDeviceScreenButtonAction" prefHeight="250.0" prefWidth="250.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
+      <Button id="btnAccount" onAction="#openAccountScreenButtonAction" layoutX="1191.0" layoutY="14.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="75.0" style="-fx-border-radius: 25px;" styleClass="btn" stylesheets="@style.css" />
    </children>
 </AnchorPane>
