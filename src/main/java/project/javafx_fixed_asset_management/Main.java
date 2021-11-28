@@ -6,9 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import project.javafx_fixed_asset_management.Models.CRUD_DATABASE;
+import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
+import project.javafx_fixed_asset_management.Models.UNIT;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main extends Application {
     @Override
@@ -22,9 +26,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
-        CRUD_DATABASE.crud_database.select("", new String[]{},
-                "tbUnit", "", "", "");
+        //launch();
+        DATABASE_DAO<UNIT> unitdatabase_dao = new DATABASE_DAO<>(UNIT.class);
+        unitdatabase_dao.insert("insert into tbUnit( unitId) values (? )", "sieunhan");
+        List<UNIT> list = unitdatabase_dao.selectList("select * from tbUnit");
+        System.out.println(Arrays.toString(list.toArray()));
 
     }
 }
