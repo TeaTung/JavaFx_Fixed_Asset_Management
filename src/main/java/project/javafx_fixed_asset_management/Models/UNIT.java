@@ -2,9 +2,11 @@ package project.javafx_fixed_asset_management.Models;
 
 public class UNIT {
 
-    String unitId;
-    String unitName;
-    String note;
+    private String unitId;
+    private String unitName;
+    private String note;
+
+
 //
 //
 //    public UNIT_DB() {
@@ -68,7 +70,6 @@ public class UNIT {
 //        }
 //        return result;
 //    }
-
 
     public String getUnitId() {
         return unitId;

@@ -58,6 +58,15 @@ public abstract class CONNECT_DB {
         } catch (SQLException err) {
             System.out.println("Can't not connect, check login information");
         }
+
+
+
+
+
+
+
+
+
         return this.database_connection;
     }
 }

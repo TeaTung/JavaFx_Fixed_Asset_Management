@@ -1,6 +1,14 @@
 package project.javafx_fixed_asset_management.Models;
 
+import javafx.concurrent.Task;
+
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
+import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 
 public class CRUD_DATABASE extends CONNECT_DB {
 
@@ -60,9 +68,9 @@ public class CRUD_DATABASE extends CONNECT_DB {
         try {
             Connection con = this.getConnection();
 
-            String sql_query = "DELETE FROM " + tableName  ;
+            String sql_query = "DELETE FROM " + tableName;
 
-            if(!nameOfTablePrimaryKey.isEmpty()){
+            if (!nameOfTablePrimaryKey.isEmpty()) {
                 sql_query += " WHERE " + nameOfTablePrimaryKey + " = '" + primaryIdValue + "'";
             }
 
@@ -74,6 +82,8 @@ public class CRUD_DATABASE extends CONNECT_DB {
             err.printStackTrace();
             result = 0;
         }
+
+
         return result;
     }
 
@@ -168,6 +178,29 @@ public class CRUD_DATABASE extends CONNECT_DB {
             err.printStackTrace();
         }
         return resultSet;
+    }
+
+
+
+    public void aa(){
+        ResultSetHandler<UNIT> resultHandler = new BeanHandler<UNIT>(UNIT.class);
+        Connection con = this.getConnection();
+        try {
+            DbUtils.loadDriver("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+            QueryRunner queryRunner = new QueryRunner();
+            Object emp = queryRunner.query(con, "SELECT  *  FROM tbUnit", resultHandler);
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                DbUtils.close(con);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
