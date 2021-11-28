@@ -8,34 +8,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ConfirmTransferDevicesDialogController">
+<AnchorPane prefHeight="720.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ConfirmRepairDevicesDialog">
    <children>
-      <Label layoutX="36.0" layoutY="75.0" text="Transfer ID" AnchorPane.leftAnchor="36.0">
+      <Label layoutX="36.0" layoutY="75.0" text="Repairing Decision ID" AnchorPane.leftAnchor="36.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Text layoutX="110.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONFIRM TRANSFER DEVICES" wrappingWidth="330.0">
+      <Text layoutX="127.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONFIRM REPAIR DEVICES" wrappingWidth="296.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
-      <Label fx:id="transferIdLbl" layoutX="150.0" layoutY="75.0" text="123">
+      <Label fx:id="repairingDecisionIdLbl" layoutX="223.0" layoutY="75.0" text="id ne">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="120.0" text="Department" AnchorPane.leftAnchor="36.0">
+      <Label layoutX="36.0" layoutY="120.0" text="Price" AnchorPane.leftAnchor="36.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="departmentLbl" layoutX="150.0" layoutY="120.0" text="Somewhere in the world">
+      <Label fx:id="priceLbl" layoutX="223.0" layoutY="120.0" text="gia' ne">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="36.0" layoutY="165.0" prefHeight="474.0" prefWidth="478.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0">
+      <TableView layoutX="36.0" layoutY="257.0" prefHeight="388.0" prefWidth="478.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0">
          <columns>
             <TableColumn prefWidth="60.0" text="ID" />
             <TableColumn prefWidth="236.0" text="Device name" />
@@ -53,5 +53,25 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Label layoutX="36.0" layoutY="165.0" text="Repairing Company">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="repairingCompanyLbl" layoutX="223.0" layoutY="165.0" text="con ty ne">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="210.0" text="Repairing Date">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="repairingDateLbl" layoutX="223.0" layoutY="210.0" text="ngay sua ne">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

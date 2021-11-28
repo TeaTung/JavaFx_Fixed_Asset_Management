@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import project.javafx_fixed_asset_management.Models.CRUD_DATABASE;
+import project.javafx_fixed_asset_management.Utils.Utils;
 
 import java.io.IOException;
 
@@ -23,8 +24,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
-        CRUD_DATABASE.crud_database.select("", new String[]{},
-                "tbUnit", "", "", "");
 
+        var a = CRUD_DATABASE.crud_database.select("", new String[]{},
+                "tbUnit", "", "", "");
+        Utils.printResultSet(a);
     }
 }

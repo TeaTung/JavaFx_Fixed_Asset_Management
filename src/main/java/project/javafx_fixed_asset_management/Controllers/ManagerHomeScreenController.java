@@ -102,4 +102,19 @@ public class ManagerHomeScreenController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void openRepairScreenButtonAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/RepairScreen/repair_devices_screen.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1280, 720);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

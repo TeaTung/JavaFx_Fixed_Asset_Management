@@ -15,12 +15,18 @@ import project.javafx_fixed_asset_management.Main;
 import java.io.IOException;
 import java.util.Optional;
 
-public class ConfirmTranferDevicesDialogController {
+public class ConfirmRepairDevicesDialog {
     @FXML
-    Label transferIdLbl;
+    Label repairingDecisionIdLbl;
 
     @FXML
-    Label departmentLbl;
+    Label priceLbl;
+
+    @FXML
+    Label repairingCompanyLbl;
+
+    @FXML
+    Label repairingDateLbl;
 
     @FXML
     Button confirmButton;
@@ -28,9 +34,8 @@ public class ConfirmTranferDevicesDialogController {
     @FXML
     Button backBtn;
 
-    @FXML
     public void backButtonAction (ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/TransferScreen/transfer_devices_screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/RepairScreen/confirm_repair_devices_dialog.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
@@ -46,9 +51,9 @@ public class ConfirmTranferDevicesDialogController {
     @FXML
     public void confirmButtonAction (ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Transfer Device");
-        alert.setHeaderText("Are you sure to transfer device");
-        alert.setContentText("Devices below will be transferred: \n");
+        alert.setTitle("Repair Device");
+        alert.setHeaderText("Are you sure to repair devices");
+        alert.setContentText("Devices below will be repaired: \n");
 
         // option != null.
         Optional<ButtonType> option = alert.showAndWait();
