@@ -1,5 +1,6 @@
 CREATE DATABASE FIXED_ASSETS_DATABASE
-USE FIXED_ASSETS_DATABASE
+USE FIXED_ASSETS_DATABASE;
+
 
 CREATE TABLE tbUnit(
 	UnitId VARCHAR(10) PRIMARY KEY,
@@ -21,23 +22,25 @@ CREATE TABLE tbDeviceModel(
 	Quantity INT,
 	ModelName NVARCHAR(100),
 
-	CONSTRAINT FK_Unit FOREIGN KEY (UnitId)
+	CONSTRAINT FK_DEVICE_MODEL_TO_UNIT FOREIGN KEY (UnitId)
     REFERENCES tbUnit(UnitId),
 
-	CONSTRAINT FK_Type FOREIGN KEY (TypeId)
+	CONSTRAINT FK_DEVICE_MODEL_TO_DEVICE_TYPE FOREIGN KEY (TypeId)
     REFERENCES tbDeviceType(TypeId),
 )
+
+
 
 CREATE TABLE tbDevice(
 	DeviceId VARCHAR(10) PRIMARY KEY,
 	ModelId VARCHAR(10),
 	DeviceStatus NVARCHAR(50),
-	YearUsed DATETIME,
-	YearManufacture DATETIME,
+	YearUsed VARCHAR(10),
+	YearManufacture VARCHAR(10),
 	Price FLOAT,
-	PercentDamage INT,
+	PercentDamage FLOAT,
 
-	CONSTRAINT FK_Model FOREIGN KEY (ModelId)
+	CONSTRAINT FK_DEVICE_TO_DEVICE_MODEL FOREIGN KEY (ModelId)
     REFERENCES tbDeviceModel(ModelId),
 )
 
@@ -52,7 +55,7 @@ CREATE TABLE tbContract(
 	ContractId VARCHAR(10) PRIMARY KEY,
 	ProviderId VARCHAR(10),
 
-	CONSTRAINT FK_Provider FOREIGN KEY (ProviderId)
+	CONSTRAINT FK_CONTRACT_TO_PROVIDER FOREIGN KEY (ProviderId)
     REFERENCES tbProvider(ProviderId),
 )
 
@@ -63,12 +66,13 @@ CREATE TABLE tbImportNote(
 	ImportQuantity INT,
 	ImportDate DATETIME,
 
-	CONSTRAINT FK_Import FOREIGN KEY (TypeId)
+	CONSTRAINT FK_IMPORT_NOTE_TO_DEVOCE FOREIGN KEY (TypeId)
     REFERENCES tbDeviceType(TypeId),
 
-	CONSTRAINT FK_Contract FOREIGN KEY (ContractId)
+	CONSTRAINT FK_IMPORT_NOTE_TO_CONTRACT FOREIGN KEY (ContractId)
     REFERENCES tbContract(ContractId),
 )
+
 
 CREATE TABLE tbInventory(
 	InventoryId VARCHAR(10) PRIMARY KEY,
@@ -76,7 +80,7 @@ CREATE TABLE tbInventory(
 	UsableValue INT,
 	InvertoryDate DATETIME,
 
-	CONSTRAINT FK_Device FOREIGN KEY (DeviceId)
+	CONSTRAINT FK_INVENTORY_TO_DEVICE FOREIGN KEY (DeviceId)
     REFERENCES tbDevice(DeviceId),
 )
 
@@ -85,7 +89,7 @@ CREATE TABLE tbLiquidation(
 	DeviceId VARCHAR(10),
 	LiquidationDate DATETIME,
 
-	CONSTRAINT FK_Device FOREIGN KEY (DeviceId)
+	CONSTRAINT FK_LIQUID_ FOREIGN KEY (DeviceId)
     REFERENCES tbDevice(DeviceId),
 )
 
@@ -95,7 +99,7 @@ CREATE TABLE tbDeliveryNote(
 	DepartmentId VARCHAR(10),
 	DeliveryDate DATETIME,
 
-	CONSTRAINT FK_Device FOREIGN KEY (DeviceId)
+	CONSTRAINT FK_DE FOREIGN KEY (DeviceId)
     REFERENCES tbDevice(DeviceId),
 )
 
@@ -111,24 +115,29 @@ CREATE TABLE tbPersonAndLiqudation(
 	PersonId VARCHAR(10),
 	LiquidationId VARCHAR(10),
 
-	CONSTRAINT FK_Person FOREIGN KEY (PersonId)
+	CONSTRAINT FK_PERSON_AND_LIQUID_TO_PERSON FOREIGN KEY (PersonId)
     REFERENCES tbPerson(PersonId),
 
-	CONSTRAINT FK_Liquidation FOREIGN KEY (LiquidationId)
-    REFERENCES tbLiquidation(LiquidationId),
+	CONSTRAINT FK_PERSON_AND_LIQUID_TO_LIQUID FOREIGN KEY (LiquidationId)
+    REFERENCES tbLiquidation(LiquidationId)
 )
+
+
+
 
 CREATE TABLE tbPersonAndInventory(
 	LinkId VARCHAR(10) PRIMARY KEY,
 	PersonId VARCHAR(10),
 	InventoryId VARCHAR(10),
 
-	CONSTRAINT FK_Person FOREIGN KEY (PersonId)
+	CONSTRAINT FK_PERSON_AND_INV_TO_PERSON FOREIGN KEY (PersonId)
     REFERENCES tbPerson(PersonId),
 
-	CONSTRAINT FK_Inventory FOREIGN KEY (InventoryId)
+	CONSTRAINT FK_PERSON_AND_INV_TO_INV FOREIGN KEY (InventoryId)
     REFERENCES tbInventory(InventoryId),
 )
+
+
 
 
 CREATE TABLE tbFix(
@@ -138,7 +147,6 @@ CREATE TABLE tbFix(
 	Company NVARCHAR(100),
 	Price FLOAT,
 
-	CONSTRAINT FK_Device FOREIGN KEY (DeviceId)
+	CONSTRAINT FK_FIX_TO_DEVICE FOREIGN KEY (DeviceId)
     REFERENCES tbDevice(DeviceId),
 )
-
