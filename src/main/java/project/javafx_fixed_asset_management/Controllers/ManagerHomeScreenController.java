@@ -33,6 +33,9 @@ public class ManagerHomeScreenController {
     @FXML
     Button btnRepair;
 
+    @FXML
+    Button btnTransfer;
+
     public void openDeviceScreenButtonAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
         Node node = (Node) event.getSource();
