@@ -96,12 +96,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="437.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REPAIR HISTORY" textAlignment="CENTER" wrappingWidth="407.0" AnchorPane.topAnchor="37.0">
+                        <Text layoutX="437.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REPAIR HISTORY" textAlignment="CENTER" wrappingWidth="407.0" AnchorPane.topAnchor="37.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
                         </Text>
-                        <TableView fx:id="repairHistoryTableView" layoutX="27.0" layoutY="93.0" prefHeight="518.0" prefWidth="633.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
+                        <TableView fx:id="repairHistoryTableView" layoutX="27.0" layoutY="93.0" prefHeight="518.0" prefWidth="633.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
                            <columns>
                               <TableColumn fx:id="idColumn1" minWidth="0.0" prefWidth="41.0" text="ID" />
                               <TableColumn fx:id="deviceNameColumn1" prefWidth="131.0" text="Device Name" />
@@ -185,17 +185,157 @@
           </Tab>
             <Tab text="Liquidation">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="33.0" layoutY="118.0" prefHeight="236.0" prefWidth="633.0" AnchorPane.leftAnchor="30.0">
+                           <columns>
+                              <TableColumn prefWidth="216.0" text="Name" />
+                              <TableColumn minWidth="0.0" prefWidth="191.0" text="Department" />
+                              <TableColumn prefWidth="225.0" text="Date of liquidtation" />
+                           </columns>
+                        </TableView>
+                        <Text layoutX="428.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LIQUIDATION DEVICE" textAlignment="CENTER" wrappingWidth="407.0" AnchorPane.topAnchor="37.0">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="33.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liquidation information" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="30.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List devcie information" AnchorPane.leftAnchor="30.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TableView layoutX="22.0" layoutY="491.0" prefHeight="210.0" prefWidth="633.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="30.0">
+                           <columns>
+                              <TableColumn prefWidth="53.0" text="ID" />
+                              <TableColumn prefWidth="97.0" text="Name" />
+                              <TableColumn prefWidth="110.0" text="Type of divice" />
+                              <TableColumn prefWidth="69.0" text="Price" />
+                              <TableColumn prefWidth="122.0" text="Specification" />
+                              <TableColumn prefWidth="181.0" text="Date of Manufactoring" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="688.0" layoutY="398.0" text="Date of Liquidation">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="liquidationDateOfLiquidationDTP" layoutX="868.0" layoutY="394.0" prefHeight="33.0" prefWidth="382.0" AnchorPane.rightAnchor="30.0" />
+                        <Text layoutX="688.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List people information">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TableView layoutX="688.0" layoutY="118.0" prefHeight="236.0" prefWidth="561.0" AnchorPane.rightAnchor="30.0">
+                           <columns>
+                              <TableColumn prefWidth="282.0" text="Name" />
+                              <TableColumn minWidth="0.0" prefWidth="317.0" text="Department" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="backBtn" layoutX="20.0" layoutY="637.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="1134.0" layoutY="612.0" mnemonicParsing="false" onAction="#liquidationExportReportButtonAction" prefHeight="33.0" prefWidth="116.0" text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
             <Tab text="Inventory">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-            <Tab text="Device Status">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="428.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVENTORY DEVICES" textAlignment="CENTER" wrappingWidth="407.0" AnchorPane.topAnchor="37.0">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="33.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory information" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TableView layoutX="30.0" layoutY="118.0" prefHeight="236.0" prefWidth="633.0" AnchorPane.leftAnchor="30.0">
+                           <columns>
+                              <TableColumn prefWidth="213.0" text="Name" />
+                              <TableColumn minWidth="0.0" prefWidth="194.0" text="Department" />
+                              <TableColumn prefWidth="225.0" text="Date of inventory" />
+                           </columns>
+                        </TableView>
+                        <Text layoutX="30.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List devcie information">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TableView layoutX="30.0" layoutY="390.0" prefHeight="210.0" prefWidth="633.0" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="30.0">
+                           <columns>
+                              <TableColumn prefWidth="53.0" text="ID" />
+                              <TableColumn prefWidth="97.0" text="Name" />
+                              <TableColumn prefWidth="121.0" text="Type of divice" />
+                              <TableColumn prefWidth="58.0" text="Price" />
+                              <TableColumn prefWidth="110.0" text="Specification" />
+                              <TableColumn prefWidth="193.0" text="Date of Manufactoring" />
+                           </columns>
+                        </TableView>
+                        <Text layoutX="688.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List people information">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <TableView layoutX="688.0" layoutY="118.0" prefHeight="236.0" prefWidth="561.0" AnchorPane.rightAnchor="30.0">
+                           <columns>
+                              <TableColumn prefWidth="282.0" text="Name" />
+                              <TableColumn minWidth="0.0" prefWidth="317.0" text="Department" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="689.0" layoutY="398.0" text="Date of Inventory">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="inventoryDateOfInventoryDTP" layoutX="841.0" layoutY="394.0" prefHeight="33.0" prefWidth="409.0" AnchorPane.rightAnchor="30.0" />
+                        <Label layoutX="689.0" layoutY="450.0" text="Department">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="688.0" layoutY="506.0" text="Department ID">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="inventoryDepartmentIdLBL" layoutX="841.0" layoutY="506.0" text="label date">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="inventoryDepartmentNameTF" layoutX="842.0" layoutY="446.0" prefHeight="33.0" prefWidth="409.0" AnchorPane.rightAnchor="30.0" />
+                        <Button fx:id="inventorySearchInventoryBTN" layoutX="1161.0" layoutY="502.0" mnemonicParsing="false" onAction="#inventorySearchInventoryButtonAction" prefHeight="33.0" prefWidth="89.0" text="Search">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="backBtn" layoutX="30.0" layoutY="620.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="1019.0" layoutY="620.0" mnemonicParsing="false" onAction="#inventoryExportReportButtonAction" prefHeight="33.0" prefWidth="116.0" text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
         </tabs>

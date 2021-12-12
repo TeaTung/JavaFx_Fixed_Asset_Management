@@ -6,6 +6,21 @@ import javafx.scene.control.*;
 
 public class HistoryManagementScreenController {
     @FXML
+    DatePicker liquidationDateOfLiquidationDTP;
+
+    @FXML
+    DatePicker inventoryDateOfInventoryDTP;
+
+    @FXML
+    TextField inventoryDepartmentNameTF;
+
+    @FXML
+    Label inventoryDepartmentIdLBL;
+
+    @FXML
+    Button inventorySearchInventoryBTN;
+
+    @FXML
     Button backBtn;
 
     @FXML
@@ -97,4 +112,21 @@ public class HistoryManagementScreenController {
     void transferTabExportReportBtnAction(ActionEvent event) {
 
     }
+
+    @FXML
+    public void inventorySearchInventoryButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void liquidationExportReportButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void inventoryExportReportButtonAction(ActionEvent event) {
+
+    }
+
+
 }
