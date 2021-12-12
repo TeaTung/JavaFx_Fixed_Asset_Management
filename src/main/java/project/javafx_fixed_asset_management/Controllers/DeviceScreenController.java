@@ -7,12 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.javafx_fixed_asset_management.Main;
 
@@ -55,8 +57,15 @@ public class DeviceScreenController implements Initializable {
 //        );
     }
 
-    public void addDeviceButtonAction(ActionEvent event) {
-
+    public void addDeviceButtonAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/AddNewDeviceDialog/add_new_device_dialog.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        Scene scene = new Scene(fxmlLoader.load(), 1018, 720);
+        stage.setTitle("Add New Screen Dialog");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void updateDeviceButtonAction(ActionEvent event) {
