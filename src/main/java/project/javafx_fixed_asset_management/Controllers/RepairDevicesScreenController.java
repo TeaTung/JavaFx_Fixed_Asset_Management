@@ -83,6 +83,7 @@ public class RepairDevicesScreenController {
         }
         stage.setScene(scene);
         stage.show();
+        
     }
 
 }
