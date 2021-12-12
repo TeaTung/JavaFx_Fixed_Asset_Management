@@ -6,18 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
 
-public class TransferDevicesScreenController {
+public class RepairDevicesScreenController {
     @FXML
     Button addBtn;
-
-    @FXML
-    Button searchBtn;
 
     @FXML
     Button removeBtn;
@@ -26,19 +24,25 @@ public class TransferDevicesScreenController {
     Button backBtn;
 
     @FXML
-    Button transBtn;
+    Button searchBtn;
 
     @FXML
-    Button chooseBtn;
+    Button repairBtn;
 
     @FXML
-    TextField departmentIdTF;
+    TextField searchTF;
 
     @FXML
-    TextField departmentTF;
+    TextField repairingDecisionIdTF;
 
     @FXML
-    TextField searchDeviceTF;
+    TextField priceTF;
+
+    @FXML
+    TextField repairingCompanyTF;
+
+    @FXML
+    DatePicker repairingDateDTP;
 
     public void searchDeviceButtonAction (ActionEvent event) {
 
@@ -52,9 +56,6 @@ public class TransferDevicesScreenController {
 
     }
 
-    public void chooseDepartmentButtonAction (ActionEvent event) {
-
-    }
 
     public void backButtonAction (ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
@@ -70,8 +71,8 @@ public class TransferDevicesScreenController {
         stage.show();
     }
 
-    public void transButtonAction (ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/TransferScreen/confirm_transfer_devices_dialog.fxml"));
+    public void repairButtonAction (ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/RepairScreen/confirm_repair_devices_dialog.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
@@ -82,5 +83,7 @@ public class TransferDevicesScreenController {
         }
         stage.setScene(scene);
         stage.show();
+        
     }
+
 }

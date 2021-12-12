@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.TransferDevicesScreenController">
    <children>
       <Text layoutX="503.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRANSFORM DEVICE" wrappingWidth="274.0">
@@ -17,7 +16,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <TableView layoutX="39.0" layoutY="122.0" prefHeight="536.0" prefWidth="548.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="120.0">
+      <TableView layoutX="39.0" layoutY="122.0" prefHeight="539.0" prefWidth="548.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="120.0">
         <columns>
             <TableColumn prefWidth="60.0" text="ID" />
           <TableColumn prefWidth="271.0" text="Device name" />
@@ -29,12 +28,12 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <Button fx:id="addBtn" onAction="#addDeviceButtonAction" layoutX="613.0" layoutY="142.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="54.0" text="&gt;&gt;">
+      <Button fx:id="addBtn" layoutX="613.0" layoutY="142.0" mnemonicParsing="false" onAction="#addDeviceButtonAction" prefHeight="33.0" prefWidth="54.0" text="&gt;&gt;">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="removeBtn" onAction="#removeDeviceButtonAction" layoutX="613.0" layoutY="196.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="54.0" text="&lt;&lt;">
+      <Button fx:id="removeBtn" layoutX="613.0" layoutY="196.0" mnemonicParsing="false" onAction="#removeDeviceButtonAction" prefHeight="33.0" prefWidth="54.0" text="&lt;&lt;">
          <font>
             <Font size="14.0" />
          </font>
@@ -62,21 +61,24 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="departmentTf" layoutX="823.0" layoutY="523.0" prefHeight="33.0" prefWidth="321.0" />
-      <Button fx:id="backBtn" onAction="#backButtonAction" layoutX="41.0" layoutY="664.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.leftAnchor="40.0">
+      <TextField fx:id="departmentTF" layoutX="823.0" layoutY="523.0" prefHeight="33.0" prefWidth="321.0" />
+      <Button fx:id="backBtn" layoutX="41.0" layoutY="664.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.leftAnchor="40.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="chooseBtn" onAction="#chooseDepartmentButtonAction" layoutX="1163.0" layoutY="523.0" mnemonicParsing="false"  prefHeight="33.0" prefWidth="79.0" text="Choose" AnchorPane.rightAnchor="38.0">
+      <Button fx:id="chooseBtn" layoutX="1163.0" layoutY="523.0" mnemonicParsing="false" onAction="#chooseDepartmentButtonAction" prefHeight="33.0" prefWidth="79.0" text="Choose" AnchorPane.rightAnchor="38.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="transBtn" onAction="#transButtonAction" layoutX="1158.0" layoutY="664.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" text="Trans" textFill="#0d00ff" AnchorPane.rightAnchor="38.0">
+      <Button fx:id="transBtn" layoutX="1158.0" layoutY="664.0" mnemonicParsing="false" onAction="#transButtonAction" prefHeight="33.0" prefWidth="89.0" text="Trans" textFill="#0d00ff" AnchorPane.rightAnchor="38.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <TextField fx:id="searchDeviceTF" layoutX="330.0" layoutY="668.0" prefHeight="33.0" prefWidth="179.0" />
+      <Button fx:id="searchBtn" layoutX="520.0" layoutY="668.0" mnemonicParsing="false" onAction="#searchDeviceButtonAction" prefHeight="33.0" prefWidth="68.0" text="Search" />
+      <Text fill="RED" layoutX="1107.0" layoutY="655.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose at least 1 device" AnchorPane.rightAnchor="36.0" />
    </children>
 </AnchorPane>
