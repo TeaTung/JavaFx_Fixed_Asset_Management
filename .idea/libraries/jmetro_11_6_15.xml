@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jmetro-11.6.15">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/jmetro-11.6.15.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jmetro-11.6.15-javadoc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
