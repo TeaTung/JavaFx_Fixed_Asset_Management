@@ -1,11 +1,6 @@
 package project.javafx_fixed_asset_management.Models;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-public class DEVICE_MODEL_DB extends CONNECT_DB {
+public class DEVICE_MODEL extends CONNECT_DB {
 
     String modelId;
     String unitId;

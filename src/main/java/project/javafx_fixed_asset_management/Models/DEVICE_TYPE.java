@@ -5,15 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DEVICE_TYPE_DB extends  CONNECT_DB{
+public class DEVICE_TYPE extends  CONNECT_DB{
     String typeId;
     String typeName;
     String note;
 
-    public DEVICE_TYPE_DB() {
+    public DEVICE_TYPE() {
     }
 
-    public DEVICE_TYPE_DB(String ServerName, int PortNumber, String UserName, String pwd, String DatabaseName) {
+    public DEVICE_TYPE(String ServerName, int PortNumber, String UserName, String pwd, String DatabaseName) {
         super(ServerName, PortNumber, UserName, pwd, DatabaseName);
     }
 

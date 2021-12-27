@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class CONNECT_DB {
+public  class CONNECT_DB {
     private String ServerName;
     private int PortNumber;
     private String UserName;
@@ -12,10 +12,13 @@ public abstract class CONNECT_DB {
     private String DatabaseName;
     private Connection database_connection;
 
+
+    public static CONNECT_DB connect_db = new CONNECT_DB();
+
     // Kích hoạt tài khỏan SA trên SQL Server
     public CONNECT_DB() {
         this.setAll("localhost\\HELLO",
-                1433,
+                1400,
                 "sa",
                 "1234",
                 "FIXED_ASSETS_DATABASE");
