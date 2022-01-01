@@ -43,43 +43,43 @@
                            </font>
                         </Button>
                         <CheckBox layoutX="470.0" layoutY="620.0" mnemonicParsing="false" text="Products have usable value &lt; 50" AnchorPane.bottomAnchor="54.0" />
-                        <Label layoutX="707.0" layoutY="135.0" text="Department:">
+                        <Label layoutX="707.0" layoutY="135.0" text="Department:" AnchorPane.leftAnchor="710.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="repairTabDepartmentTF1" layoutX="861.0" layoutY="127.0" prefHeight="33.0" prefWidth="389.0" />
-                        <Label layoutX="707.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="Department ID:">
+                        <TextField fx:id="repairTabDepartmentTF1" layoutX="861.0" layoutY="127.0" prefHeight="33.0" prefWidth="389.0" AnchorPane.leftAnchor="864.0" AnchorPane.topAnchor="127.0" />
+                        <Label layoutX="707.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="Department ID:" AnchorPane.leftAnchor="710.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="repairTabDepartmentIdTF1" layoutX="859.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="DPM-12">
+                        <Label fx:id="repairTabDepartmentIdTF1" layoutX="859.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="DPM-12" AnchorPane.leftAnchor="864.0" AnchorPane.topAnchor="185.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="707.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="Total device:">
+                        <Label layoutX="707.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="Total device:" AnchorPane.leftAnchor="710.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="707.0" layoutY="282.0" prefHeight="25.0" prefWidth="117.0" text="Total people:">
+                        <Label layoutX="707.0" layoutY="282.0" prefHeight="25.0" prefWidth="117.0" text="Total people:" AnchorPane.leftAnchor="710.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="repairTabTotalDeviceTF1" layoutX="859.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="10">
+                        <Label fx:id="repairTabTotalDeviceTF1" layoutX="864.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="10" AnchorPane.leftAnchor="864.0" AnchorPane.topAnchor="234.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="repairTabTotalPeopleTF1" layoutX="859.0" layoutY="282.0" prefHeight="25.0" prefWidth="117.0" text="20">
+                        <Label fx:id="repairTabTotalPeopleTF1" layoutX="859.0" layoutY="282.0" prefHeight="25.0" prefWidth="117.0" text="20" AnchorPane.leftAnchor="864.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="707.0" layoutY="90.0" prefHeight="25.0" prefWidth="199.0" text="Department Information">
+                        <Label layoutX="707.0" layoutY="90.0" prefHeight="25.0" prefWidth="199.0" text="Department Information" AnchorPane.leftAnchor="710.0" AnchorPane.topAnchor="90.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -116,13 +116,13 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="repairTabDepartmentTF" layoutX="864.0" layoutY="127.0" prefHeight="33.0" prefWidth="389.0" AnchorPane.topAnchor="127.0" />
+                        <TextField fx:id="repairTabDepartmentTF" layoutX="864.0" layoutY="127.0" prefHeight="33.0" prefWidth="389.0" AnchorPane.leftAnchor="864.0" AnchorPane.topAnchor="127.0" />
                         <Label layoutX="710.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="Department ID:" AnchorPane.leftAnchor="710.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="repairTabDepartmentIdTF" layoutX="862.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="DPM-12" AnchorPane.leftAnchor="862.0">
+                        <Label fx:id="repairTabDepartmentIdTF" layoutX="862.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="DPM-12" AnchorPane.leftAnchor="864.0" AnchorPane.topAnchor="185.0">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -137,12 +137,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="repairTabTotalDeviceTF" layoutX="862.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="10" AnchorPane.leftAnchor="862.0">
+                        <Label fx:id="repairTabTotalDeviceTF" layoutX="862.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="10" AnchorPane.leftAnchor="864.0" AnchorPane.topAnchor="234.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="repairTabTotalPeopleTF" layoutX="862.0" layoutY="282.0" prefHeight="25.0" prefWidth="117.0" text="20" AnchorPane.leftAnchor="862.0">
+                        <Label fx:id="repairTabTotalPeopleTF" layoutX="862.0" layoutY="282.0" prefHeight="25.0" prefWidth="117.0" text="20" AnchorPane.leftAnchor="864.0">
                            <font>
                               <Font size="16.0" />
                            </font>

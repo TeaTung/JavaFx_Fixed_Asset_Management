@@ -1,12 +1,21 @@
 package project.javafx_fixed_asset_management.Models;
 
+import java.time.LocalDate;
+
 public class REPAIR {
     String fixId;
     String deviceId;
-    String confirmation;
+    LocalDate repairDate;
     String company;
     float price;
 
+    public LocalDate getRepairDate() {
+        return repairDate;
+    }
+
+    public void setRepairDate(LocalDate repairDate) {
+        this.repairDate = repairDate;
+    }
 
     public String getFixId() {
         return fixId;
@@ -22,14 +31,6 @@ public class REPAIR {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
-    }
-
-    public String getConfirmation() {
-        return confirmation;
-    }
-
-    public void setConfirmation(String confirmation) {
-        this.confirmation = confirmation;
     }
 
     public String getCompany() {

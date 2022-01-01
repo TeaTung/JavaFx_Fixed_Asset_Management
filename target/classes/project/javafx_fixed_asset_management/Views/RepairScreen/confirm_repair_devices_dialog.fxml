@@ -10,12 +10,12 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ConfirmRepairDevicesDialogController">
    <children>
-      <Label layoutX="36.0" layoutY="75.0" text="Repairing Decision ID" AnchorPane.leftAnchor="36.0">
+      <Label layoutX="36.0" layoutY="75.0" text="Repairing Decision ID" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Text layoutX="127.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONFIRM REPAIR DEVICES" wrappingWidth="296.0">
+      <Text layoutX="127.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONFIRM REPAIR DEVICES" wrappingWidth="296.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
@@ -25,7 +25,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="120.0" text="Price" AnchorPane.leftAnchor="36.0">
+      <Label layoutX="36.0" layoutY="120.0" text="Price" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -35,25 +35,25 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="36.0" layoutY="257.0" prefHeight="388.0" prefWidth="478.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0">
+      <TableView fx:id="deviceRepairingTableView" layoutX="36.0" layoutY="257.0" prefHeight="378.0" prefWidth="470.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <columns>
-            <TableColumn prefWidth="60.0" text="ID" />
-            <TableColumn prefWidth="236.0" text="Device name" />
-            <TableColumn prefWidth="183.0" text="Type of device" />
+            <TableColumn fx:id="idDeviceRepairingColumn" prefWidth="60.0" text="ID" />
+            <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="236.0" text="Device name" />
+            <TableColumn fx:id="specificationDeviceRepairingNameColumn" prefWidth="183.0" text="Specification" />
          </columns>
       </TableView>
       <Text fill="RED" layoutX="373.234375" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure about that ?" AnchorPane.rightAnchor="36.0" />
-      <Button fx:id="confirmButton" layoutX="425.0" layoutY="668.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff" AnchorPane.rightAnchor="36.0">
+      <Button fx:id="confirmButton" layoutX="425.0" layoutY="668.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="backBtn" layoutX="34.0" layoutY="668.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.leftAnchor="36.0">
+      <Button fx:id="backBtn" layoutX="34.0" layoutY="668.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="36.0" layoutY="165.0" text="Repairing Company">
+      <Label layoutX="36.0" layoutY="165.0" text="Repairing Company" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -63,7 +63,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="210.0" text="Repairing Date">
+      <Label layoutX="36.0" layoutY="210.0" text="Repairing Date" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
