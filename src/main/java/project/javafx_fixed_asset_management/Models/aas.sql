@@ -39,6 +39,8 @@ CREATE TABLE tbDevice(
 	YearManufacture VARCHAR(10),
 	Price FLOAT,
 	PercentDamage FLOAT,
+    DeviceName NVARCHAR(50),
+    Specification NVARCHAR(50),
 
 	CONSTRAINT FK_DEVICE_TO_DEVICE_MODEL FOREIGN KEY (ModelId)
     REFERENCES tbDeviceModel(ModelId),
@@ -66,7 +68,7 @@ CREATE TABLE tbImportNote(
 	ImportQuantity INT,
 	ImportDate DATETIME,
 
-	CONSTRAINT FK_IMPORT_NOTE_TO_DEVOCE FOREIGN KEY (TypeId)
+	CONSTRAINT FK_IMPORT_NOTE_TO_DEVICE FOREIGN KEY (TypeId)
     REFERENCES tbDeviceType(TypeId),
 
 	CONSTRAINT FK_IMPORT_NOTE_TO_CONTRACT FOREIGN KEY (ContractId)
@@ -78,7 +80,7 @@ CREATE TABLE tbInventory(
 	InventoryId VARCHAR(10) PRIMARY KEY,
 	DeviceId VARCHAR(10),
 	UsableValue INT,
-	InvertoryDate DATETIME,
+	InventoryDate DATETIME,
 
 	CONSTRAINT FK_INVENTORY_TO_DEVICE FOREIGN KEY (DeviceId)
     REFERENCES tbDevice(DeviceId),
@@ -143,7 +145,7 @@ CREATE TABLE tbPersonAndInventory(
 CREATE TABLE tbFix(
 	FixId VARCHAR(10) PRIMARY KEY,
 	DeviceId VARCHAR(10),
-	Confirmation NVARCHAR(100),
+	RepairDate DATE,
 	Company NVARCHAR(100),
 	Price FLOAT,
 
