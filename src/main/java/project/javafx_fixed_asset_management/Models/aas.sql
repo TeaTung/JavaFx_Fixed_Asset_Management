@@ -1,154 +1,178 @@
-CREATE DATABASE FIXED_ASSETS_DATABASE
+CREATE
+DATABASE FIXED_ASSETS_DATABASE
 USE FIXED_ASSETS_DATABASE;
 
 
-CREATE TABLE tbUnit(
-	UnitId VARCHAR(10) PRIMARY KEY,
-	UnitName NVARCHAR(100),
-	Note NVARCHAR(200),
+CREATE TABLE tbUnit
+(
+    UnitId   VARCHAR(10) PRIMARY KEY,
+    UnitName NVARCHAR(100),
+    Note     NVARCHAR(200),
 )
 
-CREATE TABLE tbDeviceType(
-	TypeId VARCHAR(10) PRIMARY KEY,
-	TypeName NVARCHAR(100),
-	Note NVARCHAR(200),
+CREATE TABLE tbDeviceType
+(
+    TypeId   VARCHAR(10) PRIMARY KEY,
+    TypeName NVARCHAR(100),
+    Note     NVARCHAR(200),
 )
 
-CREATE TABLE tbDeviceModel(
-	ModelId VARCHAR(10) PRIMARY KEY,
-	UnitId VARCHAR(10),
-	TypeId VARCHAR(10),
-	Specification NVARCHAR(2000),
-	Quantity INT,
-	ModelName NVARCHAR(100),
+CREATE TABLE tbDeviceModel
+(
+    ModelId       VARCHAR(10) PRIMARY KEY,
+    UnitId        VARCHAR(10),
+    TypeId        VARCHAR(10),
+    Specification NVARCHAR(2000),
+    Quantity      INT,
+    ModelName     NVARCHAR(100),
 
-	CONSTRAINT FK_DEVICE_MODEL_TO_UNIT FOREIGN KEY (UnitId)
-    REFERENCES tbUnit(UnitId),
+    CONSTRAINT FK_DEVICE_MODEL_TO_UNIT FOREIGN KEY (UnitId)
+        REFERENCES tbUnit (UnitId),
 
-	CONSTRAINT FK_DEVICE_MODEL_TO_DEVICE_TYPE FOREIGN KEY (TypeId)
-    REFERENCES tbDeviceType(TypeId),
-)
-
-
-
-CREATE TABLE tbDevice(
-	DeviceId VARCHAR(10) PRIMARY KEY,
-	ModelId VARCHAR(10),
-	DeviceStatus NVARCHAR(50),
-	YearUsed VARCHAR(10),
-	YearManufacture VARCHAR(10),
-	Price FLOAT,
-	PercentDamage FLOAT,
-    DeviceName NVARCHAR(50),
-    Specification NVARCHAR(50),
-
-	CONSTRAINT FK_DEVICE_TO_DEVICE_MODEL FOREIGN KEY (ModelId)
-    REFERENCES tbDeviceModel(ModelId),
-)
-
-CREATE TABLE tbProvider(
-	ProviderId VARCHAR(10) PRIMARY KEY,
-	ProviderName NVARCHAR(100),
-	Address NVARCHAR(100),
-	Phone VARCHAR(15),
-)
-
-CREATE TABLE tbContract(
-	ContractId VARCHAR(10) PRIMARY KEY,
-	ProviderId VARCHAR(10),
-
-	CONSTRAINT FK_CONTRACT_TO_PROVIDER FOREIGN KEY (ProviderId)
-    REFERENCES tbProvider(ProviderId),
-)
-
-CREATE TABLE tbImportNote(
-	ImportId VARCHAR(10) PRIMARY KEY,
-	TypeId VARCHAR(10),
-	ContractId VARCHAR(10),
-	ImportQuantity INT,
-	ImportDate DATETIME,
-
-	CONSTRAINT FK_IMPORT_NOTE_TO_DEVICE FOREIGN KEY (TypeId)
-    REFERENCES tbDeviceType(TypeId),
-
-	CONSTRAINT FK_IMPORT_NOTE_TO_CONTRACT FOREIGN KEY (ContractId)
-    REFERENCES tbContract(ContractId),
-)
-
-
-CREATE TABLE tbInventory(
-	InventoryId VARCHAR(10) PRIMARY KEY,
-	DeviceId VARCHAR(10),
-	UsableValue INT,
-	InventoryDate DATETIME,
-
-	CONSTRAINT FK_INVENTORY_TO_DEVICE FOREIGN KEY (DeviceId)
-    REFERENCES tbDevice(DeviceId),
-)
-
-CREATE TABLE tbLiquidation(
-	LiquidationId VARCHAR(10) PRIMARY KEY,
-	DeviceId VARCHAR(10),
-	LiquidationDate DATETIME,
-
-	CONSTRAINT FK_LIQUID_ FOREIGN KEY (DeviceId)
-    REFERENCES tbDevice(DeviceId),
-)
-
-CREATE TABLE tbDeliveryNote(
-	DeliveryId VARCHAR(10) PRIMARY KEY,
-	DeviceId VARCHAR(10),
-	DepartmentId VARCHAR(10),
-	DeliveryDate DATETIME,
-
-	CONSTRAINT FK_DE FOREIGN KEY (DeviceId)
-    REFERENCES tbDevice(DeviceId),
-)
-
-CREATE TABLE tbPerson(
-	PersonId VARCHAR(10) PRIMARY KEY,
-	DepartmentId VARCHAR(10),
-	Name NVARCHAR(100),
-	Title NVARCHAR(100),
-)
-
-CREATE TABLE tbPersonAndLiqudation(
-	LinkId VARCHAR(10) PRIMARY KEY,
-	PersonId VARCHAR(10),
-	LiquidationId VARCHAR(10),
-
-	CONSTRAINT FK_PERSON_AND_LIQUID_TO_PERSON FOREIGN KEY (PersonId)
-    REFERENCES tbPerson(PersonId),
-
-	CONSTRAINT FK_PERSON_AND_LIQUID_TO_LIQUID FOREIGN KEY (LiquidationId)
-    REFERENCES tbLiquidation(LiquidationId)
+    CONSTRAINT FK_DEVICE_MODEL_TO_DEVICE_TYPE FOREIGN KEY (TypeId)
+        REFERENCES tbDeviceType (TypeId),
 )
 
 
 
+CREATE TABLE tbDevice
+(
+    DeviceId        VARCHAR(10) PRIMARY KEY,
+    ModelId         VARCHAR(10),
+    DeviceStatus    NVARCHAR(50),
+    YearUsed        VARCHAR(10),
+    YearManufacture VARCHAR(10),
+    Price           FLOAT,
+    PercentDamage   FLOAT,
+    DeviceName      NVARCHAR(50),
+    Specification   NVARCHAR(50),
 
-CREATE TABLE tbPersonAndInventory(
-	LinkId VARCHAR(10) PRIMARY KEY,
-	PersonId VARCHAR(10),
-	InventoryId VARCHAR(10),
+    CONSTRAINT FK_DEVICE_TO_DEVICE_MODEL FOREIGN KEY (ModelId)
+        REFERENCES tbDeviceModel (ModelId),
+)
 
-	CONSTRAINT FK_PERSON_AND_INV_TO_PERSON FOREIGN KEY (PersonId)
-    REFERENCES tbPerson(PersonId),
+CREATE TABLE tbProvider
+(
+    ProviderId   VARCHAR(10) PRIMARY KEY,
+    ProviderName NVARCHAR(100),
+    Address      NVARCHAR(100),
+    Phone        VARCHAR(15),
+)
 
-	CONSTRAINT FK_PERSON_AND_INV_TO_INV FOREIGN KEY (InventoryId)
-    REFERENCES tbInventory(InventoryId),
+CREATE TABLE tbContract
+(
+    ContractId VARCHAR(10) PRIMARY KEY,
+    ProviderId VARCHAR(10),
+
+    CONSTRAINT FK_CONTRACT_TO_PROVIDER FOREIGN KEY (ProviderId)
+        REFERENCES tbProvider (ProviderId),
+)
+
+CREATE TABLE tbImportNote
+(
+    ImportId       VARCHAR(10) PRIMARY KEY,
+    TypeId         VARCHAR(10),
+    ContractId     VARCHAR(10),
+    ImportQuantity INT,
+    ImportDate     DATETIME,
+
+    CONSTRAINT FK_IMPORT_NOTE_TO_DEVICE FOREIGN KEY (TypeId)
+        REFERENCES tbDeviceType (TypeId),
+
+    CONSTRAINT FK_IMPORT_NOTE_TO_CONTRACT FOREIGN KEY (ContractId)
+        REFERENCES tbContract (ContractId),
+)
+
+
+CREATE TABLE tbInventory
+(
+    InventoryId   VARCHAR(10) PRIMARY KEY,
+    DeviceId      VARCHAR(10),
+    UsableValue   INT,
+    InventoryDate DATETIME,
+
+    CONSTRAINT FK_INVENTORY_TO_DEVICE FOREIGN KEY (DeviceId)
+        REFERENCES tbDevice (DeviceId),
+)
+
+CREATE TABLE tbLiquidation
+(
+    LiquidationId   VARCHAR(10) PRIMARY KEY,
+    DeviceId        VARCHAR(10),
+    LiquidationDate DATETIME,
+
+    CONSTRAINT FK_LIQUID_ FOREIGN KEY (DeviceId)
+        REFERENCES tbDevice (DeviceId),
+)
+
+CREATE TABLE tbDeliveryNote
+(
+    DeliveryId   VARCHAR(10) PRIMARY KEY,
+    DeviceId     VARCHAR(10),
+    DepartmentId VARCHAR(10),
+    DeliveryDate DATETIME,
+
+    CONSTRAINT FK_DE FOREIGN KEY (DeviceId)
+        REFERENCES tbDevice (DeviceId),
+)
+
+CREATE TABLE tbPerson
+(
+    PersonId     VARCHAR(10) PRIMARY KEY,
+    DepartmentId VARCHAR(10),
+    Name         NVARCHAR(100),
+    Title        NVARCHAR(100),
+)
+
+CREATE TABLE tbPersonAndLiqudation
+(
+    LinkId        VARCHAR(10) PRIMARY KEY,
+    PersonId      VARCHAR(10),
+    LiquidationId VARCHAR(10),
+
+    CONSTRAINT FK_PERSON_AND_LIQUID_TO_PERSON FOREIGN KEY (PersonId)
+        REFERENCES tbPerson (PersonId),
+
+    CONSTRAINT FK_PERSON_AND_LIQUID_TO_LIQUID FOREIGN KEY (LiquidationId)
+        REFERENCES tbLiquidation (LiquidationId)
 )
 
 
 
+CREATE TABLE tbPersonAndInventory
+(
+    LinkId      VARCHAR(10) PRIMARY KEY,
+    PersonId    VARCHAR(10),
+    InventoryId VARCHAR(10),
 
-CREATE TABLE tbFix(
-	FixId VARCHAR(10) PRIMARY KEY,
-	DeviceId VARCHAR(10),
-	RepairDate DATE,
-	Company NVARCHAR(100),
-	Price FLOAT,
+    CONSTRAINT FK_PERSON_AND_INV_TO_PERSON FOREIGN KEY (PersonId)
+        REFERENCES tbPerson (PersonId),
 
-	CONSTRAINT FK_FIX_TO_DEVICE FOREIGN KEY (DeviceId)
-    REFERENCES tbDevice(DeviceId),
+    CONSTRAINT FK_PERSON_AND_INV_TO_INV FOREIGN KEY (InventoryId)
+        REFERENCES tbInventory (InventoryId),
+)
+
+
+
+CREATE TABLE tbFix
+(
+    FixId      VARCHAR(10) PRIMARY KEY,
+    DeviceId   NVARCHAR(MAX),
+    RepairDate DATE,
+    Company    NVARCHAR(100),
+    Price      FLOAT,
+
+    CONSTRAINT FK_FIX_TO_DEVICE FOREIGN KEY (DeviceId)
+        REFERENCES tbDevice (DeviceId),
+)
+
+CREATE TABLE tbTransform
+(
+    TransformId VARCHAR(10) PRIMARY KEY,
+    Department  NVARCHAR(50),
+    DeviceId    NVARCHAR(MAX),
+
+
+    CONSTRAINT FK_TRANSFORM_TO_DEVICE FOREIGN KEY (DeviceId)
+        REFERENCES tbDevice (DeviceId),
 )

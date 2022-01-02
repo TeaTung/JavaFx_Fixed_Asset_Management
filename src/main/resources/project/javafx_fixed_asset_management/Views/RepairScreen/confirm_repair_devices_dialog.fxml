@@ -39,7 +39,7 @@
          <columns>
             <TableColumn fx:id="idDeviceRepairingColumn" prefWidth="60.0" text="ID" />
             <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="236.0" text="Device name" />
-            <TableColumn fx:id="specificationDeviceRepairingNameColumn" prefWidth="183.0" text="Specification" />
+            <TableColumn fx:id="specificationDeviceRepairingNameColumn" prefWidth="171.0" text="Specification" />
          </columns>
       </TableView>
       <Text fill="RED" layoutX="373.234375" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure about that ?" AnchorPane.rightAnchor="36.0" />
