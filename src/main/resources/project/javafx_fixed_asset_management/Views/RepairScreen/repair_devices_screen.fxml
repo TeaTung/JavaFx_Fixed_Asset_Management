@@ -20,8 +20,8 @@
       <TableView fx:id="deviceTableView" layoutX="37.0" layoutY="98.0" prefHeight="540.0" prefWidth="550.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="100.0">
          <columns>
             <TableColumn fx:id="idDeviceColumn" prefWidth="51.0" text="ID" />
-            <TableColumn fx:id="deviceNameColumn" prefWidth="280.0" text="Device name" />
-            <TableColumn fx:id="specificationDeviceNameColumn" minWidth="4.0" prefWidth="218.0" text="Specification" />
+            <TableColumn fx:id="deviceNameColumn" prefWidth="222.0" text="Device name" />
+            <TableColumn fx:id="specificationDeviceNameColumn" minWidth="4.0" prefWidth="274.0" text="Specification" />
          </columns>
       </TableView>
       <Text layoutX="37.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device information" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="70.0">
@@ -42,8 +42,8 @@
       <TableView fx:id="deviceRepairingTableView" layoutX="690.0" layoutY="98.0" prefHeight="319.0" prefWidth="550.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0">
          <columns>
             <TableColumn fx:id="idDeviceRepairingColumn" prefWidth="60.0" text="ID" />
-            <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="271.0" text="Device name" />
-            <TableColumn fx:id="specificationDeviceRepairingNameColumn" minWidth="4.0" prefWidth="216.0" text="Specification" />
+            <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="228.0" text="Device name" />
+            <TableColumn fx:id="specificationDeviceRepairingNameColumn" minWidth="4.0" prefWidth="259.0" text="Specification" />
          </columns>
       </TableView>
       <Text layoutX="689.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device information willing repair" AnchorPane.topAnchor="70.0">

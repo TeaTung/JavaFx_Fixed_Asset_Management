@@ -16,11 +16,11 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <TableView layoutX="37.0" layoutY="96.0" prefHeight="551.0" prefWidth="550.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="deviceTableView" layoutX="37.0" layoutY="96.0" prefHeight="551.0" prefWidth="550.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="100.0">
         <columns>
-            <TableColumn prefWidth="60.0" text="ID" />
-          <TableColumn prefWidth="271.0" text="Device name" />
-          <TableColumn minWidth="4.0" prefWidth="218.0" text="Type of device" />
+            <TableColumn fx:id="idDeviceColumn" prefWidth="60.0" text="ID" />
+          <TableColumn fx:id="deviceNameColumn" prefWidth="216.0" text="Device name" />
+          <TableColumn fx:id="specificationDeviceNameColumn" minWidth="4.0" prefWidth="271.0" text="Specification" />
         </columns>
       </TableView>
       <Text layoutX="39.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device information" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="70.0">
@@ -38,36 +38,31 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TableView layoutX="694.0" layoutY="120.0" prefHeight="412.0" prefWidth="550.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="deviceTransferTableView" layoutX="694.0" layoutY="120.0" prefHeight="412.0" prefWidth="550.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0">
          <columns>
-            <TableColumn prefWidth="60.0" text="ID" />
-            <TableColumn prefWidth="271.0" text="Device name" />
-            <TableColumn minWidth="4.0" prefWidth="218.0" text="Type of device" />
+            <TableColumn fx:id="idDeviceTransferColumn" prefWidth="60.0" text="ID" />
+            <TableColumn fx:id="deviceTransferNameColumn" prefWidth="202.0" text="Device name" />
+            <TableColumn fx:id="specificationDeviceTransferNameColumn" minWidth="4.0" prefWidth="284.0" text="Specification" />
          </columns>
       </TableView>
-      <Text layoutX="689.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device information willing tranform" AnchorPane.topAnchor="70.0">
+      <Text layoutX="694.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device information willing tranform" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <Label layoutX="687.0" layoutY="537.0" text="Department ID">
+      <Label layoutX="694.0" layoutY="537.0" text="Transform ID">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="departmentIdTF" layoutX="816.0" layoutY="533.0" prefHeight="33.0" prefWidth="198.0" />
-      <Label layoutX="687.0" layoutY="590.0" text="Department">
+      <TextField fx:id="transformIdTF" layoutX="820.0" layoutY="533.0" prefHeight="33.0" prefWidth="409.0" AnchorPane.rightAnchor="40.0" />
+      <Label layoutX="694.0" layoutY="590.0" text="Department">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="departmentTF" layoutX="816.0" layoutY="586.0" prefHeight="33.0" prefWidth="321.0" AnchorPane.bottomAnchor="100.0" />
+      <TextField fx:id="departmentTF" layoutX="831.0" layoutY="587.0" prefHeight="33.0" prefWidth="409.0" AnchorPane.bottomAnchor="100.0" />
       <Button fx:id="backBtn" layoutX="41.0" layoutY="664.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="chooseBtn" layoutX="1156.0" layoutY="586.0" mnemonicParsing="false" onAction="#chooseDepartmentButtonAction" prefHeight="33.0" prefWidth="79.0" text="Choose" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -77,8 +72,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="searchDeviceTF" layoutX="330.0" layoutY="668.0" prefHeight="33.0" prefWidth="179.0" AnchorPane.bottomAnchor="20.0" />
-      <Button fx:id="searchBtn" layoutX="520.0" layoutY="668.0" mnemonicParsing="false" onAction="#searchDeviceButtonAction" prefHeight="33.0" prefWidth="68.0" text="Search" AnchorPane.bottomAnchor="20.0" />
+      <TextField fx:id="searchDeviceTF" layoutX="330.0" layoutY="668.0" prefHeight="33.0" prefWidth="261.0" AnchorPane.bottomAnchor="20.0" />
       <Text fill="RED" layoutX="1107.0" layoutY="655.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose at least 1 device" AnchorPane.rightAnchor="40.0" />
    </children>
 </AnchorPane>

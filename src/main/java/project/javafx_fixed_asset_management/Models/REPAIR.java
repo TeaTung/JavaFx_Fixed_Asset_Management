@@ -1,10 +1,11 @@
 package project.javafx_fixed_asset_management.Models;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class REPAIR {
     String fixId;
-    String deviceId;
+    List<String> listDevice;
     LocalDate repairDate;
     String company;
     float price;
@@ -25,12 +26,12 @@ public class REPAIR {
         this.fixId = fixId;
     }
 
-    public String getDeviceId() {
-        return deviceId;
+    public List<String> getListDevice() {
+        return listDevice;
     }
 
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
+    public void setListDevice(List<String> listDevice) {
+        this.listDevice = listDevice;
     }
 
     public String getCompany() {
