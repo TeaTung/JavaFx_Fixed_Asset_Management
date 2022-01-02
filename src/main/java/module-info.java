@@ -14,6 +14,8 @@ module project.javafx_fixed_asset_management {
     exports project.javafx_fixed_asset_management.Models;
 
     requires org.jfxtras.styles.jmetro;
+    requires fxribbon;
+
 
     opens project.javafx_fixed_asset_management.Controllers to javafx.fxml;
 }

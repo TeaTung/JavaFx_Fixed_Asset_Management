@@ -4,20 +4,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+
 import jfxtras.styles.jmetro.JMetro;
+import com.pixelduke.control.ribbon.RibbonGroup;
+
+import jfxtras.styles.jmetro.JMetroStyleClass;
 import jfxtras.styles.jmetro.Style;
-import org.kordamp.bootstrapfx.BootstrapFX;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class ManagerHomeScreenController {
+    public Button btnConfig;
     @FXML
     Button btnAccount;
 
@@ -42,13 +47,12 @@ public class ManagerHomeScreenController {
     public void openDeviceScreenButtonAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
 
-
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
-            JMetro jMetro = new JMetro(Style.LIGHT);
+            JMetro jMetro = new JMetro(Style.DARK);
             jMetro.setScene(scene);
 
         } catch (IOException e) {
@@ -136,6 +140,8 @@ public class ManagerHomeScreenController {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.DARK);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -143,4 +149,50 @@ public class ManagerHomeScreenController {
         stage.show();
     }
 
+    public void openConfigScreenButtonAction(ActionEvent actionEvent) {
+
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        TabPane tabPane = new TabPane();
+
+        Tab fileTab = new Tab();
+        fileTab.setClosable(false);
+        fileTab.setText("File");
+
+        Tab homeTab = new Tab();
+        homeTab.setClosable(false);
+        homeTab.setText("Home");
+
+        Tab insertTab = new Tab();
+        insertTab.setClosable(false);
+        insertTab.setText("Insert");
+
+        Tab tableTab = new Tab();
+        tableTab.setClosable(false);
+        tableTab.setText("Table");
+
+        Tab optionsTab = new Tab();
+        optionsTab.setClosable(false);
+        optionsTab.setText("Options");
+
+        tabPane.getTabs().addAll(fileTab, homeTab, insertTab, tableTab, optionsTab);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(tabPane);
+
+        borderPane.getStyleClass().add(JMetroStyleClass.BACKGROUND);
+
+        Scene scene = new Scene(borderPane, 500, 200);
+
+        new JMetro(scene, Style.DARK);
+
+//        ScenicView.show(scene);
+
+
+        stage.setTitle("TabPane Sample");
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

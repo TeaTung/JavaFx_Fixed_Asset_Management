@@ -13,10 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.JMetroStyleClass;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
@@ -66,6 +69,7 @@ public class DeviceScreenController implements Initializable {
     public Button backBtn;
     @FXML
     public TextField searchTF;
+    public AnchorPane anchorPane;
     FilteredList<DEVICE> filteredList;
 
     @Override
@@ -117,6 +121,9 @@ public class DeviceScreenController implements Initializable {
             filteredList = new FilteredList<>(devicesList);
             deviceTableView.setItems(devicesList);
         }).start();
+
+        anchorPane.getStyleClass().add(JMetroStyleClass.BACKGROUND);
+        deviceTableView.getStyleClass().add(JMetroStyleClass.TABLE_GRID_LINES);
     }
 
     public void addDeviceButtonAction(ActionEvent event) throws IOException {
@@ -129,7 +136,7 @@ public class DeviceScreenController implements Initializable {
 
         stage.setTitle("Add New Screen Dialog");
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
+        JMetro jMetro = new JMetro(Style.DARK);
         jMetro.setScene(scene);
         stage.showAndWait();
         updateData();
@@ -149,7 +156,7 @@ public class DeviceScreenController implements Initializable {
             Parent root = fxmlLoader.load();
             Scene scene = (new Scene(root, 1018, 660));
             stage.setScene(scene);
-            JMetro jMetro = new JMetro(Style.LIGHT);
+            JMetro jMetro = new JMetro(Style.DARK);
             jMetro.setScene(scene);
 
             //Set the Stage
@@ -187,17 +194,16 @@ public class DeviceScreenController implements Initializable {
 
     public void deleteDeviceButtonAction(ActionEvent event) {
         if (deviceTableView.getSelectionModel().getSelectedItem() != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Look, a Confirmation Dialog");
-            alert.setContentText("Are you ok with this?");
+            FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Are you sure ?");
 
+            JMetro jMetro = new JMetro(Style.DARK);
+            jMetro.setScene(alert.getDialogPane().getScene());
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 new DATABASE_DAO<>(DEVICE.class).delete("DELETE FROM tbDevice where deviceId = ? ", deviceTableView.getSelectionModel().getSelectedItem().getDeviceId());
                 updateData();
             } else {
-
             }
         }
     }

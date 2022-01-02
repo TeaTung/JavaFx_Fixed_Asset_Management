@@ -6,9 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import jfxtras.styles.jmetro.FlatAlert;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.JMetroStyleClass;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Models.*;
 
 import java.net.URL;
@@ -16,6 +21,7 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 public class AddNewContractDialogController implements Initializable {
+    public AnchorPane anchorPane;
     @FXML
     Button addNewDeviceBtn;
 
@@ -66,13 +72,13 @@ public class AddNewContractDialogController implements Initializable {
 
 
         // a alert dialog before leaving
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Add devices");
+        JMetro jMetro = new JMetro(Style.DARK);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Adding new devices successfully");
         alert.setHeaderText("Message");
-        alert.setContentText("Adding successfully!");
+        jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
         stage.close();
-
     }
 
 
@@ -90,7 +96,7 @@ public class AddNewContractDialogController implements Initializable {
             }
         });
 
-
+        anchorPane.getStyleClass().add(JMetroStyleClass.BACKGROUND);
         var providers = FXCollections.observableArrayList(new DATABASE_DAO<PROVIDER>(PROVIDER.class).selectList("select * from tbProvider"));
         providerCB.setItems(providers);
 

@@ -2,9 +2,32 @@ package project.javafx_fixed_asset_management.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import jfxtras.styles.jmetro.JMetroStyleClass;
 
-public class HistoryManagementScreenController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HistoryManagementScreenController implements Initializable {
+    public AnchorPane ap;
+    public TabPane myTabPane;
+    @FXML
+    DatePicker liquidationDateOfLiquidationDTP;
+
+    @FXML
+    DatePicker inventoryDateOfInventoryDTP;
+
+    @FXML
+    TextField inventoryDepartmentNameTF;
+
+    @FXML
+    Label inventoryDepartmentIdLBL;
+
+    @FXML
+    Button inventorySearchInventoryBTN;
+
     @FXML
     Button backBtn;
 
@@ -96,5 +119,27 @@ public class HistoryManagementScreenController {
     @FXML
     void transferTabExportReportBtnAction(ActionEvent event) {
 
+    }
+
+    @FXML
+    public void inventorySearchInventoryButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void liquidationExportReportButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void inventoryExportReportButtonAction(ActionEvent event) {
+
+    }
+    
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        myTabPane.getStyleClass().add(JMetroStyleClass.UNDERLINE_TAB_PANE);
     }
 }

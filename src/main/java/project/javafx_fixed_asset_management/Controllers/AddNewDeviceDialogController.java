@@ -8,9 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.JMetroStyleClass;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.*;
@@ -21,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 public class AddNewDeviceDialogController implements Initializable {
+    public AnchorPane anchorPane;
     @FXML
     TextField quantityTF;
 
@@ -87,7 +90,7 @@ public class AddNewDeviceDialogController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1018, 720);
-            JMetro jMetro = new JMetro(Style.LIGHT);
+            JMetro jMetro = new JMetro(Style.DARK);
             jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,11 +105,11 @@ public class AddNewDeviceDialogController implements Initializable {
         unitTF.setText(unitName.getUnitName());
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
+        anchorPane.getStyleClass().add(JMetroStyleClass.BACKGROUND);
         cbType.setConverter(new StringConverter<DEVICE_MODEL>() {
             @Override
             public String toString(DEVICE_MODEL model) {
@@ -118,7 +121,6 @@ public class AddNewDeviceDialogController implements Initializable {
                 return new DEVICE_MODEL();
             }
         });
-
 
         var models = FXCollections.observableArrayList(new DATABASE_DAO<DEVICE_MODEL>(DEVICE_MODEL.class).selectList("select * from tbDeviceModel"));
         cbType.setItems(models);

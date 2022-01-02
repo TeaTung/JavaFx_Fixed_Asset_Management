@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.pixelduke.control.Ribbon?>
+<?import com.pixelduke.control.ribbon.RibbonTab?>
+
+<BorderPane id="BorderPane"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: white;"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.HistoryManagementScreenController"
+            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="514.0" prefWidth="410.0">
+    <top>
+        <Ribbon>
+            <tabs>
+                <RibbonTab text="Home">
+                    <!--                    <ribbonGroups>-->
+                    <!--                        <RibbonGroup title="File">-->
+                    <!--                            <nodes>-->
+                    <!--                                <Button contentDisplay="TOP" text="Open">-->
+                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                            <Image url=""/>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
+                    <!--                                </Button>-->
+                    <!--                                <Button contentDisplay="TOP" text="New">-->
+                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                            <Image url="@icons8_File_32px_1.png"/>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
+                    <!--                                </Button>-->
+                    <!--                                <Button contentDisplay="TOP" text="Save">-->
+                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                            <Image url="@icons8_Save_32px.png"/>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
+                    <!--                                </Button>-->
+                    <!--                                <Button contentDisplay="TOP" text="Save as">-->
+                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                            <Image url="@icons8_Save_as_32px.png"/>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
+                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
+                    <!--                                </Button>-->
+                    <!--                            </nodes>-->
+                    <!--                        </RibbonGroup>-->
+                    <!--                    </ribbonGroups>-->
+                    <!--                    <Text>dkjdsdj</Text>-->
+
+                </RibbonTab>
+            </tabs>
+        </Ribbon>
+    </top>
+</BorderPane>

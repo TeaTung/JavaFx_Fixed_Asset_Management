@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="648.0" prefWidth="995.0" style="-fx-background-color: white;"
+<AnchorPane fx:id="anchorPane" prefHeight="648.0" prefWidth="995.0"
+            styleClass="background"
             xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="project.javafx_fixed_asset_management.Controllers.UpdateScreenDialogController">
     <children>
@@ -22,7 +23,9 @@
         </TextField>
 
 
-        <TextField fx:id="unitTF" disable="true" layoutX="363.0" layoutY="267.0" prefHeight="40.0" prefWidth="99.0"
+        <TextField fx:id="unitTF" editable="false" focusTraversable="false" mouseTransparent="true" layoutX="363.0"
+                   layoutY="267.0"
+                   prefHeight="40.0" prefWidth="99.0"
                    promptText="UNIT">
             <font>
                 <Font size="16.0"/>

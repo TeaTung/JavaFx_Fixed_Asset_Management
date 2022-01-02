@@ -8,6 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import jfxtras.styles.jmetro.FlatAlert;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Models.*;
 
 import java.time.LocalDate;
@@ -77,10 +80,11 @@ public class UpdateScreenDialogController {
 
 
         // a alert dialog before leaving
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Add devices");
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Update successfully");
         alert.setHeaderText("Message");
-        alert.setContentText("Adding successfully!");
+        jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
         stage.close();
 
