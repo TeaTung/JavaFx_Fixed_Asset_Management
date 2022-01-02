@@ -10,25 +10,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.FirstInventoryScreenController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.InventoryScreenControllers.FirstInventoryScreenController">
    <children>
-      <TableView fx:id="inventoryPeopleTV" layoutX="572.0" layoutY="130.0" prefHeight="494.0" prefWidth="679.0">
+      <TableView fx:id="inventoryPeopleTV" layoutX="704.0" layoutY="130.0" prefHeight="494.0" prefWidth="548.0">
         <columns>
-          <TableColumn prefWidth="411.0" text="Name" />
-          <TableColumn prefWidth="267.0" text="Department" />
+          <TableColumn fx:id="inventoryPeopleIdColumn" prefWidth="98.0" text="ID" />
+          <TableColumn fx:id="inventoryPeopleNameColumn" prefWidth="185.0" text="Name" />
+            <TableColumn fx:id="inventoryPeopleDepartmentColumn" prefWidth="158.0" text="Department" />
+            <TableColumn fx:id="inventoryPeopleTitleColumn" prefWidth="106.0" text="Title" />
         </columns>
       </TableView>
-      <Label layoutX="31.0" layoutY="134.0" text="Name">
+      <Label layoutX="32.0" layoutY="455.0" text="Name">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="32.0" layoutY="204.0" text="Department">
+      <Label layoutX="31.0" layoutY="501.0" text="Department">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="31.0" layoutY="274.0" text="Date of Inventory">
+      <Label layoutX="31.0" layoutY="595.0" text="Date of Inventory">
          <font>
             <Font size="16.0" />
          </font>
@@ -37,39 +39,63 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="addBtn" layoutX="336.0" layoutY="335.0" mnemonicParsing="false" onAction="#addPeopleButtonAction" prefHeight="33.0" prefWidth="89.0" text="Add">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="deleteBtn" layoutX="452.0" layoutY="335.0" mnemonicParsing="false" onAction="#deletePeopleButtonAction" prefHeight="33.0" prefWidth="89.0" text="Remove">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <DatePicker fx:id="dateOfInventoryDtp" layoutX="177.0" layoutY="270.0" prefHeight="33.0" prefWidth="364.0" />
-      <TextField fx:id="nameTF" layoutX="177.0" layoutY="130.0" prefHeight="33.0" prefWidth="364.0" />
-      <TextField fx:id="departmentTF" layoutX="177.0" layoutY="200.0" prefHeight="33.0" prefWidth="364.0" />
+      <DatePicker fx:id="dateOfInventoryDtp" layoutX="177.0" layoutY="591.0" prefHeight="33.0" prefWidth="402.0" />
+      <TextField fx:id="nameTF" layoutX="177.0" layoutY="451.0" onKeyPressed="#textChangedHandler" prefHeight="33.0" prefWidth="402.0" />
+      <TextField fx:id="departmentTF" layoutX="178.0" layoutY="497.0" onKeyPressed="#textChangedHandler" prefHeight="33.0" prefWidth="402.0" />
       <Button fx:id="continueBtn" layoutX="1162.0" layoutY="657.0" mnemonicParsing="false" onAction="#continueButtonAction" prefHeight="33.0" prefWidth="89.0" text="Continue" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="1054.0" layoutY="632.0" text="Add at least one person to continue !" textFill="RED" />
+      <Label fx:id="errorLabel" layoutX="1054.0" layoutY="632.0" text="Add at least one person to continue !" textFill="RED" AnchorPane.rightAnchor="30.0" />
       <Text layoutX="471.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT INVENTORY PEOPLE" wrappingWidth="339.0" AnchorPane.topAnchor="36.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <Text layoutX="572.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory people list" wrappingWidth="211.8828125" AnchorPane.topAnchor="88.0">
+      <Text layoutX="704.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory people list" wrappingWidth="211.8828125" AnchorPane.topAnchor="83.734375">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <Text layoutX="31.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory people information" AnchorPane.topAnchor="88.0">
+      <Text layoutX="31.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory people information" AnchorPane.topAnchor="409.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
+      <Text layoutX="32.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Existed people list">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <TableView fx:id="existedPeopleTV" layoutX="32.0" layoutY="130.0" onMouseClicked="#existedPeopleRowSelectedHandler" prefHeight="264.0" prefWidth="548.0">
+         <columns>
+            <TableColumn fx:id="existedPeopleIdColumn" prefWidth="93.0" text="ID" />
+            <TableColumn fx:id="existedPeopleNameColumn" prefWidth="210.0" text="Name" />
+            <TableColumn fx:id="existedPeopleDepartmentColumn" prefWidth="134.0" text="Department" />
+            <TableColumn fx:id="existedPeopleTitleColumn" prefWidth="110.0" text="Title" />
+         </columns>
+      </TableView>
+      <Button fx:id="addBtn" layoutX="614.0" layoutY="140.0" mnemonicParsing="false" onAction="#addPersonButtonAction" prefHeight="33.0" prefWidth="54.0" text="&gt;&gt;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="removeBtn" layoutX="614.0" layoutY="194.0" mnemonicParsing="false" onAction="#removePersonButtonAction" prefHeight="33.0" prefWidth="54.0" text="&lt;&lt;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="31.0" layoutY="547.0" text="Title">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="titleTF" layoutX="178.0" layoutY="543.0" onKeyPressed="#textChangedHandler" prefHeight="33.0" prefWidth="402.0" />
+      <Button fx:id="addNewPersonBtn" layoutX="457.0" layoutY="657.0" mnemonicParsing="false" onAction="#addNewButtonAction" prefHeight="33.0" prefWidth="123.0" text="Add New Person">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

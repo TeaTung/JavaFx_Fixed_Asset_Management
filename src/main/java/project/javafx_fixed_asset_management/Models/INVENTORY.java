@@ -6,7 +6,16 @@ public class INVENTORY {
     String inventoryId;
     String deviceId;
     int usableValue;
-    Date InvertoryDate;
+    Date InventoryDate;
+
+    DEVICE device = new DEVICE();
+    public String getDeviceName() {
+        return this.device.getDeviceName();
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.device.setDeviceName(deviceName);
+    }
 
     public String getInventoryId() {
         return inventoryId;
@@ -32,11 +41,11 @@ public class INVENTORY {
         this.usableValue = usableValue;
     }
 
-    public Date getInvertoryDate() {
-        return InvertoryDate;
+    public Date getInventoryDate() {
+        return InventoryDate;
     }
 
-    public void setInvertoryDate(Date invertoryDate) {
-        InvertoryDate = invertoryDate;
+    public void setInventoryDate(Date inventoryDate) {
+        InventoryDate = inventoryDate;
     }
 }
