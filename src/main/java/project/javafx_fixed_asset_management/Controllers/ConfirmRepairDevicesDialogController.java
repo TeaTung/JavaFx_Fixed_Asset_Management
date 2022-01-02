@@ -74,7 +74,6 @@ public class ConfirmRepairDevicesDialogController {
         repairingDateLbl.setText(repairingDay.toString());
         setTableView(listRepairingDevice);
 
-
     }
 
     public void setTableView(ObservableList<DEVICE> list) {
@@ -89,7 +88,7 @@ public class ConfirmRepairDevicesDialogController {
         backPreviousScreen(event);
     }
 
-    public void backPreviousScreen (ActionEvent event) {
+    public void backPreviousScreen(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/RepairScreen/repair_devices_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -102,6 +101,7 @@ public class ConfirmRepairDevicesDialogController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     public void confirmButtonAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -114,22 +114,20 @@ public class ConfirmRepairDevicesDialogController {
         } else if (option.get() == ButtonType.OK) {
             var repairSQL = new DATABASE_DAO<>(REPAIR.class);
 
+            ObservableList<String> listDevice = FXCollections.observableArrayList();
+
+
+            REPAIR repair = new REPAIR();
+            repair.setRepairDate(repairDay);
+            repair.setCompany(repairingCompany);
+            repair.setFixId(repairingId);
+            repair.setPrice(Float.parseFloat(repairingPrice));
             for (int i = 0; i < listRepairingDevice.size(); i++) {
-                REPAIR repair = new REPAIR();
-                repair.setRepairDate(repairDay);
-                repair.setCompany(repairingCompany);
-                repair.setDeviceId(listRepairingDevice.get(i).getDeviceId());
-                repair.setFixId(repairingId);
-                repair.setPrice(Float.parseFloat(repairingPrice));
-
-                System.out.println(repair.getRepairDate());
-                System.out.println(repair.getPrice());
-                System.out.println(repair.getDeviceId());
-                System.out.println(repair.getCompany());
-                System.out.println(repair.getFixId());
-
-                repairSQL.insert(insertSQL(repair));
+                listDevice.add(listRepairingDevice.get(i).getDeviceId());
             }
+            repair.setListDevice(listDevice);
+
+            repairSQL.insert(insertSQL(repair));
 
             backPreviousScreen(event);
         } else if (option.get() == ButtonType.CANCEL) {
@@ -139,7 +137,19 @@ public class ConfirmRepairDevicesDialogController {
         }
     }
 
-    public String insertSQL (REPAIR repair) {
-        return "insert into tbRepair (FixId, DeviceId, RepairDate, Company, Price) values ('"+repair.getFixId()+"','"+repair.getDeviceId()+"','"+repair.getRepairDate()+"','"+repair.getCompany()+"','"+repair.getPrice()+"')";
+    public String insertSQL(REPAIR repair) {
+        String list = "";
+
+        for (int i = 0; i < repair.getListDevice().size(); i++) {
+            list += repair.getListDevice().get(i);
+
+            if (i < repair.getListDevice().size() - 1) {
+                list += (",");
+            }
+        }
+
+        System.out.println("LIST: " + list);
+
+        return "insert into tbRepair (FixId, DeviceId, RepairDate, Company, Price) values ('" + repair.getFixId() + "','" + list + "','" + repair.getRepairDate() + "','" + repair.getCompany() + "','" + repair.getPrice() + "')";
     }
 }
