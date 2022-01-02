@@ -1,99 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1018.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.UpdateScreenDialogController">
-   <children>
-      <TextField fx:id="nameTF" layoutX="153.0" layoutY="111.0" prefHeight="40.0" prefWidth="305.0">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextField fx:id="typeTF" layoutX="153.0" layoutY="178.0" prefHeight="40.0" prefWidth="305.0">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextField fx:id="priceTF" layoutX="153.0" layoutY="323.0" prefHeight="40.0" prefWidth="305.0">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextField fx:id="unitTF" layoutX="153.0" layoutY="253.0" prefHeight="40.0" prefWidth="305.0">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <DatePicker fx:id="usingDateDP" layoutX="672.0" layoutY="245.0" prefHeight="40.0" prefWidth="298.0" />
-      <TextField fx:id="statusTF" layoutX="672.0" layoutY="111.0" prefHeight="40.0" prefWidth="298.0">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextField fx:id="ebitdaTF" layoutX="672.0" layoutY="178.0" prefHeight="40.0" prefWidth="298.0">
-         <font>
-            <Font size="16.0" />
-         </font></TextField>
-      <TextArea fx:id="specificationTA" layoutX="43.0" layoutY="426.0" prefHeight="183.0" prefWidth="932.0">
-         <font>
-            <Font size="16.0" />
-         </font></TextArea>
-      <Text layoutX="41.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device name" wrappingWidth="190.2617187499999">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="43.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="190.2617187499999">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="43.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit" wrappingWidth="190.2617187499999">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="42.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="190.2617187499999">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="525.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manufacture date" wrappingWidth="190.26171875">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="525.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="190.26171875">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="525.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENITDA" wrappingWidth="190.26171875">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="525.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Using date" wrappingWidth="190.26171875">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="416.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UPDATE DEVICE" wrappingWidth="218.0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Text>
-      <Text layoutX="42.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specification" wrappingWidth="190.26171875">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <DatePicker fx:id="manufactureDateDP" layoutX="672.0" layoutY="320.0" prefHeight="40.0" prefWidth="298.0" />
-      <Button fx:id="updateDeviceButton" layoutX="419.0" layoutY="642.0" mnemonicParsing="false" onAction="#updateDeviceButtonAction" prefHeight="40.0" prefWidth="152.0" text="Update Device">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane fx:id="anchorPane" prefHeight="648.0" prefWidth="995.0" style="-fx-background-color: white;"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.UpdateScreenDialogController">
+    <children>
+        <TextField fx:id="nameTF" layoutX="153.0" layoutY="111.0" prefHeight="40.0" prefWidth="306.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextField>
+
+
+        <TextField fx:id="priceTF" layoutX="157.0" layoutY="335.0" prefHeight="40.0" prefWidth="306.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextField>
+
+
+        <TextField fx:id="unitTF" disable="true" layoutX="363.0" layoutY="267.0" prefHeight="40.0" prefWidth="99.0"
+                   promptText="UNIT">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextField>
+
+
+        <DatePicker fx:id="usingDateDP" layoutX="655.0" layoutY="177.0" prefHeight="40.0" prefWidth="298.0"/>
+        <TextField fx:id="statusTF" layoutX="156.0" layoutY="411.0" prefHeight="40.0" prefWidth="306.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="percentDamageTF" layoutX="156.0" layoutY="492.0" prefHeight="40.0" prefWidth="306.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextField>
+        <TextArea fx:id="specificationTA" layoutX="509.0" layoutY="287.0" prefHeight="256.0" prefWidth="457.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextArea>
+        <Text layoutX="41.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Device name"
+              wrappingWidth="190.2617187499999">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <!--      <ComboBox layoutX="43.0" layoutY="204.0">-->
+        <!--&lt;!&ndash;         <font>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <Font size="16.0" />&ndash;&gt;-->
+        <!--&lt;!&ndash;         </font>&ndash;&gt;-->
+        <!--      </ComboBox>-->
+
+        <ComboBox fx:id="cbType" layoutX="153.0" layoutY="184.0" minWidth="190" onAction="#comboBoxChanged"
+                  prefHeight="47.0" prefWidth="306.0" promptText="Type"/>
+
+
+        <Text layoutX="43.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Model"
+              wrappingWidth="190.2617187499999">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+
+
+        <Text layoutX="43.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price"
+              wrappingWidth="190.2617187499999">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <Text layoutX="509.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manufacture date"
+              wrappingWidth="190.26171875">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <Text layoutX="46.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status"
+              wrappingWidth="190.26171875">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <Text layoutX="41.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Percent damage"
+              wrappingWidth="190.26171875">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <Text layoutX="509.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Using date"
+              wrappingWidth="190.26171875">
+            <font>
+                <Font size="16.0"/>
+            </font>
+            <Separator/>
+
+        </Text>
+        <Text layoutX="35.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NEW DEVICE INFORMATION"
+              wrappingWidth="543.0" AnchorPane.topAnchor="37.0224609375">
+            <font>
+                <Font name="System Light" size="29.0"/>
+            </font>
+        </Text>
+
+        <Text layoutX="509.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specification"
+              wrappingWidth="190.26171875">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <DatePicker fx:id="manufactureDateDP" layoutX="656.0" layoutY="111.0" prefHeight="40.0" prefWidth="298.0"/>
+        <Button fx:id="saveBtn" layoutX="815.0" layoutY="594.0" mnemonicParsing="false" onAction="#updateButtonAction"
+                prefHeight="40.0" prefWidth="152.0" text="Update">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Text layoutX="41.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity"
+              wrappingWidth="190.26171875">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="quantityTF" layoutX="157.0" layoutY="267.0" prefHeight="40.0" prefWidth="190.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </TextField>
+        <!--        <Text fill="RED" layoutX="419.0" layoutY="634.0" strokeType="OUTSIDE" strokeWidth="0.0"-->
+        <!--              text="Add new device successfully!"/>-->
+
+    </children>
 </AnchorPane>

@@ -1,16 +1,15 @@
 package project.javafx_fixed_asset_management.Models;
 
 public class DEVICE {
-    String deviceId;
-
-    String modelId;
-    String deviceStatus;
-    String yearUsed;
-    String yearManufacture;
-    float price;
-    String deviceName;
-    float percentDamage;
-    String specification;
+    private String deviceId;
+    private String modelId;
+    private String deviceStatus;
+    private String yearUsed;
+    private String yearManufacture;
+    private float price;
+    private String deviceName;
+    private float percentDamage;
+    private String specification;
 
 
     // LINKS
@@ -22,9 +21,18 @@ public class DEVICE {
     }
 
     public void setDeviceId(String deviceId) {
+
         this.deviceId = deviceId;
     }
 
+
+    public UNIT getUnit() {
+        return this.unit;
+    }
+
+    public void setUnit(UNIT unit) {
+        this.unit = unit;
+    }
 
     public String getSpecification() {
         //  System.out.println(this.specification);
@@ -35,9 +43,6 @@ public class DEVICE {
 
         if (!specification.equals("none"))
             this.specification = specification;
-
-        System.out.println(this.specification + "\n" + this.deviceId);
-
     }
 
 
@@ -46,7 +51,7 @@ public class DEVICE {
         this.unit.setUnitId(unitId);
     }
 
-    public String getUnitId(String unitId) {
+    public String getUnitId() {
         return this.unit.getUnitId();
     }
 
