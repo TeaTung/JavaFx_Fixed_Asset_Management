@@ -55,17 +55,7 @@ public class ConfirmTransferDevicesDialogController {
     }
 
     public void backPreviousScreen(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/TransferScreen/transfer_devices_screen.fxml"));
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
-        stage.show();
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     public void setInit(ObservableList<DEVICE> listDevice, String id, String department) {
@@ -90,7 +80,6 @@ public class ConfirmTransferDevicesDialogController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Transform Device");
         alert.setHeaderText("Are you sure to transform devices");
-        alert.setContentText("Devices below will be transformed: \n");
 
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == null) {
@@ -111,6 +100,7 @@ public class ConfirmTransferDevicesDialogController {
             transformSQL.insert(insertSQL(transform));
 
             backPreviousScreen(event);
+
         } else if (option.get() == ButtonType.CANCEL) {
 
         } else {
@@ -129,6 +119,8 @@ public class ConfirmTransferDevicesDialogController {
         }
         System.out.println("LIST: " + list);
 
-        return "insert into tbTransform (TransformId, Department, DeviceId) values ('" + transform.getTransformId() + "','" + transform.getDepartment() + "','" + list + "')";
+        return "insert into tbTransfer (TransferId, Department, DeviceId) values ('" + transform.getTransformId() + "','" + transform.getDepartment() + "','" + list + "')";
     }
+
+
 }
