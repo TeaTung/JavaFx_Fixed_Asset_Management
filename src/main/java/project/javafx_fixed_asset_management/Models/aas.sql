@@ -152,15 +152,13 @@ REFERENCES tbInventory(InventoryId),
 
 
 
-CREATE TABLE tbFix(
+CREATE TABLE tbRepair(
 FixId VARCHAR(10) PRIMARY KEY,
-DeviceId VARCHAR(10),
+DeviceId NVARCHAR(MAX)),
 RepairDate DATE,
 Company NVARCHAR(100),
 Price FLOAT,
 
-CONSTRAINT FK_FIX_TO_DEVICE FOREIGN KEY (DeviceId)
-REFERENCES tbDevice(DeviceId),
 )
 
 CREATE TABLE tbTransfer
@@ -169,8 +167,5 @@ TransferId VARCHAR(10) PRIMARY KEY,
 Department  NVARCHAR(50),
 DeviceId    NVARCHAR(MAX),
 
-
-CONSTRAINT FK_TRANSFORM_TO_DEVICE FOREIGN KEY (DeviceId)
-REFERENCES tbDevice (DeviceId),
 )
 

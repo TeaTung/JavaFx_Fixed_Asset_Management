@@ -20,6 +20,4 @@ public class DEPARTMENT {
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
-
-
 }
