@@ -89,17 +89,7 @@ public class ConfirmRepairDevicesDialogController {
     }
 
     public void backPreviousScreen(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/RepairScreen/repair_devices_screen.fxml"));
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
-        stage.show();
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -107,7 +97,6 @@ public class ConfirmRepairDevicesDialogController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Repair Device");
         alert.setHeaderText("Are you sure to repair devices");
-        alert.setContentText("Devices below will be repaired: \n");
 
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == null) {
@@ -130,6 +119,7 @@ public class ConfirmRepairDevicesDialogController {
             repairSQL.insert(insertSQL(repair));
 
             backPreviousScreen(event);
+
         } else if (option.get() == ButtonType.CANCEL) {
 
         } else {

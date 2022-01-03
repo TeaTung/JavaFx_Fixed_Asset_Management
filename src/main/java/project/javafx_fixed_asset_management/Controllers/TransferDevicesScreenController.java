@@ -15,52 +15,77 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEVICE;
+import project.javafx_fixed_asset_management.Models.REPAIR;
+import project.javafx_fixed_asset_management.Models.TRANSFORM;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class TransferDevicesScreenController implements Initializable {
-    @FXML Button addBtn;
+    @FXML
+    Button addBtn;
 
-    @FXML Button removeBtn;
+    @FXML
+    Text warningTxt;
 
-    @FXML Button backBtn;
+    @FXML
+    Button removeBtn;
 
-    @FXML Button transBtn;
+    @FXML
+    Button backBtn;
 
-    @FXML TextField transformIdTF;
+    @FXML
+    Button transBtn;
 
-    @FXML TextField departmentTF;
+    @FXML
+    TextField transformIdTF;
 
-    @FXML TextField searchDeviceTF;
+    @FXML
+    TextField departmentTF;
 
-    @FXML TableView<DEVICE> deviceTableView;
+    @FXML
+    TextField searchDeviceTF;
 
-    @FXML TableColumn<DEVICE, String> idDeviceColumn;
+    @FXML
+    TableView<DEVICE> deviceTableView;
 
-    @FXML TableColumn<DEVICE, String> deviceNameColumn;
+    @FXML
+    TableColumn<DEVICE, String> idDeviceColumn;
 
-    @FXML TableColumn<DEVICE, String> specificationDeviceNameColumn;
+    @FXML
+    TableColumn<DEVICE, String> deviceNameColumn;
 
-    @FXML TableView<DEVICE> deviceTransferTableView;
+    @FXML
+    TableColumn<DEVICE, String> specificationDeviceNameColumn;
 
-    @FXML TableColumn<DEVICE, String> idDeviceTransferColumn;
+    @FXML
+    TableView<DEVICE> deviceTransferTableView;
 
-    @FXML TableColumn<DEVICE, String> deviceTransferNameColumn;
+    @FXML
+    TableColumn<DEVICE, String> idDeviceTransferColumn;
 
-    @FXML TableColumn<DEVICE, String> specificationDeviceTransferNameColumn;
+    @FXML
+    TableColumn<DEVICE, String> deviceTransferNameColumn;
+
+    @FXML
+    TableColumn<DEVICE, String> specificationDeviceTransferNameColumn;
 
     public ObservableList<DEVICE> listDevice;
     public ObservableList<DEVICE> listTransferDevice;
+    public ObservableList<TRANSFORM> listTransform;
+
 
     FilteredList<DEVICE> filteredList;
 
-    public void addDeviceButtonAction (ActionEvent event) {
+    public void addDeviceButtonAction(ActionEvent event) {
         DEVICE addingDevice = deviceTableView.getSelectionModel().getSelectedItem();
 
         if (addingDevice != null) {
@@ -71,7 +96,7 @@ public class TransferDevicesScreenController implements Initializable {
         deviceTransferTableView.setItems(listTransferDevice);
     }
 
-    public void removeDeviceButtonAction (ActionEvent event) {
+    public void removeDeviceButtonAction(ActionEvent event) {
         DEVICE addingDevice = deviceTransferTableView.getSelectionModel().getSelectedItem();
 
         if (addingDevice != null) {
@@ -82,7 +107,7 @@ public class TransferDevicesScreenController implements Initializable {
         }
     }
 
-    public void backButtonAction (ActionEvent event) {
+    public void backButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -96,39 +121,45 @@ public class TransferDevicesScreenController implements Initializable {
         stage.show();
     }
 
-    public void transButtonAction (ActionEvent event) throws IOException {
+    public void transButtonAction(ActionEvent event) throws IOException {
         validateField(event);
     }
 
     public void validateField(ActionEvent event) throws IOException {
-        if (isAllTextFieldEmpty() || listTransferDevice.size() == 0) {
+        if (isAllTextFieldEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Transform Device");
             alert.setHeaderText("Make sure you fill up all field");
             alert.setContentText("Some field wasn't inserted");
             alert.show();
+        } else if (listTransferDevice.size() == 0) {
+            warningTxt.setVisible(true);
         } else {
             goToConfirmScreen(event);
         }
     }
 
     public boolean isAllTextFieldEmpty() {
-        if (!isTextFieldEmpty(transformIdTF) && !isTextFieldEmpty(departmentTF) ){
+        if (!isTextFieldEmpty(transformIdTF) && !isTextFieldEmpty(departmentTF)) {
             return false;
         }
         return true;
     }
 
-    public void goToConfirmScreen (ActionEvent event) throws IOException {
+    public void goToConfirmScreen(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/TransferScreen/confirm_transfer_devices_dialog.fxml"));
         Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Parent confirmTransformDevicesController  = fxmlLoader.load();
-        Scene scene = new Scene(confirmTransformDevicesController);
-        ConfirmTransferDevicesDialogController controller =  fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        Parent confirmRepairDevicesController = fxmlLoader.load();
+        Scene scene = new Scene(confirmRepairDevicesController);
+        ConfirmTransferDevicesDialogController controller = fxmlLoader.getController();
         controller.setInit(listTransferDevice, transformIdTF.getText(), departmentTF.getText());
+        stage.setTitle("Are you sure about that?");
         stage.setScene(scene);
         stage.show();
+
+        init();
     }
 
     public boolean isTextFieldEmpty(TextField field) {
@@ -140,17 +171,39 @@ public class TransferDevicesScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        init();
+    }
+
+    public void init() {
+        resetLabel();
+
         getDataInTableView();
+
         setSearchInTableView();
+
         setProperty();
+    }
+
+    public void resetLabel() {
+        listDevice = FXCollections.observableArrayList();
+        listDevice.removeAll();
+        listTransferDevice = FXCollections.observableArrayList();
+        listTransferDevice.removeAll();
+        listTransform = FXCollections.observableArrayList();
+        listTransform.removeAll();
+        departmentTF.setText("");
+        deviceTransferTableView.setItems(listTransferDevice);
     }
 
     public void getDataInTableView() {
         var devices = new DATABASE_DAO<>(DEVICE.class);
+        var transform = new DATABASE_DAO<>(TRANSFORM.class);
 
         listDevice = FXCollections.observableArrayList(devices.selectList(
                 "SELECT DeviceId, DeviceName, Specification FROM tbDevice"));
         listTransferDevice = FXCollections.observableArrayList();
+        listTransform = FXCollections.observableArrayList(transform.selectList(
+                "SELECT * FROM tbTransfer"));
 
         idDeviceColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("DeviceId"));
         deviceNameColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("DeviceName"));
@@ -163,7 +216,7 @@ public class TransferDevicesScreenController implements Initializable {
         deviceTableView.setItems(listDevice);
     }
 
-    public void setSearchInTableView () {
+    public void setSearchInTableView() {
         filteredList = new FilteredList<>(listDevice, b -> true);
 
         searchDeviceTF.textProperty().addListener(((observableValue, oldValue, newValue) -> {
@@ -193,8 +246,31 @@ public class TransferDevicesScreenController implements Initializable {
         deviceTableView.setItems(sortedList);
     }
 
-    public void setProperty () {
+    public void setProperty() {
         searchDeviceTF.setPromptText("Search...");
         searchDeviceTF.getParent().requestFocus();
+
+        transformIdTF.setDisable(true);
+        transformIdTF.setText(getRandomId().toString());
+
+        warningTxt.setVisible(false);
+    }
+
+    public Integer getRandomId() {
+        Random random = new Random();
+        int randomId = random.nextInt(999);
+
+        if (listTransform.size() != 0) {
+            for (TRANSFORM transform : listTransform) {
+                if (transform.getTransformId() != null) {
+                    if (randomId == Integer.parseInt(transform.getTransformId())) {
+                        return getRandomId();
+                    }
+                }
+            }
+        } else {
+            return randomId;
+        }
+        return randomId;
     }
 }

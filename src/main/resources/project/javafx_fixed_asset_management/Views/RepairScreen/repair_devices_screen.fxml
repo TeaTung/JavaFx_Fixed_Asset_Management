@@ -86,6 +86,6 @@
          </font>
       </Label>
       <DatePicker fx:id="repairingDateDTP" layoutX="876.0" layoutY="582.0" prefHeight="33.0" prefWidth="365.0" AnchorPane.bottomAnchor="105.0" AnchorPane.rightAnchor="40.0" />
-      <Text fill="RED" layoutX="1111.0" layoutY="657.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose at least 1 device" AnchorPane.rightAnchor="41.30078125" />
+      <Text fx:id="warningTxt" fill="RED" layoutX="1111.0" layoutY="657.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose at least 1 device" AnchorPane.rightAnchor="41.30078125" />
    </children>
 </AnchorPane>
