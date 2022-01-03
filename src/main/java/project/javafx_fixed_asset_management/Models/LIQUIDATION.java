@@ -8,6 +8,15 @@ public class LIQUIDATION {
     String deviceId;
     Date liquidationDate;
 
+    DEVICE device = new DEVICE();
+    public String getDeviceName() {
+        return this.device.getDeviceName();
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.device.setDeviceName(deviceName);
+    }
+
     public String getLiquidationId() {
         return liquidationId;
     }

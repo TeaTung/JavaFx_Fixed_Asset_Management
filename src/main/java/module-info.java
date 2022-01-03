@@ -15,4 +15,6 @@ module project.javafx_fixed_asset_management {
     opens project.javafx_fixed_asset_management.Controllers to javafx.fxml;
     exports project.javafx_fixed_asset_management.Controllers.InventoryScreenControllers;
     opens project.javafx_fixed_asset_management.Controllers.InventoryScreenControllers to javafx.fxml;
+    exports project.javafx_fixed_asset_management.Controllers.LiquidationScreenControllers;
+    opens project.javafx_fixed_asset_management.Controllers.LiquidationScreenControllers to javafx.fxml;
 }
