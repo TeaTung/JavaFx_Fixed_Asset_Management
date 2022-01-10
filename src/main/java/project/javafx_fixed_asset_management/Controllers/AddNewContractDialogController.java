@@ -72,7 +72,7 @@ public class AddNewContractDialogController implements Initializable {
 
 
         // a alert dialog before leaving
-        JMetro jMetro = new JMetro(Style.DARK);
+        JMetro jMetro = new JMetro(Style.LIGHT);
         FlatAlert alert = new FlatAlert(Alert.AlertType.INFORMATION);
         alert.setContentText("Adding new devices successfully");
         alert.setHeaderText("Message");
@@ -98,7 +98,8 @@ public class AddNewContractDialogController implements Initializable {
 
         anchorPane.getStyleClass().add(JMetroStyleClass.BACKGROUND);
         var providers = FXCollections.observableArrayList(new DATABASE_DAO<PROVIDER>(PROVIDER.class).selectList("select * from tbProvider"));
-        providerCB.setItems(providers);
+        if (providers != null)
+            providerCB.setItems(providers);
 
         providerCB.getSelectionModel().select(0);
 

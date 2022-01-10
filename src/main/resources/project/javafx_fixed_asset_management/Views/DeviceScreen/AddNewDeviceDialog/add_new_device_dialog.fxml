@@ -6,6 +6,7 @@
 
 <AnchorPane prefHeight="665.0" prefWidth="999.0"
             fx:id="anchorPane"
+            style="-fx-background-color: #FFFFFF;"
             xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="project.javafx_fixed_asset_management.Controllers.AddNewDeviceDialogController">
     <children>
@@ -96,7 +97,7 @@
                 <Font size="16.0"/>
             </font>
         </Text>
-        <Text layoutX="41.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Percent damage"
+        <Text layoutX="41.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EBITDA"
               wrappingWidth="190.26171875">
             <font>
                 <Font size="16.0"/>
@@ -124,7 +125,9 @@
             </font>
         </Text>
         <DatePicker fx:id="manufactureDateDP" layoutX="656.0" layoutY="111.0" prefHeight="40.0" prefWidth="298.0"/>
-        <Button fx:id="nextBtn" layoutX="815.0" layoutY="594.0" mnemonicParsing="false" onAction="#nextButtonAction"
+        <Button fx:id="nextBtn" layoutX="815.0" layoutY="594.0" mnemonicParsing="false"
+                defaultButton="true"
+                onAction="#nextButtonAction"
                 prefHeight="40.0" prefWidth="152.0" text="Next">
             <font>
                 <Font size="14.0"/>

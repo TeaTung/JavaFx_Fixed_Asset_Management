@@ -2,57 +2,166 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.pixelduke.control.Ribbon?>
-<?import com.pixelduke.control.ribbon.RibbonTab?>
+<?import javafx.scene.text.*?>
 
-<BorderPane id="BorderPane"
-            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            style="-fx-background-color: white;"
-            fx:controller="project.javafx_fixed_asset_management.Controllers.HistoryManagementScreenController"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="514.0" prefWidth="410.0">
-    <top>
-        <Ribbon>
+<AnchorPane prefHeight="209.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.ConfigScreenController">
+    <children>
+        <TabPane fx:id="myTabPane" layoutY="10.0" prefHeight="500.0" prefWidth="600.0" styleClass="underlined"
+                 tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <RibbonTab text="Home">
-                    <!--                    <ribbonGroups>-->
-                    <!--                        <RibbonGroup title="File">-->
-                    <!--                            <nodes>-->
-                    <!--                                <Button contentDisplay="TOP" text="Open">-->
-                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                            <Image url=""/>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
-                    <!--                                </Button>-->
-                    <!--                                <Button contentDisplay="TOP" text="New">-->
-                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                            <Image url="@icons8_File_32px_1.png"/>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
-                    <!--                                </Button>-->
-                    <!--                                <Button contentDisplay="TOP" text="Save">-->
-                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                            <Image url="@icons8_Save_32px.png"/>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
-                    <!--                                </Button>-->
-                    <!--                                <Button contentDisplay="TOP" text="Save as">-->
-                    <!--                                    &lt;!&ndash;                                    <graphic>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        <ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                            <Image url="@icons8_Save_as_32px.png"/>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                        </ImageView>&ndash;&gt;-->
-                    <!--                                    &lt;!&ndash;                                    </graphic>&ndash;&gt;-->
-                    <!--                                </Button>-->
-                    <!--                            </nodes>-->
-                    <!--                        </RibbonGroup>-->
-                    <!--                    </ribbonGroups>-->
-                    <!--                    <Text>dkjdsdj</Text>-->
+                <Tab text="UNIT">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="929.0">
+                            <children>
+                                <Text layoutX="39.0" layoutY="89.0224609375" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      styleClass="lbl-primary" text="UNIT" wrappingWidth="507.0"
+                                      AnchorPane.topAnchor="37.0224609375">
+                                    <font>
+                                        <Font size="48.0"/>
+                                    </font>
+                                </Text>
+                                <Label layoutX="43.0" layoutY="141.0" text="Unit name" AnchorPane.leftAnchor="43.0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="nameTF" layoutX="194.0" layoutY="133.0" prefHeight="34.0"
+                                           prefWidth="345.0" AnchorPane.leftAnchor="194.0"
+                                           AnchorPane.topAnchor="133.0"/>
+                                <Label layoutX="43.0" layoutY="204.0" prefHeight="25.0" prefWidth="117.0" text="Note"
+                                       AnchorPane.leftAnchor="43.0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Button fx:id="backBtn" layoutX="38.0" layoutY="390.0" mnemonicParsing="false"
+                                        onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="128.0"
+                                        text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="38.0">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="finishButton" defaultButton="true" layoutX="422.0" layoutY="390.0"
+                                        mnemonicParsing="false" onAction="#finishButtonAction" prefHeight="43.0"
+                                        prefWidth="128.0" text="Finish">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <TextArea fx:id="noteTA" layoutX="195.0" layoutY="204.0" prefHeight="159.0"
+                                          prefWidth="350.0"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
 
-                </RibbonTab>
+
+                <Tab text="DEVICE MODEL">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="929.0">
+                            <children>
+                                <Text layoutX="38.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      styleClass="lbl-primary" text="DEVICE MODEL" wrappingWidth="507.0"
+                                      AnchorPane.topAnchor="36.0">
+                                    <font>
+                                        <Font size="48.0"/>
+                                    </font>
+                                </Text>
+                                <Label layoutX="44.0" layoutY="175.0" text="Unit " AnchorPane.leftAnchor="44.0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label layoutX="44.0" layoutY="250.0" prefHeight="25.0" prefWidth="117.0"
+                                       text="Model name" AnchorPane.leftAnchor="44.0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Button fx:id="backModelBtn" layoutX="38.0" layoutY="390.0" mnemonicParsing="false"
+                                        onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="128.0"
+                                        text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="38.0">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="finishModelButton" defaultButton="true" layoutX="422.0" layoutY="390.0"
+                                        mnemonicParsing="false" onAction="#finishModelButton" prefHeight="43.0"
+                                        prefWidth="128.0" text="Finish">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <ComboBox fx:id="unitModelCB" layoutX="196.0" layoutY="164.0" prefHeight="47.0"
+                                          prefWidth="349.0"/>
+                                <TextField fx:id="nameModelTF" layoutX="197.0" layoutY="236.0" prefHeight="54.0"
+                                           prefWidth="348.0"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <Tab text="PROVIDER">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="929.0">
+                            <children>
+                                <Text layoutX="38.0" layoutY="72.796875" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      styleClass="lbl-primary" text="PROVIDER" wrappingWidth="507.0"
+                                      AnchorPane.topAnchor="21.0">
+                                    <font>
+                                        <Font size="48.0"/>
+                                    </font>
+                                </Text>
+                                <Label layoutX="44.0" layoutY="126.0" text="Name" AnchorPane.leftAnchor="44.0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label layoutX="44.0" layoutY="201.0" prefHeight="25.0" prefWidth="117.0" text="Address"
+                                       AnchorPane.leftAnchor="44.0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Button fx:id="backProviderBtn" layoutX="39.0" layoutY="397.0" mnemonicParsing="false"
+                                        onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="128.0"
+                                        text="Back" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="39.0">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="finishProviderButton" defaultButton="true" layoutX="422.0"
+                                        layoutY="397.0" mnemonicParsing="false" onAction="#finishProviderActionButton"
+                                        prefHeight="43.0" prefWidth="128.0" text="Finish">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <TextField fx:id="nameProviderTF" layoutX="197.0" layoutY="122.0" prefHeight="44.0"
+                                           prefWidth="348.0"/>
+                                <Label layoutX="41.0" layoutY="272.0" prefHeight="25.0" prefWidth="117.0" text="Phone">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label layoutX="41.0" layoutY="338.0" prefHeight="25.0" prefWidth="117.0" text="Email">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="addressProviderTF" layoutX="198.0" layoutY="193.0" prefHeight="44.0"
+                                           prefWidth="348.0"/>
+                                <TextField fx:id="phoneProviderTF" layoutX="199.0" layoutY="263.0" prefHeight="44.0"
+                                           prefWidth="348.0"/>
+                                <TextField fx:id="emailProviderTF" layoutX="200.0" layoutY="329.0" prefHeight="44.0"
+                                           prefWidth="348.0"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
             </tabs>
-        </Ribbon>
-    </top>
-</BorderPane>
+        </TabPane>
+    </children>
+</AnchorPane>

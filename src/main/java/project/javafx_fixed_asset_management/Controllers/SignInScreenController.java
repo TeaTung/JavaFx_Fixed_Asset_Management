@@ -1,4 +1,5 @@
 package project.javafx_fixed_asset_management.Controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
@@ -42,11 +45,13 @@ public class SignInScreenController {
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
+            scene = new Scene(fxmlLoader.load(), 1280, 600);
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setScene(scene);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.show();
     }
 

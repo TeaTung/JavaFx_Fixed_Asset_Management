@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
@@ -44,20 +46,20 @@ public class RepairDevicesScreenController {
     @FXML
     DatePicker repairingDateDTP;
 
-    public void searchDeviceButtonAction (ActionEvent event) {
+    public void searchDeviceButtonAction(ActionEvent event) {
 
     }
 
-    public void addDeviceButtonAction (ActionEvent event) {
+    public void addDeviceButtonAction(ActionEvent event) {
 
     }
 
-    public void removeDeviceButtonAction (ActionEvent event) {
+    public void removeDeviceButtonAction(ActionEvent event) {
 
     }
 
 
-    public void backButtonAction (ActionEvent event) {
+    public void backButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -68,10 +70,12 @@ public class RepairDevicesScreenController {
             e.printStackTrace();
         }
         stage.setScene(scene);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.show();
     }
 
-    public void repairButtonAction (ActionEvent event) {
+    public void repairButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/RepairScreen/confirm_repair_devices_dialog.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -82,8 +86,10 @@ public class RepairDevicesScreenController {
             e.printStackTrace();
         }
         stage.setScene(scene);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.show();
-        
+
     }
 
 }

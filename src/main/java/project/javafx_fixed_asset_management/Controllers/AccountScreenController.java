@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
@@ -35,13 +37,15 @@ public class AccountScreenController {
     Button updateBtn;
 
     @FXML
-    public void backButtonAction (ActionEvent event) {
+    public void backButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,13 +54,15 @@ public class AccountScreenController {
     }
 
     @FXML
-    public void updateButtonAction (ActionEvent event) {
+    public void updateButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AccountScreen/update_account_information_dialog.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 550, 442);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }

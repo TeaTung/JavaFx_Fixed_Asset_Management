@@ -15,6 +15,7 @@ module project.javafx_fixed_asset_management {
 
     requires org.jfxtras.styles.jmetro;
     requires fxribbon;
+    requires poi;
 
 
     opens project.javafx_fixed_asset_management.Controllers to javafx.fxml;

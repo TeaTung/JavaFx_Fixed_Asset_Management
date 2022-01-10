@@ -26,6 +26,7 @@ import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEVICE;
 import project.javafx_fixed_asset_management.Models.DEVICE_ADD;
 import project.javafx_fixed_asset_management.Models.UNIT;
+import project.javafx_fixed_asset_management.Utils.Utils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +34,10 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+
+enum DEVICE_VIEW_MODE {
+    TOTAL, IN_USE, NOT_IN_USE
+}
 
 public class DeviceScreenController implements Initializable {
 
@@ -62,7 +67,7 @@ public class DeviceScreenController implements Initializable {
     @FXML
     public TableColumn<DEVICE, Float> percentDamage;
     public TableColumn<DEVICE, Integer> quantityColumn;
-    public Button searchBtn;
+    public Button ExportBtn;
     public Button addBtn;
     public Button deleteBtn;
     public Button updateBtn;
@@ -70,11 +75,15 @@ public class DeviceScreenController implements Initializable {
     @FXML
     public TextField searchTF;
     public AnchorPane anchorPane;
+    public ComboBox<String> deviceViewModeCB;
+    public TableColumn<DEVICE, String> departmentNameColumn;
     FilteredList<DEVICE> filteredList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         new Thread(() -> {
+
+            // TABLEVIEW
             var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
             devicesList = FXCollections.observableArrayList(devices.selectList(
                     "select * " +
@@ -120,11 +129,22 @@ public class DeviceScreenController implements Initializable {
             percentDamage.setCellValueFactory(new PropertyValueFactory<>("percentDamage"));
             filteredList = new FilteredList<>(devicesList);
             deviceTableView.setItems(devicesList);
+
+            // VIEWMODECB
+            deviceViewModeCB.getItems().add("TOTAL");
+            deviceViewModeCB.getItems().add("IN USE");
+            deviceViewModeCB.getItems().add("NOT IN USE");
+
+
         }).start();
+
 
         anchorPane.getStyleClass().add(JMetroStyleClass.BACKGROUND);
         deviceTableView.getStyleClass().add(JMetroStyleClass.TABLE_GRID_LINES);
+        deviceViewModeCB.setValue("TOTAL");
+
     }
+
 
     public void addDeviceButtonAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/AddNewDeviceDialog/add_new_device_dialog.fxml"));
@@ -136,7 +156,7 @@ public class DeviceScreenController implements Initializable {
 
         stage.setTitle("Add New Screen Dialog");
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.DARK);
+        JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
         stage.showAndWait();
         updateData();
@@ -156,7 +176,7 @@ public class DeviceScreenController implements Initializable {
             Parent root = fxmlLoader.load();
             Scene scene = (new Scene(root, 1018, 660));
             stage.setScene(scene);
-            JMetro jMetro = new JMetro(Style.DARK);
+            JMetro jMetro = new JMetro(Style.LIGHT);
             jMetro.setScene(scene);
 
             //Set the Stage
@@ -175,7 +195,6 @@ public class DeviceScreenController implements Initializable {
             stage.showAndWait();
             updateData();
         }
-
     }
 
     public void updateData() {
@@ -197,7 +216,7 @@ public class DeviceScreenController implements Initializable {
             FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("Are you sure ?");
 
-            JMetro jMetro = new JMetro(Style.DARK);
+            JMetro jMetro = new JMetro(Style.LIGHT);
             jMetro.setScene(alert.getDialogPane().getScene());
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
@@ -230,25 +249,10 @@ public class DeviceScreenController implements Initializable {
         }
     }
 
-    public void searchDeviceButtonAction(ActionEvent event) {
-        if (!searchTF.getText().isEmpty()) {
-
-
-            String deviceNameSearch = searchTF.getText();
-            filteredList.setPredicate(
-                    new Predicate<DEVICE>() {
-                        public boolean test(DEVICE t) {
-                            return (t.getDeviceName().toLowerCase().startsWith(deviceNameSearch));
-                        }
-                    }
-            );
-            deviceTableView.setItems(filteredList);
-
-        } else {
-            deviceTableView.setItems(devicesList);
-
-        }
-
+    public void exportButtonAction(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Utils.exportExcelDevices(stage, deviceTableView);
     }
 
     public void backDeviceButtonAction(ActionEvent event) {
@@ -262,7 +266,60 @@ public class DeviceScreenController implements Initializable {
             e.printStackTrace();
         }
         stage.setScene(scene);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.show();
     }
 
+    public void deviceViewModeCbOnAction(ActionEvent actionEvent) {
+        switch (deviceViewModeCB.getSelectionModel().getSelectedItem().toString()) {
+            case "IN USE": {
+                departmentNameColumn.setVisible(true);
+                var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
+                devicesList = FXCollections.observableArrayList(devices.selectList(
+                        "select  *  " +
+                                "from tbDevice inner join tbDeviceModel " +
+                                "on tbDevice.ModelId =  tbDeviceModel.ModelId " +
+                                "inner join tbUnit " +
+                                "on tbDeviceModel.UnitId = tbUnit.UnitId " +
+                                "inner join tbTransform on tbTransform.deviceId = tbDevice.deviceId"));
+                departmentNameColumn.setCellValueFactory(
+                        new PropertyValueFactory<>("department"));
+                deviceTableView.setItems(devicesList);
+                break;
+            }
+
+            case "NOT IN USE": {
+                var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
+                devicesList = FXCollections.observableArrayList(devices.selectList(
+                        "select * " +
+                                "from tbDevice inner join tbDeviceModel " +
+                                "on tbDevice.ModelId =  tbDeviceModel.ModelId " +
+                                "inner join tbUnit " +
+                                "on tbDeviceModel.UnitId = tbUnit.UnitId " +
+                                "full join tbTransform on tbTransform.deviceId = tbDevice.deviceId where departmentId IS NULL"));
+                departmentNameColumn.setVisible(false);
+                idColumn.setMaxWidth(0);
+                deviceTableView.setItems(devicesList);
+                break;
+
+            }
+
+            case "TOTAL": {
+                var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
+                devicesList = FXCollections.observableArrayList(devices.selectList(
+                        "select * " +
+                                "from tbDevice inner join tbDeviceModel " +
+                                "on tbDevice.ModelId =  tbDeviceModel.ModelId " +
+                                "inner join tbUnit " +
+                                "on tbDeviceModel.UnitId = tbUnit.UnitId "));
+                departmentNameColumn.setVisible(false);
+                departmentNameColumn.setCellValueFactory(
+                        new PropertyValueFactory<>("department"));
+                deviceTableView.setItems(devicesList);
+                System.out.println("TOTAL");
+                break;
+            }
+        }
+    }
 }

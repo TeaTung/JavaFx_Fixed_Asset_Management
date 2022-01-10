@@ -11,6 +11,16 @@ public class DEVICE {
     private float percentDamage;
     private String specification;
 
+    private String department;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
 
     // LINKS
     UNIT unit = new UNIT();

@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
@@ -38,7 +40,7 @@ public class UpdateAccountInformationDialogController {
     Button confirmBtn;
 
     @FXML
-    public void backButtonAction (ActionEvent event) {
+    public void backButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AccountScreen/account_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -49,11 +51,13 @@ public class UpdateAccountInformationDialogController {
             e.printStackTrace();
         }
         stage.setScene(scene);
+//        JMetro jMetro = new JMetro(Style.LIGHT);
+//        jMetro.setScene(scene);
         stage.show();
     }
 
     @FXML
-    public void confirmButtonAction (ActionEvent event) {
+    public void confirmButtonAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Update Account Information");
         alert.setHeaderText("Are you sure to update information");

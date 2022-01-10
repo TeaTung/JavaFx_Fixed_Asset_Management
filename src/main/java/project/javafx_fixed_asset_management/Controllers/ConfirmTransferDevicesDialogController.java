@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
@@ -29,13 +31,15 @@ public class ConfirmTransferDevicesDialogController {
     Button backBtn;
 
     @FXML
-    public void backButtonAction (ActionEvent event) {
+    public void backButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/TransferScreen/transfer_devices_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +48,7 @@ public class ConfirmTransferDevicesDialogController {
     }
 
     @FXML
-    public void confirmButtonAction (ActionEvent event) {
+    public void confirmButtonAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Transfer Device");
         alert.setHeaderText("Are you sure to transfer device");

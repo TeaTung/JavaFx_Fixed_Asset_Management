@@ -10,6 +10,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import org.controlsfx.control.action.Action;
 import project.javafx_fixed_asset_management.Main;
 
@@ -41,15 +43,17 @@ public class FirstInventoryScreenController {
     Button continueBtn;
 
     @FXML
-    public void addPeopleButtonAction (ActionEvent event) {
+    public void addPeopleButtonAction(ActionEvent event) {
 
     }
+
     @FXML
-    public void deletePeopleButtonAction (ActionEvent event) {
+    public void deletePeopleButtonAction(ActionEvent event) {
 
     }
+
     @FXML
-    public void backButtonAction (ActionEvent event) {
+    public void backButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -60,10 +64,13 @@ public class FirstInventoryScreenController {
             e.printStackTrace();
         }
         stage.setScene(scene);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void continueButtonAction (ActionEvent event) {
+    public void continueButtonAction(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/InventoryScreen/second_inventory_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -74,6 +81,8 @@ public class FirstInventoryScreenController {
             e.printStackTrace();
         }
         stage.setScene(scene);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.show();
 
 

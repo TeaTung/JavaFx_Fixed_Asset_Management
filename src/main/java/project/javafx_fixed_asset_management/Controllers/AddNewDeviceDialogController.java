@@ -90,7 +90,7 @@ public class AddNewDeviceDialogController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1018, 720);
-            JMetro jMetro = new JMetro(Style.DARK);
+            JMetro jMetro = new JMetro(Style.LIGHT);
             jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

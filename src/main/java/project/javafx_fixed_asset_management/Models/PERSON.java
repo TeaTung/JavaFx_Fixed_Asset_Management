@@ -1,11 +1,21 @@
 package project.javafx_fixed_asset_management.Models;
 
-public class Person {
+public class PERSON {
 
     String personId;
     String departmentId;
     String name;
     String title;
+
+    DEPARTMENT department = new DEPARTMENT();
+
+    public String getDepartmentName() {
+        return this.department.getDepartmentName();
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.department.setDepartmentName(departmentName);
+    }
 
     public String getPersonId() {
         return personId;
