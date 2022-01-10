@@ -4,6 +4,9 @@ public class DEPARTMENT {
 
     String departmentId;
     String departmentName;
+    String totalDevice;
+    String totalPeople;
+
 
     public String getDepartmentId() {
         return departmentId;
@@ -19,6 +22,22 @@ public class DEPARTMENT {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+    }
+
+    public String getTotalDevice() {
+        return totalDevice;
+    }
+
+    public void setTotalDevice(String totalDevice) {
+        this.totalDevice = totalDevice;
+    }
+
+    public String getTotalPeople() {
+        return totalPeople;
+    }
+
+    public void setTotalPeople(String totalPeople) {
+        this.totalPeople = totalPeople;
     }
 
 

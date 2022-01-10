@@ -107,7 +107,7 @@ public class ConfirmRepairDevicesDialogController {
 
 
             REPAIR repair = new REPAIR();
-            repair.setRepairDate(repairDay);
+            repair.setRepairDate(repairDay.toString());
             repair.setCompany(repairingCompany);
             repair.setFixId(repairingId);
             repair.setPrice(Float.parseFloat(repairingPrice));

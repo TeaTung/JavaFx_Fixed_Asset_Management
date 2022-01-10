@@ -46,7 +46,7 @@ public class DEVICE {
         this.unit.setUnitId(unitId);
     }
 
-    public String getUnitId(String unitId) {
+    public String getUnitId(    ) {
         return this.unit.getUnitId();
     }
 
