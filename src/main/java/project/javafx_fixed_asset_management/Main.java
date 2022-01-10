@@ -17,7 +17,6 @@ public class Main extends Application {
         stage.setTitle("Fixed Asset Management");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static void main(String[] args) {

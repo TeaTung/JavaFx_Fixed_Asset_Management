@@ -6,17 +6,21 @@ import java.util.List;
 public class REPAIR {
     String fixId;
     List<String> listDevice;
-    LocalDate repairDate;
-    String company;
-    float price;
+    String repairDate;
 
-    public LocalDate getRepairDate() {
+    public String getRepairDate() {
         return repairDate;
     }
 
-    public void setRepairDate(LocalDate repairDate) {
+    public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
     }
+
+
+    String company;
+    float price;
+
+
 
     public String getFixId() {
         return fixId;

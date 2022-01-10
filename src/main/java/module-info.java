@@ -7,6 +7,8 @@ module project.javafx_fixed_asset_management {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires commons.dbutils;
+    requires org.jfxtras.styles.jmetro;
+    requires poi;
 
     opens project.javafx_fixed_asset_management to javafx.fxml;
     exports project.javafx_fixed_asset_management;

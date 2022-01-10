@@ -1,12 +1,13 @@
 package project.javafx_fixed_asset_management.Models;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class TRANSFORM {
+
     String transformId;
     String department;
     List<String> listDevice;
+
 
     public List<String> getListDevice() {
         return listDevice;
