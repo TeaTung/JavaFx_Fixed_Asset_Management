@@ -137,6 +137,4 @@ public class UpdateScreenDialogController {
         priceTF.setText(String.valueOf(device_add.getPrice()));
         manufactureDateDP.setValue(LocalDate.parse(device_add.getYearManufacture()));
     }
-
-
 }

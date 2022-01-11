@@ -14,9 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="project.javafx_fixed_asset_management.Controllers.HistoryManagementScreenController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.HistoryManagementScreenController">
     <children>
         <TabPane fx:id="myTabPane" layoutY="10.0" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -25,102 +23,60 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="382.0" prefWidth="1217.0">
                             <children>
 
-                                <Text layoutX="43.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      styleClass="lbl-primary" text="TRANSFERRED DEVICE" wrappingWidth="507.0"
-                                      AnchorPane.topAnchor="37.0224609375">
+                                <Text layoutX="43.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="lbl-primary" text="TRANSFERRED DEVICE" wrappingWidth="507.0" AnchorPane.topAnchor="37.0224609375">
                                     <font>
-                                        <Font name="Helvetica" size="25.0"/>
+                                        <Font name="Helvetica" size="25.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="transferredDeviceTableView" layoutX="25.0" layoutY="92.0"
-                                           onMouseClicked="#onTransferTableViewMouseClicked" prefHeight="518.0"
-                                           prefWidth="687.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0"
-                                           AnchorPane.topAnchor="90.0">
+                                <TableView fx:id="transferredDeviceTableView" layoutX="25.0" layoutY="92.0" onMouseClicked="#onTransferTableViewMouseClicked" prefHeight="518.0" prefWidth="687.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
                                     <columns>
-                                        <TableColumn fx:id="deviceNameTransferColumn" prefWidth="172.00002479553223"
-                                                     text="Device Name"/>
-                                        <TableColumn fx:id="departmentTransferColumn" minWidth="0.0" prefWidth="152.0"
-                                                     text="Department"/>
-                                        <TableColumn fx:id="ebitdaTransferColumn" minWidth="0.0"
-                                                     prefWidth="121.5999755859375" text="EBITDA"/>
-                                        <TableColumn fx:id="statusTransferColumn" minWidth="0.0"
-                                                     prefWidth="108.60003662109375" text="Status"/>
-                                        <TableColumn fx:id="quantityTransferColumn" prefWidth="131.20000000000005"
-                                                     text="Quantity"/>
+                                        <TableColumn fx:id="deviceNameTransferColumn" prefWidth="172.00002479553223" text="Device Name" />
+                                        <TableColumn fx:id="departmentTransferColumn" minWidth="0.0" prefWidth="152.0" text="Department" />
+                                        <TableColumn fx:id="ebitdaTransferColumn" minWidth="0.0" prefWidth="121.5999755859375" text="EBITDA" />
+                                        <TableColumn fx:id="statusTransferColumn" minWidth="0.0" prefWidth="108.60003662109375" text="Status" />
+                                        <TableColumn fx:id="quantityTransferColumn" prefWidth="131.20000000000005" text="Quantity" />
                                     </columns>
                                 </TableView>
-                                <Button fx:id="transferTabExportReportBtn" defaultButton="true" layoutX="1134.0"
-                                        layoutY="636.6" mnemonicParsing="false"
-                                        onAction="#transferTabExportReportBtnAction" prefHeight="33.0" prefWidth="116.0"
-                                        text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="13.0"
-                                        AnchorPane.rightAnchor="30.0">
+                                <Button fx:id="transferTabExportReportBtn" defaultButton="true" layoutX="1134.0" layoutY="636.6" mnemonicParsing="false" onAction="#transferTabExportReportBtnAction" prefHeight="33.0" prefWidth="116.0" text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <CheckBox fx:id="transferEbitdaCB" layoutX="775.0" layoutY="585.0"
-                                          mnemonicParsing="false" onAction="#transferEbitdaCheckBoxOnAction"
-                                          text="Products have usable value &lt; 50"
-                                          AnchorPane.bottomAnchor="75.80000000000007"/>
+                                <CheckBox fx:id="transferEbitdaCB" layoutX="775.0" layoutY="585.0" mnemonicParsing="false" onAction="#transferEbitdaCheckBoxOnAction" text="Products have usable value &lt; 50" AnchorPane.bottomAnchor="75.80000000000007" />
                                 <Label layoutX="763.0" layoutY="135.0" text="Department:" AnchorPane.leftAnchor="763.0">
                                     <font>
-                                        <Font name="System Bold" size="16.0"/>
+                                        <Font name="System Bold" size="16.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="transferDepartmentName" editable="false" focusTraversable="false"
-                                           layoutX="914.0" layoutY="127.0" mouseTransparent="true" prefHeight="34.0"
-                                           prefWidth="261.0" AnchorPane.leftAnchor="914.0"
-                                           AnchorPane.topAnchor="127.0"/>
-                                <Label layoutX="763.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0"
-                                       text="Department ID:" AnchorPane.leftAnchor="763.0">
+                                <TextField fx:id="transferDepartmentName" editable="false" focusTraversable="false" layoutX="914.0" layoutY="127.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" AnchorPane.leftAnchor="914.0" AnchorPane.topAnchor="127.0" />
+                                <Label layoutX="763.0" layoutY="185.0" prefHeight="25.0" prefWidth="117.0" text="Department ID:" AnchorPane.leftAnchor="763.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="transferDepartmentId" layoutX="917.0" layoutY="185.0" prefHeight="26.0"
-                                       prefWidth="229.0" text="DEFAULT" AnchorPane.leftAnchor="917.0"
-                                       AnchorPane.topAnchor="185.0">
+                                <Label fx:id="transferDepartmentId" layoutX="917.0" layoutY="185.0" prefHeight="26.0" prefWidth="229.0" text="DEFAULT" AnchorPane.leftAnchor="917.0" AnchorPane.topAnchor="185.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="763.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0"
-                                       text="Total device:" AnchorPane.leftAnchor="763.0">
+                                <Label layoutX="763.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="Total device:" AnchorPane.leftAnchor="763.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="763.0" layoutY="282.0" prefHeight="25.0" prefWidth="117.0"
-                                       text="Total people:" AnchorPane.leftAnchor="763.0">
+                                <Label fx:id="transferTotalDevice" layoutX="917.0" layoutY="234.0" prefHeight="25.0" prefWidth="117.0" text="0" AnchorPane.leftAnchor="917.0" AnchorPane.topAnchor="234.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="transferTotalDevice" layoutX="917.0" layoutY="234.0" prefHeight="25.0"
-                                       prefWidth="117.0" text="0" AnchorPane.leftAnchor="917.0"
-                                       AnchorPane.topAnchor="234.0">
+                                <Label layoutX="763.0" layoutY="85.0" prefHeight="31.0" prefWidth="294.0" text="Department Information" AnchorPane.leftAnchor="763.0" AnchorPane.topAnchor="85.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font size="25.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="transferTotalPeople" layoutX="917.0" layoutY="282.0" prefHeight="25.0"
-                                       prefWidth="117.0" text="0" AnchorPane.leftAnchor="917.0">
+                                <Button fx:id="backBtn3" layoutX="30.0" layoutY="637.6" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
-                                    </font>
-                                </Label>
-                                <Label layoutX="763.0" layoutY="85.0" prefHeight="31.0" prefWidth="294.0"
-                                       text="Department Information" AnchorPane.leftAnchor="763.0"
-                                       AnchorPane.topAnchor="85.0">
-                                    <font>
-                                        <Font size="25.0"/>
-                                    </font>
-                                </Label>
-                                <Button fx:id="backBtn3" layoutX="30.0" layoutY="637.6" mnemonicParsing="false"
-                                        onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0"
-                                        text="Back" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="30.0">
-                                    <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
                             </children>
@@ -131,75 +87,52 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Text layoutX="534.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="REPAIR HISTORY" textAlignment="CENTER" wrappingWidth="210.99998474121094"
-                                      AnchorPane.topAnchor="41.0224609375">
+                                <Text layoutX="534.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REPAIR HISTORY" textAlignment="CENTER" wrappingWidth="210.99998474121094" AnchorPane.topAnchor="41.0224609375">
                                     <font>
-                                        <Font name="Helvetica" size="25.0"/>
+                                        <Font name="Helvetica" size="25.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="repairHistoryTableView" layoutX="27.0" layoutY="93.0"
-                                           prefHeight="510.0" prefWidth="1181.0" styleClass="column-grid-lines"
-                                           AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="30.0"
-                                           AnchorPane.topAnchor="90.0">
+                                <TableView fx:id="repairHistoryTableView" layoutX="27.0" layoutY="93.0" prefHeight="510.0" prefWidth="1181.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
                                     <columns>
-                                        <TableColumn fx:id="idRepairColumn" minWidth="0.0"
-                                                     prefWidth="110.60001182556152" text="ID"/>
-                                        <TableColumn fx:id="deviceNameRepairColumn" prefWidth="201.39999389648438"
-                                                     text="Device Name"/>
-                                        <TableColumn fx:id="deviceQuantityRepairColumn" prefWidth="189.00003051757812"
-                                                     text="Quantity"/>
-                                        <TableColumn fx:id="departmentRepairColumn" minWidth="0.0"
-                                                     prefWidth="191.20001220703125" text="Company"/>
-                                        <TableColumn fx:id="priceRepairColumn" minWidth="0.0"
-                                                     prefWidth="226.5999755859375" text="Price"/>
-                                        <TableColumn fx:id="dateRepairColumn" minWidth="0.0"
-                                                     prefWidth="258.199951171875" text="Date"/>
+                                        <TableColumn fx:id="idRepairColumn" minWidth="0.0" prefWidth="110.60001182556152" text="ID" />
+                                        <TableColumn fx:id="deviceNameRepairColumn" prefWidth="201.39999389648438" text="Device Name" />
+                                        <TableColumn fx:id="deviceQuantityRepairColumn" prefWidth="189.00003051757812" text="Quantity" />
+                                        <TableColumn fx:id="departmentRepairColumn" minWidth="0.0" prefWidth="191.20001220703125" text="Company" />
+                                        <TableColumn fx:id="priceRepairColumn" minWidth="0.0" prefWidth="226.5999755859375" text="Price" />
+                                        <TableColumn fx:id="dateRepairColumn" minWidth="0.0" prefWidth="258.199951171875" text="Date" />
                                     </columns>
                                 </TableView>
-                                <DatePicker fx:id="repairHistoryFromDP" layoutX="287.0" layoutY="619.0"
-                                            prefHeight="34.0" prefWidth="179.0"/>
-                                <Label layoutX="193.0" layoutY="623.0" prefHeight="5.0" prefWidth="73.0"
-                                       text="From date">
+                                <DatePicker fx:id="repairHistoryFromDP" layoutX="287.0" layoutY="619.0" prefHeight="34.0" prefWidth="179.0" />
+                                <Label layoutX="193.0" layoutY="623.0" prefHeight="5.0" prefWidth="73.0" text="From date">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="repairHistoryToDP" layoutX="575.0" layoutY="618.0" prefHeight="34.0"
-                                            prefWidth="204.0"/>
+                                <DatePicker fx:id="repairHistoryToDP" layoutX="575.0" layoutY="618.0" prefHeight="34.0" prefWidth="204.0" />
                                 <Label layoutX="501.0" layoutY="623.0" text="To date">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="backBtn" layoutX="20.0" layoutY="637.0" mnemonicParsing="false"
-                                        onAction="#backDeviceButtonAction" prefHeight="39.0" prefWidth="101.0"
-                                        text="Back" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn" layoutX="20.0" layoutY="637.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="39.0" prefWidth="101.0" text="Back" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="repairTabReportBtn" layoutX="804.0" layoutY="617.0"
-                                        mnemonicParsing="false" onAction="#repairTabFilterBtn" prefHeight="38.0"
-                                        prefWidth="116.0" text="Filter" textFill="#0d00ff">
+                                <Button fx:id="repairTabReportBtn" layoutX="804.0" layoutY="617.0" mnemonicParsing="false" onAction="#repairTabFilterBtn" prefHeight="38.0" prefWidth="116.0" text="Filter" textFill="#0d00ff">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
 
-                                <Button fx:id="repairTabExportReportBtn" defaultButton="true" layoutX="1096.0"
-                                        layoutY="617.0" mnemonicParsing="false"
-                                        onAction="#repairTabExportReportBtnAction" prefHeight="38.0" prefWidth="116.0"
-                                        text="Export" textFill="#0d00ff">
+                                <Button fx:id="repairTabExportReportBtn" defaultButton="true" layoutX="1096.0" layoutY="617.0" mnemonicParsing="false" onAction="#repairTabExportReportBtnAction" prefHeight="38.0" prefWidth="116.0" text="Export" textFill="#0d00ff">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="repairTabClearBtn" layoutX="946.0" layoutY="616.0"
-                                        mnemonicParsing="false" onAction="#repairTabClearBtnOnAction" prefHeight="38.0"
-                                        prefWidth="116.0" text="Clear" textFill="#0d00ff">
+                                <Button fx:id="repairTabClearBtn" layoutX="946.0" layoutY="616.0" mnemonicParsing="false" onAction="#repairTabClearBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
                             </children>
@@ -210,108 +143,74 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TableView fx:id="liquidationTableView" layoutX="33.0" layoutY="118.0"
-                                           onMouseClicked="#liquidationTableViewOnMouseClicked" prefHeight="236.0"
-                                           prefWidth="633.0" styleClass="column-grid-lines"
-                                           AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="liquidationTableView" layoutX="33.0" layoutY="118.0" onMouseClicked="#liquidationTableViewOnMouseClicked" prefHeight="236.0" prefWidth="633.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0">
                                     <columns>
-                                        <TableColumn fx:id="idLiquidationColumn" prefWidth="216.0" text="ID"/>
-                                        <TableColumn fx:id="departmentNameLiquidationColumn" minWidth="0.0"
-                                                     prefWidth="191.0" text="Department"/>
-                                        <TableColumn fx:id="dateLiquidationColumn" prefWidth="225.0"
-                                                     text="Date of liquidtation"/>
+                                        <TableColumn fx:id="idLiquidationColumn" prefWidth="216.0" text="ID" />
+                                        <TableColumn fx:id="departmentNameLiquidationColumn" minWidth="0.0" prefWidth="191.0" text="Department" />
+                                        <TableColumn fx:id="dateLiquidationColumn" prefWidth="225.0" text="Date of liquidtation" />
                                     </columns>
                                 </TableView>
-                                <Text layoutX="428.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="LIQUIDATION DEVICE" textAlignment="CENTER" wrappingWidth="407.0"
-                                      AnchorPane.topAnchor="37.0">
+                                <Text layoutX="428.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LIQUIDATION DEVICE" textAlignment="CENTER" wrappingWidth="407.0" AnchorPane.topAnchor="37.0">
                                     <font>
-                                        <Font name="Helvetica" size="25.0"/>
+                                        <Font name="Helvetica" size="25.0" />
                                     </font>
                                 </Text>
-                                <Text layoutX="33.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="Liquidation information" AnchorPane.leftAnchor="30.0"
-                                      AnchorPane.topAnchor="90.0">
+                                <Text layoutX="33.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liquidation information" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
                                     <font>
-                                        <Font name="Helvetica Bold" size="16.0"/>
+                                        <Font name="Helvetica Bold" size="16.0" />
                                     </font>
                                 </Text>
-                                <Text layoutX="30.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="List device information" AnchorPane.leftAnchor="30.0">
+                                <Text layoutX="30.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List device information" AnchorPane.leftAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="liquidationDeviceTableView" layoutX="30.0"
-                                           layoutY="407.80000000000007" prefHeight="210.0" prefWidth="633.0"
-                                           styleClass="column-grid-lines" AnchorPane.bottomAnchor="65.0"
-                                           AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="liquidationDeviceTableView" layoutX="30.0" layoutY="407.80000000000007" prefHeight="210.0" prefWidth="633.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="30.0">
                                     <columns>
-                                        <TableColumn fx:id="idDeviceLiquidationColumn" prefWidth="139.2000026702881"
-                                                     text="ID"/>
-                                        <TableColumn fx:id="nameLiquidationColumn" prefWidth="156.00001525878906"
-                                                     text="Name"/>
-                                        <TableColumn fx:id="typeLiquidationColumn" prefWidth="126.5999755859375"
-                                                     text="Type"/>
-                                        <TableColumn fx:id="ebitdaLiquidationColumn" prefWidth="112.00006103515625"
-                                                     text="Ebitda"/>
-                                        <TableColumn fx:id="quantityLiquidationColumn" prefWidth="120.79998779296875"
-                                                     text="Quantity"/>
+                                        <TableColumn fx:id="idDeviceLiquidationColumn" prefWidth="139.2000026702881" text="ID" />
+                                        <TableColumn fx:id="nameLiquidationColumn" prefWidth="156.00001525878906" text="Name" />
+                                        <TableColumn fx:id="typeLiquidationColumn" prefWidth="126.5999755859375" text="Type" />
+                                        <TableColumn fx:id="ebitdaLiquidationColumn" prefWidth="112.00006103515625" text="Ebitda" />
+                                        <TableColumn fx:id="quantityLiquidationColumn" prefWidth="120.79998779296875" text="Quantity" />
 
                                     </columns>
                                 </TableView>
                                 <Label layoutX="688.0" layoutY="419.0" text="Date of Liquidation">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="liquidationDateOfLiquidationDTP" layoutX="864.0" layoutY="410.0"
-                                            prefHeight="43.0" prefWidth="382.0"
-                                            AnchorPane.rightAnchor="33.59999999999991"/>
-                                <Text layoutX="688.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="List people information">
+                                <DatePicker fx:id="liquidationDateOfLiquidationDTP" layoutX="864.0" layoutY="410.0" prefHeight="43.0" prefWidth="382.0" AnchorPane.rightAnchor="33.59999999999991" />
+                                <Text layoutX="688.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List people information">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="liquidationPersonTableView" layoutX="688.0" layoutY="118.0"
-                                           prefHeight="236.0" prefWidth="561.0" styleClass="column-grid-lines"
-                                           AnchorPane.rightAnchor="30.0">
+                                <TableView fx:id="liquidationPersonTableView" layoutX="688.0" layoutY="118.0" prefHeight="236.0" prefWidth="561.0" styleClass="column-grid-lines" AnchorPane.rightAnchor="30.0">
                                     <columns>
-                                        <TableColumn fx:id="personNameLiquidationColumn" prefWidth="222.0" text="Name"/>
-                                        <TableColumn fx:id="personDepartmentLiquidationColumn" minWidth="0.0"
-                                                     prefWidth="217.0" text="Department"/>
-                                        <TableColumn fx:id="personTitleLiquidationColumn" minWidth="0.0"
-                                                     prefWidth="117.0" text="Title"/>
+                                        <TableColumn fx:id="personNameLiquidationColumn" prefWidth="222.0" text="Name" />
+                                        <TableColumn fx:id="personDepartmentLiquidationColumn" minWidth="0.0" prefWidth="217.0" text="Department" />
+                                        <TableColumn fx:id="personTitleLiquidationColumn" minWidth="0.0" prefWidth="117.0" text="Title" />
                                     </columns>
                                 </TableView>
-                                <Button fx:id="backBtn13" layoutX="30.0" layoutY="632.6" mnemonicParsing="false"
-                                        onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0"
-                                        text="Back" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn13" layoutX="30.0" layoutY="632.6" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button defaultButton="true" layoutX="1134.0" layoutY="632.6" mnemonicParsing="false"
-                                        onAction="#liquidationExportReportButtonAction" prefHeight="33.0"
-                                        prefWidth="116.0" text="Export" textFill="#0d00ff"
-                                        AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="30.0">
+                                <Button defaultButton="true" layoutX="1134.0" layoutY="632.6" mnemonicParsing="false" onAction="#liquidationExportReportButtonAction" prefHeight="33.0" prefWidth="116.0" text="Export" textFill="#0d00ff" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="liquidationSearchBtn" defaultButton="true" layoutX="1134.0"
-                                        layoutY="467.0" mnemonicParsing="false" onAction="#liquidationSearchBtnOnAction"
-                                        prefHeight="33.0" prefWidth="116.0" text="Search" textFill="#0d00ff">
+                                <Button fx:id="liquidationSearchBtn" defaultButton="true" layoutX="1134.0" layoutY="467.0" mnemonicParsing="false" onAction="#liquidationSearchBtnOnAction" prefHeight="33.0" prefWidth="116.0" text="Search" textFill="#0d00ff">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="liquidationClearBtn" layoutX="991.0" layoutY="467.0"
-                                        mnemonicParsing="false" onAction="#liquidationClearBtnOnAction"
-                                        prefHeight="33.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
+                                <Button fx:id="liquidationClearBtn" layoutX="991.0" layoutY="467.0" mnemonicParsing="false" onAction="#liquidationClearBtnOnAction" prefHeight="33.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
                             </children>
@@ -322,113 +221,79 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Text layoutX="428.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="INVENTORY DEVICES" textAlignment="CENTER" wrappingWidth="407.0"
-                                      AnchorPane.topAnchor="37.0">
+                                <Text layoutX="428.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVENTORY DEVICES" textAlignment="CENTER" wrappingWidth="407.0" AnchorPane.topAnchor="37.0">
                                     <font>
-                                        <Font name="Helvetica" size="25.0"/>
+                                        <Font name="Helvetica" size="25.0" />
                                     </font>
                                 </Text>
-                                <Text layoutX="33.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="Inventory information" AnchorPane.leftAnchor="30.0"
-                                      AnchorPane.topAnchor="90.0">
+                                <Text layoutX="33.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory information" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="inventoryTableView" layoutX="30.0" layoutY="118.0"
-                                           onMouseClicked="#inventoryTableViewOnMouseClicked" prefHeight="236.0"
-                                           prefWidth="633.0" styleClass="column-grid-lines"
-                                           AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="inventoryTableView" layoutX="30.0" layoutY="118.0" onMouseClicked="#inventoryTableViewOnMouseClicked" prefHeight="236.0" prefWidth="633.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0">
                                     <columns>
-                                        <TableColumn fx:id="idInventoryColumn" prefWidth="198.8000087738037" text="ID"/>
-                                        <TableColumn fx:id="usableValueInventoryColumn" minWidth="0.0"
-                                                     prefWidth="240.19998168945312" text="Usable value"/>
-                                        <TableColumn fx:id="dateInventoryColumn" prefWidth="196.60000610351562"
-                                                     text="Date"/>
+                                        <TableColumn fx:id="idInventoryColumn" prefWidth="198.8000087738037" text="ID" />
+                                        <TableColumn fx:id="usableValueInventoryColumn" minWidth="0.0" prefWidth="240.19998168945312" text="Usable value" />
+                                        <TableColumn fx:id="dateInventoryColumn" prefWidth="196.60000610351562" text="Date" />
                                     </columns>
                                 </TableView>
-                                <Text layoutX="30.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="List devcie information">
+                                <Text layoutX="30.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List devcie information">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="inventoryDeviceTableView" layoutX="30.0" layoutY="404.80000000000007"
-                                           prefHeight="210.0" prefWidth="633.0" styleClass="column-grid-lines"
-                                           AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="inventoryDeviceTableView" layoutX="30.0" layoutY="404.80000000000007" prefHeight="210.0" prefWidth="633.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="30.0">
                                     <columns>
-                                        <TableColumn fx:id="idDeviceInventoryColumn" prefWidth="132.79998397827148"
-                                                     text="ID"/>
-                                        <TableColumn fx:id="deviceNameInventoryColumn" prefWidth="146.40000915527344"
-                                                     text="Name"/>
-                                        <TableColumn fx:id="typeInventoryColumn" prefWidth="118.40008544921875"
-                                                     text="Type"/>
-                                        <TableColumn fx:id="ebitdaInventoryColumn" prefWidth="126.39996337890625"
-                                                     text="EBITDA"/>
-                                        <TableColumn fx:id="quantityInventoryColumn" prefWidth="120.0" text="Quantity"/>
+                                        <TableColumn fx:id="idDeviceInventoryColumn" prefWidth="132.79998397827148" text="ID" />
+                                        <TableColumn fx:id="deviceNameInventoryColumn" prefWidth="146.40000915527344" text="Name" />
+                                        <TableColumn fx:id="typeInventoryColumn" prefWidth="118.40008544921875" text="Type" />
+                                        <TableColumn fx:id="ebitdaInventoryColumn" prefWidth="126.39996337890625" text="EBITDA" />
+                                        <TableColumn fx:id="quantityInventoryColumn" prefWidth="120.0" text="Quantity" />
                                     </columns>
                                 </TableView>
-                                <Text layoutX="688.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="List people information">
+                                <Text layoutX="688.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List people information">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="inventoryPeopeTableView" layoutX="688.0" layoutY="118.0"
-                                           prefHeight="236.0" prefWidth="561.0" styleClass="column-grid-lines"
-                                           AnchorPane.rightAnchor="30.0">
+                                <TableView fx:id="inventoryPeopeTableView" layoutX="688.0" layoutY="118.0" prefHeight="236.0" prefWidth="561.0" styleClass="column-grid-lines" AnchorPane.rightAnchor="30.0">
                                     <columns>
-                                        <TableColumn fx:id="personNameInventoryColumn" prefWidth="139.40003049373627"
-                                                     text="Name"/>
-                                        <TableColumn fx:id="personDepartmentInventoryColumn" minWidth="0.0"
-                                                     prefWidth="200.5999450683594" text="Department"/>
-                                        <TableColumn fx:id="personTitleInventoryColumn" minWidth="0.0" prefWidth="317.0"
-                                                     text="Title"/>
+                                        <TableColumn fx:id="personNameInventoryColumn" prefWidth="139.40003049373627" text="Name" />
+                                        <TableColumn fx:id="personDepartmentInventoryColumn" minWidth="0.0" prefWidth="200.5999450683594" text="Department" />
+                                        <TableColumn fx:id="personTitleInventoryColumn" minWidth="0.0" prefWidth="317.0" text="Title" />
                                     </columns>
                                 </TableView>
                                 <Label layoutX="689.0" layoutY="416.0" text="Date of Inventory">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="inventoryDateOfInventoryDP" layoutX="840.4" layoutY="412.0"
-                                            prefHeight="33.0" prefWidth="409.0" AnchorPane.rightAnchor="30.0"/>
+                                <DatePicker fx:id="inventoryDateOfInventoryDP" layoutX="840.4" layoutY="412.0" prefHeight="33.0" prefWidth="409.0" AnchorPane.rightAnchor="30.0" />
                                 <Label layoutX="689.0" layoutY="468.0" text="Department">
                                     <font>
-                                        <Font name="Helvetica" size="16.0"/>
+                                        <Font name="Helvetica" size="16.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="inventorySearchInventoryBTN" layoutX="1161.0" layoutY="520.0"
-                                        mnemonicParsing="false" onAction="#inventorySearchInventoryButtonAction"
-                                        prefHeight="33.0" prefWidth="89.0" text="Search">
+                                <Button fx:id="inventorySearchInventoryBTN" layoutX="1161.0" layoutY="520.0" mnemonicParsing="false" onAction="#inventorySearchInventoryButtonAction" prefHeight="33.0" prefWidth="89.0" text="Search">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="backBtn34" layoutX="30.0" layoutY="630.6" mnemonicParsing="false"
-                                        onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0"
-                                        text="Back" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn34" layoutX="30.0" layoutY="630.6" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button defaultButton="true" layoutX="1134.0" layoutY="628.6" mnemonicParsing="false"
-                                        onAction="#inventoryExportReportButtonAction" prefHeight="33.0"
-                                        prefWidth="116.0" text="Export" textFill="#0d00ff"
-                                        AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="30.0">
+                                <Button defaultButton="true" layoutX="1134.0" layoutY="628.6" mnemonicParsing="false" onAction="#inventoryExportReportButtonAction" prefHeight="33.0" prefWidth="116.0" text="Export" textFill="#0d00ff" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="30.0">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
-                                <ComboBox fx:id="departmentNameInventoryCB" layoutX="841.0" layoutY="461.0"
-                                          onAction="#departmentInventoryCBOnAction" prefHeight="38.0" prefWidth="408.0"
-                                          promptText="TOTAL"/>
-                                <Button fx:id="inventoryClearIBtn" layoutX="1045.0" layoutY="520.0"
-                                        mnemonicParsing="false" onAction="#inventoryCleanBtnOnAction" prefHeight="33.0"
-                                        prefWidth="89.0" text="Clear">
+                                <ComboBox fx:id="departmentNameInventoryCB" layoutX="841.0" layoutY="461.0" onAction="#departmentInventoryCBOnAction" prefHeight="38.0" prefWidth="408.0" promptText="TOTAL" />
+                                <Button fx:id="inventoryClearIBtn" layoutX="1045.0" layoutY="520.0" mnemonicParsing="false" onAction="#inventoryCleanBtnOnAction" prefHeight="33.0" prefWidth="89.0" text="Clear">
                                     <font>
-                                        <Font name="Helvetica" size="14.0"/>
+                                        <Font name="Helvetica" size="14.0" />
                                     </font>
                                 </Button>
                             </children>
