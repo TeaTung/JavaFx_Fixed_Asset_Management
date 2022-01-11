@@ -140,7 +140,7 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 740);
-            JMetro jMetro = new JMetro(Style.LIGHT);
+            JMetro jMetro = new JMetro(Style.DARK);
             jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
