@@ -106,8 +106,10 @@ public class ManagerHomeScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stage.setScene(scene);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
 
+        stage.setScene(scene);
         stage.show();
     }
 

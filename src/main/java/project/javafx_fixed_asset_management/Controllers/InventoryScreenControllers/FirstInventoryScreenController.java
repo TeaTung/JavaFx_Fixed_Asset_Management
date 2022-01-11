@@ -16,6 +16,8 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import org.controlsfx.control.action.Action;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
@@ -176,6 +178,8 @@ public class FirstInventoryScreenController implements Initializable {
             }
             SecondInventoryScreenController secondInventoryScreenController = fxmlLoader.getController();
             secondInventoryScreenController.initData(listInventoryPeople, dateOfInventoryDtp.getValue());
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
             stage.setScene(scene);
             stage.show();
         }

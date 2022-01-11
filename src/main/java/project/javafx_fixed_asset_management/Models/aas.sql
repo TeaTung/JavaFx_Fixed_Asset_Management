@@ -19,11 +19,11 @@ CREATE TABLE tbDeviceType
 
 CREATE TABLE tbDeviceModel
 (
-    ModelId       VARCHAR(10) PRIMARY KEY,
-    UnitId        VARCHAR(10),
-    TypeId        VARCHAR(10),
-    Quantity      INT,
-    ModelName     NVARCHAR(100),
+    ModelId   VARCHAR(10) PRIMARY KEY,
+    UnitId    VARCHAR(10),
+    TypeId    VARCHAR(10),
+    Quantity  INT,
+    ModelName NVARCHAR(100),
 
     CONSTRAINT FK_DEVICE_MODEL_TO_UNIT FOREIGN KEY (UnitId)
         REFERENCES tbUnit (UnitId),
@@ -183,9 +183,13 @@ CREATE TABLE tbRepair
 
 CREATE TABLE tbTransfer
 (
-    TransferId VARCHAR(10) PRIMARY KEY,
-    Department NVARCHAR(50),
-    DeviceId   NVARCHAR( MAX),
+    TransferId   VARCHAR(10) PRIMARY KEY,
+    Department   NVARCHAR(30),
+    DeviceId     NVARCHAR( MAX),
+    DepartmentId varchar(10),
 
+    CONSTRAINT FK_DEPART FOREIGN KEY (DepartmentId)
+        REFERENCES tbDepartment (DepartmentId),
 )
+
 

@@ -1,7 +1,5 @@
-package project.javafx_fixed_asset_management.Controllers;
+package project.javafx_fixed_asset_management.Controllers.TranferScreenController;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,10 +16,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
+import project.javafx_fixed_asset_management.Controllers.TranferScreenController.ConfirmTransferDevicesDialogController;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEVICE;
-import project.javafx_fixed_asset_management.Models.REPAIR;
 import project.javafx_fixed_asset_management.Models.TRANSFORM;
 
 import java.io.IOException;
@@ -156,6 +156,8 @@ public class TransferDevicesScreenController implements Initializable {
         ConfirmTransferDevicesDialogController controller = fxmlLoader.getController();
         controller.setInit(listTransferDevice, transformIdTF.getText(), departmentTF.getText());
         stage.setTitle("Are you sure about that?");
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.setScene(scene);
         stage.show();
 
