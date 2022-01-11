@@ -14,6 +14,7 @@ import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
+import project.javafx_fixed_asset_management.Models.DEPARTMENT;
 import project.javafx_fixed_asset_management.Models.UNIT;
 
 import java.io.IOException;
@@ -30,6 +31,10 @@ public class ConfigScreenController implements Initializable {
     public Button finishButton;
     public TextArea noteTA;
     public TextField nameTF;
+    public Button finishDepartmentButton;
+    public TextField deptIdTF;
+    public TextField nameDeptTF;
+    public TextField totalDeviceTF;
 
 
     public void backDeviceButtonAction(ActionEvent actionEvent) {
@@ -138,5 +143,20 @@ public class ConfigScreenController implements Initializable {
         jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
         backBtn.fire();
+    }
+
+    public void finishDepartmentButtonOnAction(ActionEvent actionEvent) {
+        new DATABASE_DAO<>(DEPARTMENT.class).insert("insert into tbDepartment (departmentID, DepartmentName, totalDevice ) values ( ? , ? , ? )",
+                deptIdTF.getText(), nameDeptTF.getText(), totalDeviceTF.getText());
+
+        // a alert dialog before leaving
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Insert successfully");
+        alert.setHeaderText("Message");
+        jMetro.setScene(alert.getDialogPane().getScene());
+        alert.showAndWait();
+        backBtn.fire();
+
     }
 }
