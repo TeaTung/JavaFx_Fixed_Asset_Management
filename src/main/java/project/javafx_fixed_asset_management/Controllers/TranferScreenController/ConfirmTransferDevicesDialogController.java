@@ -55,6 +55,7 @@ public class ConfirmTransferDevicesDialogController {
 
     String transformId;
     String transformDepartmentId;
+    String transformDepartment;
     String transformDate;
 
     ObservableList<DEVICE> listTransformDevice;
@@ -64,14 +65,15 @@ public class ConfirmTransferDevicesDialogController {
     }
 
     public void backPreviousScreen(ActionEvent event) {
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 
-    public void setInit(ObservableList<DEVICE> listDevice, String id, String departmentName,  String date, String departmentId) {
+    public void setInit(ObservableList<DEVICE> listDevice, String id, String departmentName, String date, String departmentId) {
         transformId = id;
         transformDepartmentId = departmentId;
         listTransformDevice = listDevice;
         transformDate = date;
+        transformDepartment = departmentName;
 
         System.out.println("DEPARTMENT: " + departmentId);
         System.out.println("DATE: " + date);
@@ -107,6 +109,7 @@ public class ConfirmTransferDevicesDialogController {
             transform.setTransformId(transformId);
             transform.setDepartmentId(transformDepartmentId);
             transform.setTransformDate(transformDate);
+            transform.setDepartment(transformDepartment);
             for (int i = 0; i < listTransformDevice.size(); i++) {
                 listDevice.add(listTransformDevice.get(i).getDeviceId());
             }
@@ -128,15 +131,15 @@ public class ConfirmTransferDevicesDialogController {
     public String insertSQL(TRANSFORM transform) {
         String list = "";
         for (int i = 0; i < transform.getListDevice().size(); i++) {
-            list += transform.getListDevice().get(i) ;
+            list += transform.getListDevice().get(i);
 
-            if ( i < transform.getListDevice().size() - 1) {
+            if (i < transform.getListDevice().size() - 1) {
                 list += (",");
             }
         }
         System.out.println("LIST: " + list);
 
-        return "insert into tbTransfer (TransferId, DepartmentId, DeviceId, TransferDate) values ('" + transform.getTransformId() + "','" + transform.getDepartmentId() + "','" + list + "','" + transform.getTransformDate() + "')";
+        return "insert into tbTransfer (TransferId, DepartmentId, DeviceId, TransferDate, Department) values ('" + transform.getTransformId() + "','" + transform.getDepartmentId() + "','" + list + "','" + transform.getTransformDate() + "','" + transform.getDepartment()+ "')";
     }
 
 

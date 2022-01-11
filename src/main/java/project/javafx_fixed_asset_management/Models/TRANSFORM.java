@@ -7,6 +7,15 @@ public class TRANSFORM {
     List<String> listDevice;
     String transformDate;
     String DepartmentId;
+    String Department;
+
+    public String getDepartment() {
+        return Department;
+    }
+
+    public void setDepartment(String department) {
+        Department = department;
+    }
 
     public String getTransformId() {
         return transformId;

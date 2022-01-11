@@ -187,6 +187,7 @@ CREATE TABLE tbTransfer
     TransferDate VARCHAR(15),
     DeviceId     NVARCHAR( MAX),
     DepartmentId varchar(10),
+    Department   NVARCHAR(100),
 
     CONSTRAINT FK_DEPART FOREIGN KEY (DepartmentId)
         REFERENCES tbDepartment (DepartmentId),
