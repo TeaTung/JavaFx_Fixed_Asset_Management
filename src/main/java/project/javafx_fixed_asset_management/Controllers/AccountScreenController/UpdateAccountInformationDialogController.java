@@ -1,4 +1,4 @@
-package project.javafx_fixed_asset_management.Controllers;
+package project.javafx_fixed_asset_management.Controllers.AccountScreenController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
@@ -20,13 +22,13 @@ public class UpdateAccountInformationDialogController {
     TextField nameTF;
 
     @FXML
-    TextField ageTF;
-
-    @FXML
-    TextField emailTF;
+    TextField birthdayTF;
 
     @FXML
     TextField phoneNumberTF;
+
+    @FXML
+    TextField DepartmentTF;
 
     @FXML
     TextField addressTF;
@@ -44,10 +46,15 @@ public class UpdateAccountInformationDialogController {
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 550, 442);
+            scene = new Scene(fxmlLoader.load(), 550, 450);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
+
+        stage.setTitle("Profile");
         stage.setScene(scene);
         stage.show();
     }

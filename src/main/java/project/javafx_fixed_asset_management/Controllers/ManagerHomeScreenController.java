@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -97,10 +98,11 @@ public class ManagerHomeScreenController implements Initializable {
     public void openAccountScreenButtonAction(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AccountScreen/account_screen.fxml"));
         Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 550, 442);
+            scene = new Scene(fxmlLoader.load(), 550, 450);
             JMetro jMetro = new JMetro(Style.LIGHT);
             jMetro.setScene(scene);
         } catch (IOException e) {
@@ -109,6 +111,7 @@ public class ManagerHomeScreenController implements Initializable {
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
 
+        stage.setTitle("Profile");
         stage.setScene(scene);
         stage.show();
     }

@@ -23,4 +23,6 @@ module project.javafx_fixed_asset_management {
     opens project.javafx_fixed_asset_management.Controllers.TranferScreenController to javafx.fxml;
     exports project.javafx_fixed_asset_management.Controllers.RepairScreenController;
     opens project.javafx_fixed_asset_management.Controllers.RepairScreenController to javafx.fxml;
+    exports project.javafx_fixed_asset_management.Controllers.AccountScreenController;
+    opens project.javafx_fixed_asset_management.Controllers.AccountScreenController to javafx.fxml;
 }

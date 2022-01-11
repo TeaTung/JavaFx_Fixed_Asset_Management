@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEPARTMENT;
@@ -26,6 +28,9 @@ import java.util.Random;
 public class ConfirmTransferDevicesDialogController {
     @FXML
     Label transferIdLbl;
+
+    @FXML
+    Label repairDateLbl;
 
     @FXML
     Label departmentLbl;
@@ -49,20 +54,10 @@ public class ConfirmTransferDevicesDialogController {
     TableColumn<DEVICE, String> specificationDeviceTransferNameColumn;
 
     String transformId;
-    String transformDepartment;
+    String transformDepartmentId;
+    String transformDate;
 
     ObservableList<DEVICE> listTransformDevice;
-    ObservableList<DEPARTMENT> listDepartment;
-
-
-    public void getListDepartment() {
-        var departments = new DATABASE_DAO<>(DEPARTMENT.class);
-
-        listDepartment = FXCollections.observableArrayList(departments.selectList(
-                "SELECT * FROM tbDepartment"));
-
-        System.out.println("LIST DEPARTMENT SIZE: " + listDepartment.size());
-    }
 
     public void backButtonAction(ActionEvent event) {
         backPreviousScreen(event);
@@ -72,15 +67,18 @@ public class ConfirmTransferDevicesDialogController {
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
-    public void setInit(ObservableList<DEVICE> listDevice, String id, String department) {
-        getListDepartment();
-
+    public void setInit(ObservableList<DEVICE> listDevice, String id, String departmentName,  String date, String departmentId) {
         transformId = id;
-        transformDepartment = department;
+        transformDepartmentId = departmentId;
         listTransformDevice = listDevice;
+        transformDate = date;
+
+        System.out.println("DEPARTMENT: " + departmentId);
+        System.out.println("DATE: " + date);
 
         transferIdLbl.setText(id);
-        departmentLbl.setText(department);
+        departmentLbl.setText(departmentName);
+        repairDateLbl.setText(date);
         setTableView(listTransformDevice);
     }
 
@@ -94,6 +92,8 @@ public class ConfirmTransferDevicesDialogController {
 
     public void confirmButtonAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+
         alert.setTitle("Transform Device");
         alert.setHeaderText("Are you sure to transform devices");
 
@@ -105,14 +105,14 @@ public class ConfirmTransferDevicesDialogController {
             ObservableList<String> listDevice = FXCollections.observableArrayList();
             TRANSFORM transform = new TRANSFORM();
             transform.setTransformId(transformId);
-            transform.setDepartment(transformDepartment);
+            transform.setDepartmentId(transformDepartmentId);
+            transform.setTransformDate(transformDate);
             for (int i = 0; i < listTransformDevice.size(); i++) {
                 listDevice.add(listTransformDevice.get(i).getDeviceId());
             }
             transform.setListDevice(listDevice);
 
             System.out.println("LIST SIZE: " + transform.getListDevice().size());
-            insertDepartment();
             transformSQL.insert(insertSQL(transform));
 
             backPreviousScreen(event);
@@ -124,38 +124,6 @@ public class ConfirmTransferDevicesDialogController {
         }
     }
 
-    public Integer getRandomId() {
-        Random random = new Random();
-        int randomId = random.nextInt(999);
-
-        if (listDepartment.size() != 0) {
-            for (DEPARTMENT department : listDepartment) {
-                if (department.getDepartmentId() != null) {
-                    if (randomId == Integer.parseInt(department.getDepartmentId())) {
-                        return getRandomId();
-                    }
-                }
-            }
-        } else {
-            return randomId;
-        }
-        return randomId;
-    }
-
-    public void insertDepartment () {
-        boolean isDepartmentExisted = false;
-        for (DEPARTMENT department : listDepartment) {
-            if (Objects.equals(department.getDepartmentName().toLowerCase(), transformDepartment.toLowerCase())) {
-                isDepartmentExisted = true;
-            }
-        }
-
-        if (!isDepartmentExisted) {
-            var departments = new DATABASE_DAO<>(DEPARTMENT.class);
-
-            departments.insert("insert into tbDepartment (DepartmentId, DepartmentName) values (?, ?)",getRandomId().toString(),transformDepartment);
-        }
-    }
 
     public String insertSQL(TRANSFORM transform) {
         String list = "";
@@ -168,7 +136,7 @@ public class ConfirmTransferDevicesDialogController {
         }
         System.out.println("LIST: " + list);
 
-        return "insert into tbTransfer (TransferId, Department, DeviceId) values ('" + transform.getTransformId() + "','" + transform.getDepartment() + "','" + list + "')";
+        return "insert into tbTransfer (TransferId, DepartmentId, DeviceId, TransferDate) values ('" + transform.getTransformId() + "','" + transform.getDepartmentId() + "','" + list + "','" + transform.getTransformDate() + "')";
     }
 
 

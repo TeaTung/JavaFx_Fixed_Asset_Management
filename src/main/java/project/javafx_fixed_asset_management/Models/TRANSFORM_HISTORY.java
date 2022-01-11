@@ -44,18 +44,6 @@ public class TRANSFORM_HISTORY extends TRANSFORM {
         this.deviceName = deviceName;
     }
 
-
-    @Override
-    public String getDepartment() {
-        return department;
-    }
-
-    @Override
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-
     public int getQuantityDevice() {
         return quantityDevice;
     }
