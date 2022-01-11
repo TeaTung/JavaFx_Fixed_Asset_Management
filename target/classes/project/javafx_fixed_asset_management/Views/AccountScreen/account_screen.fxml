@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountScreenController">
+<AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountDialogController">
    <children>
       <Text layoutX="149.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER INFORMATION" wrappingWidth="253.0" AnchorPane.topAnchor="30.0">
          <font>
