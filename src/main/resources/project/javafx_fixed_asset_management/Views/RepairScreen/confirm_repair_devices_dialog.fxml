@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ConfirmRepairDevicesDialogController">
+<AnchorPane prefHeight="720.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.RepairScreenController.ConfirmRepairDevicesDialogController">
    <children>
       <Label layoutX="36.0" layoutY="75.0" text="Repairing Decision ID" AnchorPane.leftAnchor="40.0">
          <font>
@@ -37,9 +37,9 @@
       </Label>
       <TableView fx:id="deviceRepairingTableView" layoutX="36.0" layoutY="257.0" prefHeight="401.0" prefWidth="486.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
          <columns>
-            <TableColumn fx:id="idDeviceRepairingColumn" prefWidth="60.0" text="ID" />
-            <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="236.0" text="Device name" />
-            <TableColumn fx:id="specificationDeviceRepairingNameColumn" prefWidth="171.0" text="Specification" />
+            <TableColumn fx:id="idDeviceRepairingColumn" prefWidth="111.0" text="ID" />
+            <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="126.0" text="Device name" />
+            <TableColumn fx:id="specificationDeviceRepairingNameColumn" prefWidth="230.0" text="Specification" />
          </columns>
       </TableView>
       <Button fx:id="confirmButton" layoutX="425.0" layoutY="668.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">

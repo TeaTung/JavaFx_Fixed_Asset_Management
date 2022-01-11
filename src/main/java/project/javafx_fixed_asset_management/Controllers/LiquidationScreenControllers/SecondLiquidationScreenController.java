@@ -15,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DELIVERY_NOTE;
@@ -106,6 +108,9 @@ public class SecondLiquidationScreenController implements Initializable {
 
             ThirdLiquidationScreenController thirdLiquidationScreenController = fxmlLoader.getController();
             thirdLiquidationScreenController.initData(listLiquidationPeople, liquidationDate, listLiquidationDevice);
+
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
 
             stage.setScene(scene);
             stage.show();

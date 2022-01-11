@@ -1,4 +1,4 @@
-package project.javafx_fixed_asset_management.Controllers;
+package project.javafx_fixed_asset_management.Controllers.RepairScreenController;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +18,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
+import project.javafx_fixed_asset_management.Controllers.RepairScreenController.ConfirmRepairDevicesDialogController;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEVICE;
@@ -26,7 +29,6 @@ import project.javafx_fixed_asset_management.Models.REPAIR;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -152,6 +154,7 @@ public class RepairDevicesScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         stage.setScene(scene);
         stage.show();
     }
@@ -260,6 +263,8 @@ public class RepairDevicesScreenController implements Initializable {
         ConfirmRepairDevicesDialogController controller = fxmlLoader.getController();
         controller.setInit(listRepairingDevice, repairingDecisionIdTF.getText(), priceTF.getText(), repairingCompanyTF.getText(), repairingDateDTP.getValue());
         stage.setTitle("Are you sure about that?");
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.setScene(scene);
         stage.show();
 

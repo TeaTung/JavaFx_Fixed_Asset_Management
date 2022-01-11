@@ -1,4 +1,4 @@
-package project.javafx_fixed_asset_management.Controllers;
+package project.javafx_fixed_asset_management.Controllers.RepairScreenController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
