@@ -34,9 +34,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
-enum DEVICE_VIEW_MODE {
-    TOTAL, IN_USE, NOT_IN_USE
-}
 
 public class DeviceScreenController implements Initializable {
 
@@ -132,7 +129,6 @@ public class DeviceScreenController implements Initializable {
             // VIEWMODECB
             deviceViewModeCB.getItems().add("TOTAL");
             deviceViewModeCB.getItems().add("IN USE");
-            deviceViewModeCB.getItems().add("NOT IN USE");
 
 
         }).start();
@@ -281,29 +277,13 @@ public class DeviceScreenController implements Initializable {
                                 "on tbDevice.ModelId =  tbDeviceModel.ModelId " +
                                 "inner join tbUnit " +
                                 "on tbDeviceModel.UnitId = tbUnit.UnitId " +
-                                "inner join tbTransform on tbTransform.deviceId = tbDevice.deviceId"));
+                                "inner join tbTransfer on tbTransfer.deviceId = tbDevice.deviceId"));
                 departmentNameColumn.setCellValueFactory(
                         new PropertyValueFactory<>("department"));
                 deviceTableView.setItems(devicesList);
                 break;
             }
-
-            case "NOT IN USE": {
-                var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
-                devicesList = FXCollections.observableArrayList(devices.selectList(
-                        "select * " +
-                                "from tbDevice inner join tbDeviceModel " +
-                                "on tbDevice.ModelId =  tbDeviceModel.ModelId " +
-                                "inner join tbUnit " +
-                                "on tbDeviceModel.UnitId = tbUnit.UnitId " +
-                                "full join tbTransform on tbTransform.deviceId = tbDevice.deviceId where departmentId IS NULL"));
-                departmentNameColumn.setVisible(false);
-                idColumn.setMaxWidth(0);
-                deviceTableView.setItems(devicesList);
-                break;
-
-            }
-
+            
             case "TOTAL": {
                 var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
                 devicesList = FXCollections.observableArrayList(devices.selectList(

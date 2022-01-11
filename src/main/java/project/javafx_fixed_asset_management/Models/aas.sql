@@ -22,7 +22,6 @@ CREATE TABLE tbDeviceModel
     ModelId       VARCHAR(10) PRIMARY KEY,
     UnitId        VARCHAR(10),
     TypeId        VARCHAR(10),
-    Specification NVARCHAR(2000),
     Quantity      INT,
     ModelName     NVARCHAR(100),
 
@@ -39,16 +38,20 @@ CREATE TABLE tbDevice
 (
     DeviceId        VARCHAR(10) PRIMARY KEY,
     ModelId         VARCHAR(10),
+    DeviceName      VARCHAR(40),
     DeviceStatus    NVARCHAR(50),
+    ContractId      VARCHAR(10),
     YearUsed        VARCHAR(10),
     YearManufacture VARCHAR(10),
     Price           FLOAT,
+    Specification   TEXT,
     PercentDamage   FLOAT,
-    DeviceName      NVARCHAR(50),
-    Specification   NVARCHAR(50),
+    QuantityDevice  INT,
 
     CONSTRAINT FK_DEVICE_TO_DEVICE_MODEL FOREIGN KEY (ModelId)
         REFERENCES tbDeviceModel (ModelId),
+    CONSTRAINT FK_DEVICE_TO_CONTRACT FOREIGN KEY (contractId)
+        REFERENCES tbContract (contractId),
 )
 
 CREATE TABLE tbProvider
@@ -57,12 +60,15 @@ CREATE TABLE tbProvider
     ProviderName NVARCHAR(100),
     Address      NVARCHAR(100),
     Phone        VARCHAR(15),
+    Email        VARCHAR(30)
 )
 
 CREATE TABLE tbContract
 (
     ContractId VARCHAR(10) PRIMARY KEY,
     ProviderId VARCHAR(10),
+    ImportDate NVARCHAR(20),
+    Note       TEXT,
 
     CONSTRAINT FK_CONTRACT_TO_PROVIDER FOREIGN KEY (ProviderId)
         REFERENCES tbProvider (ProviderId),
@@ -167,12 +173,11 @@ CREATE TABLE tbPersonAndInventory
 
 CREATE TABLE tbRepair
 (
-    FixId    VARCHAR(10) PRIMARY KEY,
-    DeviceId NVARCHAR( MAX)
-),
-RepairDate DATE,
-Company NVARCHAR(100),
-Price FLOAT,
+    FixId      VARCHAR(10) PRIMARY KEY,
+    DeviceId   NVARCHAR( MAX),
+    RepairDate VARCHAR(15),
+    Company    NVARCHAR(100),
+    Price      FLOAT,
 
 )
 

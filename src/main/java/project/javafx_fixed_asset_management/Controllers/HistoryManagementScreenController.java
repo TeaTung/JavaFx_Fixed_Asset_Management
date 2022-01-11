@@ -54,7 +54,7 @@ public class HistoryManagementScreenController implements Initializable {
     public void setUpLiquidation() {
 
         var liquidationList = FXCollections.observableArrayList(liquidation_db.
-                selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransform on tbDevice.DeviceId = tbTransform.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId "));
+                selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransfer on tbDevice.DeviceId = tbTransfer.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId "));
 
         idLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("liquidationId"));
         departmentNameLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
@@ -82,7 +82,7 @@ public class HistoryManagementScreenController implements Initializable {
         if (liquidationTableView.getSelectionModel().getSelectedItem() != null) {
             var database_dao = new DATABASE_DAO<>(DEVICE_ADD.class);
             var deviceList = FXCollections.observableArrayList(database_dao.
-                    selectList("select * from tbDevice inner join tbLiquidation  on tbLiquidation.DeviceId = tbDevice.deviceId  join tbTransform on tbLiquidation.DeviceId = tbTransform.DeviceId inner join tbDeviceModel on tbDevice.modelId = tbDeviceModel.modelId WHERE liquidationID = ?", liquidationTableView.getSelectionModel().getSelectedItem().getLiquidationId()));
+                    selectList("select * from tbDevice inner join tbLiquidation  on tbLiquidation.DeviceId = tbDevice.deviceId  join tbTransfer on tbLiquidation.DeviceId = tbTransfer.DeviceId inner join tbDeviceModel on tbDevice.modelId = tbDeviceModel.modelId WHERE liquidationID = ?", liquidationTableView.getSelectionModel().getSelectedItem().getLiquidationId()));
             liquidationDeviceTableView.setItems(deviceList);
 
 
@@ -102,7 +102,7 @@ public class HistoryManagementScreenController implements Initializable {
     public void liquidationSearchBtnOnAction(ActionEvent actionEvent) {
         if (liquidationDateOfLiquidationDTP.getValue() != null) {
             var liquidationList = FXCollections.observableArrayList(liquidation_db.
-                    selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransform on tbDevice.DeviceId = tbTransform.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId WHERE liquidationDate = CAST( ? AS DATE ) ", liquidationDateOfLiquidationDTP.getValue().toString()));
+                    selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransfer on tbDevice.DeviceId = tbTransfer.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId WHERE liquidationDate = CAST( ? AS DATE ) ", liquidationDateOfLiquidationDTP.getValue().toString()));
             liquidationTableView.setItems(liquidationList);
 
         }
@@ -336,15 +336,6 @@ public class HistoryManagementScreenController implements Initializable {
     DatePicker liquidationDateOfLiquidationDTP;
 
     @FXML
-    DatePicker inventoryDateOfInventoryDTP;
-
-    @FXML
-    TextField inventoryDepartmentNameTF;
-
-    @FXML
-    Label inventoryDepartmentIdLBL;
-
-    @FXML
     Button inventorySearchInventoryBTN;
 
     @FXML
@@ -368,9 +359,6 @@ public class HistoryManagementScreenController implements Initializable {
     @FXML
     Label transferTotalDevice;
 
-
-    @FXML
-    Label transferTotalPeople;
 
     @FXML
     Button transferTabExportReportBtn;
@@ -397,7 +385,6 @@ public class HistoryManagementScreenController implements Initializable {
                     selectOne("select * from  tbDepartment where departmentId = ? ", departmentId));
 
             if (department != null) {
-                transferTotalPeople.setText(department.getTotalPeople());
                 transferTotalDevice.setText(department.getTotalDevice());
                 transferDepartmentName.setText(department.getDepartmentName());
                 transferDepartmentId.setText(department.getDepartmentId());
@@ -413,11 +400,11 @@ public class HistoryManagementScreenController implements Initializable {
         ObservableList transferList;
         if (transferEbitdaCB.isSelected()) {
             transferList = FXCollections.observableArrayList(transform_db.
-                    selectList("select * from tbTransform join tbDevice on tbTransform.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransform.departmentId = tbDepartment.DepartmentId where percentDamage >= 50"));
+                    selectList("select * from tbTransfer join tbDevice on tbTransfer.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransfer.departmentId = tbDepartment.DepartmentId where percentDamage >= 50"));
 
         } else {
             transferList = FXCollections.observableArrayList(transform_db.
-                    selectList("select * from tbTransform join tbDevice on tbTransform.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransform.departmentId = tbDepartment.DepartmentId"));
+                    selectList("select * from tbTransfer join tbDevice on tbTransfer.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransfer.departmentId = tbDepartment.DepartmentId"));
         }
         deviceNameTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
         departmentTransferColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
@@ -467,7 +454,7 @@ public class HistoryManagementScreenController implements Initializable {
                     // TRANSFER
                     var transform_db = new DATABASE_DAO<>(TRANSFORM_HISTORY.class);
                     var transferList = FXCollections.observableArrayList(transform_db.
-                            selectList("select * from tbTransform join tbDevice on tbTransform.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransform.departmentId = tbDepartment.DepartmentId"));
+                            selectList("select * from tbTransfer join tbDevice on tbTransfer.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransfer.departmentId = tbDepartment.DepartmentId"));
 
                     deviceNameTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
                     departmentTransferColumn.setCellValueFactory(new PropertyValueFactory<>("department"));

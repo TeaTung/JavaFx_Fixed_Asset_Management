@@ -3,6 +3,15 @@ package project.javafx_fixed_asset_management.Models;
 public class DEVICE_ADD extends DEVICE {
     int quantityDevice;
 
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    String department;
 
     public DEVICE_ADD() {
 
