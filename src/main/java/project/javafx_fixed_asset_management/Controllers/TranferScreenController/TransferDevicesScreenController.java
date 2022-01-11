@@ -21,11 +21,13 @@ import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Controllers.TranferScreenController.ConfirmTransferDevicesDialogController;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
+import project.javafx_fixed_asset_management.Models.DEPARTMENT;
 import project.javafx_fixed_asset_management.Models.DEVICE;
 import project.javafx_fixed_asset_management.Models.TRANSFORM;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -49,7 +51,10 @@ public class TransferDevicesScreenController implements Initializable {
     TextField transformIdTF;
 
     @FXML
-    TextField departmentTF;
+    ComboBox departmentCbb;
+
+    @FXML
+    DatePicker transferDateDTP;
 
     @FXML
     TextField searchDeviceTF;
@@ -81,7 +86,7 @@ public class TransferDevicesScreenController implements Initializable {
     public ObservableList<DEVICE> listDevice;
     public ObservableList<DEVICE> listTransferDevice;
     public ObservableList<TRANSFORM> listTransform;
-
+    public ObservableList<DEPARTMENT> listDepartment;
 
     FilteredList<DEVICE> filteredList;
 
@@ -140,7 +145,7 @@ public class TransferDevicesScreenController implements Initializable {
     }
 
     public boolean isAllTextFieldEmpty() {
-        if (!isTextFieldEmpty(transformIdTF) && !isTextFieldEmpty(departmentTF)) {
+        if (!isTextFieldEmpty(transformIdTF) && !departmentCbb.getValue().toString().isEmpty() && !departmentCbb.getValue().toString().isBlank()) {
             return false;
         }
         return true;
@@ -154,7 +159,7 @@ public class TransferDevicesScreenController implements Initializable {
         Parent confirmRepairDevicesController = fxmlLoader.load();
         Scene scene = new Scene(confirmRepairDevicesController);
         ConfirmTransferDevicesDialogController controller = fxmlLoader.getController();
-        controller.setInit(listTransferDevice, transformIdTF.getText(), departmentTF.getText());
+        controller.setInit(listTransferDevice, transformIdTF.getText(), departmentCbb.getValue().toString(),transferDateDTP.getValue().toString(),getDepartmentId(departmentCbb.getValue().toString()));
         stage.setTitle("Are you sure about that?");
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
@@ -162,6 +167,15 @@ public class TransferDevicesScreenController implements Initializable {
         stage.show();
 
         init();
+    }
+
+    public String getDepartmentId(String departmentName) {
+        for (DEPARTMENT department : listDepartment) {
+            if (departmentName.toLowerCase().equalsIgnoreCase(departmentName)) {
+                return department.getDepartmentId();
+            }
+        }
+        return "DEFAULT";
     }
 
     public boolean isTextFieldEmpty(TextField field) {
@@ -193,14 +207,19 @@ public class TransferDevicesScreenController implements Initializable {
         listTransferDevice.removeAll();
         listTransform = FXCollections.observableArrayList();
         listTransform.removeAll();
-        departmentTF.setText("");
+        departmentCbb.setValue("");
+        transferDateDTP.setValue(LocalDate.now());
         deviceTransferTableView.setItems(listTransferDevice);
     }
 
     public void getDataInTableView() {
         var devices = new DATABASE_DAO<>(DEVICE.class);
         var transform = new DATABASE_DAO<>(TRANSFORM.class);
+        var departments = new DATABASE_DAO<>(DEPARTMENT.class);
 
+        listDepartment = FXCollections.observableArrayList(departments.selectList(
+                "SELECT * FROM tbDepartment"
+        ));
         listDevice = FXCollections.observableArrayList(devices.selectList(
                 "SELECT DeviceId, DeviceName, Specification FROM tbDevice"));
         listTransferDevice = FXCollections.observableArrayList();
@@ -256,6 +275,12 @@ public class TransferDevicesScreenController implements Initializable {
         transformIdTF.setText(getRandomId().toString());
 
         warningTxt.setVisible(false);
+
+        ObservableList<String> list =  FXCollections.observableArrayList();
+        for (DEPARTMENT department : listDepartment) {
+            list.add(department.getDepartmentName());
+        }
+        departmentCbb.setItems(list);
     }
 
     public Integer getRandomId() {

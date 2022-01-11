@@ -35,7 +35,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="deviceTransferTableView" layoutX="36.0" layoutY="165.0" prefHeight="490.0" prefWidth="478.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0">
+      <TableView fx:id="deviceTransferTableView" layoutX="36.0" layoutY="205.0" prefHeight="450.0" prefWidth="478.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0">
          <columns>
             <TableColumn fx:id="idDeviceTransferColumn" prefWidth="124.0" text="ID" />
             <TableColumn fx:id="deviceTransferNameColumn" prefWidth="125.0" text="Device name" />
@@ -52,5 +52,15 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Label fx:id="repairDateLbl" layoutX="36.0" layoutY="165.0" text="Repair Day">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="repairDateLbl" layoutX="150.0" layoutY="165.0" text="Somewhere in the world">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

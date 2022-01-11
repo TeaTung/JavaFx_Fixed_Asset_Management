@@ -3,19 +3,10 @@ package project.javafx_fixed_asset_management.Models;
 import java.util.List;
 
 public class TRANSFORM {
-
     String transformId;
-    String department;
     List<String> listDevice;
-
-
-    public List<String> getListDevice() {
-        return listDevice;
-    }
-
-    public void setListDevice(List<String> listDevice) {
-        this.listDevice = listDevice;
-    }
+    String transformDate;
+    String DepartmentId;
 
     public String getTransformId() {
         return transformId;
@@ -25,11 +16,27 @@ public class TRANSFORM {
         this.transformId = transformId;
     }
 
-    public String getDepartment() {
-        return department;
+    public List<String> getListDevice() {
+        return listDevice;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setListDevice(List<String> listDevice) {
+        this.listDevice = listDevice;
+    }
+
+    public String getTransformDate() {
+        return transformDate;
+    }
+
+    public void setTransformDate(String transformDate) {
+        this.transformDate = transformDate;
+    }
+
+    public String getDepartmentId() {
+        return DepartmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        DepartmentId = departmentId;
     }
 }

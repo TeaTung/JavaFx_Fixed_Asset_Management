@@ -1,4 +1,4 @@
-package project.javafx_fixed_asset_management.Controllers;
+package project.javafx_fixed_asset_management.Controllers.AccountScreenController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 
 import java.io.IOException;
@@ -17,16 +19,16 @@ public class AccountScreenController {
     Label nameLbl;
 
     @FXML
-    Label ageLbl;
-
-    @FXML
-    Label emailLbl;
+    Label birthdayLbl;
 
     @FXML
     Label phoneNumberLbl;
 
     @FXML
     Label addressLbl;
+
+    @FXML
+    Label departmentNameLbl;
 
     @FXML
     Button backBtn;
@@ -36,17 +38,7 @@ public class AccountScreenController {
 
     @FXML
     public void backButtonAction (ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
-        stage.show();
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -56,10 +48,15 @@ public class AccountScreenController {
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 550, 442);
+            scene = new Scene(fxmlLoader.load(), 550, 450);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
+
+        stage.setTitle("Update profile");
         stage.setScene(scene);
         stage.show();
     }

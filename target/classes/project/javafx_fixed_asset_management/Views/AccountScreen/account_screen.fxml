@@ -6,10 +6,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="442.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AccountScreenController">
+<AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountScreenController">
    <children>
-      <Text layoutX="122.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOUNT INFORMATION" wrappingWidth="307.0">
+      <Text layoutX="149.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER INFORMATION" wrappingWidth="253.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -24,55 +23,55 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="140.0" text="Age" AnchorPane.leftAnchor="40.0">
+      <Label layoutX="40.0" layoutY="150.0" text="Birthday" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="ageLbl" layoutX="180.0" layoutY="140.0" text="18 ">
+      <Label fx:id="birthdayLbl" layoutX="180.0" layoutY="150.0" text="18 ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="200.0" text="Email" AnchorPane.leftAnchor="40.0">
+      <Label layoutX="40.0" layoutY="210.0" text="Phone number" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="emailLbl" layoutX="180.0" layoutY="200.0" text="guessmyemail@gmail.com">
+      <Label fx:id="phoneNumberLbl" layoutX="180.0" layoutY="210.0" text="093178910JQK">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="260.0" text="Phone number" AnchorPane.leftAnchor="40.0">
+      <Label layoutX="40.0" layoutY="270.0" text="Address" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="phoneNumberLbl" layoutX="180.0" layoutY="260.0" text="093178910JQK">
+      <Label fx:id="addressLbl" layoutX="180.0" layoutY="270.0" prefHeight="25.0" prefWidth="323.0" text="Somewhere in your hurt but you don't know">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="40.0" layoutY="320.0" text="Address" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="addressLbl" layoutX="180.0" layoutY="320.0" prefHeight="25.0" prefWidth="323.0" text="Somewhere in your hurt but you don't know">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Button fx:id="updateBtn" onAction="#updateButtonAction" layoutX="414.0" layoutY="379.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" text="Update" textFill="#0d00ff" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="updateBtn" layoutX="420.0" layoutY="423.0" mnemonicParsing="false" onAction="#updateButtonAction" prefHeight="33.0" prefWidth="89.0" text="Update" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="backBtn" onAction="#backButtonAction" layoutX="41.0" layoutY="379.0" mnemonicParsing="false"  prefHeight="33.0" prefWidth="89.0" text="Back">
+      <Button fx:id="backBtn" layoutX="41.0" layoutY="423.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <Label layoutX="40.0" layoutY="330.0" text="Department" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="departmentNameLbl" layoutX="180.0" layoutY="330.0" prefHeight="25.0" prefWidth="323.0" text="Everything but IT department">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

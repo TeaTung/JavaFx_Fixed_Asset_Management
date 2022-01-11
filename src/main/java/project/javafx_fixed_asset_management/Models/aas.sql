@@ -184,12 +184,38 @@ CREATE TABLE tbRepair
 CREATE TABLE tbTransfer
 (
     TransferId   VARCHAR(10) PRIMARY KEY,
-    Department   NVARCHAR(30),
+    TransferDate VARCHAR(15),
     DeviceId     NVARCHAR( MAX),
     DepartmentId varchar(10),
 
     CONSTRAINT FK_DEPART FOREIGN KEY (DepartmentId)
         REFERENCES tbDepartment (DepartmentId),
+)
+
+
+
+CREATE TABLE tbAccount
+(
+    AccountId VARCHAR(10) PRIMARY KEY,
+    Email     NVARCHAR(30),
+    Password  NVARCHAR(20),
+)
+
+CREATE TABLE tbProfile
+(
+    ProfileId    VARCHAR(10) PRIMARY KEY,
+    Name         VARCHAR(50),
+    PhoneNumber  VARCHAR(15),
+    DepartmentId VARCHAR(10),
+    Address      VARCHAR(50),
+    Birthday     VARCHAR(10),
+    AccountId    VARCHAR(10),
+
+    CONSTRAINT FK_DEPART_PRO FOREIGN KEY (DepartmentId)
+        REFERENCES tbDepartment (DepartmentId),
+
+    CONSTRAINT FK_ACCOUNT FOREIGN KEY (AccountId)
+        REFERENCES tbAccount (AccountId),
 )
 
 

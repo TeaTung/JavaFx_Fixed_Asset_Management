@@ -7,6 +7,8 @@ public class REPAIR {
     String fixId;
     List<String> listDevice;
     String repairDate;
+    String company;
+    float price;
 
     public String getRepairDate() {
         return repairDate;
@@ -15,11 +17,6 @@ public class REPAIR {
     public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
     }
-
-
-    String company;
-    float price;
-
 
 
     public String getFixId() {
