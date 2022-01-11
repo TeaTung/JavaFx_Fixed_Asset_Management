@@ -36,7 +36,6 @@ public class DEVICE {
         if (!specification.equals("none"))
             this.specification = specification;
 
-        System.out.println(this.specification + "\n" + this.deviceId);
 
     }
 

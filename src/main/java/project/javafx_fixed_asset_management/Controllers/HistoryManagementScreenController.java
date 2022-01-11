@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -23,6 +24,7 @@ import project.javafx_fixed_asset_management.Utils.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class HistoryManagementScreenController implements Initializable {
 
@@ -54,7 +56,7 @@ public class HistoryManagementScreenController implements Initializable {
     public void setUpLiquidation() {
 
         var liquidationList = FXCollections.observableArrayList(liquidation_db.
-                selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransform on tbDevice.DeviceId = tbTransform.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId "));
+                selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransfer on tbDevice.DeviceId = tbTransfer.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId "));
 
         idLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("liquidationId"));
         departmentNameLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
@@ -82,7 +84,7 @@ public class HistoryManagementScreenController implements Initializable {
         if (liquidationTableView.getSelectionModel().getSelectedItem() != null) {
             var database_dao = new DATABASE_DAO<>(DEVICE_ADD.class);
             var deviceList = FXCollections.observableArrayList(database_dao.
-                    selectList("select * from tbDevice inner join tbLiquidation  on tbLiquidation.DeviceId = tbDevice.deviceId  join tbTransform on tbLiquidation.DeviceId = tbTransform.DeviceId inner join tbDeviceModel on tbDevice.modelId = tbDeviceModel.modelId WHERE liquidationID = ?", liquidationTableView.getSelectionModel().getSelectedItem().getLiquidationId()));
+                    selectList("select * from tbDevice inner join tbLiquidation  on tbLiquidation.DeviceId = tbDevice.deviceId  join tbTransfer on tbLiquidation.DeviceId = tbTransfer.DeviceId inner join tbDeviceModel on tbDevice.modelId = tbDeviceModel.modelId WHERE liquidationID = ?", liquidationTableView.getSelectionModel().getSelectedItem().getLiquidationId()));
             liquidationDeviceTableView.setItems(deviceList);
 
 
@@ -102,7 +104,7 @@ public class HistoryManagementScreenController implements Initializable {
     public void liquidationSearchBtnOnAction(ActionEvent actionEvent) {
         if (liquidationDateOfLiquidationDTP.getValue() != null) {
             var liquidationList = FXCollections.observableArrayList(liquidation_db.
-                    selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransform on tbDevice.DeviceId = tbTransform.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId WHERE liquidationDate = CAST( ? AS DATE ) ", liquidationDateOfLiquidationDTP.getValue().toString()));
+                    selectList("select department, liquidationId,  liquidationDate  from tbDevice join tbTransfer on tbDevice.DeviceId = tbTransfer.DeviceId join tbLiquidation on tbDevice.deviceId = tbLiquidation.deviceId WHERE liquidationDate = CAST( ? AS DATE ) ", liquidationDateOfLiquidationDTP.getValue().toString()));
             liquidationTableView.setItems(liquidationList);
 
         }
@@ -145,7 +147,7 @@ public class HistoryManagementScreenController implements Initializable {
 
         var department_db = new DATABASE_DAO<>(DEPARTMENT.class);
         var departmentList = FXCollections.observableArrayList(department_db.
-                selectList("select *   from tbDepartment "));
+                selectList("select *  from tbDepartment "));
 
         departmentNameInventoryCB.setConverter(new StringConverter<DEPARTMENT>() {
             @Override
@@ -257,7 +259,7 @@ public class HistoryManagementScreenController implements Initializable {
 
 
     //<editor-fold desc="TAB REPAIR">
-    public TableColumn<REPAIR_HISTORY, String> deviceQuantityRepairColumn;
+    public TableColumn<DEVICE_ADD, String> deviceQuantityRepairColumn;
     public Button repairTabReportBtn;
     @FXML
     TableColumn<?, ?> departmentRepairColumn;
@@ -270,11 +272,14 @@ public class HistoryManagementScreenController implements Initializable {
     @FXML
     DatePicker repairHistoryToDP;
     @FXML
-    TableView<REPAIR_HISTORY> repairHistoryTableView;
+    TableView<REPAIR> repairHistoryTableView;
     @FXML
     private TableColumn<?, ?> priceRepairColumn;
     @FXML
     TableColumn<?, ?> dateRepairColumn;
+    public TableView<DEVICE_ADD> repairDeviceTableView;
+    public TableColumn<DEVICE_ADD, String> deviceIdRepairColumn;
+
 
     @FXML
     void repairTabExportReportBtnAction(ActionEvent event) throws IOException {
@@ -288,17 +293,18 @@ public class HistoryManagementScreenController implements Initializable {
 
     @FXML
     public void repairTabFilterBtn(ActionEvent actionEvent) {
-        var database_dao = new DATABASE_DAO<>(REPAIR_HISTORY.class);
+        var database_dao = new DATABASE_DAO<>(REPAIR.class);
         var deviceList = FXCollections.observableArrayList(database_dao.
-                selectList("select * from  tbRepair join tbDevice on tbRepair.deviceId = tbDevice.deviceId  where RepairDate >= CAST( ? as Date) AND RepairDate <= CAST( ? as Date)", repairHistoryFromDP.getValue().toString(), repairHistoryToDP.getValue().toString()));
+                selectList("select * from  tbRepair where RepairDate >= CAST( ? as Date) AND RepairDate <= CAST( ? as Date)", repairHistoryFromDP.getValue().toString(), repairHistoryToDP.getValue().toString()));
         repairHistoryTableView.setItems(deviceList);
+        repairDeviceTableView.getItems().clear();
     }
 
     @FXML
     public void repairTabClearBtnOnAction(ActionEvent actionEvent) {
-        var database_dao = new DATABASE_DAO<>(REPAIR_HISTORY.class);
+        var database_dao = new DATABASE_DAO<>(REPAIR.class);
         var deviceList = FXCollections.observableArrayList(database_dao.
-                selectList("select * from  tbRepair join tbDevice on tbRepair.deviceId = tbDevice.deviceId"));
+                selectList("select * from  tbRepair"));
         repairHistoryTableView.setItems(deviceList);
         repairHistoryFromDP.getEditor().clear();
         repairHistoryToDP.getEditor().clear();
@@ -311,38 +317,64 @@ public class HistoryManagementScreenController implements Initializable {
         myTabPane.getStyleClass().add(JMetroStyleClass.UNDERLINE_TAB_PANE);
 
         // REPAIR
-        var database_dao = new DATABASE_DAO<>(REPAIR_HISTORY.class);
-        var deviceList = FXCollections.observableArrayList(database_dao.
-                selectList("select * from  tbRepair join tbDevice on tbRepair.deviceId = tbDevice.deviceId"));
+        var database_dao = new DATABASE_DAO<>(REPAIR.class);
+        var repair_histories = FXCollections.observableArrayList(database_dao.
+                selectList("select * from  tbRepair"));
 
+        // SET UP REPAIR TABLE
         idRepairColumn.setCellValueFactory(new PropertyValueFactory<>("fixId"));
-        deviceQuantityRepairColumn.setCellValueFactory(new PropertyValueFactory<>("quantityDevice"));
-        deviceNameRepairColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
         departmentRepairColumn.setCellValueFactory(new PropertyValueFactory<>("company"));
         priceRepairColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         dateRepairColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
-        repairHistoryTableView.setItems(deviceList);
+        repairHistoryTableView.setItems(repair_histories);
 
+
+        // SET UP DEVICE TABLE
+        deviceIdRepairColumn.setCellValueFactory(new PropertyValueFactory<>("deviceId"));
+        deviceQuantityRepairColumn.setCellValueFactory(new PropertyValueFactory<>("quantityDevice"));
+        deviceNameRepairColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
+
+
+    }
+
+    public void repairHistoryTableViewOnMouseClicked(MouseEvent mouseEvent) {
+
+        if (repairHistoryTableView.getSelectionModel().getSelectedItem() != null) {
+            var listDeviceID = repairHistoryTableView.getSelectionModel().getSelectedItem().getDeviceId().split(",");
+            var length = listDeviceID.length;
+            StringBuilder selectString = new StringBuilder("SELECT * FROM tbDevice WHERE  deviceId =  '" + listDeviceID[0] + "'");
+            for (int i = 1; i < length; i++) {
+                selectString.append(" OR deviceId =  '").append(listDeviceID[i]).append("'");
+                if (i < length - 2) {
+                    selectString.append(" , ");
+                }
+
+            }
+
+            var device_db = new DATABASE_DAO<>(DEVICE_ADD.class);
+            var repaired_devices = FXCollections.observableArrayList(device_db.
+                    selectList(selectString.toString()));
+            repairDeviceTableView.setItems(repaired_devices);
+
+        }
     }
     //</editor-fold>
 
 
     //<editor-fold desc="TAB TRANSFER">
     public TableColumn<TRANSFORM_HISTORY, String> quantityTransferColumn;
-    public TableColumn<TRANSFORM_HISTORY, String> statusTransferColumn;
     public TableColumn<TRANSFORM_HISTORY, String> ebitdaTransferColumn;
     public CheckBox transferEbitdaCB;
+    public TableColumn<DEVICE_ADD, String> deviceIdTransferColumn;
+    public TableView<TRANSFORM_HISTORY> transferredTableView;
+    public TableColumn<TRANSFORM_HISTORY, String> idTransferredColumn;
+    public TableColumn<TRANSFORM_HISTORY, String> dateTransferColumn;
+
+    @FXML
+    TableView<DEVICE_ADD> transferredDeviceTableView;
     @FXML
     DatePicker liquidationDateOfLiquidationDTP;
 
-    @FXML
-    DatePicker inventoryDateOfInventoryDTP;
-
-    @FXML
-    TextField inventoryDepartmentNameTF;
-
-    @FXML
-    Label inventoryDepartmentIdLBL;
 
     @FXML
     Button inventorySearchInventoryBTN;
@@ -358,7 +390,7 @@ public class HistoryManagementScreenController implements Initializable {
 
 
     @FXML
-    Label transferDepartmentId;
+    TextField transferDepartmentId;
 
 
     @FXML
@@ -366,67 +398,94 @@ public class HistoryManagementScreenController implements Initializable {
 
 
     @FXML
-    Label transferTotalDevice;
+    TextField transferTotalDevice;
 
-
-    @FXML
-    Label transferTotalPeople;
 
     @FXML
     Button transferTabExportReportBtn;
 
-    @FXML
-    TableView<TRANSFORM_HISTORY> transferredDeviceTableView;
+    ObservableList<DEVICE_ADD> transferred_devices;
 
     @FXML
     void transferTabExportReportBtnAction(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
-        Utils.exportExcelTransfer(thisStage, transferredDeviceTableView);
+        Utils.exportExcelTransfer(thisStage, transferredTableView);
     }
 
     @FXML
     public void onTransferTableViewMouseClicked(MouseEvent mouseEvent) {
-        if (transferredDeviceTableView.getSelectionModel().getSelectedItem() != null) {
-            // CREATE DEVICE_ADD OBJECT
-            int cellIndex = transferredDeviceTableView.getSelectionModel().getSelectedIndex();
-            var transferHistory = transferredDeviceTableView.getSelectionModel().getSelectedItem();
+        if (transferredTableView.getSelectionModel().getSelectedItem() != null) {
+
+            // SHOW DEPARTMENT
+            var transferHistory = transferredTableView.getSelectionModel().getSelectedItem();
             var departmentId = transferHistory.getDepartmentId();
             var database_dao = new DATABASE_DAO<>(DEPARTMENT.class);
             var department = (database_dao.
                     selectOne("select * from  tbDepartment where departmentId = ? ", departmentId));
 
             if (department != null) {
-                transferTotalPeople.setText(department.getTotalPeople());
                 transferTotalDevice.setText(department.getTotalDevice());
                 transferDepartmentName.setText(department.getDepartmentName());
                 transferDepartmentId.setText(department.getDepartmentId());
             }
+
+
+            // SHOW DEVICES
+            var listDeviceId = transferredTableView.getSelectionModel().getSelectedItem().getDeviceId().split(",");
+            var length = listDeviceId.length;
+            StringBuilder selectString = new StringBuilder("SELECT * FROM tbDevice WHERE  deviceId =  '" + listDeviceId[0] + "'");
+            for (int i = 1; i < length; i++) {
+                selectString.append(" OR deviceId =  '").append(listDeviceId[i]).append("'");
+                if (i < length - 2) {
+                    selectString.append(" , ");
+                }
+
+            }
+            var device_db = new DATABASE_DAO<>(DEVICE_ADD.class);
+            transferred_devices = FXCollections.observableArrayList(device_db.
+                    selectList(selectString.toString()));
+            transferredDeviceTableView.setItems(transferred_devices);
         }
     }
 
     @FXML
     public void transferEbitdaCheckBoxOnAction(ActionEvent actionEvent) {
 
-        var transform_db = new DATABASE_DAO<>(TRANSFORM_HISTORY.class);
-
-        ObservableList transferList;
-        if (transferEbitdaCB.isSelected()) {
-            transferList = FXCollections.observableArrayList(transform_db.
-                    selectList("select * from tbTransform join tbDevice on tbTransform.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransform.departmentId = tbDepartment.DepartmentId where percentDamage >= 50"));
-
-        } else {
-            transferList = FXCollections.observableArrayList(transform_db.
-                    selectList("select * from tbTransform join tbDevice on tbTransform.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransform.departmentId = tbDepartment.DepartmentId"));
+        if (transferred_devices != null) {
+            ObservableList transferList = FXCollections.observableArrayList(transferred_devices);
+            if (transferEbitdaCB.isSelected()) {
+                transferList = transferList.filtered(new Predicate<DEVICE_ADD>() {
+                    @Override
+                    public boolean test(DEVICE_ADD o) {
+                        return (o.getPercentDamage() >= 50);
+                    }
+                });
+            }
+            transferredDeviceTableView.setItems(transferList);
         }
-        deviceNameTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
-        departmentTransferColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
-        statusTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceStatus"));
-        quantityTransferColumn.setCellValueFactory(new PropertyValueFactory<>("quantityDevice"));
-        ebitdaTransferColumn.setCellValueFactory(new PropertyValueFactory<>("percentDamage"));
-        transferredDeviceTableView.setItems(transferList);
     }
 
+
+    public void setUpTransfer() {
+        var transform_db = new DATABASE_DAO<>(TRANSFORM_HISTORY.class);
+        var transferList = FXCollections.observableArrayList(transform_db.
+                selectList("select * from tbTransfer"));
+
+
+        // SET UP TRANSFER TABLE VIEW
+        idTransferredColumn.setCellValueFactory(new PropertyValueFactory<>("transferId"));
+        departmentTransferColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
+        dateTransferColumn.setCellValueFactory(new PropertyValueFactory<>("transferDate"));
+        transferredTableView.setItems(transferList);
+
+
+        // SET UP DEVICES TABLE VIEW
+        deviceIdTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceId"));
+        deviceNameTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
+        ebitdaTransferColumn.setCellValueFactory(new PropertyValueFactory<>("percentDamage"));
+        quantityTransferColumn.setCellValueFactory(new PropertyValueFactory<>("quantityDevice"));
+    }
     //</editor-fold>
 
 
@@ -464,17 +523,7 @@ public class HistoryManagementScreenController implements Initializable {
                     setUpRepair();
                     setUpInventory();
                     setUpLiquidation();
-                    // TRANSFER
-                    var transform_db = new DATABASE_DAO<>(TRANSFORM_HISTORY.class);
-                    var transferList = FXCollections.observableArrayList(transform_db.
-                            selectList("select * from tbTransform join tbDevice on tbTransform.deviceId = tbDevice.DeviceId   join  tbDepartment on tbTransform.departmentId = tbDepartment.DepartmentId"));
-
-                    deviceNameTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
-                    departmentTransferColumn.setCellValueFactory(new PropertyValueFactory<>("department"));
-                    statusTransferColumn.setCellValueFactory(new PropertyValueFactory<>("deviceStatus"));
-                    quantityTransferColumn.setCellValueFactory(new PropertyValueFactory<>("quantityDevice"));
-                    ebitdaTransferColumn.setCellValueFactory(new PropertyValueFactory<>("percentDamage"));
-                    transferredDeviceTableView.setItems(transferList);
+                    setUpTransfer();
                 }
         ).start();
 

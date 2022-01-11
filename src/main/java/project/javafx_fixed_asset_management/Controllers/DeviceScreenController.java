@@ -316,7 +316,6 @@ public class DeviceScreenController implements Initializable {
                 departmentNameColumn.setCellValueFactory(
                         new PropertyValueFactory<>("department"));
                 deviceTableView.setItems(devicesList);
-                System.out.println("TOTAL");
                 break;
             }
         }
