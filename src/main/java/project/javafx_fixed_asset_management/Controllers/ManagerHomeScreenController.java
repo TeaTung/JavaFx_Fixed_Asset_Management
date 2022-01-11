@@ -51,12 +51,13 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
+
         stage.show();
     }
 
@@ -67,12 +68,12 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
         stage.show();
     }
 
@@ -83,12 +84,13 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
+
         stage.show();
     }
 
@@ -99,12 +101,13 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 550, 442);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
+
         stage.show();
     }
 
@@ -115,12 +118,13 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
+
         stage.show();
     }
 
@@ -137,8 +141,6 @@ public class ManagerHomeScreenController implements Initializable {
             e.printStackTrace();
         }
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
         stage.show();
     }
 
@@ -155,8 +157,6 @@ public class ManagerHomeScreenController implements Initializable {
             e.printStackTrace();
         }
         stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
         stage.centerOnScreen();
         stage.show();
     }
