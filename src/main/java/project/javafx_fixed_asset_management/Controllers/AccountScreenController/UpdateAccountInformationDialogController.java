@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
+import project.javafx_fixed_asset_management.Models.PROFILE;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -39,7 +40,8 @@ public class UpdateAccountInformationDialogController {
     @FXML
     Button confirmBtn;
 
-    @FXML
+    PROFILE userProfile;
+
     public void backButtonAction (ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AccountScreen/account_screen.fxml"));
         Node node = (Node) event.getSource();
@@ -59,7 +61,6 @@ public class UpdateAccountInformationDialogController {
         stage.show();
     }
 
-    @FXML
     public void confirmButtonAction (ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Update Account Information");
@@ -75,5 +76,14 @@ public class UpdateAccountInformationDialogController {
         } else {
 
         }
+    }
+
+    public void init (PROFILE profile) {
+        userProfile = profile;
+
+    }
+
+    public void setLabelValue (PROFILE profile) {
+        nameTF.setText(profile.getName());
     }
 }
