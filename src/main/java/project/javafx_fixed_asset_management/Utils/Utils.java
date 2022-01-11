@@ -89,7 +89,7 @@ public class Utils {
         };
     }
 
-    public static void exportExcelRepair(Stage stage, TableView<REPAIR_HISTORY> tableView) throws IOException {
+    public static void exportExcelRepair(Stage stage, TableView<REPAIR> tableView) throws IOException {
         Workbook workbook = new HSSFWorkbook();
         Sheet spreadsheet = workbook.createSheet("sample");
         spreadsheet.setColumnWidth(1, 15000);

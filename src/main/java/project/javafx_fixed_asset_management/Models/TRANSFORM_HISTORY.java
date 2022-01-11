@@ -2,11 +2,39 @@ package project.javafx_fixed_asset_management.Models;
 
 public class TRANSFORM_HISTORY extends TRANSFORM {
 
+    public String getTransferId() {
+        return transferId;
+    }
+
+    public void setTransferId(String transferId) {
+        this.transferId = transferId;
+    }
+
+    public String getTransferDate() {
+        return transferDate;
+    }
+
+    public void setTransferDate(String transferDate) {
+        this.transferDate = transferDate;
+    }
+
+    String transferDate;
+    String transferId;
     int quantityDevice;
     String department;
     String deviceStatus;
     String deviceName;
     String percentDamage;
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    String deviceId;
 
 
     public String getPercentDamage() {
@@ -44,6 +72,18 @@ public class TRANSFORM_HISTORY extends TRANSFORM {
         this.deviceName = deviceName;
     }
 
+
+    @Override
+    public String getDepartment() {
+        return department;
+    }
+
+    @Override
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+
     public int getQuantityDevice() {
         return quantityDevice;
     }
@@ -51,6 +91,5 @@ public class TRANSFORM_HISTORY extends TRANSFORM {
     public void setQuantityDevice(int quantityDevice) {
         this.quantityDevice = quantityDevice;
     }
-
 
 }

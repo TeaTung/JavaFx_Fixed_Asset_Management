@@ -13,10 +13,7 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
-import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
-import project.javafx_fixed_asset_management.Models.DEPARTMENT;
-import project.javafx_fixed_asset_management.Models.DEVICE;
-import project.javafx_fixed_asset_management.Models.TRANSFORM;
+import project.javafx_fixed_asset_management.Models.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -102,13 +99,13 @@ public class ConfirmTransferDevicesDialogController {
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == null) {
         } else if (option.get() == ButtonType.OK) {
-            var transformSQL = new DATABASE_DAO<>(TRANSFORM.class);
+            var transformSQL = new DATABASE_DAO<>(TRANSFORM_HISTORY.class);
 
             ObservableList<String> listDevice = FXCollections.observableArrayList();
-            TRANSFORM transform = new TRANSFORM();
+            TRANSFORM_HISTORY transform = new TRANSFORM_HISTORY();
             transform.setTransformId(transformId);
             transform.setDepartmentId(transformDepartmentId);
-            transform.setTransformDate(transformDate);
+            transform.setTransferDate(transformDate);
             transform.setDepartment(transformDepartment);
             for (int i = 0; i < listTransformDevice.size(); i++) {
                 listDevice.add(listTransformDevice.get(i).getDeviceId());
