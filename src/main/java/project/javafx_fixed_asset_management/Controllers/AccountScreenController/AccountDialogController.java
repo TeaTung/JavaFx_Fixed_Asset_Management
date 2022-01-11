@@ -41,13 +41,15 @@ public class AccountDialogController {
     Button updateBtn;
 
     PROFILE userProfile;
+    int userId;
 
     public void backButtonAction (ActionEvent event) {
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
     public void init(int id) {
-        System.out.println("USER ID: " + id);
+        userId = id;
+        System.out.println("USER ID: " + userId);
 
         var profile = new DATABASE_DAO<>(PROFILE.class);
         String myId = String.valueOf(id);
@@ -61,7 +63,7 @@ public class AccountDialogController {
         birthdayLbl.setText(profile.getBirthDay());
         phoneNumberLbl.setText(profile.getPhoneNumber());
         addressLbl.setText(profile.getAddress());
-        addressLbl.setText(getDepartment(profile.getDepartmentId()));
+        departmentNameLbl.setText(getDepartment(profile.getDepartmentId()));
     }
 
     public String getDepartment(String departmentId) {
@@ -78,7 +80,7 @@ public class AccountDialogController {
         Parent updateAccountInformationDialogController = fxmlLoader.load();
         Scene scene = new Scene(updateAccountInformationDialogController);
         UpdateAccountInformationDialogController controller = fxmlLoader.getController();
-        controller.init(userProfile);
+        controller.init(userProfile, userId);
 
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
