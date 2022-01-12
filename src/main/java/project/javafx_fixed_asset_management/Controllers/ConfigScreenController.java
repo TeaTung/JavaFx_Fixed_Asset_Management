@@ -38,21 +38,11 @@ public class ConfigScreenController implements Initializable {
 
 
     public void backDeviceButtonAction(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
+
         Node node = (Node) actionEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 1280, 740);
-            JMetro jMetro = new JMetro(Style.LIGHT);
-            jMetro.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-
+        stage.close();
     }
 
     public void finishButtonAction(ActionEvent actionEvent) {

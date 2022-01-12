@@ -1,0 +1,111 @@
+/* .text-field {
+    -fx-font-size: 2em;
+    -fx-border-style: null;
+    -fx-font-family: 'sans-serif' ;
+    -fx-font-weight: '100'
+}
+ */
+
+/* TAB
+
+.tab-pane *.tab-header-area {
+    -fx-background-insets: 2, 2 2 2 2;
+    -fx-margin: 3em 3em 3em 3em;
+}
+
+.tab .text {
+    -fx-font-size: 1em;
+}
+
+.tab .tab-label {
+    -fx-margin: 3em;
+    -fx-padding: 3em;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+
+*/
+
+/* TEXT */
+
+.my-title {
+    -fx-font-family: cursive;
+    -fx-font-size: 2em;
+}
+
+.large-title {
+    -fx-font-family: cursive;
+    -fx-font-size: 3em;
+}
+
+.normal-label {
+    -fx-font-family: cursive;
+    -fx-font-size: 1em;
+}
+
+
+.text-field {
+    -fx-font-family: 'consolas', sans-serif;
+}
+
+.text {
+    -fx-font-family: 'montserrat', sans-serif;
+    -fx-font-size: 1em;
+}
+
+/* TABLE VIEW */
+
+.table-view {
+    -fx-font-family: 'consolas', sans-serif;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-font-size: 1em;
+    -fx-font-family: 'consolas', sans-serif;
+    -fx-padding: 10 10 10 10px;
+}
+
+.table-row-cell: odd {
+    -fx-background-color: #93f9b911;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0em;
+}
+.table-row-cell: even {
+    -fx-background-color: #1dbbdd11;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0em;
+}
+
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  #ADD8E6;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  #ADD8E6;
+}
+
+
+.check-box  {
+        -fx-font-family: 'consolas', sans-serif;
+}

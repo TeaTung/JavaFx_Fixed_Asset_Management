@@ -41,7 +41,6 @@ public class HistoryManagementScreenController implements Initializable {
     public TableView<LIQUIDATION_HISTORY> liquidationTableView;
 
     public TableColumn<DEVICE_ADD, String> nameLiquidationColumn;
-    public TableColumn<DEVICE_ADD, String> typeLiquidationColumn;
     public TableColumn<DEVICE_ADD, String> ebitdaLiquidationColumn;
     public TableColumn<DEVICE_ADD, String> quantityLiquidationColumn;
     public TableView<DEVICE_ADD> liquidationDeviceTableView;
@@ -66,7 +65,6 @@ public class HistoryManagementScreenController implements Initializable {
 
         //set up DEVICE TABLE VIEW
         nameLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
-        typeLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("modelName"));
         ebitdaLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("percentDamage"));
         quantityLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("quantityDevice"));
         idDeviceLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("deviceId"));
@@ -314,7 +312,7 @@ public class HistoryManagementScreenController implements Initializable {
         repairHistoryFromDP.setConverter(Utils.getConverter(repairHistoryFromDP));
         repairHistoryToDP.setConverter(Utils.getConverter(repairHistoryToDP));
 
-        myTabPane.getStyleClass().add(JMetroStyleClass.UNDERLINE_TAB_PANE);
+        //myTabPane.getStyleClass().add(JMetroStyleClass.UNDERLINE_TAB_PANE);
 
         // REPAIR
         var database_dao = new DATABASE_DAO<>(REPAIR.class);
@@ -414,7 +412,7 @@ public class HistoryManagementScreenController implements Initializable {
     }
 
     @FXML
-    public void onTransferTableViewMouseClicked(MouseEvent mouseEvent) {
+    public void onTransferTableViewMouseClicked(MouseEvent mouseEvent) throws Exception {
         if (transferredTableView.getSelectionModel().getSelectedItem() != null) {
 
             // SHOW DEPARTMENT

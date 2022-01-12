@@ -74,7 +74,7 @@ public class DATABASE_DAO<T> {
     }
 
 
-//    public List<Object> selectJoin(String selectSQL, String... args) {
+    //    public List<Object> selectJoin(String selectSQL, String... args) {
 //        Connection conn = CONNECT_DB.connect_db.getConnection();
 //        QueryRunner queryRunner = new QueryRunner();
 //        List<Object> emp = new ArrayList<>();
@@ -142,7 +142,7 @@ public class DATABASE_DAO<T> {
         return numRowsInserted;
     }
 
-    public int delete(String deleteSQL, String... arg){
+    public int delete(String deleteSQL, String... arg) {
         Connection conn = CONNECT_DB.connect_db.getConnection();
         QueryRunner queryRunner = new QueryRunner();
 

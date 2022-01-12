@@ -14,192 +14,196 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="background" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.HistoryManagementScreenController">
+<AnchorPane prefHeight="738.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" styleClass="background" stylesheets="@font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.HistoryManagementScreenController">
     <children>
 
-        <TabPane fx:id="myTabPane" layoutY="10.0" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="myTabPane" layoutX="-6.0" layoutY="1.0" prefHeight="750.0" prefWidth="1286.0" side="LEFT" styleClass="underlined" stylesheets="@history.css" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="Transfered Device">
+                <Tab text="🍞">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="382.0" prefWidth="1217.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="738.0" prefWidth="1214.0">
                             <children>
-                                <TableView fx:id="transferredTableView" layoutX="30.0" layoutY="71.0" onMouseClicked="#onTransferTableViewMouseClicked" prefHeight="518.0" prefWidth="638.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="71.0">
+                                <TableView fx:id="transferredTableView" layoutX="30.0" layoutY="99.0" onMouseClicked="#onTransferTableViewMouseClicked" prefHeight="562.0" prefWidth="456.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="99.0">
                                     <columns>
                                         <TableColumn fx:id="idTransferredColumn" minWidth="0.0" prefWidth="121.5999755859375" text="ID" />
-                                        <TableColumn fx:id="departmentTransferColumn" minWidth="0.0" prefWidth="285.59999084472656" text="Department" />
-                                        <TableColumn fx:id="dateTransferColumn" minWidth="0.0" prefWidth="224.0" text="Date" />
+                                        <TableColumn fx:id="departmentTransferColumn" minWidth="0.0" prefWidth="152.8000030517578" text="Department" />
+                                        <TableColumn fx:id="dateTransferColumn" minWidth="0.0" prefWidth="180.0" text="Date" />
                                     </columns>
                                 </TableView>
-                                <Button fx:id="transferTabExportReportBtn" defaultButton="true" layoutX="1138.0" layoutY="622.0" mnemonicParsing="false" onAction="#transferTabExportReportBtnAction" prefHeight="33.0" prefWidth="116.0" text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="29.199999999999932" AnchorPane.rightAnchor="26.0">
+                                <Button fx:id="transferTabExportReportBtn" defaultButton="true" layoutX="1028.0" layoutY="685.0" mnemonicParsing="false" onAction="#transferTabExportReportBtnAction" prefHeight="38.0" prefWidth="116.0" text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="70.40000000000009">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <CheckBox fx:id="transferEbitdaCB" layoutX="708.0" layoutY="234.99999999999997" mnemonicParsing="false" onAction="#transferEbitdaCheckBoxOnAction" text="Products have usable value &lt; 50" AnchorPane.bottomAnchor="427.4" />
-                                <TextField fx:id="transferDepartmentName" editable="false" focusTraversable="false" layoutX="921.0" layoutY="74.0" mouseTransparent="true" prefHeight="38.0" prefWidth="331.0" text="NONE" AnchorPane.leftAnchor="921.0" AnchorPane.topAnchor="74.0" />
-                                <Button fx:id="backBtn3" layoutX="30.0" layoutY="637.6" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="30.0">
+                                <CheckBox fx:id="transferEbitdaCB" layoutX="594.0" layoutY="249.0" mnemonicParsing="false" onAction="#transferEbitdaCheckBoxOnAction" styleClass="text" text="Products have usable value &lt; 50" AnchorPane.bottomAnchor="448.6">
+                                    <font>
+                                        <Font name="Consolas" size="14.399999618530273" />
+                                    </font>
+                                </CheckBox>
+                                <TextField fx:id="transferDepartmentName" editable="false" focusTraversable="false" layoutX="807.0" layoutY="101.0" mouseTransparent="true" prefHeight="38.0" prefWidth="331.0" text="NONE" AnchorPane.leftAnchor="807.0" AnchorPane.topAnchor="101.0" />
+                                <Button fx:id="backBtn3" layoutX="30.0" layoutY="689.8" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="38.0" prefWidth="116.0" text="Back" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="30.0">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <TextField editable="false" focusTraversable="false" layoutX="708.0" layoutY="173.0" mouseTransparent="true" prefHeight="38.0" prefWidth="177.0" text="Total device" />
-                                <TextField editable="false" focusTraversable="false" layoutX="707.0" layoutY="125.0" mouseTransparent="true" prefHeight="38.0" prefWidth="178.0" text="DepartmentID" />
-                                <TextField editable="false" focusTraversable="false" layoutX="707.0" layoutY="72.0" mouseTransparent="true" prefHeight="38.0" prefWidth="178.0" text="Department" />
-                                <TextField fx:id="transferDepartmentId" editable="false" focusTraversable="false" layoutX="921.0" layoutY="125.0" mouseTransparent="true" prefHeight="38.0" prefWidth="329.0" text="NONE" />
-                                <TextField fx:id="transferTotalDevice" editable="false" focusTraversable="false" layoutX="921.0" layoutY="173.0" mouseTransparent="true" prefHeight="38.0" prefWidth="329.0" text="NONE" />
-                                <TableView fx:id="transferredDeviceTableView" layoutX="705.0" layoutY="323.0" onMouseClicked="#onTransferTableViewMouseClicked" prefHeight="266.0" prefWidth="550.0" styleClass="column-grid-lines">
+                                <TextField editable="false" focusTraversable="false" layoutX="594.0" layoutY="200.0" mouseTransparent="true" prefHeight="38.0" prefWidth="177.0" text="Total device" />
+                                <TextField editable="false" focusTraversable="false" layoutX="593.0" layoutY="152.0" mouseTransparent="true" prefHeight="38.0" prefWidth="178.0" text="DepartmentID" />
+                                <TextField editable="false" focusTraversable="false" layoutX="593.0" layoutY="99.0" mouseTransparent="true" prefHeight="38.0" prefWidth="178.0" text="Department" />
+                                <TextField fx:id="transferDepartmentId" editable="false" focusTraversable="false" layoutX="807.0" layoutY="152.0" mouseTransparent="true" prefHeight="38.0" prefWidth="329.0" text="NONE" />
+                                <TextField fx:id="transferTotalDevice" editable="false" focusTraversable="false" layoutX="807.0" layoutY="200.0" mouseTransparent="true" prefHeight="38.0" prefWidth="329.0" text="NONE" />
+                                <TableView fx:id="transferredDeviceTableView" layoutX="594.0" layoutY="373.0" onMouseClicked="#onTransferTableViewMouseClicked" prefHeight="287.0" prefWidth="550.0" styleClass="column-grid-lines">
                                     <columns>
                                         <TableColumn fx:id="deviceIdTransferColumn" prefWidth="130.39996337890625" text="ID" />
-                                        <TableColumn fx:id="deviceNameTransferColumn" prefWidth="176.0" text="Device Name" />
-                                        <TableColumn fx:id="ebitdaTransferColumn" minWidth="0.0" prefWidth="106.40008544921875" text="EBITDA" />
-                                        <TableColumn fx:id="quantityTransferColumn" prefWidth="135.99997558593748" text="Quantity" />
+                                        <TableColumn fx:id="deviceNameTransferColumn" prefWidth="163.20001220703125" text="Device Name" />
+                                        <TableColumn fx:id="ebitdaTransferColumn" minWidth="0.0" prefWidth="107.199951171875" text="EBITDA" />
+                                        <TableColumn fx:id="quantityTransferColumn" prefWidth="147.20001220703125" text="Quantity" />
                                     </columns>
                                 </TableView>
-                                <TextField editable="false" focusTraversable="false" layoutX="30.0" layoutY="21.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="TRANSFERRED DEVICES" />
-                                <TextField editable="false" focusTraversable="false" layoutX="707.0" layoutY="21.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="DEPARTMENT INFORMATION" />
-                                <TextField editable="false" focusTraversable="false" layoutX="986.0" layoutY="277.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="DEVICES LIST" />
+                                <Label layoutX="30.0" layoutY="29.0" prefHeight="51.0" prefWidth="383.0" styleClass="my-title" text="TRANSFERRED HISTORY" />
+                                <Label layoutX="594.0" layoutY="29.0" prefHeight="51.0" prefWidth="383.0" styleClass="my-title" text="DEPARTMENT" />
+                                <Label layoutX="594.0" layoutY="309.0" prefHeight="51.0" prefWidth="383.0" styleClass="my-title" text="DEVICE" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Repair History">
+                <Tab text="🎨">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Text layoutX="534.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REPAIR HISTORY" textAlignment="CENTER" wrappingWidth="210.99998474121094" AnchorPane.topAnchor="41.0224609375">
+                                <Text layoutX="30.0" layoutY="64.078125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="REPAIR HISTORY" textAlignment="CENTER" wrappingWidth="220.59994506835938" AnchorPane.topAnchor="33.0">
                                     <font>
                                         <Font name="Calibri" size="25.0" />
                                     </font>
                                 </Text>
-                                <TableView fx:id="repairHistoryTableView" layoutX="27.0" layoutY="93.0" onMouseClicked="#repairHistoryTableViewOnMouseClicked" prefHeight="512.0" prefWidth="639.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
+                                <TableView fx:id="repairHistoryTableView" layoutX="27.0" layoutY="93.0" onMouseClicked="#repairHistoryTableViewOnMouseClicked" prefHeight="547.0" prefWidth="591.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
                                     <columns>
                                         <TableColumn fx:id="idRepairColumn" minWidth="0.0" prefWidth="110.60001182556152" text="ID" />
                                         <TableColumn fx:id="departmentRepairColumn" minWidth="0.0" prefWidth="181.59999084472656" text="Company" />
-                                        <TableColumn fx:id="priceRepairColumn" minWidth="0.0" prefWidth="141.5999755859375" text="Price" />
-                                        <TableColumn fx:id="dateRepairColumn" minWidth="0.0" prefWidth="203.99993896484375" text="Date" />
+                                        <TableColumn fx:id="priceRepairColumn" minWidth="0.0" prefWidth="119.20004272460938" text="Price" />
+                                        <TableColumn fx:id="dateRepairColumn" minWidth="0.0" prefWidth="172.00006103515625" text="Date" />
                                     </columns>
                                 </TableView>
-                                <DatePicker fx:id="repairHistoryFromDP" layoutX="287.0" layoutY="619.0" prefHeight="34.0" prefWidth="179.0" />
-                                <Label layoutX="193.0" layoutY="623.0" prefHeight="5.0" prefWidth="73.0" text="From date">
+                                <DatePicker fx:id="repairHistoryFromDP" layoutX="253.0" layoutY="670.0" prefHeight="34.0" prefWidth="179.0" />
+                                <Label layoutX="159.0" layoutY="674.0" prefHeight="5.0" prefWidth="73.0" styleClass="normal-label" stylesheets="@font.css" text="From date">
                                     <font>
                                         <Font name="Calibri" size="16.0" />
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="repairHistoryToDP" layoutX="575.0" layoutY="618.0" prefHeight="34.0" prefWidth="204.0" />
-                                <Label layoutX="501.0" layoutY="623.0" text="To date">
+                                <DatePicker fx:id="repairHistoryToDP" layoutX="541.0" layoutY="669.0" prefHeight="34.0" prefWidth="204.0" />
+                                <Label layoutX="467.0" layoutY="674.0" styleClass="normal-label" text="To date">
                                     <font>
                                         <Font name="Calibri" size="16.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="backBtn" layoutX="20.0" layoutY="637.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="39.0" prefWidth="101.0" text="Back" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn" layoutX="30.0" layoutY="666.8" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="39.0" prefWidth="101.0" text="Back" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="30.0">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="repairTabReportBtn" layoutX="804.0" layoutY="617.0" mnemonicParsing="false" onAction="#repairTabFilterBtn" prefHeight="38.0" prefWidth="116.0" text="Filter" textFill="#0d00ff">
+                                <Button fx:id="repairTabReportBtn" layoutX="770.0" layoutY="666.0" mnemonicParsing="false" onAction="#repairTabFilterBtn" prefHeight="38.0" prefWidth="116.0" text="Filter" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
 
-                                <Button fx:id="repairTabExportReportBtn" defaultButton="true" layoutX="1096.0" layoutY="617.0" mnemonicParsing="false" onAction="#repairTabExportReportBtnAction" prefHeight="38.0" prefWidth="116.0" text="Export" textFill="#0d00ff">
+                                <Button fx:id="repairTabExportReportBtn" defaultButton="true" layoutX="1062.0" layoutY="666.0" mnemonicParsing="false" onAction="#repairTabExportReportBtnAction" prefHeight="38.0" prefWidth="116.0" text="Export" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="repairTabClearBtn" layoutX="946.0" layoutY="616.0" mnemonicParsing="false" onAction="#repairTabClearBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
+                                <Button fx:id="repairTabClearBtn" layoutX="912.0" layoutY="665.0" mnemonicParsing="false" onAction="#repairTabClearBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <TableView fx:id="repairDeviceTableView" layoutX="704.0" layoutY="90.0" prefHeight="510.0" prefWidth="520.0" styleClass="column-grid-lines">
+                                <TableView fx:id="repairDeviceTableView" layoutX="656.0" layoutY="90.0" prefHeight="546.0" prefWidth="520.0" styleClass="column-grid-lines">
                                     <columns>
                                         <TableColumn fx:id="deviceIdRepairColumn" prefWidth="133.5999755859375" text="ID" />
                                         <TableColumn fx:id="deviceNameRepairColumn" prefWidth="216.00006103515625" text="Device Name" />
                                         <TableColumn fx:id="deviceQuantityRepairColumn" prefWidth="163.199951171875" text="Quantity" />
                                     </columns>
                                 </TableView>
+                                <Text layoutX="656.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="DEVICES LIST" textAlignment="CENTER" wrappingWidth="174.99984741210938">
+                                    <font>
+                                        <Font name="Calibri" size="25.0" />
+                                    </font>
+                                </Text>
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Liquidation">
+                <Tab text="🎁">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 
 
                             <children>
 
-                                <!--                                <TextField  editable="false" focusTraversable="false"-->
-                                <!--                                           text="List device information"-->
-                                <!--                                           layoutX="107.0" layoutY="380.0" mouseTransparent="true"-->
-                                <!--                                           prefHeight="34.0" prefWidth="261.0" AnchorPane.leftAnchor="914.0" AnchorPane.topAnchor="127.0" />-->
 
-                                <TableView fx:id="liquidationTableView" layoutX="30.0" layoutY="76.0" onMouseClicked="#liquidationTableViewOnMouseClicked" prefHeight="256.0" prefWidth="634.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="liquidationTableView" layoutX="30.0" layoutY="76.0" onMouseClicked="#liquidationTableViewOnMouseClicked" prefHeight="240.0" prefWidth="550.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0">
                                     <columns>
                                         <TableColumn fx:id="idLiquidationColumn" prefWidth="216.0" text="ID" />
-                                        <TableColumn fx:id="departmentNameLiquidationColumn" minWidth="0.0" prefWidth="191.0" text="Department" />
-                                        <TableColumn fx:id="dateLiquidationColumn" prefWidth="225.0" text="Date of liquidtation" />
+                                        <TableColumn fx:id="departmentNameLiquidationColumn" minWidth="0.0" prefWidth="160.79994201660156" text="Department" />
+                                        <TableColumn fx:id="dateLiquidationColumn" prefWidth="172.79996337890623" text="Date of liquidtation" />
                                     </columns>
                                 </TableView>
-                                <TableView fx:id="liquidationDeviceTableView" layoutX="30.0" layoutY="407.80000000000007" prefHeight="210.0" prefWidth="633.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="liquidationDeviceTableView" layoutX="609.0" layoutY="76.0" prefHeight="568.0" prefWidth="582.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="609.0">
                                     <columns>
                                         <TableColumn fx:id="idDeviceLiquidationColumn" prefWidth="139.2000026702881" text="ID" />
-                                        <TableColumn fx:id="nameLiquidationColumn" prefWidth="156.00001525878906" text="Name" />
-                                        <TableColumn fx:id="typeLiquidationColumn" prefWidth="126.5999755859375" text="Type" />
-                                        <TableColumn fx:id="ebitdaLiquidationColumn" prefWidth="112.00006103515625" text="Ebitda" />
-                                        <TableColumn fx:id="quantityLiquidationColumn" prefWidth="120.79998779296875" text="Quantity" />
+                                        <TableColumn fx:id="nameLiquidationColumn" prefWidth="112.00006103515625" text="Name" />
+                                        <TableColumn fx:id="ebitdaLiquidationColumn" prefWidth="125.60015869140625" text="Ebitda" />
+                                        <TableColumn fx:id="quantityLiquidationColumn" prefWidth="199.19989013671875" text="Quantity" />
 
                                     </columns>
                                 </TableView>
-                                <DatePicker fx:id="liquidationDateOfLiquidationDTP" layoutX="864.0" layoutY="410.0" prefHeight="38.0" prefWidth="323.0" AnchorPane.rightAnchor="34.0" />
-                                <TableView fx:id="liquidationPersonTableView" layoutX="692.9999999999999" layoutY="77.0" prefHeight="251.0" prefWidth="562.0" styleClass="column-grid-lines" AnchorPane.rightAnchor="25.0">
+                                <DatePicker fx:id="liquidationDateOfLiquidationDTP" layoutX="686.0" layoutY="667.0" prefHeight="38.0" prefWidth="226.0" />
+                                <TableView fx:id="liquidationPersonTableView" layoutX="32.0" layoutY="394.0" prefHeight="251.0" prefWidth="546.0" styleClass="column-grid-lines">
                                     <columns>
-                                        <TableColumn fx:id="personNameLiquidationColumn" prefWidth="222.0" text="Name" />
-                                        <TableColumn fx:id="personDepartmentLiquidationColumn" minWidth="0.0" prefWidth="217.0" text="Department" />
-                                        <TableColumn fx:id="personTitleLiquidationColumn" minWidth="0.0" prefWidth="117.0" text="Title" />
+                                        <TableColumn fx:id="personNameLiquidationColumn" prefWidth="152.79996871948242" text="Name" />
+                                        <TableColumn fx:id="personDepartmentLiquidationColumn" minWidth="0.0" prefWidth="190.40003967285156" text="Department" />
+                                        <TableColumn fx:id="personTitleLiquidationColumn" minWidth="0.0" prefWidth="199.19998168945312" text="Title" />
                                     </columns>
                                 </TableView>
-                                <Button fx:id="backBtn13" layoutX="30.0" layoutY="632.6" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn13" layoutX="30.0" layoutY="632.6" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="38.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="30.0">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button defaultButton="true" layoutX="1134.0" layoutY="632.6" mnemonicParsing="false" onAction="#liquidationExportReportButtonAction" prefHeight="33.0" prefWidth="116.0" text="Export" textFill="#0d00ff" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="30.0">
+                                <Button defaultButton="true" layoutX="1075.0" layoutY="667.0" mnemonicParsing="false" onAction="#liquidationExportReportButtonAction" prefHeight="38.0" prefWidth="116.0" text="Export" textFill="#0d00ff" AnchorPane.bottomAnchor="14.600000000000023">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="liquidationSearchBtn" defaultButton="true" layoutX="1130.0" layoutY="456.0" mnemonicParsing="false" onAction="#liquidationSearchBtnOnAction" prefHeight="33.0" prefWidth="116.0" text="Search" textFill="#0d00ff">
+                                <Button fx:id="liquidationSearchBtn" layoutX="937.0" layoutY="669.0" mnemonicParsing="false" onAction="#liquidationSearchBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Search" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="liquidationClearBtn" layoutX="693.0" layoutY="456.0" mnemonicParsing="false" onAction="#liquidationClearBtnOnAction" prefHeight="33.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
+                                <Button fx:id="liquidationClearBtn" layoutX="141.0" layoutY="664.0" mnemonicParsing="false" onAction="#liquidationClearBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
                                 <TextField fx:id="transferDepartmentName13" editable="false" focusTraversable="false" layoutX="30.0" layoutY="25.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="LIQUIDATION INFORMATION" />
-                                <TextField fx:id="transferDepartmentName131" editable="false" focusTraversable="false" layoutX="30.0" layoutY="352.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="LIST DEVICE" />
-                                <TextField fx:id="transferDepartmentName1311" editable="false" focusTraversable="false" layoutX="693.0" layoutY="25.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="PEOPLE INVOLVE" />
-                                <TextField fx:id="transferDepartmentName12111" editable="false" focusTraversable="false" layoutX="693.0" layoutY="410.0" mouseTransparent="true" prefHeight="38.0" prefWidth="194.0" text="Date" />
+                                <TextField fx:id="transferDepartmentName131" editable="false" focusTraversable="false" layoutX="32.0" layoutY="343.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="LIST DEVICE" />
+                                <TextField fx:id="transferDepartmentName1311" editable="false" focusTraversable="false" layoutX="607.0" layoutY="25.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="PEOPLE INVOLVE" />
+                                <TextField fx:id="transferDepartmentName12111" editable="false" focusTraversable="false" layoutX="609.0" layoutY="667.0" mouseTransparent="true" prefHeight="38.0" prefWidth="65.0" text="Date" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Inventory">
+                <Tab text="🎂">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TableView fx:id="inventoryTableView" layoutX="30.0" layoutY="86.0" onMouseClicked="#inventoryTableViewOnMouseClicked" prefHeight="236.0" prefWidth="633.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="inventoryTableView" layoutX="30.0" layoutY="86.0" onMouseClicked="#inventoryTableViewOnMouseClicked" prefHeight="246.0" prefWidth="634.0" styleClass="column-grid-lines" AnchorPane.leftAnchor="30.0">
                                     <columns>
                                         <TableColumn fx:id="idInventoryColumn" prefWidth="198.8000087738037" text="ID" />
                                         <TableColumn fx:id="usableValueInventoryColumn" minWidth="0.0" prefWidth="240.19998168945312" text="Usable value" />
                                         <TableColumn fx:id="dateInventoryColumn" prefWidth="196.60000610351562" text="Date" />
                                     </columns>
                                 </TableView>
-                                <TableView fx:id="inventoryDeviceTableView" layoutX="30.0" layoutY="404.80000000000007" prefHeight="210.0" prefWidth="633.0" styleClass="column-grid-lines" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="30.0">
+                                <TableView fx:id="inventoryDeviceTableView" layoutX="30.0" layoutY="418.80000000000007" prefHeight="210.0" prefWidth="633.0" styleClass="column-grid-lines">
                                     <columns>
                                         <TableColumn fx:id="idDeviceInventoryColumn" prefWidth="132.79998397827148" text="ID" />
                                         <TableColumn fx:id="deviceNameInventoryColumn" prefWidth="146.40000915527344" text="Name" />
@@ -208,40 +212,40 @@
                                         <TableColumn fx:id="quantityInventoryColumn" prefWidth="120.0" text="Quantity" />
                                     </columns>
                                 </TableView>
-                                <TableView fx:id="inventoryPeopeTableView" layoutX="688.4" layoutY="86.0" prefHeight="236.0" prefWidth="561.0" styleClass="column-grid-lines" AnchorPane.rightAnchor="30.0">
+                                <TableView fx:id="inventoryPeopeTableView" layoutX="688.0" layoutY="86.0" prefHeight="442.0" prefWidth="499.0" styleClass="column-grid-lines">
                                     <columns>
                                         <TableColumn fx:id="personNameInventoryColumn" prefWidth="139.40003049373627" text="Name" />
                                         <TableColumn fx:id="personDepartmentInventoryColumn" minWidth="0.0" prefWidth="200.5999450683594" text="Department" />
-                                        <TableColumn fx:id="personTitleInventoryColumn" minWidth="0.0" prefWidth="317.0" text="Title" />
+                                        <TableColumn fx:id="personTitleInventoryColumn" minWidth="0.0" prefWidth="150.4000244140625" text="Title" />
                                     </columns>
                                 </TableView>
-                                <DatePicker fx:id="inventoryDateOfInventoryDP" layoutX="840.4" layoutY="412.0" prefHeight="38.0" prefWidth="347.0" AnchorPane.rightAnchor="30.0" />
-                                <Button fx:id="inventorySearchInventoryBTN" layoutX="1161.0" layoutY="520.0" mnemonicParsing="false" onAction="#inventorySearchInventoryButtonAction" prefHeight="33.0" prefWidth="89.0" text="Search">
+                                <DatePicker fx:id="inventoryDateOfInventoryDP" layoutX="840.4" layoutY="539.0" prefHeight="38.0" prefWidth="347.0" />
+                                <Button fx:id="inventorySearchInventoryBTN" layoutX="964.0" layoutY="650.0" mnemonicParsing="false" onAction="#inventorySearchInventoryButtonAction" prefHeight="38.0" prefWidth="111.0" text="Search">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="backBtn34" layoutX="30.0" layoutY="630.6" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn34" layoutX="30.0" layoutY="652.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="38.0" prefWidth="111.0" text="Back" AnchorPane.bottomAnchor="34.39999999999998" AnchorPane.leftAnchor="30.0">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button defaultButton="true" layoutX="1134.0" layoutY="628.6" mnemonicParsing="false" onAction="#inventoryExportReportButtonAction" prefHeight="33.0" prefWidth="116.0" text="Export" textFill="#0d00ff" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="30.0">
+                                <Button defaultButton="true" layoutX="1084.0" layoutY="650.0" mnemonicParsing="false" onAction="#inventoryExportReportButtonAction" prefHeight="38.0" prefWidth="111.0" text="Export" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <ComboBox fx:id="departmentNameInventoryCB" layoutX="903.0" layoutY="461.0" onAction="#departmentInventoryCBOnAction" prefHeight="38.0" prefWidth="346.0" promptText="TOTAL" />
-                                <Button fx:id="inventoryClearIBtn" layoutX="1045.0" layoutY="520.0" mnemonicParsing="false" onAction="#inventoryCleanBtnOnAction" prefHeight="33.0" prefWidth="89.0" text="Clear">
+                                <ComboBox fx:id="departmentNameInventoryCB" layoutX="842.0" layoutY="588.0" onAction="#departmentInventoryCBOnAction" prefHeight="38.0" prefWidth="346.0" promptText="TOTAL" />
+                                <Button fx:id="inventoryClearIBtn" layoutX="842.0" layoutY="650.0" mnemonicParsing="false" onAction="#inventoryCleanBtnOnAction" prefHeight="38.0" prefWidth="111.0" text="Clear">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
                                 <TextField fx:id="transferDepartmentName1" editable="false" focusTraversable="false" layoutX="30.0" layoutY="44.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="INVENTORY INFORMATION" />
-                                <TextField fx:id="transferDepartmentName11" editable="false" focusTraversable="false" layoutX="30.0" layoutY="354.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="LIST OF DEVICE" />
+                                <TextField fx:id="transferDepartmentName11" editable="false" focusTraversable="false" layoutX="30.0" layoutY="368.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="LIST OF DEVICE" />
                                 <TextField fx:id="transferDepartmentName12" editable="false" focusTraversable="false" layoutX="688.0" layoutY="44.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="PEOPLE INVOLVE" />
-                                <TextField fx:id="transferDepartmentName121" editable="false" focusTraversable="false" layoutX="689.0" layoutY="461.0" mouseTransparent="true" prefHeight="38.0" prefWidth="195.0" text="Department" />
-                                <TextField fx:id="transferDepartmentName1211" editable="false" focusTraversable="false" layoutX="689.0" layoutY="412.0" mouseTransparent="true" prefHeight="38.0" prefWidth="194.0" text="Date" />
+                                <TextField fx:id="transferDepartmentName121" editable="false" focusTraversable="false" layoutX="689.0" layoutY="588.0" mouseTransparent="true" prefHeight="38.0" prefWidth="146.0" text="Department" />
+                                <TextField fx:id="transferDepartmentName1211" editable="false" focusTraversable="false" layoutX="689.0" layoutY="539.0" mouseTransparent="true" prefHeight="38.0" prefWidth="144.0" text="Date" />
                             </children>
                         </AnchorPane>
                     </content>

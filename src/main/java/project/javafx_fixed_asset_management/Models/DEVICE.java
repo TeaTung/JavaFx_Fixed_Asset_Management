@@ -35,9 +35,6 @@ public class DEVICE {
 
         if (!specification.equals("none"))
             this.specification = specification;
-
-        System.out.println(this.specification + "\n" + this.deviceId);
-
     }
 
 
@@ -46,7 +43,7 @@ public class DEVICE {
         this.unit.setUnitId(unitId);
     }
 
-    public String getUnitId(    ) {
+    public String getUnitId() {
         return this.unit.getUnitId();
     }
 
