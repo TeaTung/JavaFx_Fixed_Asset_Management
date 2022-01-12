@@ -109,3 +109,7 @@
 .check-box  {
         -fx-font-family: 'consolas', sans-serif;
 }
+
+.button:default{
+    -fx-background-color: #4682B4;
+}

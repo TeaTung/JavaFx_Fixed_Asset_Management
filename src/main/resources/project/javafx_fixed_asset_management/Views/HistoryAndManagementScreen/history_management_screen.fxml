@@ -30,7 +30,7 @@
                                         <TableColumn fx:id="dateTransferColumn" minWidth="0.0" prefWidth="188.79996337890623" text="Date" />
                                     </columns>
                                 </TableView>
-                                <Button fx:id="transferTabExportReportBtn" defaultButton="true" layoutX="1028.0" layoutY="685.0" mnemonicParsing="false" onAction="#transferTabExportReportBtnAction" prefHeight="38.0" prefWidth="116.0" text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="70.40000000000009">
+                                <Button fx:id="transferTabExportReportBtn" defaultButton="true" layoutX="1028.0" layoutY="685.0" mnemonicParsing="false" onAction="#transferTabExportReportBtnAction" prefHeight="38.0" prefWidth="116.0" text="Export Report" textFill="#0d00ff" AnchorPane.bottomAnchor="27.0">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
@@ -118,8 +118,8 @@
                                         <Font name="Calibri" size="25.0" />
                                     </font>
                                 </Text>
-                        <TextField fx:id="transferDepartmentName121111" editable="false" focusTraversable="false" layoutX="154.0" layoutY="689.0" mouseTransparent="true" prefHeight="40.0" prefWidth="62.0" text="From" />
-                        <TextField fx:id="transferDepartmentName1211111" editable="false" focusTraversable="false" layoutX="452.0" layoutY="689.0" mouseTransparent="true" prefHeight="40.0" prefWidth="57.0" text="To" />
+                                <TextField fx:id="transferDepartmentName121111" editable="false" focusTraversable="false" layoutX="154.0" layoutY="689.0" mouseTransparent="true" prefHeight="40.0" prefWidth="62.0" text="From" />
+                                <TextField fx:id="transferDepartmentName1211111" editable="false" focusTraversable="false" layoutX="452.0" layoutY="689.0" mouseTransparent="true" prefHeight="40.0" prefWidth="57.0" text="To" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -208,7 +208,7 @@
                                     <columns>
                                         <TableColumn fx:id="personNameInventoryColumn" prefWidth="139.40003049373627" text="Name" />
                                         <TableColumn fx:id="personDepartmentInventoryColumn" minWidth="0.0" prefWidth="200.5999450683594" text="Department" />
-                                        <TableColumn fx:id="personTitleInventoryColumn" minWidth="0.0" prefWidth="150.4000244140625" text="Title" />
+                                        <TableColumn fx:id="personTitleInventoryColumn" minWidth="0.0" prefWidth="157.6000244140625" text="Title" />
                                     </columns>
                                 </TableView>
                                 <DatePicker fx:id="inventoryDateOfInventoryDP" layoutX="840.4" layoutY="539.0" prefHeight="38.0" prefWidth="347.0" />
