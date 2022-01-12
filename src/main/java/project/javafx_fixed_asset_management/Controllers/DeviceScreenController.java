@@ -13,9 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.JMetroStyleClass;
@@ -71,9 +74,11 @@ public class DeviceScreenController implements Initializable {
     @FXML
     public TextField searchTF;
     public AnchorPane anchorPane;
-   // public ComboBox<String> deviceViewModeCB;
+    // public ComboBox<String> deviceViewModeCB;
     public TableColumn<DEVICE, String> departmentNameColumn;
     FilteredList<DEVICE> filteredList;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -140,16 +145,15 @@ public class DeviceScreenController implements Initializable {
 
     }
 
-
     public void addDeviceButtonAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/AddNewDeviceDialog/add_new_device_dialog.fxml"));
-        Node node = (Node) event.getSource();
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         Scene scene = new Scene(fxmlLoader.load(), 990, 650);
 
-
         stage.setTitle("Add New Screen Dialog");
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
@@ -173,6 +177,8 @@ public class DeviceScreenController implements Initializable {
             stage.setScene(scene);
             JMetro jMetro = new JMetro(Style.LIGHT);
             jMetro.setScene(scene);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
 
             //Set the Stage
             UpdateScreenDialogController newProjectController = fxmlLoader.getController();
@@ -266,39 +272,30 @@ public class DeviceScreenController implements Initializable {
         stage.show();
     }
 
-//    public void deviceViewModeCbOnAction(ActionEvent actionEvent) {
-//        switch (deviceViewModeCB.getSelectionModel().getSelectedItem().toString()) {
-//            case "IN USE": {
-//                departmentNameColumn.setVisible(true);
-//                var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
-//                devicesList = FXCollections.observableArrayList(devices.selectList(
-//                        "select  *  " +
-//                                "from tbDevice inner join tbDeviceModel " +
-//                                "on tbDevice.ModelId =  tbDeviceModel.ModelId " +
-//                                "inner join tbUnit " +
-//                                "on tbDeviceModel.UnitId = tbUnit.UnitId " +
-//                                "inner join tbTransfer on tbTransfer.deviceId = tbDevice.deviceId"));
-//                departmentNameColumn.setCellValueFactory(
-//                        new PropertyValueFactory<>("department"));
-//                deviceTableView.setItems(devicesList);
-//                break;
-//            }
-//
-//            case "TOTAL": {
-//                var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
-//                devicesList = FXCollections.observableArrayList(devices.selectList(
-//                        "select * " +
-//                                "from tbDevice inner join tbDeviceModel " +
-//                                "on tbDevice.ModelId =  tbDeviceModel.ModelId " +
-//                                "inner join tbUnit " +
-//                                "on tbDeviceModel.UnitId = tbUnit.UnitId "));
-//                departmentNameColumn.setVisible(false);
-//                departmentNameColumn.setCellValueFactory(
-//                        new PropertyValueFactory<>("department"));
-//                deviceTableView.setItems(devicesList);
-//                System.out.println("TOTAL");
-//                break;
-//            }
-//        }
-//    }
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
+    }
+
 }

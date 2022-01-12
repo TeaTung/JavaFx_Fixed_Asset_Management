@@ -5,53 +5,57 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="665.0" prefWidth="999.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AddNewDeviceDialogController">
+<AnchorPane fx:id="anchorPane" onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction"
+            prefHeight="665.0" prefWidth="999.0" style="-fx-background-color: #FFFFFF;" styleClass="panel-custom-dialog"
+            stylesheets="@../../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.AddNewDeviceDialogController">
     <children>
         <TextField fx:id="nameTF" layoutX="156.0" layoutY="111.0" prefHeight="47.0" prefWidth="306.0">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </TextField>
-
-        <!--        <TextField fx:id="typeTF" layoutX="153.0" layoutY="178.0" prefHeight="40.0" prefWidth="305.0">-->
-        <!--            <font>-->
-        <!--                <Font size="16.0"/>-->
-        <!--            </font>-->
-        <!--        </TextField>-->
 
 
         <TextField fx:id="priceTF" layoutX="156.0" layoutY="335.0" prefHeight="47.0" prefWidth="306.0">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </TextField>
 
 
-        <TextField fx:id="unitTF" editable="false" focusTraversable="false" layoutX="302.0" layoutY="267.0" mouseTransparent="true" prefHeight="47.0" prefWidth="78.0" promptText="UNIT" text="NONE">
+        <TextField fx:id="unitTF" editable="false" focusTraversable="false" layoutX="302.0" layoutY="267.0"
+                   mouseTransparent="true" prefHeight="47.0" prefWidth="78.0" promptText="UNIT" text="NONE">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </TextField>
 
 
-        <DatePicker fx:id="usingDateDP" editable="false" layoutX="671.0" layoutY="184.0" prefHeight="47.0" prefWidth="283.0" />
-        <TextField fx:id="statusTF" layoutX="156.0" layoutY="411.0" prefHeight="47.0" prefWidth="306.0">
+        <DatePicker fx:id="usingDateDP" editable="false" layoutX="671.0" layoutY="184.0" prefHeight="47.0"
+                    prefWidth="283.0"/>
+        <TextField editable="false" focusTraversable="false" mouseTransparent="true" fx:id="statusTF" layoutX="156.0"
+                   layoutY="411.0" prefHeight="47.0" prefWidth="306.0" text="arrived">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </TextField>
-        <TextField fx:id="percentDamageTF" layoutX="156.0" layoutY="492.0" prefHeight="47.0" prefWidth="306.0" text="100">
+        <TextField fx:id="percentDamageTF" layoutX="156.0" layoutY="492.0" prefHeight="47.0" prefWidth="306.0"
+                   text="100">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </TextField>
-        <TextArea fx:id="specificationTA" layoutX="509.0" layoutY="333.0" prefHeight="210.0" prefWidth="458.0" styleClass="normal-label">
+        <TextArea fx:id="specificationTA" layoutX="509.0" layoutY="333.0" prefHeight="210.0" prefWidth="458.0"
+                  styleClass="normal-label">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </TextArea>
         <!--      <ComboBox layoutX="43.0" layoutY="204.0">-->
@@ -60,44 +64,81 @@
         <!--&lt;!&ndash;         </font>&ndash;&gt;-->
         <!--      </ComboBox>-->
 
-        <ComboBox fx:id="cbType" layoutX="156.0" layoutY="184.0" minWidth="190" onAction="#comboBoxChanged" prefHeight="47.0" prefWidth="224.0" promptText="NONE" />
-        <Text layoutX="23.0" layoutY="68.1005859375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="NEW DEVICE INFORMATION" wrappingWidth="543.0" AnchorPane.topAnchor="37.0224609375">
+        <ComboBox fx:id="cbType" layoutX="156.0" layoutY="184.0" minWidth="190" onAction="#comboBoxChanged"
+                  prefHeight="47.0" prefWidth="224.0" promptText="NONE"/>
+        <Text layoutX="23.0" layoutY="68.1005859375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title"
+              text="NEW DEVICE INFORMATION" wrappingWidth="543.0" AnchorPane.topAnchor="37.0224609375">
             <font>
-                <Font name="System Light" size="29.0" />
+                <Font name="System Light" size="29.0"/>
             </font>
         </Text>
-        <DatePicker fx:id="manufactureDateDP" editable="false" layoutX="671.0" layoutY="111.0" prefHeight="47.0" prefWidth="283.0" />
-        <Button fx:id="nextBtn" defaultButton="true" layoutX="833.0" layoutY="572.0" mnemonicParsing="false" onAction="#nextButtonAction" prefHeight="47.0" prefWidth="133.0" text="Next">
+        <DatePicker fx:id="manufactureDateDP" editable="false" layoutX="671.0" layoutY="111.0" prefHeight="47.0"
+                    prefWidth="283.0"/>
+        <Button fx:id="nextBtn" defaultButton="true" layoutX="833.0" layoutY="572.0" mnemonicParsing="false"
+                onAction="#nextButtonAction" prefHeight="47.0" prefWidth="133.0" text="Next">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
         <TextField fx:id="quantityTF" layoutX="156.0" layoutY="267.0" prefHeight="47.0" prefWidth="140.0" text="1">
             <font>
-                <Font size="16.0" />
+                <Font size="16.0"/>
             </font>
         </TextField>
-        <Button fx:id="nextBtn1" defaultButton="true" layoutX="388.0" layoutY="184.0" mnemonicParsing="false" onAction="#addUnitOnAction" prefHeight="47.0" prefWidth="70.0" text="+">
+        <Button fx:id="nextBtn1" defaultButton="true" layoutX="388.0" layoutY="184.0" mnemonicParsing="false"
+                onAction="#addUnitOnAction" prefHeight="47.0" prefWidth="70.0" text="+">
             <font>
-                <Font size="26.0" />
+                <Font size="26.0"/>
             </font>
         </Button>
-        <Button fx:id="nextBtn11" defaultButton="true" layoutX="388.0" layoutY="267.0" mnemonicParsing="false" onAction="#addUnitOnAction" prefHeight="47.0" prefWidth="70.0" text="+">
+        <Button fx:id="nextBtn11" defaultButton="true" layoutX="388.0" layoutY="267.0" mnemonicParsing="false"
+                onAction="#addUnitOnAction" prefHeight="47.0" prefWidth="70.0" text="+">
             <font>
-                <Font size="26.0" />
+                <Font size="26.0"/>
             </font>
         </Button>
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="111.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Device name" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="184.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Model" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="267.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Quantity" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="331.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Price" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="411.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Status" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="492.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="EBITDA" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="509.0" layoutY="111.0" mouseTransparent="true" prefHeight="47.0" prefWidth="149.0" text="Manufacture date" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="509.0" layoutY="184.0" mouseTransparent="true" prefHeight="47.0" prefWidth="150.0" text="Using date" />
-        <TextField disable="true" editable="false" focusTraversable="false" layoutX="509.0" layoutY="268.0" mouseTransparent="true" prefHeight="47.0" prefWidth="150.0" text="Specification" />
+        <TextField editable="false" focusTraversable="false" layoutX="21.0" layoutY="111.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="125.0" text="Device name"/>
+        <TextField editable="false" focusTraversable="false" layoutX="21.0" layoutY="184.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="125.0" text="Model"/>
+        <TextField editable="false" focusTraversable="false" layoutX="21.0" layoutY="267.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="125.0" text="Quantity"/>
+        <TextField editable="false" focusTraversable="false" layoutX="21.0" layoutY="331.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="125.0" text="Price"/>
+        <TextField editable="false" focusTraversable="false" layoutX="21.0" layoutY="411.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="125.0" text="Status"/>
+        <TextField editable="false" focusTraversable="false" layoutX="21.0" layoutY="492.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="125.0" text="EBITDA"/>
+        <TextField editable="false" focusTraversable="false" layoutX="509.0" layoutY="111.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="149.0" text="Manufacture date"/>
+        <TextField editable="false" focusTraversable="false" layoutX="509.0" layoutY="184.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="150.0" text="Using date"/>
+        <TextField editable="false" focusTraversable="false" layoutX="509.0" layoutY="268.0" mouseTransparent="true"
+                   prefHeight="47.0" prefWidth="150.0" text="Specification"/>
         <!--        <Text fill="RED" layoutX="419.0" layoutY="634.0" strokeType="OUTSIDE" strokeWidth="0.0"-->
         <!--              text="Add new device successfully!"/>-->
 
+        <Button mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefWidth="84.0" text="🖤"
+                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Button>
+        <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction" prefHeight="32.0"
+                prefWidth="84.0" text="🔴" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Button>
+        <Button fx:id="nextBtn2" layoutX="24.0" layoutY="572.0" mnemonicParsing="false"
+                onAction="#onCloseWinBtnOnAction" prefHeight="47.0" prefWidth="133.0" text="Back">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+
     </children>
+    <effect>
+        <SepiaTone level="0.55"/>
+    </effect>
 </AnchorPane>

@@ -46,9 +46,12 @@
     -fx-font-size: 1em;
 }
 
-
 .text-field {
     -fx-font-family: 'consolas', sans-serif;
+}
+
+.text-field:disable {
+    -fx-font-size: 2em;
 }
 
 .text {
@@ -57,17 +60,21 @@
 }
 
 /* TABLE VIEW */
-
 .table-view {
     -fx-font-family: 'consolas', sans-serif;
+    -fx-border-color: gray;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: gray;
 }
 
 .table-view .corner {
-    -fx-background-color: transparent;
+    -fx-background-color: gray;
 }
 
 .table-view .table-cell {
-    -fx-border-color: transparent;
+    -fx-border-color: gray;
     -fx-font-size: 1em;
     -fx-font-family: 'consolas', sans-serif;
     -fx-padding: 10 10 10 10px;
@@ -84,7 +91,6 @@
     -fx-padding: 0em;
 }
 
-
 .table-view .virtual-flow .scroll-bar:vertical,
 .table-view .virtual-flow .scroll-bar:vertical .track,
 .table-view .virtual-flow .scroll-bar:vertical .track-background,
@@ -98,18 +104,80 @@
     -fx-opacity: 0;
     -fx-padding: 2;
 }
-.table-view .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color:  #ADD8E6;
+.table-view .virtual-flow .scroll-bar:vertical .thumb {
+    -fx-background-color: #add8e6;
 }
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
-    -fx-background-color:  #ADD8E6;
+    -fx-background-color: #add8e6;
 }
 
-
-.check-box  {
-        -fx-font-family: 'consolas', sans-serif;
+.table-view .column-header-background {
+    -fx-background-color: gray;
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 1 1px 0 0;
+    -fx-padding: 0 0 0px 0;
 }
 
-.button:default{
-    -fx-background-color: #4682B4;
+/* CHECKBOX */
+.check-box {
+    -fx-font-family: 'consolas', sans-serif;
+}
+
+/* BUTTON */
+
+.button:default {
+    -fx-background-color: #4682b4;
+}
+
+/* CHART */
+.chart {
+    -fx-padding: 8px;
+    -fx-background-color: white;
+    -fx-font-family: 'consolas';
+    -fx-background-radius: 10px;
+}
+.chart-content {
+    -fx-font-family: 'consolas';
+}
+
+.axis {
+    -fx-tick-label-fill: #914800;
+    -fx-font-family: 'consolas';
+    -fx-tick-length: 20;
+    -fx-minor-tick-length: 10;
+}
+
+.axis-label {
+    -fx-text-fill: #462300;
+    -fx-font-family: 'consolas';
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 20px;
+    -fx-font-family: 'consolas', sans-serif;
+}
+
+.chart-legend-item-symbol {
+    -fx-background-radius: 0;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #191970;
+    -fx-font-family: 'consolas', sans-serif;
+}
+
+.panel-custom {
+    -fx-background-color: transparent;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-border-color: transparent;
+}
+
+.panel-custom-dialog {
+    -fx-background-color: transparent;
+    -fx-border-radius: 2px;
+    -fx-border-width: 1px;
+    -fx-background-radius: 2px;
+    -fx-border-color: gray;
 }

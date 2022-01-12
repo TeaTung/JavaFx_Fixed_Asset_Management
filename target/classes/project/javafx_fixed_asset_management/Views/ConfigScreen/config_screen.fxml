@@ -7,13 +7,14 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="209.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" styleClass="background" stylesheets="@../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ConfigScreenController">
+<AnchorPane prefHeight="209.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" styleClass="panel-custom-dialog" stylesheets="@../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ConfigScreenController">
     <children>
-        <TabPane fx:id="myTabPane" layoutY="10.0" prefHeight="521.0" prefWidth="600.0" side="LEFT" styleClass="underlined" stylesheets="@../HistoryAndManagementScreen/history.css" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="myTabPane" layoutY="10.0" onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction" prefHeight="521.0" prefWidth="600.0" side="LEFT" styleClass="underlined" stylesheets="@../HistoryAndManagementScreen/history.css" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="🍩">
                     <content>
@@ -36,8 +37,8 @@
                                     </font>
                                 </Button>
                                 <TextArea fx:id="noteTA" layoutX="195.0" layoutY="241.0" prefHeight="159.0" prefWidth="299.0" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="38.0" layoutY="160.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Unit name" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="38.0" layoutY="241.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Name" />
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="160.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Unit name" />
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="241.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Name" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -51,10 +52,10 @@
                                     <font>
                                         <Font size="48.0" />
                                     </font>
-                           <styleClass>
-                              <String fx:value="lbl-primary" />
-                              <String fx:value="large-title" />
-                           </styleClass>
+                                    <styleClass>
+                                        <String fx:value="lbl-primary" />
+                                        <String fx:value="large-title" />
+                                    </styleClass>
                                 </Text>
                                 <Button fx:id="backModelBtn" layoutX="38.0" layoutY="390.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="119.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="38.0">
                                     <font>
@@ -68,8 +69,8 @@
                                 </Button>
                                 <ComboBox fx:id="unitModelCB" layoutX="196.0" layoutY="203.0" prefHeight="54.0" prefWidth="305.0" />
                                 <TextField fx:id="nameModelTF" layoutX="197.0" layoutY="278.0" prefHeight="54.0" prefWidth="303.0" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="38.0" layoutY="203.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Unit" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="38.0" layoutY="278.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Model name" />
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="203.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Unit" />
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="278.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Model name" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -98,10 +99,10 @@
                                 <TextField fx:id="addressProviderTF" layoutX="180.0" layoutY="222.0" prefHeight="44.0" prefWidth="318.0" />
                                 <TextField fx:id="phoneProviderTF" layoutX="180.0" layoutY="292.0" prefHeight="44.0" prefWidth="315.0" />
                                 <TextField fx:id="emailProviderTF" layoutX="180.0" layoutY="358.0" prefHeight="44.0" prefWidth="316.0" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="40.0" layoutY="222.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Address" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="40.0" layoutY="292.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Phone" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="40.0" layoutY="358.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Email" />
-                        <TextField disable="true" editable="false" focusTraversable="false" layoutX="40.0" layoutY="159.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Name" />
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="222.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Address" />
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="292.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Phone" />
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="358.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Email" />
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="159.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Name" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -128,15 +129,33 @@
                                 </Button>
                                 <TextField fx:id="nameDeptTF" layoutX="186.0" layoutY="247.0" prefHeight="44.0" prefWidth="310.0" />
                                 <TextField fx:id="totalDeviceTF" layoutX="186.0" layoutY="318.0" prefHeight="44.0" prefWidth="309.0" />
-                                <TextField disable="true" editable="false" focusTraversable="false" layoutX="40.0" layoutY="247.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Name" />
-                                <TextField disable="true" editable="false" focusTraversable="false" layoutX="40.0" layoutY="318.0" mouseTransparent="true" prefHeight="44.0" prefWidth="123.0" text="Total device" />
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="247.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Name" />
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="318.0" mouseTransparent="true" prefHeight="44.0" prefWidth="123.0" text="Total device" />
                                 <TextField fx:id="deptIdTF" layoutX="187.0" layoutY="181.0" prefHeight="44.0" prefWidth="310.0" />
-                                <TextField disable="true" editable="false" focusTraversable="false" layoutX="41.0" layoutY="181.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="ID" />
+                                <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="181.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="ID" />
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
             </tabs>
         </TabPane>
+        <Button mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefWidth="84.0" text="🖤" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Button>
+        <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction" prefHeight="32.0" prefWidth="84.0" text="🔴" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Button>
+        <Button fx:id="nextBtn2" layoutX="21.0" layoutY="572.0" mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefHeight="47.0" prefWidth="133.0" text="Back">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
     </children>
+    <effect>
+        <SepiaTone level="0.3" />
+    </effect>
 </AnchorPane>
