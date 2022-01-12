@@ -8,10 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
@@ -29,6 +32,8 @@ import java.util.UUID;
 
 public class AddNewContractDialogController implements Initializable {
     public AnchorPane anchorPane;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
     @FXML
     Button addNewDeviceBtn;
 
@@ -153,7 +158,7 @@ public class AddNewContractDialogController implements Initializable {
     public void addProviderOnAction(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/ConfigScreen/config_screen.fxml"));
         Node node = (Node) actionEvent.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = new Stage();
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 600, 520);
@@ -162,9 +167,12 @@ public class AddNewContractDialogController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.centerOnScreen();
-        stage.show();
+        stage.showAndWait();
+        initialize(null, null);
     }
 
     public void onBackContractOnAction(ActionEvent actionEvent) throws IOException {
@@ -174,10 +182,38 @@ public class AddNewContractDialogController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         Scene scene = new Scene(fxmlLoader.load(), 990, 650);
 
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Add New Screen Dialog");
         stage.setScene(scene);
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
         stage.show();
+    }
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
     }
 }
