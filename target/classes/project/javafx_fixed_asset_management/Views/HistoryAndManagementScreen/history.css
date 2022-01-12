@@ -1,0 +1,12 @@
+
+
+.tab {
+    -fx-padding: 1em 1em 1em 1em;
+    -fx-font-size: 20px;
+    -fx-font-family: 'consolas'
+}
+
+.tab *.tab-label {
+    -fx-rotate: 90;
+    -fx-margin: 3em 10em 3em 3em;
+}

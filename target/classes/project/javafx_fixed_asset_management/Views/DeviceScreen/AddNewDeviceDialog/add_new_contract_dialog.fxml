@@ -1,75 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="431.0" prefWidth="1021.0"
-            fx:id="anchorPane"
-            style="-fx-background-color: #FFFFFF;"
-            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="project.javafx_fixed_asset_management.Controllers.AddNewContractDialogController">
+<AnchorPane fx:id="anchorPane" prefHeight="431.0" prefWidth="924.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AddNewContractDialogController">
     <children>
-        <TextField fx:id="idContractTF" layoutX="153.0" layoutY="111.0" prefHeight="40.0" prefWidth="305.0">
+        <TextField fx:id="idContractTF" layoutX="175.0" layoutY="106.0" prefHeight="47.0" prefWidth="314.0">
             <font>
-                <Font size="16.0"/>
+                <Font size="16.0" />
             </font>
         </TextField>
-        <TextArea fx:id="noteTA" layoutX="586.0" layoutY="141.0" prefHeight="163.0" prefWidth="399.0">
+        <TextArea fx:id="noteTA" layoutX="539.0" layoutY="174.0" prefHeight="130.0" prefWidth="323.0">
             <font>
-                <Font size="16.0"/>
+                <Font size="16.0" />
             </font>
         </TextArea>
-        <Text layoutX="43.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contract ID"
-              wrappingWidth="190.2617187499999">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Text>
 
-        <Text layoutX="35.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTRACT INFORMATION"
-              wrappingWidth="543.0" AnchorPane.topAnchor="37.0224609375">
+        <Text layoutX="35.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTRACT INFORMATION" wrappingWidth="543.0" AnchorPane.topAnchor="37.0224609375">
             <font>
-                <Font name="System Light" size="29.0"/>
+                <Font name="System Light" size="29.0" />
             </font>
         </Text>
-
-
-        <Text layoutX="43.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Import Date"
-              wrappingWidth="190.2617187499999">
+        <DatePicker id="importDatePicker" fx:id="importDateDP" editable="false" layoutX="175.0" layoutY="182.0" prefHeight="47.0" prefWidth="314.0" />
+        <Button fx:id="addNewDeviceBtn" defaultButton="true" layoutX="710.0" layoutY="355.0" mnemonicParsing="false" onAction="#addNewDeviceButtonAction" prefHeight="47.0" prefWidth="152.0" text="Add new device">
             <font>
-                <Font size="16.0"/>
-            </font>
-        </Text>
-        <Text layoutX="35.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supplier Name"
-              wrappingWidth="190.2617187499999">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Text>
-        <!--        <Text layoutX="43.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTRACT INFORMATION"-->
-        <!--              wrappingWidth="343.0" AnchorPane.topAnchor="40.0224609375">-->
-        <!--            <font>-->
-        <!--                <Font name="System Bold" size="25.0"/>-->
-        <!--            </font>-->
-        <!--        </Text>-->
-        <Text layoutX="586.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes"
-              wrappingWidth="190.26171875">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Text>
-        <DatePicker id="importDatePicker" fx:id="importDateDP" layoutX="153.0" layoutY="182.0" prefHeight="40.0"
-                    prefWidth="305.0"/>
-        <Button fx:id="addNewDeviceBtn" defaultButton="true"
-                layoutX="833.0" layoutY="354.0" mnemonicParsing="false"
-                onAction="#addNewDeviceButtonAction" prefHeight="40.0" prefWidth="152.0" text="Add new device">
-            <font>
-                <Font size="14.0"/>
+                <Font size="14.0" />
             </font>
         </Button>
-        <Text fx:id="notifyLabel" fill="RED" layoutX="444.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Add new device successfully!"/>
-        <ComboBox fx:id="providerCB" layoutX="149.0" layoutY="258.0" prefHeight="40.0" prefWidth="313.0"/>
+        <ComboBox fx:id="providerCB" layoutX="175.0" layoutY="258.0" prefHeight="47.0" prefWidth="228.0" promptText="Supplier" />
+        <TextField disable="true" editable="false" focusTraversable="false" layoutX="36.0" layoutY="106.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="ContractID" />
+        <TextField disable="true" editable="false" focusTraversable="false" layoutX="36.0" layoutY="182.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Import Date" />
+        <TextField disable="true" editable="false" focusTraversable="false" layoutX="36.0" layoutY="258.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Supplier Name" />
+        <TextField disable="true" editable="false" focusTraversable="false" layoutX="539.0" layoutY="106.0" mouseTransparent="true" prefHeight="47.0" prefWidth="125.0" text="Note" />
+        <Button layoutX="36.0" layoutY="355.0" mnemonicParsing="false" onAction="#onBackContractOnAction" prefHeight="47.0" prefWidth="152.0" text="Back">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="nextBtn1" defaultButton="true" layoutX="418.0" layoutY="258.0" mnemonicParsing="false" onAction="#addProviderOnAction" prefHeight="47.0" prefWidth="70.0" text="+">
+            <font>
+                <Font size="26.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

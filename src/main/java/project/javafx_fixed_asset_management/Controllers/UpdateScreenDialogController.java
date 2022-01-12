@@ -91,7 +91,7 @@ public class UpdateScreenDialogController {
     }
 
     // UPDATE TO ANOTHER MODEL
-    public void comboBoxChanged(ActionEvent actionEvent) {
+    public void comboBoxChanged(ActionEvent actionEvent) throws Exception {
         // set UNIT DATA
         var unitName = new DATABASE_DAO<UNIT>(UNIT.class).selectOne("select *  from tbUnit where unitId = ?", cbType.getSelectionModel().getSelectedItem().getUnitId());
         unitTF.setText(unitName.getUnitName());
