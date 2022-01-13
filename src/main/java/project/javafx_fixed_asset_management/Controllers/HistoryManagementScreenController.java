@@ -3,19 +3,22 @@ package project.javafx_fixed_asset_management.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.effect.SepiaTone;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.JMetroStyleClass;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.*;
@@ -33,7 +36,126 @@ public class HistoryManagementScreenController implements Initializable {
     public TableColumn<LIQUIDATION_HISTORY, String> idLiquidationColumn;
     public TableColumn<LIQUIDATION_HISTORY, String> departmentNameLiquidationColumn;
     public TableColumn<LIQUIDATION_HISTORY, String> dateLiquidationColumn;
+    public LineChart<Number, Number> lineChart;
+    public VBox lineChartSpace;
+    public VBox lineChartSpace1;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
+
+    // CHART
+    public void setUpChart() {
+//        final NumberAxis xAxis = new NumberAxis();
+//        final NumberAxis yAxis = new NumberAxis();
+//        xAxis.setLabel("Number of Month");
+//        //creating the chart
+//        lineChart =
+//                new LineChart<Number, Number>(xAxis, yAxis);
+//
+//        lineChart.setTitle("Stock Monitoring, 2010");
+//        //defining a series
+//        XYChart.Series series = new XYChart.Series();
+//        series.setName("My portfolio");
+//        //populating the series with data
+//        series.getData().add(new XYChart.Data(1, 23));
+//        series.getData().add(new XYChart.Data(2, 14));
+//        series.getData().add(new XYChart.Data(3, 15));
+//        series.getData().add(new XYChart.Data(4, 24));
+//        series.getData().add(new XYChart.Data(5, 34));
+//        series.getData().add(new XYChart.Data(6, 36));
+//        series.getData().add(new XYChart.Data(7, 22));
+//        series.getData().add(new XYChart.Data(8, 45));
+//        series.getData().add(new XYChart.Data(9, 43));
+//        series.getData().add(new XYChart.Data(10, 17));
+//        series.getData().add(new XYChart.Data(11, 29));
+//        series.getData().add(new XYChart.Data(12, 25));
+//        lineChart.getData().add(series);
+//
+//
+//        XYChart.Series series1 = new XYChart.Series();
+//        series1.setName("My portfolio");
+//        //populating the series with data
+//        series1.getData().add(new XYChart.Data(1, 23));
+//        series1.getData().add(new XYChart.Data(2, 21));
+//        series1.getData().add(new XYChart.Data(4, 14));
+//        series1.getData().add(new XYChart.Data(5, 14));
+//        series1.getData().add(new XYChart.Data(6, 16));
+//        series1.getData().add(new XYChart.Data(7, 12));
+//        series1.getData().add(new XYChart.Data(3, 15));
+//        series1.getData().add(new XYChart.Data(8, 15));
+//        series1.getData().add(new XYChart.Data(9, 13));
+//        series1.getData().add(new XYChart.Data(10, 17));
+//        series1.getData().add(new XYChart.Data(11, 19));
+//        series1.getData().add(new XYChart.Data(12, 15));
+//        lineChart.getData().add(series1);
+//
+//        XYChart.Series series3 = new XYChart.Series();
+//        series3.setName("Sieu nhan");
+//        series3.getData().add(new XYChart.Data(3, 17));
+//        series3.getData().add(new XYChart.Data(4, 19));
+//        series3.getData().add(new XYChart.Data(5, 19));
+//        lineChart.getData().add(series3);
+//        lineChart.setEffect(new SepiaTone(1));
+//
+//        lineChartSpace.getChildren().add(lineChart);
+
+
+        // BAR CHAT
+        final String austria = "Austria";
+        final String brazil = "Brazil";
+        final String france = "France";
+        final String italy = "Italy";
+        final String usa = "USA";
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String, Number> bc =
+                new BarChart<String, Number>(xAxis, yAxis);
+        bc.setTitle("Department Summary");
+        xAxis.setLabel("Country");
+        yAxis.setLabel("Value");
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("2003");
+        series1.getData().add(new XYChart.Data(austria, 25601.34));
+        series1.getData().add(new XYChart.Data(brazil, 20148.82));
+        series1.getData().add(new XYChart.Data(france, 10000));
+        series1.getData().add(new XYChart.Data(italy, 35407.15));
+        series1.getData().add(new XYChart.Data(usa, 12000));
+
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("2004");
+        series2.getData().add(new XYChart.Data(austria, 57401.85));
+        series2.getData().add(new XYChart.Data(brazil, 41941.19));
+        series2.getData().add(new XYChart.Data(france, 45263.37));
+        series2.getData().add(new XYChart.Data(italy, 117320.16));
+        series2.getData().add(new XYChart.Data(usa, 14845.27));
+
+        XYChart.Series series3 = new XYChart.Series();
+        series3.setName("2005");
+        series3.getData().add(new XYChart.Data(austria, 45000.65));
+        series3.getData().add(new XYChart.Data(brazil, 44835.76));
+        series3.getData().add(new XYChart.Data(france, 18722.18));
+        series3.getData().add(new XYChart.Data(italy, 17557.31));
+        series3.getData().add(new XYChart.Data(usa, 92633.68));
+
+        bc.getData().addAll(series1, series2, series3);
+        bc.setEffect(new SepiaTone());
+
+
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Grapefruit", 13),
+                        new PieChart.Data("Oranges", 25),
+                        new PieChart.Data("Plums", 10),
+                        new PieChart.Data("Pears", 22),
+                        new PieChart.Data("Apples", 30));
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setTitle("Imported Fruits");
+        chart.setEffect(new SepiaTone());
+
+        lineChartSpace1.getChildren().add(bc);
+        lineChartSpace.getChildren().add(chart);
+    }
 
     //<editor-fold desc="TAB LIQUIDATION">
 
@@ -41,7 +163,6 @@ public class HistoryManagementScreenController implements Initializable {
     public TableView<LIQUIDATION_HISTORY> liquidationTableView;
 
     public TableColumn<DEVICE_ADD, String> nameLiquidationColumn;
-    public TableColumn<DEVICE_ADD, String> typeLiquidationColumn;
     public TableColumn<DEVICE_ADD, String> ebitdaLiquidationColumn;
     public TableColumn<DEVICE_ADD, String> quantityLiquidationColumn;
     public TableView<DEVICE_ADD> liquidationDeviceTableView;
@@ -66,7 +187,6 @@ public class HistoryManagementScreenController implements Initializable {
 
         //set up DEVICE TABLE VIEW
         nameLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("deviceName"));
-        typeLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("modelName"));
         ebitdaLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("percentDamage"));
         quantityLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("quantityDevice"));
         idDeviceLiquidationColumn.setCellValueFactory(new PropertyValueFactory<>("deviceId"));
@@ -314,7 +434,7 @@ public class HistoryManagementScreenController implements Initializable {
         repairHistoryFromDP.setConverter(Utils.getConverter(repairHistoryFromDP));
         repairHistoryToDP.setConverter(Utils.getConverter(repairHistoryToDP));
 
-        myTabPane.getStyleClass().add(JMetroStyleClass.UNDERLINE_TAB_PANE);
+        //myTabPane.getStyleClass().add(JMetroStyleClass.UNDERLINE_TAB_PANE);
 
         // REPAIR
         var database_dao = new DATABASE_DAO<>(REPAIR.class);
@@ -414,7 +534,7 @@ public class HistoryManagementScreenController implements Initializable {
     }
 
     @FXML
-    public void onTransferTableViewMouseClicked(MouseEvent mouseEvent) {
+    public void onTransferTableViewMouseClicked(MouseEvent mouseEvent) throws Exception {
         if (transferredTableView.getSelectionModel().getSelectedItem() != null) {
 
             // SHOW DEPARTMENT
@@ -520,6 +640,7 @@ public class HistoryManagementScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         new Thread(
                 () -> {
+                    setUpChart();
                     setUpRepair();
                     setUpInventory();
                     setUpLiquidation();
@@ -530,7 +651,33 @@ public class HistoryManagementScreenController implements Initializable {
         // SET UP CONVERTER
         inventoryDateOfInventoryDP.setConverter(Utils.getConverter(inventoryDateOfInventoryDP));
         liquidationDateOfLiquidationDTP.setConverter(Utils.getConverter(liquidationDateOfLiquidationDTP));
+    }
 
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnActio(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
     }
 
 

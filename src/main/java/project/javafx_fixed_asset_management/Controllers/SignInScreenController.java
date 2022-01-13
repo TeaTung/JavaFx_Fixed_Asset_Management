@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Controllers.LiquidationScreenControllers.ThirdLiquidationScreenController;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.AUTHENTICATION;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
@@ -158,11 +162,31 @@ public class SignInScreenController implements Initializable {
         stage.show();
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         noticeLabel.setVisible(false);
         noticeLabel.setTextAlignment(TextAlignment.CENTER);
         noticeLabel.setAlignment(Pos.CENTER);
     }
+
+    @FXML
+    void loginBtnAdminAction(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AdminHomeScreen/admin_home_screen.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1280, 720);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+    
 }
 

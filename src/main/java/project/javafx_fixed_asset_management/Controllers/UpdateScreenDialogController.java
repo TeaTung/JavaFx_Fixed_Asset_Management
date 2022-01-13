@@ -3,16 +3,23 @@ package project.javafx_fixed_asset_management.Controllers;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
+import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class UpdateScreenDialogController {
@@ -22,7 +29,8 @@ public class UpdateScreenDialogController {
     public Button saveBtn;
     public TextField quantityTF;
     public AnchorPane anchorPane;
-
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
     private DEVICE_ADD device_add;
 
@@ -91,12 +99,11 @@ public class UpdateScreenDialogController {
     }
 
     // UPDATE TO ANOTHER MODEL
-    public void comboBoxChanged(ActionEvent actionEvent) {
+    public void comboBoxChanged(ActionEvent actionEvent) throws Exception {
         // set UNIT DATA
         var unitName = new DATABASE_DAO<UNIT>(UNIT.class).selectOne("select *  from tbUnit where unitId = ?", cbType.getSelectionModel().getSelectedItem().getUnitId());
         unitTF.setText(unitName.getUnitName());
     }
-
 
     public void loadingData(DEVICE_ADD device_add) {
         statusTF.setText(device_add.getDeviceStatus());
@@ -136,5 +143,51 @@ public class UpdateScreenDialogController {
         usingDateDP.setValue(LocalDate.parse(device_add.getYearUsed()));
         priceTF.setText(String.valueOf(device_add.getPrice()));
         manufactureDateDP.setValue(LocalDate.parse(device_add.getYearManufacture()));
+    }
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
+    }
+
+    public void addUnitOnAction(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/ConfigScreen/config_screen.fxml"));
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = new Stage();
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 600, 520);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.showAndWait();
+        loadingData(device_add);
     }
 }

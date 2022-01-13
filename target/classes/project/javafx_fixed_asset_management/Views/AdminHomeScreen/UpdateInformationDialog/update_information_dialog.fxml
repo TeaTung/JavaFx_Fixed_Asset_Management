@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="519.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers.UpdateInformationDialogController.UpdateInformationDialogController">
+   <children>
+      <Text layoutX="98.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UPDATE USER INFORMATION" wrappingWidth="354.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <Label layoutX="40.0" layoutY="92.0" text="Name" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="152.0" text="Birthday" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="212.0" text="Phone number" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="272.0" text="Address" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirmBtn" layoutX="431.0" layoutY="422.0" mnemonicParsing="false" onAction="#validateField" prefHeight="46.0" prefWidth="89.0" text="Update" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="nameTF" layoutX="170.0" layoutY="89.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+      <TextField fx:id="phoneNumberTF" layoutX="170.0" layoutY="209.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+      <TextField fx:id="addressTF" layoutX="170.0" layoutY="269.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+      <Label layoutX="40.0" layoutY="332.0" text="Department" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="birthdayDTP" layoutX="170.0" layoutY="145.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+      <ComboBox fx:id="departmentCbb" layoutX="170.0" layoutY="329.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+      <Button fx:id="btnChangePassword" layoutX="40.0" layoutY="392.0" mnemonicParsing="false" onAction="#changePasswordButtonAction" prefHeight="46.0" prefWidth="131.0" text="Change password" AnchorPane.bottomAnchor="30.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="40.0" layoutY="392.0" text="Account Type">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="accountTypeCbb" layoutX="170.0" layoutY="388.0" prefHeight="33.0" prefWidth="340.0" />
+   </children>
+</AnchorPane>

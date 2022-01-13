@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import jfxtras.styles.jmetro.FlatAlert;
@@ -38,21 +39,11 @@ public class ConfigScreenController implements Initializable {
 
 
     public void backDeviceButtonAction(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
+
         Node node = (Node) actionEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 1280, 740);
-            JMetro jMetro = new JMetro(Style.LIGHT);
-            jMetro.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-
+        stage.close();
     }
 
     public void finishButtonAction(ActionEvent actionEvent) {
@@ -105,6 +96,8 @@ public class ConfigScreenController implements Initializable {
     public TextField emailProviderTF;
     public Button backProviderBtn;
     public Button finishProviderButton;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
 
     @Override
@@ -159,4 +152,31 @@ public class ConfigScreenController implements Initializable {
         backBtn.fire();
 
     }
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
+    }
+
 }

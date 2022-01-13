@@ -8,10 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-
 import jfxtras.styles.jmetro.JMetro;
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountDialogController;
 import project.javafx_fixed_asset_management.Main;
@@ -27,6 +28,7 @@ public class ManagerHomeScreenController implements Initializable {
         this.accountId = accountId;
 
     }
+
 
     public void openDeviceScreenButtonAction(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
