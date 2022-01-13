@@ -101,8 +101,13 @@ public class ConfirmTransferDevicesDialogController {
             }
             transform.setListDevice(listDevice);
 
-            System.out.println("LIST SIZE: " + transform.getListDevice().size());
+            changeDeviceStatus(listDevice);
             transformSQL.insert(insertSQL(transform));
+
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Transfer Devices");
+            alert1.setHeaderText("Transfer Successfully");
+            alert1.show();
 
             backPreviousScreen(event);
 
@@ -113,6 +118,12 @@ public class ConfirmTransferDevicesDialogController {
         }
     }
 
+    public void changeDeviceStatus (ObservableList<String> listDevice) {
+        var devices = new DATABASE_DAO<>(DEVICE.class);
+        for (String device : listDevice) {
+            devices.update("UPDATE tbDevice SET tbDevice.DeviceStatus = ? WHERE deviceId = ?","Transferred", device);
+        }
+    }
 
     public String insertSQL(TRANSFER transform) {
         String list = "";

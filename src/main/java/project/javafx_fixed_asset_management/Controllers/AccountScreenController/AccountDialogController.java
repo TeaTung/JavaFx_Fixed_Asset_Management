@@ -55,7 +55,7 @@ public class AccountDialogController {
         String myId = String.valueOf(id);
 
         System.out.println("Account ID: " + this.userId);
-        userProfile = profile.selectOne("SELECT TOP 1 * FROM tbProfile WHERE AccountId = '?'", myId);
+        userProfile = profile.selectOne("SELECT TOP 1 * FROM tbProfile WHERE AccountId = ?", myId);
         setLabelValue(userProfile);
     }
 

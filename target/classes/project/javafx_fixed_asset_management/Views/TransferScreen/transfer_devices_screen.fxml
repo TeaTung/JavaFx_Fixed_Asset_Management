@@ -81,6 +81,11 @@
          </font>
       </Label>
       <DatePicker fx:id="transferDateDTP" layoutX="830.0" layoutY="585.0" prefHeight="33.0" prefWidth="409.0" />
-      <ComboBox fx:id="departmentCbb" layoutX="830.0" layoutY="525.0" prefHeight="33.0" prefWidth="409.0" />
+      <ComboBox fx:id="departmentCbb" layoutX="830.0" layoutY="525.0" prefHeight="33.0" prefWidth="361.0" />
+      <Button layoutX="1206.0" layoutY="525.0" mnemonicParsing="false" onAction="#addDepartmentActionButton" prefHeight="33.0" prefWidth="36.0" text="+">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
