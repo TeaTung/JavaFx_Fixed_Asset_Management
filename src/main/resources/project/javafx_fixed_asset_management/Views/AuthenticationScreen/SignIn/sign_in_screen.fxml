@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.SignInScreenController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@background.png" />
          </image>
@@ -36,6 +36,10 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="515.0" layoutY="567.0" mnemonicParsing="false" onAction="#loginBtnAdminAction" text="Button" />
+      <ImageView fx:id="closeBtn" fitHeight="40.0" fitWidth="72.0" layoutX="1212.0" layoutY="26.0" onMouseClicked="#closeBtnHandler" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@close.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

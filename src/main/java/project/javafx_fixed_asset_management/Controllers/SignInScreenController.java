@@ -1,5 +1,6 @@
 package project.javafx_fixed_asset_management.Controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
@@ -22,12 +25,11 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
-import project.javafx_fixed_asset_management.Models.AUTHENTICATION;
-import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
-import project.javafx_fixed_asset_management.Models.INVENTORY;
+import project.javafx_fixed_asset_management.Models.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,8 +38,9 @@ import java.security.MessageDigest;
 import java.io.IOException;
 
 public class SignInScreenController implements Initializable {
+
     @FXML
-    Hyperlink forgotPasswordLabel;
+    ImageView closeBtn;
 
     @FXML
     Button loginBtn;
@@ -51,9 +54,16 @@ public class SignInScreenController implements Initializable {
     @FXML
     TextField usernameTF;
 
-    @FXML
-    void forgotPasswordLabelAction(ActionEvent event) {
 
+    @FXML
+    void closeBtnHandler(MouseEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to exit the application? " , ButtonType.YES, ButtonType.CANCEL);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     @FXML
@@ -62,21 +72,25 @@ public class SignInScreenController implements Initializable {
             String username = usernameTF.getText();
             String password = passwordTF.getText();
             AUTHENTICATION authentication = verifyLogin(username, password);
-            System.out.println(authentication.getAccountType());
             if(authentication == null){
                 noticeLabel.setVisible(true);
                 noticeLabel.setText("Invalid username or password");
+                return;
             }
 
             if (authentication.getAccountType().trim().equals("Staff")) {
                 staffScreenPush(event, authentication.getAccountId());
+                return;
             } else if (authentication.getAccountType().trim().equals("Admin")) {
-
+                adminScreenPush(event);
+                return;
             } else {
                 noticeLabel.setVisible(true);
                 noticeLabel.setText("Invalid username or password");
+                return;
             }
         }
+        return;
     }
 
     AUTHENTICATION verifyLogin(String username, String password) {
@@ -144,34 +158,7 @@ public class SignInScreenController implements Initializable {
         stage.show();
     }
 
-    void adminScreenPush(ActionEvent event, String accountId) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        ManagerHomeScreenController managerHomeScreenController = fxmlLoader.getController();
-        managerHomeScreenController.initData(accountId);
-
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        noticeLabel.setVisible(false);
-        noticeLabel.setTextAlignment(TextAlignment.CENTER);
-        noticeLabel.setAlignment(Pos.CENTER);
-    }
-
-    @FXML
-    void loginBtnAdminAction(ActionEvent event) {
+    void adminScreenPush(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AdminHomeScreen/admin_home_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -187,6 +174,15 @@ public class SignInScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        noticeLabel.setVisible(false);
+        noticeLabel.setTextAlignment(TextAlignment.CENTER);
+        noticeLabel.setAlignment(Pos.CENTER);
+    }
+
     
 }
 
