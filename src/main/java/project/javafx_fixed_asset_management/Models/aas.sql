@@ -116,19 +116,6 @@ CREATE TABLE tbDepartment
     DepartmentName NVARCHAR(100),
 )
 
-CREATE TABLE tbDeliveryNote
-(
-    DeliveryId   VARCHAR(10) PRIMARY KEY,
-    DeviceId     VARCHAR(10),
-    DepartmentId VARCHAR(10),
-    DeliveryDate DATE,
-
-    CONSTRAINT FK_DEPARTMENT FOREIGN KEY (DepartmentId)
-        REFERENCES tbDepartment (DepartmentId),
-
-    CONSTRAINT FK_DE FOREIGN KEY (DeviceId)
-        REFERENCES tbDevice (DeviceId),
-)
 
 CREATE TABLE tbPerson
 (
@@ -184,13 +171,15 @@ CREATE TABLE tbRepair
 
 CREATE TABLE tbTransfer
 (
-    TransferId   VARCHAR(10) PRIMARY KEY,
+    TransferId VARCHAR(10) PRIMARY KEY,
     TransferDate VARCHAR(15),
-    DeviceId     NVARCHAR( MAX),
+    DeviceId NVARCHAR( MAX),
     DepartmentId varchar(10),
-    Department   NVARCHAR(100),
+    Department NVARCHAR(100),
 
-    CONSTRAINT FK_DEPART FOREIGN KEY (DepartmentId)
+
+
+    CONSTRAINT FK_DEPART_TRANSFER FOREIGN KEY (DepartmentId)
         REFERENCES tbDepartment (DepartmentId),
 )
 
@@ -200,7 +189,7 @@ CREATE TABLE tbAccount
 (
     AccountId VARCHAR(10) PRIMARY KEY,
     Email     NVARCHAR(30),
-    Password  NVARCHAR(20),
+    Password  NVARCHAR(100),
     AccountType NCHAR(15),
 )
 

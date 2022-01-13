@@ -4,23 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.Style;
-import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.*;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
 
 public class ConfirmTransferDevicesDialogController {
     @FXML
@@ -125,7 +114,7 @@ public class ConfirmTransferDevicesDialogController {
     }
 
 
-    public String insertSQL(TRANSFORM transform) {
+    public String insertSQL(TRANSFER transform) {
         String list = "";
         for (int i = 0; i < transform.getListDevice().size(); i++) {
             list += transform.getListDevice().get(i);

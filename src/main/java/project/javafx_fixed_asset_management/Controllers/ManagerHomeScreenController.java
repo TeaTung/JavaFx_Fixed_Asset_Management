@@ -18,7 +18,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ManagerHomeScreenController implements Initializable {
-    String userId = "1";
+    String accountId = "1";
+
+    public void initData(String accountId) {
+        this.accountId = accountId;
+
+    }
+
 
     public void openDeviceScreenButtonAction(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
@@ -98,7 +104,7 @@ public class ManagerHomeScreenController implements Initializable {
         Parent accountDialogController = fxmlLoader.load();
         Scene scene = new Scene(accountDialogController);
         AccountDialogController controller = fxmlLoader.getController();
-        controller.init(userId);
+        controller.init(accountId);
 
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);

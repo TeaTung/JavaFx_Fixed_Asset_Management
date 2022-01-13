@@ -54,7 +54,8 @@ public class AccountDialogController {
         var profile = new DATABASE_DAO<>(PROFILE.class);
         String myId = String.valueOf(id);
 
-        userProfile = profile.selectOne("SELECT TOP 1 * FROM tbProfile WHERE ProfileId = ?", myId);
+        System.out.println("Account ID: " + this.userId);
+        userProfile = profile.selectOne("SELECT TOP 1 * FROM tbProfile WHERE AccountId = '?'", myId);
         setLabelValue(userProfile);
     }
 
