@@ -41,20 +41,21 @@ public class AccountDialogController {
     Button updateBtn;
 
     PROFILE userProfile;
-    int userId;
+    String userId;
 
     public void backButtonAction (ActionEvent event) {
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
-    public void init(int id) {
+    public void init(String id) {
         userId = id;
         System.out.println("USER ID: " + userId);
 
         var profile = new DATABASE_DAO<>(PROFILE.class);
         String myId = String.valueOf(id);
 
-        userProfile = profile.selectOne("SELECT TOP 1 * FROM tbProfile WHERE ProfileId = ?", myId);
+        System.out.println("Account ID: " + this.userId);
+        userProfile = profile.selectOne("SELECT TOP 1 * FROM tbProfile WHERE AccountId = '?'", myId);
         setLabelValue(userProfile);
     }
 

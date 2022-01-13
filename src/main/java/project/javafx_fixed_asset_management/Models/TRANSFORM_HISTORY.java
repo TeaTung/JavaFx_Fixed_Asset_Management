@@ -1,6 +1,6 @@
 package project.javafx_fixed_asset_management.Models;
 
-public class TRANSFORM_HISTORY extends TRANSFORM {
+public class TRANSFORM_HISTORY extends TRANSFER {
 
     public String getTransferId() {
         return transferId;

@@ -15,23 +15,22 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <TableView fx:id="inventoryDeviceTB" layoutX="31.0" layoutY="118.0" onMouseClicked="#rowSelectedHandler" prefHeight="456.0" prefWidth="793.0" AnchorPane.rightAnchor="456.0">
+      <TableView fx:id="inventoryDeviceTB" layoutX="31.0" layoutY="118.0" onMouseClicked="#rowSelectedHandler" prefHeight="456.0" prefWidth="719.0" AnchorPane.rightAnchor="530.0">
         <columns>
           <TableColumn fx:id="inventoryDeviceIdColumn" prefWidth="91.0" text="ID" />
-          <TableColumn fx:id="inventoryDeviceNameColumn" prefWidth="118.0" text="Device Name" />
-            <TableColumn fx:id="inventoryDeviceDepartmentColumn" minWidth="4.0" prefWidth="148.0" text="Department" />
-            <TableColumn fx:id="inventoryDeviceStatusColumn" prefWidth="112.0" text="Status" />
+          <TableColumn fx:id="inventoryDeviceNameColumn" prefWidth="156.0" text="Device Name" />
+            <TableColumn fx:id="inventoryDeviceStatusColumn" prefWidth="101.0" text="Status" />
             <TableColumn fx:id="inventoryDeviceSpecificationColumn" prefWidth="116.0" text="Specification" />
-            <TableColumn fx:id="inventoryDeviceUsedColumn" prefWidth="90.0" text="Used year" />
-            <TableColumn fx:id="inventoryDeviceDamageColumn" minWidth="4.0" prefWidth="117.0" text="Damage percent" />
+            <TableColumn fx:id="inventoryDeviceUsedColumn" prefWidth="110.0" text="Used year" />
+            <TableColumn fx:id="inventoryDeviceDamageColumn" minWidth="4.0" prefWidth="143.0" text="Damage percent" />
         </columns>
       </TableView>
-      <TextField fx:id="usableValueTF" layoutX="542.0" layoutY="597.0" prefHeight="33.0" prefWidth="180.0" promptText="Usable value" AnchorPane.bottomAnchor="90.0">
+      <TextField fx:id="usableValueTF" layoutX="468.0" layoutY="597.0" prefHeight="33.0" prefWidth="180.0" promptText="Usable value" AnchorPane.bottomAnchor="90.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="updateBtn" layoutX="735.0" layoutY="597.0" mnemonicParsing="false" onAction="#updateBtnAction" prefHeight="33.0" prefWidth="89.0" text="Update" AnchorPane.bottomAnchor="90.0">
+      <Button fx:id="updateBtn" layoutX="661.0" layoutY="597.0" mnemonicParsing="false" onAction="#updateBtnAction" prefHeight="33.0" prefWidth="89.0" text="Update" AnchorPane.bottomAnchor="90.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -46,17 +45,17 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="searchTF" layoutX="30.0" layoutY="597.0" onKeyPressed="#textChangeHandler" prefHeight="33.0" prefWidth="493.0" promptText="Serach with Device Name | Department Name">
+      <TextField fx:id="searchTF" layoutX="30.0" layoutY="597.0" onKeyPressed="#textChangeHandler" prefHeight="33.0" prefWidth="423.0" promptText="Serach with Device Name">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TableView fx:id="inventoryDeviceHistoryTV" layoutX="861.0" layoutY="118.0" prefHeight="510.0" prefWidth="389.0">
+      <TableView fx:id="inventoryDeviceHistoryTV" layoutX="782.0" layoutY="118.0" prefHeight="510.0" prefWidth="468.0">
         <columns>
-          <TableColumn fx:id="inventoryDeviceHistoryIdColumn" prefWidth="93.0" text="ID" />
-          <TableColumn fx:id="inventoryDeviceHistoryNameColumn" prefWidth="104.0" text="Device Name" />
-            <TableColumn fx:id="inventoryDeviceHistoryUsableColumn" prefWidth="91.0" text="Usable Value" />
-            <TableColumn fx:id="inventoryDeviceHistoryDateColumn" prefWidth="100.0" text="Inventory Date" />
+          <TableColumn fx:id="inventoryDeviceHistoryIdColumn" prefWidth="96.0" text="ID" />
+          <TableColumn fx:id="inventoryDeviceHistoryNameColumn" prefWidth="116.0" text="Device Name" />
+            <TableColumn fx:id="inventoryDeviceHistoryUsableColumn" prefWidth="119.0" text="Usable Value" />
+            <TableColumn fx:id="inventoryDeviceHistoryDateColumn" prefWidth="136.0" text="Inventory Date" />
         </columns>
       </TableView>
       <Text layoutX="31.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory device list" wrappingWidth="180.140625">
@@ -64,7 +63,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <Text layoutX="863.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory History" wrappingWidth="211.8828125">
+      <Text layoutX="782.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory History" wrappingWidth="211.8828125">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

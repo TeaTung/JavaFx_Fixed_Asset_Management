@@ -15,18 +15,17 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </Text>
-        <TableView fx:id="liquidationDeviceTB" layoutX="31.0" layoutY="118.0" onMouseClicked="#rowSelectedHandler" prefHeight="456.0" prefWidth="793.0" AnchorPane.rightAnchor="456.0">
+        <TableView fx:id="liquidationDeviceTB" layoutX="31.0" layoutY="118.0" onMouseClicked="#rowSelectedHandler" prefHeight="456.0" prefWidth="722.0" AnchorPane.rightAnchor="527.0">
             <columns>
                 <TableColumn fx:id="liquidationDeviceIdColumn" prefWidth="91.0" text="ID" />
-                <TableColumn fx:id="liquidationDeviceNameColumn" prefWidth="118.0" text="Device Name" />
-                <TableColumn fx:id="liquidationDeviceDepartmentColumn" minWidth="4.0" prefWidth="148.0" text="Department" />
-                <TableColumn fx:id="liquidationDeviceStatusColumn" prefWidth="112.0" text="Status" />
-                <TableColumn fx:id="liquidationDeviceSpecificationColumn" prefWidth="116.0" text="Specification" />
-                <TableColumn fx:id="liquidationDeviceUsedColumn" prefWidth="90.0" text="Used year" />
-                <TableColumn fx:id="liquidationDeviceDamageColumn" minWidth="4.0" prefWidth="117.0" text="Damage percent" />
+                <TableColumn fx:id="liquidationDeviceNameColumn" prefWidth="127.0" text="Device Name" />
+                <TableColumn fx:id="liquidationDeviceStatusColumn" prefWidth="121.0" text="Status" />
+                <TableColumn fx:id="liquidationDeviceSpecificationColumn" prefWidth="122.0" text="Specification" />
+                <TableColumn fx:id="liquidationDeviceUsedColumn" prefWidth="110.0" text="Used year" />
+                <TableColumn fx:id="liquidationDeviceDamageColumn" minWidth="4.0" prefWidth="150.0" text="Damage percent" />
             </columns>
         </TableView>
-        <Button fx:id="liquidationBtn" layoutX="735.0" layoutY="597.0" mnemonicParsing="false" onAction="#liquidationBtnAction" prefHeight="33.0" prefWidth="89.0" text="Liquidate" textFill="RED" AnchorPane.bottomAnchor="90.0">
+        <Button fx:id="liquidationBtn" layoutX="664.0" layoutY="597.0" mnemonicParsing="false" onAction="#liquidationBtnAction" prefHeight="33.0" prefWidth="89.0" text="Liquidate" textFill="RED" AnchorPane.bottomAnchor="90.0">
             <font>
                 <Font size="14.0" />
             </font>
@@ -41,27 +40,28 @@
                 <Font size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="searchTF" layoutX="30.0" layoutY="597.0" onKeyPressed="#textChangeHandler" prefHeight="33.0" prefWidth="493.0" promptText="Serach with Device Name | Department Name">
+        <TextField fx:id="searchTF" layoutX="30.0" layoutY="597.0" onKeyPressed="#textChangeHandler" prefHeight="33.0" prefWidth="317.0" promptText="Serach with Device Name">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
-        <TableView fx:id="liquidationDeviceHistoryTV" layoutX="861.0" layoutY="118.0" prefHeight="510.0" prefWidth="389.0">
-            <columns>
-                <TableColumn fx:id="liquidationDeviceHistoryIdColumn" prefWidth="93.0" text="ID" />
-                <TableColumn fx:id="liquidationDeviceHistoryNameColumn" prefWidth="166.0" text="Device Name" />
-                <TableColumn fx:id="liquidationDeviceHistoryDateColumn" prefWidth="129.0" text="Liquidated Date" />
-            </columns>
-        </TableView>
         <Text layoutX="31.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liquidation device list" wrappingWidth="180.140625">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Text>
-        <Text layoutX="863.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liquidation History" wrappingWidth="211.8828125">
-            <font>
-                <Font name="System Bold" size="16.0" />
-            </font>
-        </Text>
+      <TableView fx:id="inventoryDeviceHistoryTV" layoutX="782.0" layoutY="119.0" prefHeight="512.0" prefWidth="468.0">
+         <columns>
+            <TableColumn fx:id="inventoryDeviceHistoryIdColumn" prefWidth="96.0" text="ID" />
+            <TableColumn fx:id="inventoryDeviceHistoryNameColumn" prefWidth="116.0" text="Device Name" />
+            <TableColumn fx:id="inventoryDeviceHistoryUsableColumn" prefWidth="119.0" text="Usable Value" />
+            <TableColumn fx:id="inventoryDeviceHistoryDateColumn" prefWidth="136.0" text="Inventory Date" />
+         </columns>
+      </TableView>
+      <Text layoutX="782.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory History" wrappingWidth="211.8828125">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

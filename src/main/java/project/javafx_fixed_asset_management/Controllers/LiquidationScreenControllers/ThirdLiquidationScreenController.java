@@ -32,30 +32,30 @@ public class ThirdLiquidationScreenController implements Initializable {
     Button finishBtn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceDamageColumn;
+    TableColumn<DEVICE, String> liquidationDeviceDamageColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceDepartmentColumn;
+    TableColumn<DEVICE, String> liquidationDeviceDepartmentColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceIdColumn;
-
-
-    @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceNameColumn;
+    TableColumn<DEVICE, String> liquidationDeviceIdColumn;
 
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceSpecificationColumn;
+    TableColumn<DEVICE, String> liquidationDeviceNameColumn;
+
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceStatusColumn;
+    TableColumn<DEVICE, String> liquidationDeviceSpecificationColumn;
 
     @FXML
-    TableView<DELIVERY_NOTE> liquidationDeviceTB;
+    TableColumn<DEVICE, String> liquidationDeviceStatusColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceUsedColumn;
+    TableView<DEVICE> liquidationDeviceTB;
+
+    @FXML
+    TableColumn<DEVICE, String> liquidationDeviceUsedColumn;
 
     @FXML
     Button liquidationBtn;
@@ -64,32 +64,34 @@ public class ThirdLiquidationScreenController implements Initializable {
     @FXML
     TextField searchTF;
 
+    @FXML
+    TableColumn<INVENTORY, String> inventoryDeviceHistoryDateColumn;
 
     @FXML
-    TableColumn<LIQUIDATION, String> liquidationDeviceHistoryDateColumn;
+    TableColumn<INVENTORY, String> inventoryDeviceHistoryIdColumn;
 
     @FXML
-    TableColumn<LIQUIDATION, String> liquidationDeviceHistoryIdColumn;
+    TableColumn<INVENTORY, String> inventoryDeviceHistoryNameColumn;
 
     @FXML
-    TableColumn<LIQUIDATION, String> liquidationDeviceHistoryNameColumn;
+    TableView<INVENTORY> inventoryDeviceHistoryTV;
 
     @FXML
-    TableView<LIQUIDATION> liquidationDeviceHistoryTV;
+    TableColumn<INVENTORY, String> inventoryDeviceHistoryUsableColumn;
 
 
-
-    public ObservableList<DELIVERY_NOTE> listLiquidationDevice;
-    public ObservableList<LIQUIDATION> listLiquidation;
+    public ObservableList<DEVICE> listLiquidationDevice;
+    public ObservableList<INVENTORY> listInventory;
     public ObservableList<PERSON> listLiquidationPeople;
     private ArrayList<String> listLiquidationId = new ArrayList<>();
-    FilteredList<DELIVERY_NOTE> filteredList;
+    FilteredList<DEVICE> filteredList;
 
     LocalDate liquidationDate;
 
     @FXML
     void liquidationBtnAction(ActionEvent event) {
-        DELIVERY_NOTE selectedItem = liquidationDeviceTB.getSelectionModel().getSelectedItem();
+
+        DEVICE selectedItem = liquidationDeviceTB.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "The " + selectedItem.getDeviceName() + " will be liquidated, this action can't be undone later. Are you sure to perform this action? " , ButtonType.YES, ButtonType.CANCEL);
         alert.showAndWait();
 
@@ -101,7 +103,11 @@ public class ThirdLiquidationScreenController implements Initializable {
             listLiquidationId.add(liquidationId);
             liquidation.insert("INSERT INTO TBLIQUIDATION(LIQUIDATIONID, DEVICEID, LIQUIDATIONDATE) VALUES (?, ?, ?)", liquidationId, selectedItem.getDeviceId(), liquidationDate.toString());
             device.update("UPDATE TBDEVICE SET DEVICESTATUS = ? WHERE DEVICEID = ?", "Liquidated", selectedItem.getDeviceId());
+            Alert information = new Alert(Alert.AlertType.INFORMATION, "The " + selectedItem.getDeviceName() + " have been liquidated!" , ButtonType.OK);
+            information.showAndWait();
+            listLiquidationDevice.remove(selectedItem);
             updateLiquidationHistoryTable();
+            backBtn.setDisable(true);
         }
     }
 
@@ -119,7 +125,7 @@ public class ThirdLiquidationScreenController implements Initializable {
         stage.show();
     }
 
-    void initData(ObservableList<PERSON> listLiquidationPeople, LocalDate liquidationDate, ObservableList<DELIVERY_NOTE> listLiquidationDevice) {
+    void initData(ObservableList<PERSON> listLiquidationPeople, LocalDate liquidationDate, ObservableList<DEVICE> listLiquidationDevice) {
         this.listLiquidationPeople = listLiquidationPeople;
         this.liquidationDate = liquidationDate;
         this.listLiquidationDevice = listLiquidationDevice;
@@ -159,13 +165,12 @@ public class ThirdLiquidationScreenController implements Initializable {
     }
 
     private void getDataInTableView() {
-        liquidationDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceId"));
-        liquidationDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceName"));
-        liquidationDeviceDepartmentColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("departmentName"));
-        liquidationDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("percentDamage"));
-        liquidationDeviceSpecificationColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("specification"));
-        liquidationDeviceUsedColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("yearUsed"));
-        liquidationDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceStatus"));
+        liquidationDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceId"));
+        liquidationDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceName"));
+        liquidationDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("percentDamage"));
+        liquidationDeviceSpecificationColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("specification"));
+        liquidationDeviceUsedColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("yearUsed"));
+        liquidationDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceStatus"));
 
         liquidationDeviceTB.setItems(listLiquidationDevice);
     }
@@ -181,23 +186,27 @@ public class ThirdLiquidationScreenController implements Initializable {
     }
 
     void updateLiquidationHistoryTable() {
-        listLiquidation = FXCollections.observableArrayList();
-        DELIVERY_NOTE selectedItem = liquidationDeviceTB.getSelectionModel().getSelectedItem();
-        var deviceId = selectedItem.getDeviceId();
-        var liquidation = new DATABASE_DAO<>(LIQUIDATION.class);
-        try {
-            listLiquidation = FXCollections.observableArrayList(liquidation.selectList(
-                    "SELECT  LiquidationId, tbDevice.DeviceId, LiquidationDate, DeviceName FROM tbLiquidation, tbDevice WHERE tbLiquidation.DeviceId = ? AND tbDevice.DeviceId = tbLiquidation.DeviceId", deviceId));
-        } catch (Exception e) {
-            Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
-            information.showAndWait();
-            return;
-        }
-        liquidationDeviceHistoryIdColumn.setCellValueFactory(new PropertyValueFactory<LIQUIDATION, String>("liquidationId"));
-        liquidationDeviceHistoryNameColumn.setCellValueFactory(new PropertyValueFactory<LIQUIDATION, String>("deviceName"));
-        liquidationDeviceHistoryDateColumn.setCellValueFactory(new PropertyValueFactory<LIQUIDATION, String>("liquidationDate"));
+        listInventory = FXCollections.observableArrayList();
+        if(liquidationDeviceTB.getSelectionModel().getSelectedItem() != null) {
+            DEVICE selectedItem = liquidationDeviceTB.getSelectionModel().getSelectedItem();
 
-        liquidationDeviceHistoryTV.setItems(listLiquidation);
+            var deviceId = selectedItem.getDeviceId();
+            var inventory = new DATABASE_DAO<>(INVENTORY.class);
+            try {
+                listInventory = FXCollections.observableArrayList(inventory.selectList(
+                        "SELECT  InventoryId, tbDevice.DeviceId, UsableValue,  InventoryDate, DeviceName FROM tbInventory, tbDevice WHERE tbInventory.DeviceId = ? AND tbDevice.DeviceId = tbInventory.DeviceId", deviceId));
+            } catch (Exception e) {
+                Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+                information.showAndWait();
+                return;
+            }
+            inventoryDeviceHistoryIdColumn.setCellValueFactory(new PropertyValueFactory<INVENTORY, String>("inventoryId"));
+            inventoryDeviceHistoryNameColumn.setCellValueFactory(new PropertyValueFactory<INVENTORY, String>("deviceName"));
+            inventoryDeviceHistoryUsableColumn.setCellValueFactory(new PropertyValueFactory<INVENTORY, String>("usableValue"));
+            inventoryDeviceHistoryDateColumn.setCellValueFactory(new PropertyValueFactory<INVENTORY, String>("InventoryDate"));
+
+            inventoryDeviceHistoryTV.setItems(listInventory);
+        }
     }
 
     @FXML
@@ -219,15 +228,13 @@ public class ThirdLiquidationScreenController implements Initializable {
 
                 if (deliveryNote.getDeviceName().toLowerCase().indexOf(nameSearchValue) > -1) {
                     return true;
-                } else if (deliveryNote.getDepartmentName().toLowerCase().indexOf(nameSearchValue) > -1) {
-                    return true;
                 }
                 return false;
             });
         }));
 
 
-        SortedList<DELIVERY_NOTE> sortedList = new SortedList<>(filteredList);
+        SortedList<DEVICE> sortedList = new SortedList<>(filteredList);
 
         sortedList.comparatorProperty().bind(liquidationDeviceTB.comparatorProperty());
 

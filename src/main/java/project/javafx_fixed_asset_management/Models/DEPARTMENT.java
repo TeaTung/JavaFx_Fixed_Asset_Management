@@ -7,6 +7,17 @@ public class DEPARTMENT {
     String totalDevice;
     String totalPeople;
 
+    public  DEPARTMENT() {}
+
+    public DEPARTMENT(String departmentName) {
+        this.departmentId = departmentName;
+        this.departmentName = departmentName;
+    }
+
+    @Override
+    public String toString() {
+        return departmentName;
+    }
 
     public String getDepartmentId() {
         return departmentId;

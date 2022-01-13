@@ -18,12 +18,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
-import project.javafx_fixed_asset_management.Controllers.TranferScreenController.ConfirmTransferDevicesDialogController;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEPARTMENT;
 import project.javafx_fixed_asset_management.Models.DEVICE;
-import project.javafx_fixed_asset_management.Models.TRANSFORM;
+import project.javafx_fixed_asset_management.Models.TRANSFER;
 
 import java.io.IOException;
 import java.net.URL;
@@ -85,7 +84,7 @@ public class TransferDevicesScreenController implements Initializable {
 
     public ObservableList<DEVICE> listDevice;
     public ObservableList<DEVICE> listTransferDevice;
-    public ObservableList<TRANSFORM> listTransform;
+    public ObservableList<TRANSFER> listTransform;
     public ObservableList<DEPARTMENT> listDepartment;
 
     FilteredList<DEVICE> filteredList;
@@ -214,7 +213,7 @@ public class TransferDevicesScreenController implements Initializable {
 
     public void getDataInTableView() {
         var devices = new DATABASE_DAO<>(DEVICE.class);
-        var transform = new DATABASE_DAO<>(TRANSFORM.class);
+        var transform = new DATABASE_DAO<>(TRANSFER.class);
         var departments = new DATABASE_DAO<>(DEPARTMENT.class);
 
         listDepartment = FXCollections.observableArrayList(departments.selectList(
@@ -288,7 +287,7 @@ public class TransferDevicesScreenController implements Initializable {
         int randomId = random.nextInt(999);
 
         if (listTransform.size() != 0) {
-            for (TRANSFORM transform : listTransform) {
+            for (TRANSFER transform : listTransform) {
                 if (transform.getTransformId() != null) {
                     if (randomId == Integer.parseInt(transform.getTransformId())) {
                         return getRandomId();

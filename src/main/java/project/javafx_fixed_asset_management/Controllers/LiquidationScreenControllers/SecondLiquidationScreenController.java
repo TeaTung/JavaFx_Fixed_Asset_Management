@@ -18,13 +18,12 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
-import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
-import project.javafx_fixed_asset_management.Models.DELIVERY_NOTE;
-import project.javafx_fixed_asset_management.Models.PERSON;
+import project.javafx_fixed_asset_management.Models.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SecondLiquidationScreenController implements Initializable {
@@ -44,49 +43,50 @@ public class SecondLiquidationScreenController implements Initializable {
     Text errorLabel;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> existedDeviceDamageColumn;
+    TableColumn<DEVICE, String> existedDeviceDamageColumn;
+
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> existedDeviceDepartmentColumn;
+    TableColumn<DEVICE, String> existedDeviceIdColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> existedDeviceIdColumn;
+    TableColumn<DEVICE, String> existedDeviceNameColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> existedDeviceNameColumn;
+    TableColumn<DEVICE, String> existedDeviceStatusColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> existedDeviceStatusColumn;
+    TableView<DEVICE> existedDeviceTB;
 
     @FXML
-    TableView<DELIVERY_NOTE> existedDeviceTB;
+    TableColumn<DEVICE, String> liquidationDeviceDamageColumn;
+
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceDamageColumn;
+    TableColumn<DEVICE, String> liquidationDeviceIdColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceDepartmentColumn;
+    TableColumn<DEVICE, String> liquidationDeviceNameColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceIdColumn;
+    TableColumn<DEVICE, String> liquidationDeviceStatusColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceNameColumn;
-
-    @FXML
-    TableColumn<DELIVERY_NOTE, String> liquidationDeviceStatusColumn;
-
-    @FXML
-    TableView<DELIVERY_NOTE> liquidationDeviceTB;
+    TableView<DEVICE> liquidationDeviceTB;
 
     @FXML
     Button removeBtn;
 
-    public ObservableList<DELIVERY_NOTE> listDevice;
-    public ObservableList<DELIVERY_NOTE> listLiquidationDevice;
+    @FXML
+    ComboBox<DEPARTMENT> departmentCbb;
+
+    public ObservableList<DEVICE> listDevice;
+    public ObservableList<DEVICE> listLiquidationDevice;
     public ObservableList<PERSON> listLiquidationPeople;
-    FilteredList<DELIVERY_NOTE> filteredList;
+    FilteredList<DEVICE> filteredList;
     LocalDate liquidationDate;
+    public ObservableList<DEPARTMENT> listDepartment;
+    public String departmentId;
 
     void initData(ObservableList<PERSON> listLiquidationPeople, LocalDate liquidationDate) {
         this.listLiquidationPeople = listLiquidationPeople;
@@ -120,7 +120,7 @@ public class SecondLiquidationScreenController implements Initializable {
 
     @FXML
     void addBtnAction(ActionEvent event) {
-        DELIVERY_NOTE addingDevice = existedDeviceTB.getSelectionModel().getSelectedItem();
+        DEVICE addingDevice = existedDeviceTB.getSelectionModel().getSelectedItem();
 
         if (addingDevice != null) {
             listLiquidationDevice.add(addingDevice);
@@ -133,7 +133,7 @@ public class SecondLiquidationScreenController implements Initializable {
 
     @FXML
     void removeBtnAction(ActionEvent event) {
-        DELIVERY_NOTE removingDevice = liquidationDeviceTB.getSelectionModel().getSelectedItem();
+        DEVICE removingDevice = liquidationDeviceTB.getSelectionModel().getSelectedItem();
 
         if (removingDevice != null) {
             listDevice.add(removingDevice);
@@ -149,7 +149,7 @@ public class SecondLiquidationScreenController implements Initializable {
 
     @FXML
     public void backButtonAction(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/first_inventory_screen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/first_liquidation_screen.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
@@ -164,6 +164,7 @@ public class SecondLiquidationScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setProperty();
         getDataInTableView();
         setSearchInTableView();
         errorLabel.setVisible(false);
@@ -178,12 +179,71 @@ public class SecondLiquidationScreenController implements Initializable {
         errorLabel.setVisible(false);
         return true;
     }
+    @FXML
+    void cbbOnChangeListener(ActionEvent event) {
+        DEPARTMENT selectedDepartment = (DEPARTMENT)departmentCbb.getValue();
+        departmentId = selectedDepartment.getDepartmentId();
+        getDataInTableView();
+    }
 
+    private void setProperty() {
+        System.out.println("JUMPED");
+        var departments = new DATABASE_DAO<>(DEPARTMENT.class);
+        listDepartment = FXCollections.observableArrayList(departments.selectList(
+                "SELECT * FROM tbDepartment"
+        ));
+        listDepartment.add(0, new DEPARTMENT("All Department"));
+        departmentCbb.setItems(listDepartment);
+        departmentCbb.setValue(listDepartment.get(0));
+    }
     private void getDataInTableView() {
-        var devices = new DATABASE_DAO<>(DELIVERY_NOTE.class);
+        var devices = new DATABASE_DAO<>(DEVICE.class);
+        var transfer = new DATABASE_DAO<>(TRANSFER.class);
+        ObservableList<TRANSFER> listTransfer;
+        ArrayList<String> listDeviceId = new ArrayList<>();
         try {
-            listDevice = FXCollections.observableArrayList(devices.selectList(
-                    "SELECT TBDEVICE.DEVICEID, DEVICENAME, DEPARTMENTNAME, DEVICESTATUS, PERCENTDAMAGE, YEARUSED, YEARMANUFACTURE, PRICE, SPECIFICATION FROM TBDEVICE, TBDEPARTMENT, TBDELIVERYNOTE WHERE TBDEVICE.DeviceId = tbDeliveryNote.DeviceId AND tbDepartment.DepartmentId = tbDeliveryNote.DepartmentId"));
+            if(departmentId == null || departmentId.equals("All Department")) {
+                listTransfer = FXCollections.observableArrayList(transfer.selectList("SELECT DeviceId FROM TBTRANSFER"));
+                String[] listDeviceIdTemp;
+                for (int i = 0; i < listTransfer.size(); i++) {
+                    String listDeviceIDString = listTransfer.get(i).getDeviceID();
+                    listDeviceIdTemp = listDeviceIDString.split(",");
+                    for (int j = 0; j < listDeviceIdTemp.length; j++) {
+                        listDeviceId.add(listDeviceIdTemp[j]);
+                    }
+                }
+            }
+            else{
+                listTransfer = FXCollections.observableArrayList(transfer.selectList("SELECT DeviceId FROM TBTRANSFER WHERE DepartmentId = '" + departmentId + "'"));
+                String[] listDeviceIdTemp;
+                for (int i = 0; i < listTransfer.size(); i++) {
+                    String listDeviceIDString = listTransfer.get(i).getDeviceID();
+                    listDeviceIdTemp = listDeviceIDString.split(",");
+                    for (int j = 0; j < listDeviceIdTemp.length; j++) {
+                        listDeviceId.add(listDeviceIdTemp[j]);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+            information.showAndWait();
+            return;
+        }
+
+        try {
+            if(!listDeviceId.isEmpty()) {
+                StringBuilder selectString = new StringBuilder("SELECT DEVICEID, DEVICENAME, DEVICESTATUS, YEARUSED, YEARMANUFACTURE, PRICE, SPECIFICATION, PercentDamage FROM tbDevice WHERE  deviceId =  '" + listDeviceId.get(0).toString() + "'");
+                for (int i = 1; i < listDeviceId.size(); i++) {
+                    selectString.append(" OR deviceId =  '").append(listDeviceId.get(i).toString()).append("'");
+
+                }
+                selectString.append(" AND deviceStatus !=  'Liquidated'");
+                listDevice = FXCollections.observableArrayList(devices.selectList(selectString.toString()));
+            }
+            else{
+                listDevice.clear();
+            }
         } catch (Exception e) {
             Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
             information.showAndWait();
@@ -192,17 +252,15 @@ public class SecondLiquidationScreenController implements Initializable {
 
         listLiquidationDevice = FXCollections.observableArrayList();
 
-        existedDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceId"));
-        existedDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceName"));
-        existedDeviceDepartmentColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("departmentName"));
-        existedDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("percentDamage"));
-        existedDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceStatus"));
+        existedDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceId"));
+        existedDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceName"));
+        existedDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("percentDamage"));
+        existedDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceStatus"));
 
-        liquidationDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceId"));
-        liquidationDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceName"));
-        liquidationDeviceDepartmentColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("departmentName"));
-        liquidationDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("percentDamage"));
-        liquidationDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceStatus"));
+        liquidationDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceId"));
+        liquidationDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceName"));
+        liquidationDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("percentDamage"));
+        liquidationDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceStatus"));
 
         existedDeviceTB.setItems(listDevice);
     }
@@ -211,7 +269,7 @@ public class SecondLiquidationScreenController implements Initializable {
         filteredList = new FilteredList<>(listDevice, b -> true);
 
         searchTF.textProperty().addListener(((observableValue, oldValue, newValue) -> {
-            filteredList.setPredicate(deliveryNote -> {
+            filteredList.setPredicate(device -> {
                 if (newValue == null || newValue.isBlank() || newValue.isEmpty()) {
                     return true;
                 }
@@ -219,9 +277,7 @@ public class SecondLiquidationScreenController implements Initializable {
                 String nameSearchValue = newValue.toLowerCase();
 
 
-                if (deliveryNote.getDeviceName().toLowerCase().indexOf(nameSearchValue) > -1) {
-                    return true;
-                } else if (deliveryNote.getDepartmentName().toLowerCase().indexOf(nameSearchValue) > -1){
+                if (device.getDeviceName().toLowerCase().indexOf(nameSearchValue) > -1) {
                     return true;
                 }
                 return false;
@@ -229,10 +285,16 @@ public class SecondLiquidationScreenController implements Initializable {
         }));
 
 
-        SortedList<DELIVERY_NOTE> sortedList = new SortedList<>(filteredList);
+        SortedList<DEVICE> sortedList = new SortedList<>(filteredList);
 
         sortedList.comparatorProperty().bind(existedDeviceTB.comparatorProperty());
 
         existedDeviceTB.setItems(sortedList);
+    }
+
+
+    @FXML
+    void searchHandler(KeyEvent event) {
+        setSearchInTableView();
     }
 }

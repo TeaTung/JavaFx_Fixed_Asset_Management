@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="jmetro-11.6.151">
+  <library name="jmetro-11.6.152">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../JavaFx Project/jmetro-11.6.15.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/jmetro-11.6.15.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

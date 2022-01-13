@@ -16,11 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import project.javafx_fixed_asset_management.Main;
-import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
-import project.javafx_fixed_asset_management.Models.DELIVERY_NOTE;
-import project.javafx_fixed_asset_management.Models.INVENTORY;
-import project.javafx_fixed_asset_management.Models.PERSON;
-import project.javafx_fixed_asset_management.Models.PERSON_AND_INVENTORY;
+import project.javafx_fixed_asset_management.Models.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,30 +32,30 @@ public class ThirdInventoryScreenController implements Initializable {
     Button finishBtn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> inventoryDeviceDamageColumn;
+    TableColumn<DEVICE, String> inventoryDeviceDamageColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> inventoryDeviceDepartmentColumn;
+    TableColumn<DEVICE, String> inventoryDeviceDepartmentColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> inventoryDeviceIdColumn;
-
-
-    @FXML
-    TableColumn<DELIVERY_NOTE, String> inventoryDeviceNameColumn;
+    TableColumn<DEVICE, String> inventoryDeviceIdColumn;
 
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> inventoryDeviceSpecificationColumn;
+    TableColumn<DEVICE, String> inventoryDeviceNameColumn;
+
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> inventoryDeviceStatusColumn;
+    TableColumn<DEVICE, String> inventoryDeviceSpecificationColumn;
 
     @FXML
-    TableView<DELIVERY_NOTE> inventoryDeviceTB;
+    TableColumn<DEVICE, String> inventoryDeviceStatusColumn;
 
     @FXML
-    TableColumn<DELIVERY_NOTE, String> inventoryDeviceUsedColumn;
+    TableView<DEVICE> inventoryDeviceTB;
+
+    @FXML
+    TableColumn<DEVICE, String> inventoryDeviceUsedColumn;
 
     @FXML
     Button updateBtn;
@@ -87,17 +83,17 @@ public class ThirdInventoryScreenController implements Initializable {
     TableColumn<INVENTORY, String> inventoryDeviceHistoryUsableColumn;
 
 
-    public ObservableList<DELIVERY_NOTE> listInventoryDevice;
+    public ObservableList<DEVICE> listInventoryDevice;
     public ObservableList<INVENTORY> listInventory;
     public ObservableList<PERSON> listInventoryPeople;
     private ArrayList<String> listInventoryId = new ArrayList<>();
-    FilteredList<DELIVERY_NOTE> filteredList;
+    FilteredList<DEVICE> filteredList;
 
     LocalDate inventoryDate;
 
     @FXML
     void updateBtnAction(ActionEvent event) {
-        DELIVERY_NOTE selectedItem = inventoryDeviceTB.getSelectionModel().getSelectedItem();
+        DEVICE selectedItem = inventoryDeviceTB.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Usable value of " + selectedItem.getDeviceName() + " to " + usableValueTF.getText() + " percent?", ButtonType.YES, ButtonType.CANCEL);
         alert.showAndWait();
 
@@ -124,7 +120,7 @@ public class ThirdInventoryScreenController implements Initializable {
         stage.show();
     }
 
-    void initData(ObservableList<PERSON> listInventoryPeople, LocalDate inventoryDate, ObservableList<DELIVERY_NOTE> listInventoryDevice) {
+    void initData(ObservableList<PERSON> listInventoryPeople, LocalDate inventoryDate, ObservableList<DEVICE> listInventoryDevice) {
         this.listInventoryPeople = listInventoryPeople;
         this.inventoryDate = inventoryDate;
         this.listInventoryDevice = listInventoryDevice;
@@ -164,13 +160,12 @@ public class ThirdInventoryScreenController implements Initializable {
     }
 
     private void getDataInTableView() {
-        inventoryDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceId"));
-        inventoryDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceName"));
-        inventoryDeviceDepartmentColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("departmentName"));
-        inventoryDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("percentDamage"));
-        inventoryDeviceSpecificationColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("specification"));
-        inventoryDeviceUsedColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("yearUsed"));
-        inventoryDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DELIVERY_NOTE, String>("deviceStatus"));
+        inventoryDeviceIdColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceId"));
+        inventoryDeviceNameColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceName"));
+        inventoryDeviceDamageColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("percentDamage"));
+        inventoryDeviceSpecificationColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("specification"));
+        inventoryDeviceUsedColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("yearUsed"));
+        inventoryDeviceStatusColumn.setCellValueFactory(new PropertyValueFactory<DEVICE, String>("deviceStatus"));
 
         inventoryDeviceTB.setItems(listInventoryDevice);
     }
@@ -187,7 +182,7 @@ public class ThirdInventoryScreenController implements Initializable {
 
     void updateInventoryHistoryTable() {
         listInventory = FXCollections.observableArrayList();
-        DELIVERY_NOTE selectedItem = inventoryDeviceTB.getSelectionModel().getSelectedItem();
+        DEVICE selectedItem = inventoryDeviceTB.getSelectionModel().getSelectedItem();
         var deviceId = selectedItem.getDeviceId();
         var inventory = new DATABASE_DAO<>(INVENTORY.class);
         try {
@@ -215,7 +210,7 @@ public class ThirdInventoryScreenController implements Initializable {
         filteredList = new FilteredList<>(listInventoryDevice, b -> true);
 
         searchTF.textProperty().addListener(((observableValue, oldValue, newValue) -> {
-            filteredList.setPredicate(deliveryNote -> {
+            filteredList.setPredicate(device -> {
                 if (newValue == null || newValue.isBlank() || newValue.isEmpty()) {
                     return true;
                 }
@@ -223,9 +218,7 @@ public class ThirdInventoryScreenController implements Initializable {
                 String nameSearchValue = newValue.toLowerCase();
 
 
-                if (deliveryNote.getDeviceName().toLowerCase().indexOf(nameSearchValue) > -1) {
-                    return true;
-                } else if (deliveryNote.getDepartmentName().toLowerCase().indexOf(nameSearchValue) > -1) {
+                if (device.getDeviceName().toLowerCase().indexOf(nameSearchValue) > -1) {
                     return true;
                 }
                 return false;
@@ -233,7 +226,7 @@ public class ThirdInventoryScreenController implements Initializable {
         }));
 
 
-        SortedList<DELIVERY_NOTE> sortedList = new SortedList<>(filteredList);
+        SortedList<DEVICE> sortedList = new SortedList<>(filteredList);
 
         sortedList.comparatorProperty().bind(inventoryDeviceTB.comparatorProperty());
 

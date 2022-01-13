@@ -49,7 +49,7 @@ public class UpdateAccountInformationDialogController {
     Button confirmBtn;
 
     PROFILE userProfile;
-    int userId;
+    String userId;
 
     public void backButtonAction(ActionEvent event) throws IOException {
         backToPreviousDialog(event);
@@ -125,7 +125,7 @@ public class UpdateAccountInformationDialogController {
         backToPreviousDialog(event);
     }
 
-    public void init(PROFILE profile, int id ) {
+    public void init(PROFILE profile, String id ) {
         userProfile = profile;
         userId = id;
 
