@@ -28,7 +28,6 @@ public class ManagerHomeScreenController implements Initializable {
 
     public void initData(String accountId) {
         this.accountId = accountId;
-
     }
 
     @FXML

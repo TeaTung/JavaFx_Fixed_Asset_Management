@@ -185,6 +185,7 @@ public class RepairDevicesScreenController implements Initializable {
         deviceTableView.setItems(listDevice);
     }
 
+
     public void setSearchInTableView() {
         filteredList = new FilteredList<>(listDevice, b -> true);
 

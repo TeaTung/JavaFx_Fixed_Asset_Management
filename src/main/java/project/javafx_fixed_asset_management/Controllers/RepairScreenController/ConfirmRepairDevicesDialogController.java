@@ -114,9 +114,14 @@ public class ConfirmRepairDevicesDialogController {
             for (int i = 0; i < listRepairingDevice.size(); i++) {
                 listDevice.add(listRepairingDevice.get(i).getDeviceId());
             }
-            repair.setListDevice(listDevice);
 
+            repair.setListDevice(listDevice);
             repairSQL.insert(insertSQL(repair));
+
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Repair Devices");
+            alert1.setHeaderText("Repair Successfully");
+            alert1.show();
 
             backPreviousScreen(event);
 

@@ -100,6 +100,22 @@ public class TransferDevicesScreenController implements Initializable {
         deviceTransferTableView.setItems(listTransferDevice);
     }
 
+    public void addDepartmentActionButton(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/TransferScreen/add_department_dialog.fxml"));
+        Node node = (Node) event.getSource();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Add department");
+
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
+
+        stage.setScene(scene);
+        stage.showAndWait();
+
+        init();
+    }
     public void removeDeviceButtonAction(ActionEvent event) {
         DEVICE addingDevice = deviceTransferTableView.getSelectionModel().getSelectedItem();
 
@@ -163,7 +179,7 @@ public class TransferDevicesScreenController implements Initializable {
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
         stage.setScene(scene);
-        stage.show();
+        stage.showAndWait();
 
         init();
     }
@@ -220,7 +236,7 @@ public class TransferDevicesScreenController implements Initializable {
                 "SELECT * FROM tbDepartment"
         ));
         listDevice = FXCollections.observableArrayList(devices.selectList(
-                "SELECT DeviceId, DeviceName, Specification FROM tbDevice"));
+                "SELECT DeviceId, DeviceName, Specification FROM tbDevice WHERE tbDevice.DeviceStatus <>  ?","Transferred"));
         listTransferDevice = FXCollections.observableArrayList();
         listTransform = FXCollections.observableArrayList(transform.selectList(
                 "SELECT * FROM tbTransfer"));
