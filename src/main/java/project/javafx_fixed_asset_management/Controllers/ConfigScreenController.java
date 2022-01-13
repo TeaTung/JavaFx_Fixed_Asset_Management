@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -18,7 +17,6 @@ import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEPARTMENT;
 import project.javafx_fixed_asset_management.Models.UNIT;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.UUID;

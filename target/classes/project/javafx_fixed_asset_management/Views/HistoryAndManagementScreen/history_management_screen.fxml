@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,7 +13,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -143,7 +141,7 @@
                                         <TableColumn fx:id="dateLiquidationColumn" prefWidth="172.79996337890623" text="Date of liquidtation" />
                                     </columns>
                                 </TableView>
-                                <TableView fx:id="liquidationDeviceTableView" layoutX="607.0" layoutY="76.0" prefHeight="568.0" prefWidth="582.0" styleClass="column-grid-lines" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="106.39999999999998" AnchorPane.leftAnchor="607.0">
+                                <TableView fx:id="liquidationDeviceTableView" layoutX="607.0" layoutY="76.0" prefHeight="586.0" prefWidth="582.0" styleClass="column-grid-lines" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="607.0">
                                     <columns>
                                         <TableColumn fx:id="idDeviceLiquidationColumn" prefWidth="139.2000026702881" text="ID" />
                                         <TableColumn fx:id="nameLiquidationColumn" prefWidth="112.00006103515625" text="Name" />
@@ -152,30 +150,30 @@
 
                                     </columns>
                                 </TableView>
-                                <DatePicker fx:id="liquidationDateOfLiquidationDTP" editable="false" layoutX="690.0" layoutY="669.0" prefHeight="38.0" prefWidth="226.0" />
-                                <TableView fx:id="liquidationPersonTableView" layoutX="32.0" layoutY="394.0" prefHeight="250.0" prefWidth="546.0" styleClass="column-grid-lines" tableMenuButtonVisible="true">
+                                <DatePicker fx:id="liquidationDateOfLiquidationDTP" editable="false" layoutX="690.0" layoutY="685.0" prefHeight="38.0" prefWidth="226.0" />
+                                <TableView fx:id="liquidationPersonTableView" layoutX="32.0" layoutY="394.0" prefHeight="269.0" prefWidth="546.0" styleClass="column-grid-lines" tableMenuButtonVisible="true">
                                     <columns>
                                         <TableColumn fx:id="personNameLiquidationColumn" prefWidth="152.79996871948242" text="Name" />
                                         <TableColumn fx:id="personDepartmentLiquidationColumn" minWidth="0.0" prefWidth="190.40003967285156" text="Department" />
                                         <TableColumn fx:id="personTitleLiquidationColumn" minWidth="0.0" prefWidth="199.19998168945312" text="Title" />
                                     </columns>
                                 </TableView>
-                                <Button fx:id="backBtn13" layoutX="30.0" layoutY="669.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="38.0" prefWidth="116.0" text="Back" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn13" layoutX="30.0" layoutY="685.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="38.0" prefWidth="116.0" text="Back" AnchorPane.leftAnchor="30.0">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button defaultButton="true" layoutX="1075.0" layoutY="669.0" mnemonicParsing="false" onAction="#liquidationExportReportButtonAction" prefHeight="38.0" prefWidth="116.0" text="Export" textFill="#0d00ff" AnchorPane.bottomAnchor="37.60000000000002">
+                                <Button defaultButton="true" layoutX="1075.0" layoutY="685.0" mnemonicParsing="false" onAction="#liquidationExportReportButtonAction" prefHeight="38.0" prefWidth="116.0" text="Export" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="liquidationSearchBtn" layoutX="941.0" layoutY="669.0" mnemonicParsing="false" onAction="#liquidationSearchBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Search" textFill="#0d00ff">
+                                <Button fx:id="liquidationSearchBtn" layoutX="941.0" layoutY="685.0" mnemonicParsing="false" onAction="#liquidationSearchBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Search" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="liquidationClearBtn" layoutX="176.0" layoutY="669.0" mnemonicParsing="false" onAction="#liquidationClearBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
+                                <Button fx:id="liquidationClearBtn" layoutX="176.0" layoutY="685.0" mnemonicParsing="false" onAction="#liquidationClearBtnOnAction" prefHeight="38.0" prefWidth="116.0" text="Clear" textFill="#0d00ff">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
@@ -183,7 +181,7 @@
                                 <TextField fx:id="transferDepartmentName13" editable="false" focusTraversable="false" layoutX="30.0" layoutY="25.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="LIQUIDATION INFORMATION" />
                                 <TextField fx:id="transferDepartmentName131" editable="false" focusTraversable="false" layoutX="32.0" layoutY="343.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="LIST DEVICE" />
                                 <TextField fx:id="transferDepartmentName1311" editable="false" focusTraversable="false" layoutX="607.0" layoutY="25.0" mouseTransparent="true" prefHeight="34.0" prefWidth="261.0" text="PEOPLE INVOLVE" />
-                                <TextField fx:id="transferDepartmentName12111" editable="false" focusTraversable="false" layoutX="607.0" layoutY="669.0" mouseTransparent="true" prefHeight="38.0" prefWidth="69.0" text="Date" />
+                                <TextField fx:id="transferDepartmentName12111" editable="false" focusTraversable="false" layoutX="607.0" layoutY="685.0" mouseTransparent="true" prefHeight="38.0" prefWidth="69.0" text="Date" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -221,7 +219,7 @@
                                         <Font name="Calibri" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="backBtn34" layoutX="30.0" layoutY="652.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="38.0" prefWidth="111.0" text="Back" AnchorPane.bottomAnchor="34.39999999999998" AnchorPane.leftAnchor="30.0">
+                                <Button fx:id="backBtn34" layoutX="30.0" layoutY="650.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="38.0" prefWidth="111.0" text="Back" AnchorPane.bottomAnchor="61.200000000000045" AnchorPane.leftAnchor="30.0">
                                     <font>
                                         <Font name="Calibri" size="14.0" />
                                     </font>
@@ -246,43 +244,17 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="🎪">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <Button fx:id="inventorySearchInventoryBTN1" layoutX="964.0" layoutY="650.0" mnemonicParsing="false" onAction="#inventorySearchInventoryButtonAction" prefHeight="38.0" prefWidth="111.0" text="Search">
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Button defaultButton="true" layoutX="1084.0" layoutY="650.0" mnemonicParsing="false" onAction="#inventoryExportReportButtonAction" prefHeight="38.0" prefWidth="111.0" text="Export" textFill="#0d00ff">
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                </Button>
-                                <Pagination layoutX="496.0" layoutY="491.0" maxPageIndicatorCount="2" pageCount="2" prefHeight="30.0" prefWidth="247.0" />
-                                <VBox fx:id="lineChartSpace" layoutX="38.0" layoutY="42.0" prefHeight="355.0" prefWidth="472.0" />
-                                <VBox fx:id="lineChartSpace1" layoutX="558.0" layoutY="42.0" prefHeight="355.0" prefWidth="472.0" />
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
             </tabs>
-         <styleClass>
-            <String fx:value="underlined" />
-            <String fx:value="panel-custom" />
-         </styleClass>
+            <styleClass>
+                <String fx:value="underlined" />
+                <String fx:value="panel-custom" />
+            </styleClass>
         </TabPane>
-      <Button mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefWidth="84.0" text="🖤" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnActio" prefHeight="32.0" prefWidth="84.0" text="🔴" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="-1.0">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
+        <Button layoutX="1115.4" layoutY="3.0" maxHeight="40.0" maxWidth="79.0" mnemonicParsing="false" onAction="#onMinimizeBtnOnActio" prefHeight="10.0" prefWidth="79.0" styleClass="top-button" text="🔴" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Button>
 
     </children>
     <effect>

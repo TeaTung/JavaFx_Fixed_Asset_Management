@@ -253,7 +253,11 @@ public class DeviceScreenController implements Initializable {
     public void exportButtonAction(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Utils.exportExcelDevices(stage, deviceTableView);
+        try {
+            Utils.exportExcelDevices(stage, deviceTableView);
+        } catch (Exception e) {
+
+        }
     }
 
     public void backDeviceButtonAction(ActionEvent event) {
