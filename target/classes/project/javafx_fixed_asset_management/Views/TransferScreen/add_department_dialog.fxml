@@ -6,29 +6,58 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="279.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.TranferScreenController.AddDepartmentDialogController">
-   <children>
-      <Text layoutX="190.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD DEPARTMENT" AnchorPane.topAnchor="30.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="38.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEPARTMENT ID" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="38.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEPARTMENT" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="departmentIdTF" layoutX="424.0" layoutY="95.0" prefHeight="38.0" prefWidth="353.0" AnchorPane.rightAnchor="30.0" />
-      <TextField fx:id="departmentTF" layoutX="424.0" layoutY="155.0" prefHeight="38.0" prefWidth="353.0" AnchorPane.rightAnchor="30.0" />
-      <Button defaultButton="true" layoutX="485.0" layoutY="212.0" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="38.0" prefWidth="85.0" text="ADD" AnchorPane.rightAnchor="30.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-   </children>
+<?import java.net.URL?>
+<?import javafx.scene.effect.SepiaTone?>
+<AnchorPane prefHeight="279.0" prefWidth="600.0" stylesheets="@../HistoryAndManagementScreen/font.css"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction"
+            style="-fx-background-color: white;" styleClass="panel-custom-dialog"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.TranferScreenController.AddDepartmentDialogController">
+    <children>
+        <TextField fx:id="departmentIdTF" layoutX="216.39999999999998" layoutY="112.0" prefHeight="43.0"
+                   prefWidth="353.0" AnchorPane.rightAnchor="30.0"/>
+        <TextField fx:id="departmentTF" layoutX="216.39999999999998" layoutY="172.0" prefHeight="38.0" prefWidth="353.0"
+                   AnchorPane.rightAnchor="30.0"/>
+        <Button defaultButton="true" layoutX="484.4" layoutY="229.0" mnemonicParsing="false" onAction="#addButtonAction"
+                prefHeight="38.0" prefWidth="100.0" text="ADD" AnchorPane.rightAnchor="30.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Text layoutX="37.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="large-title"
+              text="ADD DEPARTMENT" textAlignment="CENTER" wrappingWidth="376.4000244140625">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Text>
+        <TextField editable="false" focusTraversable="false" layoutX="31.0" layoutY="112.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="178.0" text="DepartmentID"/>
+        <TextField editable="false" focusTraversable="false" layoutX="31.0" layoutY="169.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="178.0" text="Name"/>
+
+        <Button mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" styleClass="top-button" prefWidth="84.0"
+                text="🖤"
+                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Button>
+        <Button layoutX="1115.4" styleClass="top-button" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction"
+                prefHeight="32.0"
+                prefWidth="84.0" text="🔴" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Button>
+
+    </children>
+
+
+    <effect>
+        <SepiaTone level="0.44"/>
+    </effect>
+    <stylesheets>
+        <URL value="@../HistoryAndManagementScreen/font.css"/>
+        <URL value="@../HistoryAndManagementScreen/history.css"/>
+    </stylesheets>
 </AnchorPane>

@@ -1,66 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.TranferScreenController.ConfirmTransferDevicesDialogController">
-   <children>
-      <Label layoutX="36.0" layoutY="75.0" text="Transfer ID" AnchorPane.leftAnchor="36.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Text layoutX="110.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONFIRM TRANSFER DEVICES" wrappingWidth="330.0" AnchorPane.topAnchor="30.0">
-         <font>
-            <Font name="System Bold" size="23.0" />
-         </font>
-      </Text>
-      <Label fx:id="transferIdLbl" layoutX="150.0" layoutY="75.0" text="123">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="120.0" text="Department" AnchorPane.leftAnchor="36.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="departmentLbl" layoutX="150.0" layoutY="120.0" text="Somewhere in the world">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TableView fx:id="deviceTransferTableView" layoutX="36.0" layoutY="205.0" prefHeight="450.0" prefWidth="478.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0">
-         <columns>
-            <TableColumn fx:id="idDeviceTransferColumn" prefWidth="124.0" text="ID" />
-            <TableColumn fx:id="deviceTransferNameColumn" prefWidth="125.0" text="Device name" />
-            <TableColumn fx:id="specificationDeviceTransferNameColumn" prefWidth="226.0" text="Type of device" />
-         </columns>
-      </TableView>
-      <Button fx:id="confirmButton" layoutX="425.0" layoutY="668.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff" AnchorPane.rightAnchor="36.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="backBtn" layoutX="34.0" layoutY="668.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.leftAnchor="36.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Label fx:id="repairDateLbl" layoutX="36.0" layoutY="165.0" text="Repair Day">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="repairDateLbl" layoutX="150.0" layoutY="165.0" text="Somewhere in the world">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction" prefHeight="720.0"
+            prefWidth="550.0" style="-fx-background-color: white;" styleClass="panel-custom-dialog"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.TranferScreenController.ConfirmTransferDevicesDialogController">
+    <children>
+        <TextField fx:id="transferIDTF" editable="false" focusTraversable="false" layoutX="250.0" layoutY="88.0"
+                   mouseTransparent="true" prefHeight="43.0" prefWidth="265.0" text="ID" AnchorPane.rightAnchor="37.0"/>
+        <TableView fx:id="deviceTransferTableView" layoutX="39.0" layoutY="246.0" prefHeight="409.0" prefWidth="474.0"
+                   AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="37.0">
+            <columns>
+                <TableColumn fx:id="idDeviceTransferColumn" prefWidth="124.0" text="ID"/>
+                <TableColumn fx:id="deviceTransferNameColumn" prefWidth="125.0" text="Device name"/>
+                <TableColumn fx:id="specificationDeviceTransferNameColumn" prefWidth="226.0" text="Type of device"/>
+            </columns>
+        </TableView>
+        <Button fx:id="confirmButton" layoutX="425.0" layoutY="668.0" mnemonicParsing="false"
+                onAction="#confirmButtonAction" prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff"
+                AnchorPane.rightAnchor="36.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="backBtn" layoutX="34.0" layoutY="668.0" mnemonicParsing="false" onAction="#backButtonAction"
+                prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.leftAnchor="36.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="88.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="189.0" text="TransferID" AnchorPane.leftAnchor="38.0"/>
+        <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="137.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="189.0" text="Department" AnchorPane.leftAnchor="37.0"/>
+        <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="191.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="189.0" text="Date" AnchorPane.leftAnchor="37.0"/>
+        <TextField fx:id="deptNameTF" editable="false" focusTraversable="false" layoutX="250.0" layoutY="137.0"
+                   mouseTransparent="true" prefHeight="43.0" prefWidth="265.0" text="NAME"
+                   AnchorPane.rightAnchor="37.0"/>
+        <TextField fx:id="dateTF" editable="false" focusTraversable="false" layoutX="250.0" layoutY="191.0"
+                   mouseTransparent="true" prefHeight="43.0" prefWidth="265.0" text="DATE"
+                   AnchorPane.rightAnchor="38.0"/>
+
+        <Button mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefWidth="84.0" styleClass="top-button"
+                text="🖤" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Button>
+        <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction" prefHeight="32.0"
+                prefWidth="84.0" styleClass="top-button" text="🔴" AnchorPane.rightAnchor="80.0"
+                AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Button>
+        <Text layoutX="37.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title"
+              text="CONFIRM TRANSFER" textAlignment="CENTER" wrappingWidth="277.5999999999999">
+            <font>
+                <Font size="25.0"/>
+            </font>
+        </Text>
+
+    </children>
+
+    <effect>
+        <SepiaTone level="0.44"/>
+    </effect>
+    <stylesheets>
+        <URL value="@../HistoryAndManagementScreen/font.css"/>
+        <URL value="@../HistoryAndManagementScreen/history.css"/>
+    </stylesheets>
+
 </AnchorPane>

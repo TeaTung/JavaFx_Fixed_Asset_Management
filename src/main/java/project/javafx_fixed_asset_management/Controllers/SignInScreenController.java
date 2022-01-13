@@ -67,6 +67,7 @@ public class SignInScreenController implements Initializable {
         }
     }
 
+
     @FXML
     void loginBtnAction(ActionEvent event) {
         if(verifyInput()) {
@@ -98,6 +99,7 @@ public class SignInScreenController implements Initializable {
         try {
             String md5Password = md5(password);
             var authentication = new DATABASE_DAO<>(AUTHENTICATION.class);
+
             var auth = authentication.selectOne("SELECT * FROM TBACCOUNT WHERE EMAIL = ? AND PASSWORD = ?", username, md5Password);
             return auth;
         } catch (Exception e) {
@@ -106,7 +108,7 @@ public class SignInScreenController implements Initializable {
         return null;
     }
 
-    boolean verifyInput() {
+    boolean     verifyInput() {
         Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Pattern VALID_PASSWORD_REGEX = Pattern.compile("^(?!.* ).{8,15}$", Pattern.CASE_INSENSITIVE);
 

@@ -15,9 +15,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
@@ -150,6 +154,8 @@ public class RepairDevicesScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -257,9 +263,15 @@ public class RepairDevicesScreenController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/RepairScreen/confirm_repair_devices_dialog.fxml"));
         Node node = (Node) event.getSource();
         Stage stage = new Stage();
+
         stage.initModality(Modality.APPLICATION_MODAL);
         Parent confirmRepairDevicesController = fxmlLoader.load();
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+
         Scene scene = new Scene(confirmRepairDevicesController);
+        scene.setFill(Color.TRANSPARENT);
+
         ConfirmRepairDevicesDialogController controller = fxmlLoader.getController();
         controller.setInit(listRepairingDevice, repairingDecisionIdTF.getText(), priceTF.getText(), repairingCompanyTF.getText(), repairingDateDTP.getValue());
         stage.setTitle("Are you sure about that?");
@@ -273,10 +285,11 @@ public class RepairDevicesScreenController implements Initializable {
 
     public void validateField(ActionEvent event) throws IOException {
         if (isAllTextFieldEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Repair Device");
+            FlatAlert alert = new FlatAlert(Alert.AlertType.WARNING);
             alert.setHeaderText("Make sure you fill up all field");
             alert.setContentText("Some field wasn't inserted");
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(alert.getDialogPane().getScene());
             alert.show();
         } else if (listRepairingDevice.size() == 0) {
             warningTxt.setVisible(true);
@@ -299,5 +312,36 @@ public class RepairDevicesScreenController implements Initializable {
         }
         return false;
     }
+
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
+    }
+
 
 }

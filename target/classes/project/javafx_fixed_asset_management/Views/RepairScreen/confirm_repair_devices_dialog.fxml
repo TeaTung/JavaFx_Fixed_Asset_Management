@@ -1,76 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.RepairScreenController.ConfirmRepairDevicesDialogController">
-   <children>
-      <Label layoutX="36.0" layoutY="75.0" text="Repairing Decision ID" AnchorPane.leftAnchor="40.0">
+<AnchorPane onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction" prefHeight="720.0" prefWidth="550.0" style="-fx-background-color: white;" styleClass="panel-custom-dialog" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.RepairScreenController.ConfirmRepairDevicesDialogController">
+    <children>
+        <Label layoutX="36.0" layoutY="75.0" text="Repairing Decision ID" AnchorPane.leftAnchor="40.0">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <TableView fx:id="deviceRepairingTableView" layoutX="36.0" layoutY="257.0" prefHeight="401.0" prefWidth="486.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+            <columns>
+                <TableColumn fx:id="idDeviceRepairingColumn" prefWidth="111.0" text="ID" />
+                <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="126.0" text="Device name" />
+                <TableColumn fx:id="specificationDeviceRepairingNameColumn" prefWidth="230.0" text="Specification" />
+            </columns>
+        </TableView>
+        <Button fx:id="confirmButton" defaultButton="true" layoutX="425.0" layoutY="668.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="38.0" prefWidth="150.0" text="Confirm" textFill="#0d00ff" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="backBtn" layoutX="34.0" layoutY="668.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="38.0" prefWidth="150.0" text="Back" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+
+        <Button mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefWidth="84.0" styleClass="top-button" text="🖤" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Button>
+        <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction" prefHeight="32.0" prefWidth="84.0" styleClass="top-button" text="🔴" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Button>
+      <Text layoutX="41.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="CONFIRM REPAIR" textAlignment="CENTER" wrappingWidth="241.5999999999999">
          <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Text layoutX="141.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONFIRM REPAIR DEVICES" wrappingWidth="296.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font name="System Bold" size="23.0" />
+            <Font size="25.0" />
          </font>
       </Text>
-      <Label fx:id="repairingDecisionIdLbl" layoutX="223.0" layoutY="75.0" text="id ne">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="120.0" text="Price" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="priceLbl" layoutX="223.0" layoutY="120.0" text="gia' ne">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TableView fx:id="deviceRepairingTableView" layoutX="36.0" layoutY="257.0" prefHeight="401.0" prefWidth="486.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
-         <columns>
-            <TableColumn fx:id="idDeviceRepairingColumn" prefWidth="111.0" text="ID" />
-            <TableColumn fx:id="deviceRepairingNameColumn" prefWidth="126.0" text="Device name" />
-            <TableColumn fx:id="specificationDeviceRepairingNameColumn" prefWidth="230.0" text="Specification" />
-         </columns>
-      </TableView>
-      <Button fx:id="confirmButton" layoutX="425.0" layoutY="668.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="40.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="backBtn" layoutX="34.0" layoutY="668.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Label layoutX="36.0" layoutY="165.0" text="Repairing Company" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="repairingCompanyLbl" layoutX="223.0" layoutY="165.0" text="con ty ne">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="210.0" text="Repairing Date" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="repairingDateLbl" layoutX="223.0" layoutY="210.0" text="ngay sua ne">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-   </children>
+      <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="165.0" mouseTransparent="true" prefHeight="35.0" prefWidth="159.0" text="Repairing Company" AnchorPane.leftAnchor="40.0" />
+      <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="209.0" mouseTransparent="true" prefHeight="35.0" prefWidth="159.0" text="Date" AnchorPane.leftAnchor="40.0" />
+      <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="78.0" mouseTransparent="true" prefHeight="35.0" prefWidth="159.0" text="RepairID" AnchorPane.leftAnchor="40.0" />
+      <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="120.0" mouseTransparent="true" prefHeight="35.0" prefWidth="159.0" text="Price" AnchorPane.leftAnchor="40.0" />
+      <TextField fx:id="dateTF" editable="false" focusTraversable="false" layoutX="217.0" layoutY="209.0" mouseTransparent="true" prefHeight="35.0" prefWidth="289.0" AnchorPane.rightAnchor="40.0" />
+      <TextField fx:id="companyTF" editable="false" focusTraversable="false" layoutX="217.0" layoutY="165.0" mouseTransparent="true" prefHeight="35.0" prefWidth="289.0" AnchorPane.rightAnchor="40.0" />
+      <TextField fx:id="priceTF" editable="false" focusTraversable="false" layoutX="217.0" layoutY="120.0" mouseTransparent="true" prefHeight="35.0" prefWidth="289.0" AnchorPane.rightAnchor="40.0" />
+      <TextField fx:id="idRepairTF" editable="false" focusTraversable="false" layoutX="217.0" layoutY="78.0" mouseTransparent="true" prefHeight="35.0" prefWidth="289.0" AnchorPane.rightAnchor="40.0" />
+    </children>
+
+    <effect>
+        <SepiaTone level="0.44" />
+    </effect>
+    <stylesheets>
+        <URL value="@../HistoryAndManagementScreen/font.css" />
+        <URL value="@../HistoryAndManagementScreen/history.css" />
+    </stylesheets>
 </AnchorPane>

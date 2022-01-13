@@ -132,6 +132,8 @@
                 <Font size="25.0"/>
             </font>
         </Button>
+
+
         <Button fx:id="nextBtn2" layoutX="24.0" layoutY="572.0" mnemonicParsing="false"
                 onAction="#onCloseWinBtnOnAction" prefHeight="47.0" prefWidth="133.0" text="Back">
             <font>

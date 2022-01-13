@@ -4,14 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEVICE;
 import project.javafx_fixed_asset_management.Models.REPAIR;
@@ -25,18 +22,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ConfirmRepairDevicesDialogController {
-    @FXML
-    Label repairingDecisionIdLbl;
-
-    @FXML
-    Label priceLbl;
-
-    @FXML
-    Label repairingCompanyLbl;
-
-    @FXML
-    Label repairingDateLbl;
-
+    public TextField idRepairTF;
+    public TextField priceTF;
+    public TextField companyTF;
+    public TextField dateTF;
     @FXML
     Button confirmButton;
 
@@ -68,10 +57,10 @@ public class ConfirmRepairDevicesDialogController {
         repairDay = repairingDay;
         listRepairingDevice = listDevice;
 
-        repairingDecisionIdLbl.setText(id);
-        priceLbl.setText(price);
-        repairingCompanyLbl.setText(company);
-        repairingDateLbl.setText(repairingDay.toString());
+        idRepairTF.setText(id);
+        priceTF.setText(price);
+        companyTF.setText(company);
+        dateTF.setText(repairingDay.toString());
         setTableView(listRepairingDevice);
 
     }
@@ -89,7 +78,7 @@ public class ConfirmRepairDevicesDialogController {
     }
 
     public void backPreviousScreen(ActionEvent event) {
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -146,5 +135,34 @@ public class ConfirmRepairDevicesDialogController {
         System.out.println("LIST: " + list);
 
         return "insert into tbRepair (FixId, DeviceId, RepairDate, Company, Price) values ('" + repair.getFixId() + "','" + list + "','" + repair.getRepairDate() + "','" + repair.getCompany() + "','" + repair.getPrice() + "')";
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
     }
 }

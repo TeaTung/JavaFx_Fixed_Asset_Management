@@ -76,7 +76,7 @@
         <TextField editable="false" focusTraversable="false" layoutX="32.0" layoutY="513.0" mouseTransparent="true" prefHeight="43.0" prefWidth="189.0" text="Department" />
         <TextField editable="false" focusTraversable="false" layoutX="32.0" layoutY="563.0" mouseTransparent="true" prefHeight="43.0" prefWidth="189.0" text="Title" />
         <TextField editable="false" focusTraversable="false" layoutX="32.0" layoutY="618.0" mouseTransparent="true" prefHeight="43.0" prefWidth="189.0" text="Date of Inventory" />
-        <Text layoutX="32.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="Liquidation people information" wrappingWidth="560.5999755859375">
+        <Text layoutX="32.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="People information" wrappingWidth="560.5999755859375">
             <font>
                 <Font size="25.0" />
             </font>

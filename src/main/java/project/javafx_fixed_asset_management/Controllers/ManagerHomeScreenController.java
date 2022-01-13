@@ -175,22 +175,7 @@ public class ManagerHomeScreenController implements Initializable {
         stage.show();
     }
 
-    public void openConfigScreenButtonAction(MouseEvent MouseEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/ConfigScreen/config_screen.fxml"));
-        Node node = (Node) MouseEvent.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 600, 520);
-            JMetro jMetro = new JMetro(Style.LIGHT);
-            jMetro.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
