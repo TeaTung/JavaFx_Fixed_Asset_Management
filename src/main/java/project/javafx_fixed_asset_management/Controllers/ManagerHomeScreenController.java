@@ -1,10 +1,16 @@
 package project.javafx_fixed_asset_management.Controllers;
 
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,6 +31,29 @@ public class ManagerHomeScreenController implements Initializable {
 
     }
 
+    @FXML
+    Button logoutBtn;
+
+    @FXML
+    void logoutBtnHandler(MouseEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to logout the application? " , ButtonType.YES, ButtonType.CANCEL);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AuthenticationScreen/SignIn/sign_in_screen.fxml"));
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene(fxmlLoader.load(), 1280, 720);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.setScene(scene);
+
+            stage.show();
+        }
+    }
 
     public void openDeviceScreenButtonAction(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));

@@ -29,6 +29,13 @@
     -fx-background-size: 100%;
 }
 
+#btnLogout{
+    -fx-background-image: url('logout.png');
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100px;
+    -fx-background-size: 100%;
+}
+
 .btn{
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 30px;
