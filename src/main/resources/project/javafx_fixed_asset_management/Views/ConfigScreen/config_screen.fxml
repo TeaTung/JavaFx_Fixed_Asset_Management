@@ -12,33 +12,52 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="209.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" styleClass="panel-custom-dialog" stylesheets="@../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.ConfigScreenController">
+<AnchorPane prefHeight="209.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" styleClass="panel-custom-dialog"
+            stylesheets="@../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.ConfigScreenController">
     <children>
-        <TabPane fx:id="myTabPane" layoutY="10.0" onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction" prefHeight="521.0" prefWidth="600.0" side="LEFT" styleClass="underlined" stylesheets="@../HistoryAndManagementScreen/history.css" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="myTabPane" layoutY="10.0" onMouseDragged="#panelMouseDraggedOnAction"
+                 onMousePressed="#panelMousePressOnAction" prefHeight="521.0" prefWidth="600.0" side="LEFT"
+                 styleClass="underlined" stylesheets="@../HistoryAndManagementScreen/history.css"
+                 tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="🍩">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="929.0">
                             <children>
-                                <Text layoutX="39.0" layoutY="89.0224609375" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: lighter;" styleClass="large-title" text="UNIT" wrappingWidth="507.0" AnchorPane.topAnchor="37.0224609375">
+                                <Text layoutX="39.0" layoutY="89.0224609375" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      style="-fx-font-weight: lighter;" styleClass="large-title" text="UNIT"
+                                      wrappingWidth="507.0" AnchorPane.topAnchor="37.0224609375">
                                     <font>
-                                        <Font size="48.0" />
+                                        <Font size="48.0"/>
                                     </font>
                                 </Text>
-                                <TextField fx:id="nameTF" layoutX="195.0" layoutY="159.0" prefHeight="54.0" prefWidth="295.0" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="159.0" />
-                                <Button fx:id="backBtn" layoutX="39.0" layoutY="425.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="119.0" text="Back" AnchorPane.bottomAnchor="53.400000000000034" AnchorPane.leftAnchor="39.0">
+                                <TextField fx:id="nameTF" layoutX="195.0" layoutY="159.0" prefHeight="54.0"
+                                           prefWidth="295.0" AnchorPane.leftAnchor="195.0"
+                                           AnchorPane.topAnchor="159.0"/>
+                                <Button fx:id="backBtn" layoutX="39.0" layoutY="425.0" mnemonicParsing="false"
+                                        onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="119.0"
+                                        text="Back" AnchorPane.bottomAnchor="53.400000000000034"
+                                        AnchorPane.leftAnchor="39.0">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
-                                <Button fx:id="finishButton" defaultButton="true" layoutX="362.0" layoutY="425.0" mnemonicParsing="false" onAction="#finishButtonAction" prefHeight="43.0" prefWidth="128.0" text="Finish">
+                                <Button fx:id="finishButton" defaultButton="true" layoutX="362.0" layoutY="425.0"
+                                        mnemonicParsing="false" onAction="#finishButtonAction" prefHeight="43.0"
+                                        prefWidth="128.0" text="Finish">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
-                                <TextArea fx:id="noteTA" layoutX="195.0" layoutY="241.0" prefHeight="159.0" prefWidth="299.0" />
-                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="160.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Unit name" />
-                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="241.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Name" />
+                                <TextArea fx:id="noteTA" layoutX="195.0" layoutY="241.0" prefHeight="159.0"
+                                          prefWidth="299.0"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="160.0"
+                                           mouseTransparent="true" prefHeight="54.0" prefWidth="119.0"
+                                           text="Unit name"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="241.0"
+                                           mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Name"/>
                             </children>
                         </AnchorPane>
                     </content>
@@ -48,29 +67,39 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="929.0">
                             <children>
-                                <Text layoutX="38.0" layoutY="84.078125" strokeType="OUTSIDE" strokeWidth="0.0" text="DEVICE MODEL" wrappingWidth="399.800048828125" AnchorPane.topAnchor="53.0">
+                                <Text layoutX="38.0" layoutY="84.078125" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="DEVICE MODEL" wrappingWidth="399.800048828125" AnchorPane.topAnchor="53.0">
                                     <font>
-                                        <Font size="48.0" />
+                                        <Font size="48.0"/>
                                     </font>
                                     <styleClass>
-                                        <String fx:value="lbl-primary" />
-                                        <String fx:value="large-title" />
+                                        <String fx:value="lbl-primary"/>
+                                        <String fx:value="large-title"/>
                                     </styleClass>
                                 </Text>
-                                <Button fx:id="backModelBtn" layoutX="38.0" layoutY="390.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="119.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="38.0">
+                                <Button fx:id="backModelBtn" layoutX="38.0" layoutY="390.0" mnemonicParsing="false"
+                                        onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="119.0"
+                                        text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="38.0">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
-                                <Button fx:id="finishModelButton" defaultButton="true" layoutX="374.0" layoutY="448.0" mnemonicParsing="false" onAction="#finishModelButton" prefHeight="43.0" prefWidth="128.0" text="Finish">
+                                <Button fx:id="finishModelButton" defaultButton="true" layoutX="374.0" layoutY="448.0"
+                                        mnemonicParsing="false" onAction="#finishModelButton" prefHeight="43.0"
+                                        prefWidth="128.0" text="Finish">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
-                                <ComboBox fx:id="unitModelCB" layoutX="196.0" layoutY="203.0" prefHeight="54.0" prefWidth="305.0" />
-                                <TextField fx:id="nameModelTF" layoutX="197.0" layoutY="278.0" prefHeight="54.0" prefWidth="303.0" />
-                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="203.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Unit" />
-                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="278.0" mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Model name" />
+                                <ComboBox fx:id="unitModelCB" layoutX="196.0" layoutY="203.0" prefHeight="54.0"
+                                          prefWidth="305.0"/>
+                                <TextField fx:id="nameModelTF" layoutX="197.0" layoutY="278.0" prefHeight="54.0"
+                                           prefWidth="303.0"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="203.0"
+                                           mouseTransparent="true" prefHeight="54.0" prefWidth="119.0" text="Unit"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="38.0" layoutY="278.0"
+                                           mouseTransparent="true" prefHeight="54.0" prefWidth="119.0"
+                                           text="Model name"/>
                             </children>
                         </AnchorPane>
                     </content>
@@ -80,52 +109,116 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="929.0">
                             <children>
-                                <Text layoutX="39.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="large-title" text="PROVIDER" wrappingWidth="507.0" AnchorPane.topAnchor="44.921875">
+                                <Text layoutX="39.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      styleClass="large-title" text="PROVIDER" wrappingWidth="507.0"
+                                      AnchorPane.topAnchor="44.921875">
                                     <font>
-                                        <Font size="71.0" />
+                                        <Font size="71.0"/>
                                     </font>
                                 </Text>
-                                <Button layoutX="40.0" layoutY="433.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="119.0" text="Back" AnchorPane.bottomAnchor="23.80000000000001" AnchorPane.leftAnchor="40.0">
+                                <Button layoutX="40.0" layoutY="433.0" mnemonicParsing="false"
+                                        onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="119.0"
+                                        text="Back" AnchorPane.bottomAnchor="23.80000000000001"
+                                        AnchorPane.leftAnchor="40.0">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
-                                <Button fx:id="finishProviderButton" defaultButton="true" layoutX="367.0" layoutY="454.0" mnemonicParsing="false" onAction="#finishProviderActionButton" prefHeight="43.0" prefWidth="128.0" text="Finish">
+                                <Button fx:id="finishProviderButton" defaultButton="true" layoutX="367.0"
+                                        layoutY="454.0" mnemonicParsing="false" onAction="#finishProviderActionButton"
+                                        prefHeight="43.0" prefWidth="128.0" text="Finish">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
-                                <TextField fx:id="nameProviderTF" layoutX="181.0" layoutY="159.0" prefHeight="44.0" prefWidth="317.0" />
-                                <TextField fx:id="addressProviderTF" layoutX="180.0" layoutY="222.0" prefHeight="44.0" prefWidth="318.0" />
-                                <TextField fx:id="phoneProviderTF" layoutX="180.0" layoutY="292.0" prefHeight="44.0" prefWidth="315.0" />
-                                <TextField fx:id="emailProviderTF" layoutX="180.0" layoutY="358.0" prefHeight="44.0" prefWidth="316.0" />
-                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="222.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Address" />
-                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="292.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Phone" />
-                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="358.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Email" />
-                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="159.0" mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Name" />
+                                <TextField fx:id="nameProviderTF" layoutX="181.0" layoutY="159.0" prefHeight="44.0"
+                                           prefWidth="317.0"/>
+                                <TextField fx:id="addressProviderTF" layoutX="180.0" layoutY="222.0" prefHeight="44.0"
+                                           prefWidth="318.0"/>
+                                <TextField fx:id="phoneProviderTF" layoutX="180.0" layoutY="292.0" prefHeight="44.0"
+                                           prefWidth="315.0"/>
+                                <TextField fx:id="emailProviderTF" layoutX="180.0" layoutY="358.0" prefHeight="44.0"
+                                           prefWidth="316.0"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="222.0"
+                                           mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Address"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="292.0"
+                                           mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Phone"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="358.0"
+                                           mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Email"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="159.0"
+                                           mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Name"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <Tab text="🎀">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="683.0" prefWidth="929.0">
+                            <children>
+                                <Text layoutX="39.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      styleClass="large-title" text="DEPARTMENT" wrappingWidth="507.0"
+                                      AnchorPane.topAnchor="31.0">
+                                    <font>
+                                        <Font size="48.0"/>
+                                    </font>
+                                </Text>
+                                <Button fx:id="backProviderBtn" layoutX="39.0" layoutY="397.0" mnemonicParsing="false"
+                                        onAction="#backDeviceButtonAction" prefHeight="43.0" prefWidth="123.0"
+                                        text="Back" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="39.0">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="finishDepartmentButton" defaultButton="true" layoutX="369.0"
+                                        layoutY="455.0" mnemonicParsing="false"
+                                        onAction="#finishDepartmentButtonOnAction" prefHeight="43.0" prefWidth="128.0"
+                                        text="Finish">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <TextField fx:id="nameDeptTF" layoutX="186.0" layoutY="247.0" prefHeight="44.0"
+                                           prefWidth="310.0"/>
+                                <TextField fx:id="totalDeviceTF" layoutX="186.0" layoutY="318.0" prefHeight="44.0"
+                                           prefWidth="309.0"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="247.0"
+                                           mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="Name"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="40.0" layoutY="318.0"
+                                           mouseTransparent="true" prefHeight="44.0" prefWidth="123.0"
+                                           text="Total device"/>
+                                <TextField fx:id="deptIdTF" layoutX="187.0" layoutY="181.0" prefHeight="44.0"
+                                           prefWidth="310.0"/>
+                                <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="181.0"
+                                           mouseTransparent="true" prefHeight="44.0" prefWidth="119.0" text="ID"/>
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
             </tabs>
         </TabPane>
-        <Button mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefWidth="84.0" text="🖤" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Button mnemonicParsing="false" styleClass="top-button" onAction="#onCloseWinBtnOnAction" prefWidth="84.0"
+                text="🖤"
+                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <font>
-                <Font size="25.0" />
+                <Font size="25.0"/>
             </font>
         </Button>
-        <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction" prefHeight="32.0" prefWidth="84.0" text="🔴" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+        <Button layoutX="1115.4" styleClass="top-button" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction"
+                prefHeight="32.0"
+                prefWidth="84.0" text="🔴" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
             <font>
-                <Font size="25.0" />
+                <Font size="25.0"/>
             </font>
         </Button>
-        <Button fx:id="nextBtn2" layoutX="21.0" layoutY="572.0" mnemonicParsing="false" onAction="#onCloseWinBtnOnAction" prefHeight="47.0" prefWidth="133.0" text="Back">
+        <Button fx:id="nextBtn2" layoutX="21.0" layoutY="572.0" mnemonicParsing="false"
+                onAction="#onCloseWinBtnOnAction" prefHeight="47.0" prefWidth="133.0" text="Back">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
     </children>
     <effect>
-        <SepiaTone level="0.3" />
+        <SepiaTone level="0.44"/>
     </effect>
 </AnchorPane>

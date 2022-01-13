@@ -35,7 +35,7 @@ public class ManagerHomeScreenController implements Initializable {
 
     @FXML
     void logoutBtnHandler(MouseEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to logout the application? " , ButtonType.YES, ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to logout the application? ", ButtonType.YES, ButtonType.CANCEL);
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
@@ -196,20 +196,20 @@ public class ManagerHomeScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void openLiqdsd(MouseEvent mouseEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/first_liquidation_screen.fxml"));
-        Node node = (Node) mouseEvent.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
-        stage.show();
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
     }
 }

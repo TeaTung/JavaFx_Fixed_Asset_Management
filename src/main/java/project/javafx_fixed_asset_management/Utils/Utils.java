@@ -163,6 +163,42 @@ public class Utils {
 
     }
 
+    public static void exportExcelLiquidation(Stage stage, TableView<LIQUIDATION_HISTORY> tableView) throws IOException {
+        Workbook workbook = new HSSFWorkbook();
+        Sheet spreadsheet = workbook.createSheet("sample");
+        spreadsheet.setColumnWidth(1, 15000);
+        spreadsheet.setColumnWidth(2, 5000);
+        spreadsheet.setColumnWidth(3, 10000);
+        spreadsheet.setColumnWidth(4, 10000);
+        spreadsheet.setColumnWidth(5, 10000);
+
+        Row row = spreadsheet.createRow(0);
+
+        for (int j = 0; j < tableView.getColumns().size(); j++) {
+            row.createCell(j).setCellValue(tableView.getColumns().get(j).getText());
+
+        }
+
+        for (int i = 0; i < tableView.getItems().size(); i++) {
+            row = spreadsheet.createRow(i + 1);
+            for (int j = 0; j < tableView.getColumns().size(); j++) {
+                if (tableView.getColumns().get(j).getCellData(i) != null) {
+                    row.createCell(j).setCellValue(tableView.getColumns().get(j).getCellData(i).toString());
+                } else {
+                    row.createCell(j).setCellValue("");
+                }
+            }
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Worksheet", ".xls"));
+        File file = fileChooser.showSaveDialog(stage);
+        FileOutputStream fileOut = new FileOutputStream(file);
+        workbook.write(fileOut);
+        fileOut.close();
+
+    }
     public static void exportExcelInventory(Stage stage, TableView<INVENTORY> tableView) throws IOException {
         Workbook workbook = new HSSFWorkbook();
         Sheet spreadsheet = workbook.createSheet("sample");

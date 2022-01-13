@@ -207,6 +207,44 @@ public class AddNewDeviceDialogController implements Initializable {
         }
 
 
+        if (!isParseFloatSuccess(quantityTF.getText())) {
+            alert.setContentText("Please set quantity at number format");
+            alert.setHeaderText("Adding new devices failed");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (Float.parseFloat(quantityTF.getText()) < 0) {
+            alert.setContentText("Please set quantity at positive number");
+            alert.setHeaderText("Adding new devices failed");
+            alert.showAndWait();
+            return false;
+        }
+
+
+        if (!isParseFloatSuccess(priceTF.getText())) {
+            alert.setContentText("Please set price at number format");
+            alert.setHeaderText("Adding new devices failed");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (Float.parseFloat(priceTF.getText()) < 0) {
+            alert.setContentText("Please set price at positive number");
+            alert.setHeaderText("Adding new devices failed");
+            alert.showAndWait();
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean isParseFloatSuccess(String value) {
+        try {
+            Float.parseFloat(value);
+        } catch (NumberFormatException e) {
+            return false;
+        }
         return true;
     }
 
