@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
+import project.javafx_fixed_asset_management.Models.ACCOUNT;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEPARTMENT;
 import project.javafx_fixed_asset_management.Models.PROFILE;
@@ -45,11 +46,8 @@ public class UpdateAccountInformationDialogController {
     @FXML
     Button backBtn;
 
-    @FXML
-    Button confirmBtn;
-
     PROFILE userProfile;
-    int userId;
+    String userId;
 
     public void backButtonAction(ActionEvent event) throws IOException {
         backToPreviousDialog(event);
@@ -91,14 +89,30 @@ public class UpdateAccountInformationDialogController {
     public void validateField(ActionEvent event) throws IOException {
         if (areAllTextFieldEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Repair Device");
+            alert.setTitle("Account Screen");
             alert.setHeaderText("Make sure you fill up all field");
             alert.setContentText("Some field wasn't inserted");
+            alert.show();
+        } else if (!isAnyThingChange()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Update Account Screen");
+            alert.setHeaderText("Nothing changed");
             alert.show();
         } else {
             confirmButtonAction(event);
         }
 
+    }
+
+    public boolean isAnyThingChange() {
+        if (nameTF.getText().equalsIgnoreCase(userProfile.getName())
+                && birthdayDTP.getValue().toString().equalsIgnoreCase(userProfile.getBirthDay())
+                && phoneNumberTF.getText().equalsIgnoreCase(userProfile.getPhoneNumber())
+                && departmentCbb.getValue().toString().equalsIgnoreCase(getDepartment(userProfile.getDepartmentId()))
+                && addressTF.getText().equalsIgnoreCase(userProfile.getAddress())) {
+            return false;
+        }
+        return true;
     }
 
     public boolean areAllTextFieldEmpty() {
@@ -121,11 +135,15 @@ public class UpdateAccountInformationDialogController {
         profile.update("UPDATE tbProfile SET Name = ?, PhoneNumber = ?, DepartmentId = ?, Address = ?, Birthday = ? WHERE ProfileId = ?",
                 nameTF.getText(), phoneNumberTF.getText(), getDepartmentId(departmentCbb.getValue().toString()), addressTF.getText(), birthdayDTP.getValue().toString(), userProfile.getProfileId());
 
-        System.out.println(profile);
+        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+        alert1.setTitle("Update Profile");
+        alert1.setHeaderText("Update Successfully");
+        alert1.show();
+
         backToPreviousDialog(event);
     }
 
-    public void init(PROFILE profile, int id ) {
+    public void init(PROFILE profile, String id ) {
         userProfile = profile;
         userId = id;
 

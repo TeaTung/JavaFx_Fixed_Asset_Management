@@ -115,6 +115,7 @@ CREATE TABLE tbDepartment
     DepartmentId   VARCHAR(10) PRIMARY KEY,
     DepartmentName NVARCHAR(100),
 )
+
 CREATE TABLE tbDeliveryNote
 (
     DeliveryId   VARCHAR(10) PRIMARY KEY,
@@ -200,6 +201,7 @@ CREATE TABLE tbAccount
     AccountId VARCHAR(10) PRIMARY KEY,
     Email     NVARCHAR(30),
     Password  NVARCHAR(20),
+    AccountType NCHAR(15),
 )
 
 CREATE TABLE tbProfile

@@ -283,7 +283,7 @@ public class DeviceScreenController implements Initializable {
                 deviceTableView.setItems(devicesList);
                 break;
             }
-            
+
             case "TOTAL": {
                 var devices = new DATABASE_DAO<>(DEVICE_ADD.class);
                 devicesList = FXCollections.observableArrayList(devices.selectList(

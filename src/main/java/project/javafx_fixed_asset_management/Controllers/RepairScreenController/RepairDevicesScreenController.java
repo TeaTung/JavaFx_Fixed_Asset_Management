@@ -124,7 +124,7 @@ public class RepairDevicesScreenController implements Initializable {
     public void init() {
         resetLabel();
 
-        getDataInTableView();
+        setDataInTableView();
 
         setSearchInTableView();
 
@@ -164,7 +164,7 @@ public class RepairDevicesScreenController implements Initializable {
     }
 
 
-    public void getDataInTableView() {
+    public void setDataInTableView() {
         var devices = new DATABASE_DAO<>(DEVICE.class);
         var repairs = new DATABASE_DAO<>(REPAIR.class);
 

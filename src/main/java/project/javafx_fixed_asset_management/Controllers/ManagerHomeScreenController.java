@@ -25,7 +25,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ManagerHomeScreenController implements Initializable {
-    int userId = 1;
+    String userId = "1";
 
     public void openDeviceScreenButtonAction(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
