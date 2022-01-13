@@ -9,10 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountDialogController;
 import project.javafx_fixed_asset_management.Main;
