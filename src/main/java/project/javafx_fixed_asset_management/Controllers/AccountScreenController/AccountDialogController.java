@@ -41,13 +41,13 @@ public class AccountDialogController {
     Button updateBtn;
 
     PROFILE userProfile;
-    int userId;
+    String userId;
 
     public void backButtonAction (ActionEvent event) {
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
 
-    public void init(int id) {
+    public void init(String id) {
         userId = id;
         System.out.println("USER ID: " + userId);
 

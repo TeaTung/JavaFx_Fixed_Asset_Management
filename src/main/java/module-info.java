@@ -25,4 +25,10 @@ module project.javafx_fixed_asset_management {
     opens project.javafx_fixed_asset_management.Controllers.RepairScreenController to javafx.fxml;
     exports project.javafx_fixed_asset_management.Controllers.AccountScreenController;
     opens project.javafx_fixed_asset_management.Controllers.AccountScreenController to javafx.fxml;
+    exports project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers;
+    opens project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers to javafx.fxml;
+    exports project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers.AddStaffController;
+    opens project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers.AddStaffController to javafx.fxml;
+    exports project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers.UpdateInformationDialogController;
+    opens project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers.UpdateInformationDialogController to javafx.fxml;
 }

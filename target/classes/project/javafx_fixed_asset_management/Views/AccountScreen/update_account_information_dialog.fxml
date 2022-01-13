@@ -10,51 +10,51 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.AccountScreenController.UpdateAccountInformationDialogController">
-   <children>
-      <Text layoutX="98.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UPDATE USER INFORMATION" wrappingWidth="354.0" AnchorPane.topAnchor="30.0">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Text>
-      <Label layoutX="40.0" layoutY="90.0" text="Name" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="150.0" text="Birthday" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="210.0" text="Phone number" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="270.0" text="Address" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Button fx:id="confirmBtn" layoutX="421.0" layoutY="412.0" mnemonicParsing="false" onAction="#validateField" prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
+    <children>
+        <Text layoutX="98.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UPDATE USER INFORMATION" wrappingWidth="354.0" AnchorPane.topAnchor="30.0">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Text>
+        <Label layoutX="40.0" layoutY="90.0" text="Name" AnchorPane.leftAnchor="40.0">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="150.0" text="Birthday" AnchorPane.leftAnchor="40.0">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="210.0" text="Phone number" AnchorPane.leftAnchor="40.0">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="270.0" text="Address" AnchorPane.leftAnchor="40.0">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Button fx:id="validateField" onAction="#validateField" layoutX="421.0" layoutY="412.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" text="Update" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="40.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <TextField fx:id="nameTF" layoutX="170.0" layoutY="90.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+        <TextField fx:id="phoneNumberTF" layoutX="170.0" layoutY="210.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+        <TextField fx:id="addressTF" layoutX="170.0" layoutY="270.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
+        <Label layoutX="40.0" layoutY="330.0" text="Department" AnchorPane.leftAnchor="40.0">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="birthdayDTP" layoutX="170.0" layoutY="146.0" prefHeight="33.0" prefWidth="340.0" />
+        <ComboBox fx:id="departmentCbb" layoutX="170.0" layoutY="330.0" prefHeight="33.0" prefWidth="340.0" />
+      <Button fx:id="backBtn" layoutX="59.0" layoutY="432.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="backBtn" layoutX="39.0" layoutY="412.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <TextField fx:id="nameTF" layoutX="170.0" layoutY="90.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
-      <TextField fx:id="phoneNumberTF" layoutX="170.0" layoutY="210.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
-      <TextField fx:id="addressTF" layoutX="170.0" layoutY="270.0" prefHeight="33.0" prefWidth="340.0" AnchorPane.rightAnchor="40.0" />
-      <Label layoutX="40.0" layoutY="330.0" text="Department" AnchorPane.leftAnchor="40.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <DatePicker fx:id="birthdayDTP" layoutX="170.0" layoutY="146.0" prefHeight="33.0" prefWidth="340.0" />
-      <ComboBox fx:id="departmentCbb" layoutX="170.0" layoutY="330.0" prefHeight="33.0" prefWidth="340.0" />
-   </children>
+    </children>
 </AnchorPane>
