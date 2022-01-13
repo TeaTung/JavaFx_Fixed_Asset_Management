@@ -16,6 +16,7 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import org.controlsfx.control.action.Action;
@@ -141,7 +142,7 @@ public class FirstInventoryScreenController implements Initializable {
         isRowSelected = true;
         addNewPersonBtn.setDisable(true);
         PERSON selectedPerson = existedPeopleTV.getSelectionModel().getSelectedItem();
-        if(selectedPerson != null) {
+        if (selectedPerson != null) {
             nameTF.setText(selectedPerson.getName());
             departmentTF.setText(selectedPerson.getDepartmentName());
             titleTF.setText(selectedPerson.getTitle());
@@ -165,7 +166,7 @@ public class FirstInventoryScreenController implements Initializable {
 
     @FXML
     public void continueButtonAction(ActionEvent event) {
-        if(validateData() == true) {
+        if (validateData() == true) {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/InventoryScreen/second_inventory_screen.fxml"));
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
@@ -188,7 +189,9 @@ public class FirstInventoryScreenController implements Initializable {
     @FXML
     void addNewButtonAction(ActionEvent event) {
         String personToAdd = "Name: " + nameTF.getText() + "\n" + "Department: " + departmentTF.getText() + "\n" + "Title: " + titleTF.getText();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to add this new person? \n" + personToAdd, ButtonType.YES, ButtonType.CANCEL);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION, "Are you sure to add this new person? \n" + personToAdd, ButtonType.YES, ButtonType.CANCEL);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
 
 
@@ -265,12 +268,12 @@ public class FirstInventoryScreenController implements Initializable {
         errorLabel.setVisible(false);
     }
 
-    boolean validateData(){
-        if(listInventoryPeople.isEmpty())  {
+    boolean validateData() {
+        if (listInventoryPeople.isEmpty()) {
             errorLabel.setVisible(true);
             errorLabel.setText("Please add people to inventory!");
             return false;
-        } else if(dateOfInventoryDtp.getValue() == null) {
+        } else if (dateOfInventoryDtp.getValue() == null) {
             errorLabel.setVisible(true);
             errorLabel.setText("Please select date of inventory!");
             return false;
@@ -383,4 +386,29 @@ public class FirstInventoryScreenController implements Initializable {
         }
 
     }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+
 }

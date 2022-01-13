@@ -15,6 +15,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.*;
 
@@ -113,6 +116,8 @@ public class ThirdInventoryScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,7 +134,10 @@ public class ThirdInventoryScreenController implements Initializable {
 
     @FXML
     void finishBtnAction(ActionEvent event) {
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "If you finish this session, all related data will be update to system and can't be edited anymore. Are you sure to perform this action?", ButtonType.YES, ButtonType.CANCEL);
+        FlatAlert confirmation = new FlatAlert(Alert.AlertType.CONFIRMATION, "Are you sure to perform this action?", ButtonType.YES, ButtonType.CANCEL);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(confirmation.getDialogPane().getScene());
+
         confirmation.showAndWait();
         if (confirmation.getResult() == ButtonType.YES) {
             var PERSON_AND_INVENTORY = new DATABASE_DAO<>(PERSON_AND_INVENTORY.class);
@@ -141,7 +149,8 @@ public class ThirdInventoryScreenController implements Initializable {
                     PERSON_AND_INVENTORY.insert("INSERT INTO tbPersonAndInventory(LINKID, INVENTORYID, PERSONID) VALUES (?, ?, ?)", linkId, inventoryId, personId);
                 }
             }
-            Alert information = new Alert(Alert.AlertType.CONFIRMATION, "This inventory session is finished successfully!", ButtonType.OK);
+            FlatAlert information = new FlatAlert(Alert.AlertType.CONFIRMATION, "This session is finished successfully!", ButtonType.OK);
+            jMetro.setScene(information.getDialogPane().getScene());
             information.showAndWait();
             if (information.getResult() == ButtonType.OK) {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
@@ -231,6 +240,29 @@ public class ThirdInventoryScreenController implements Initializable {
         sortedList.comparatorProperty().bind(inventoryDeviceTB.comparatorProperty());
 
         inventoryDeviceTB.setItems(sortedList);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
     }
 }
 

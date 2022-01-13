@@ -1,11 +1,4 @@
 
-
-.tab-pane .tab:selected
-{
-    -fx-background-color: #3c3c3c;
-}
-
-
 /* TEXT */
 .my-title {
     -fx-font-family: cursive;
@@ -37,9 +30,15 @@
     -fx-font-size: 1em;
 }
 
+.error-text {
+    -fx-font-family: 'consolas', sans-serif;
+    -fx-font-size: 1.2em;
+    -fx-underline: true;
+}
+
 /* TABLE VIEW */
 .table-view {
-    -fx-font-family: 'consolas', sans-serif;
+    -fx-font-family: cursive;
     -fx-border-color: gray;
 }
 

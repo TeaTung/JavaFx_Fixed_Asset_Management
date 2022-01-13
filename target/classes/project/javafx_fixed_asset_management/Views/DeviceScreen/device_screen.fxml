@@ -9,63 +9,85 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" styleClass="panel-custom" stylesheets="@../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.javafx_fixed_asset_management.Controllers.DeviceScreenController">
+<AnchorPane fx:id="anchorPane" onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction"
+            prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" styleClass="panel-custom"
+            stylesheets="@../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.javafx_fixed_asset_management.Controllers.DeviceScreenController">
     <children>
-        <TableView fx:id="deviceTableView" layoutX="31.0" layoutY="97.0" prefHeight="542.0" prefWidth="1219.0" style="-fx-border-color: gray;" styleClass="column-grid-lines" tableMenuButtonVisible="true">
+        <TableView fx:id="deviceTableView" layoutX="31.0" layoutY="97.0" prefHeight="542.0" prefWidth="1219.0"
+                   style="-fx-border-color: gray;" styleClass="column-grid-lines" tableMenuButtonVisible="true">
             <columns>
-                <TableColumn fx:id="idColumn" minWidth="150" prefWidth="0" text="ID" />
-                <TableColumn fx:id="deviceNameColumn" maxWidth="193.59999084472656" prefWidth="193.59999084472656" text="Device Name" />
-                <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="121.60003662109375" text="Quantity" />
-                <TableColumn fx:id="unitColumn" minWidth="0.0" prefWidth="120.0" text="Unit" />
-                <TableColumn fx:id="departmentNameColumn" minWidth="0.0" prefWidth="150.0" text="Department" visible="false" />
-                <TableColumn fx:id="typeOfDeviceColumn" minWidth="0.0" prefWidth="150.0" text="Model" />
-                <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="120.0" text="Price" />
-                <TableColumn fx:id="specificationColumn" minWidth="0.0" prefWidth="180.0" text="Specification" />
-                <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="105.0" text="Status" />
-                <TableColumn fx:id="percentDamage" minWidth="0.0" prefWidth="100.0" text="EBITDA" />
-                <TableColumn fx:id="dateOfUsingColumn" minWidth="0.0" prefWidth="147.199951171875" text="Date of using" />
-                <TableColumn fx:id="dateOfManufacturingColumn" minWidth="0.0" prefWidth="156.0" text="Date of Manufacturing" />
+                <TableColumn fx:id="idColumn" minWidth="150" prefWidth="0" text="ID"/>
+                <TableColumn fx:id="deviceNameColumn" maxWidth="193.59999084472656" prefWidth="193.59999084472656"
+                             text="Device Name"/>
+                <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="121.60003662109375" text="Quantity"/>
+                <TableColumn fx:id="unitColumn" minWidth="0.0" prefWidth="120.0" text="Unit"/>
+                <TableColumn fx:id="departmentNameColumn" minWidth="0.0" prefWidth="150.0" text="Department"
+                             visible="false"/>
+                <TableColumn fx:id="typeOfDeviceColumn" minWidth="0.0" prefWidth="150.0" text="Model"/>
+                <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="120.0" text="Price"/>
+                <TableColumn fx:id="specificationColumn" minWidth="0.0" prefWidth="180.0" text="Specification"/>
+                <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="105.0" text="Status"/>
+                <TableColumn fx:id="percentDamage" minWidth="0.0" prefWidth="100.0" text="EBITDA"/>
+                <TableColumn fx:id="dateOfUsingColumn" minWidth="0.0" prefWidth="147.199951171875"
+                             text="Date of using"/>
+                <TableColumn fx:id="dateOfManufacturingColumn" minWidth="0.0" prefWidth="156.0"
+                             text="Date of Manufacturing"/>
             </columns>
         </TableView>
-        <Button fx:id="addBtn" defaultButton="true" layoutX="950.0" layoutY="657.0" mnemonicParsing="false" onAction="#addDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Add" AnchorPane.bottomAnchor="30.0">
+        <Button fx:id="addBtn" defaultButton="true" layoutX="950.0" layoutY="657.0" mnemonicParsing="false"
+                onAction="#addDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Add"
+                AnchorPane.bottomAnchor="30.0">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
-        <Button fx:id="updateBtn" layoutX="1160.0" layoutY="657.0" mnemonicParsing="false" onAction="#updateDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Update" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+        <Button fx:id="updateBtn" layoutX="1160.0" layoutY="657.0" mnemonicParsing="false"
+                onAction="#updateDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Update"
+                AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
-        <Button fx:id="backBtn" layoutX="31.0" layoutY="657.0" mnemonicParsing="false" onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
+        <Button fx:id="backBtn" layoutX="31.0" layoutY="657.0" mnemonicParsing="false"
+                onAction="#backDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Back"
+                AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
-        <Button fx:id="deleteBtn" layoutX="1055.0" layoutY="657.0" mnemonicParsing="false" onAction="#deleteDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Delete" AnchorPane.bottomAnchor="30.0">
+        <Button fx:id="deleteBtn" layoutX="1055.0" layoutY="657.0" mnemonicParsing="false"
+                onAction="#deleteDeviceButtonAction" prefHeight="33.0" prefWidth="89.0" text="Delete"
+                AnchorPane.bottomAnchor="30.0">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
-        <TextField fx:id="searchTF" layoutX="567.0" layoutY="657.0" onKeyPressed="#onKeyTypeSearchTF" prefHeight="33.0" prefWidth="260.0" promptText="Search by device name" AnchorPane.bottomAnchor="30.0" />
-        <Button fx:id="ExportBtn" layoutX="844.0" layoutY="657.0" mnemonicParsing="false" onAction="#exportButtonAction" prefHeight="33.0" prefWidth="89.0" text="Export" AnchorPane.bottomAnchor="30.0">
+        <TextField fx:id="searchTF" layoutX="567.0" layoutY="657.0" onKeyPressed="#onKeyTypeSearchTF" prefHeight="33.0"
+                   prefWidth="260.0" promptText="Search by device name" AnchorPane.bottomAnchor="30.0"/>
+        <Button fx:id="ExportBtn" layoutX="844.0" layoutY="657.0" mnemonicParsing="false" onAction="#exportButtonAction"
+                prefHeight="33.0" prefWidth="89.0" text="Export" AnchorPane.bottomAnchor="30.0">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
-        <Text layoutX="34.0" layoutY="64.0224609375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="LIST OF DEVICES" wrappingWidth="507.0" AnchorPane.topAnchor="37.0224609375">
+        <Text layoutX="34.0" layoutY="64.0224609375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title"
+              text="LIST OF DEVICES" wrappingWidth="507.0" AnchorPane.topAnchor="37.0224609375">
             <font>
-                <Font name="Helvetica" size="25.0" />
+                <Font name="Helvetica" size="25.0"/>
             </font>
         </Text>
-        <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction" prefHeight="32.0" prefWidth="84.0" styleClass="top-button" text="🔴" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Button layoutX="1115.4" mnemonicParsing="false" onAction="#onMinimizeBtnOnAction" prefHeight="32.0"
+                prefWidth="84.0" styleClass="top-button" text="🔴" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
             <font>
-                <Font size="25.0" />
+                <Font size="25.0"/>
             </font>
         </Button>
 
     </children>
     <effect>
-        <SepiaTone level="0.44" />
+        <SepiaTone level="0.44"/>
     </effect>
 </AnchorPane>
