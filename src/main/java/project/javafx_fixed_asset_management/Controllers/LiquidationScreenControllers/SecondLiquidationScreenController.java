@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
@@ -95,7 +96,7 @@ public class SecondLiquidationScreenController implements Initializable {
 
     @FXML
     void continueBtnAction(ActionEvent event) {
-        if(validateData() == true){
+        if (validateData() == true) {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/third_liquidation_screen.fxml"));
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
@@ -155,6 +156,8 @@ public class SecondLiquidationScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -170,8 +173,8 @@ public class SecondLiquidationScreenController implements Initializable {
         errorLabel.setVisible(false);
     }
 
-    boolean validateData(){
-        if(listLiquidationDevice.isEmpty())  {
+    boolean validateData() {
+        if (listLiquidationDevice.isEmpty()) {
             errorLabel.setVisible(true);
             errorLabel.setText("Please add device to liquidation!");
             return false;
@@ -179,9 +182,10 @@ public class SecondLiquidationScreenController implements Initializable {
         errorLabel.setVisible(false);
         return true;
     }
+
     @FXML
     void cbbOnChangeListener(ActionEvent event) {
-        DEPARTMENT selectedDepartment = (DEPARTMENT)departmentCbb.getValue();
+        DEPARTMENT selectedDepartment = (DEPARTMENT) departmentCbb.getValue();
         departmentId = selectedDepartment.getDepartmentId();
         getDataInTableView();
     }
@@ -196,13 +200,14 @@ public class SecondLiquidationScreenController implements Initializable {
         departmentCbb.setItems(listDepartment);
         departmentCbb.setValue(listDepartment.get(0));
     }
+
     private void getDataInTableView() {
         var devices = new DATABASE_DAO<>(DEVICE.class);
         var transfer = new DATABASE_DAO<>(TRANSFER.class);
         ObservableList<TRANSFER> listTransfer;
         ArrayList<String> listDeviceId = new ArrayList<>();
         try {
-            if(departmentId == null || departmentId.equals("All Department")) {
+            if (departmentId == null || departmentId.equals("All Department")) {
                 listTransfer = FXCollections.observableArrayList(transfer.selectList("SELECT DeviceId FROM TBTRANSFER"));
                 String[] listDeviceIdTemp;
                 for (int i = 0; i < listTransfer.size(); i++) {
@@ -212,8 +217,7 @@ public class SecondLiquidationScreenController implements Initializable {
                         listDeviceId.add(listDeviceIdTemp[j]);
                     }
                 }
-            }
-            else{
+            } else {
                 listTransfer = FXCollections.observableArrayList(transfer.selectList("SELECT DeviceId FROM TBTRANSFER WHERE DepartmentId = '" + departmentId + "'"));
                 String[] listDeviceIdTemp;
                 for (int i = 0; i < listTransfer.size(); i++) {
@@ -232,7 +236,7 @@ public class SecondLiquidationScreenController implements Initializable {
         }
 
         try {
-            if(!listDeviceId.isEmpty()) {
+            if (!listDeviceId.isEmpty()) {
                 StringBuilder selectString = new StringBuilder("SELECT DEVICEID, DEVICENAME, DEVICESTATUS, YEARUSED, YEARMANUFACTURE, PRICE, SPECIFICATION, PercentDamage FROM tbDevice WHERE  deviceId =  '" + listDeviceId.get(0).toString() + "'");
                 for (int i = 1; i < listDeviceId.size(); i++) {
                     selectString.append(" OR deviceId =  '").append(listDeviceId.get(i).toString()).append("'");
@@ -240,8 +244,7 @@ public class SecondLiquidationScreenController implements Initializable {
                 }
                 selectString.append(" AND deviceStatus !=  'Liquidated'");
                 listDevice = FXCollections.observableArrayList(devices.selectList(selectString.toString()));
-            }
-            else{
+            } else {
                 listDevice.clear();
             }
         } catch (Exception e) {
@@ -296,5 +299,29 @@ public class SecondLiquidationScreenController implements Initializable {
     @FXML
     void searchHandler(KeyEvent event) {
         setSearchInTableView();
+    }
+
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
     }
 }

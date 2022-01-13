@@ -97,7 +97,11 @@ public class ThirdInventoryScreenController implements Initializable {
     @FXML
     void updateBtnAction(ActionEvent event) {
         DEVICE selectedItem = inventoryDeviceTB.getSelectionModel().getSelectedItem();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Usable value of " + selectedItem.getDeviceName() + " to " + usableValueTF.getText() + " percent?", ButtonType.YES, ButtonType.CANCEL);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION, "Usable value of " + selectedItem.getDeviceName() + " to " + usableValueTF.getText() + " percent?", ButtonType.YES, ButtonType.CANCEL);
+
+
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
@@ -150,6 +154,7 @@ public class ThirdInventoryScreenController implements Initializable {
                 }
             }
             FlatAlert information = new FlatAlert(Alert.AlertType.CONFIRMATION, "This session is finished successfully!", ButtonType.OK);
+
             jMetro.setScene(information.getDialogPane().getScene());
             information.showAndWait();
             if (information.getResult() == ButtonType.OK) {
@@ -198,7 +203,11 @@ public class ThirdInventoryScreenController implements Initializable {
             listInventory = FXCollections.observableArrayList(inventory.selectList(
                     "SELECT  InventoryId, tbDevice.DeviceId, UsableValue,  InventoryDate, DeviceName FROM tbInventory, tbDevice WHERE tbInventory.DeviceId = ? AND tbDevice.DeviceId = tbInventory.DeviceId", deviceId));
         } catch (Exception e) {
-            Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+            FlatAlert information = new FlatAlert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(information.getDialogPane().getScene());
+
             information.showAndWait();
             return;
         }

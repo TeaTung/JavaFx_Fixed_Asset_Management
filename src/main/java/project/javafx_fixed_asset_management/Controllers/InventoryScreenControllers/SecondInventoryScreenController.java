@@ -325,4 +325,6 @@ public class SecondInventoryScreenController implements Initializable {
         primaryStage.setX(event.getScreenX() + xOffset);
         primaryStage.setY(event.getScreenY() + yOffset);
     }
+
+
 }

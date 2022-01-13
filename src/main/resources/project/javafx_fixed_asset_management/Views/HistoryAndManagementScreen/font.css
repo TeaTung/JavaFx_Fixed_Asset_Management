@@ -160,6 +160,9 @@
     -fx-border-color: gray;
 }
 
+.combo-box{
+    -fx-font-family: 'consolas', sans-serif;
+}
 
 .top-button:{
     -fx-border-radius: 0 0 0 1;
