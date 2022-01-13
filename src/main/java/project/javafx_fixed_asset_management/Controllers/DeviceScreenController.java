@@ -77,8 +77,7 @@ public class DeviceScreenController implements Initializable {
     // public ComboBox<String> deviceViewModeCB;
     public TableColumn<DEVICE, String> departmentNameColumn;
     FilteredList<DEVICE> filteredList;
-    private static double xOffset = 0;
-    private static double yOffset = 0;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -276,6 +275,8 @@ public class DeviceScreenController implements Initializable {
         stage.show();
     }
 
+    private static double xOffset = 0;
+    private static double yOffset = 0;
     public void panelMousePressOnAction(MouseEvent event) {
         Node node = (Node) event.getSource();
         Stage primaryStage = (Stage) node.getScene().getWindow();

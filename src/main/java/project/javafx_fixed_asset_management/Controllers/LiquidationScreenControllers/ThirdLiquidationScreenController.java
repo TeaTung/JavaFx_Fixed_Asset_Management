@@ -15,6 +15,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.*;
 
@@ -92,7 +95,10 @@ public class ThirdLiquidationScreenController implements Initializable {
     void liquidationBtnAction(ActionEvent event) {
 
         DEVICE selectedItem = liquidationDeviceTB.getSelectionModel().getSelectedItem();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "The " + selectedItem.getDeviceName() + " will be liquidated, this action can't be undone later. Are you sure to perform this action? " , ButtonType.YES, ButtonType.CANCEL);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION, "The " + selectedItem.getDeviceName() + " will be liquidated.\nThis action can't be undone later.\nAre you sure to perform this action? ", ButtonType.YES, ButtonType.CANCEL);
+
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
@@ -103,7 +109,8 @@ public class ThirdLiquidationScreenController implements Initializable {
             listLiquidationId.add(liquidationId);
             liquidation.insert("INSERT INTO TBLIQUIDATION(LIQUIDATIONID, DEVICEID, LIQUIDATIONDATE) VALUES (?, ?, ?)", liquidationId, selectedItem.getDeviceId(), liquidationDate.toString());
             device.update("UPDATE TBDEVICE SET DEVICESTATUS = ? WHERE DEVICEID = ?", "Liquidated", selectedItem.getDeviceId());
-            Alert information = new Alert(Alert.AlertType.INFORMATION, "The " + selectedItem.getDeviceName() + " have been liquidated!" , ButtonType.OK);
+            FlatAlert information = new FlatAlert(Alert.AlertType.INFORMATION, "The " + selectedItem.getDeviceName() + " have been liquidated!", ButtonType.OK);
+            jMetro.setScene(information.getDialogPane().getScene());
             information.showAndWait();
             listLiquidationDevice.remove(selectedItem);
             updateLiquidationHistoryTable();
@@ -134,7 +141,9 @@ public class ThirdLiquidationScreenController implements Initializable {
 
     @FXML
     void finishBtnAction(ActionEvent event) {
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "If you finish this session, all related data will be update to system and can't be edited anymore. Are you sure to perform this action?", ButtonType.YES, ButtonType.CANCEL);
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to perform this action?", ButtonType.YES, ButtonType.CANCEL);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(confirmation.getDialogPane().getScene());
         confirmation.showAndWait();
         if (confirmation.getResult() == ButtonType.YES) {
             var PERSON_AND_LIQUIDATION = new DATABASE_DAO<>(PERSON_AND_LIQUIDATION.class);
@@ -146,7 +155,9 @@ public class ThirdLiquidationScreenController implements Initializable {
                     PERSON_AND_LIQUIDATION.insert("INSERT INTO tbPersonAndLiquidation(LINKID, LIQUIDATIONID, PERSONID) VALUES (?, ?, ?)", linkId, liquidationId, personId);
                 }
             }
-            Alert information = new Alert(Alert.AlertType.CONFIRMATION, "This liquidation session is finished successfully!", ButtonType.OK);
+            FlatAlert information = new FlatAlert(Alert.AlertType.CONFIRMATION, "This session is finished successfully!", ButtonType.OK);
+            jMetro.setScene(information.getDialogPane().getScene());
+
             information.showAndWait();
             if (information.getResult() == ButtonType.OK) {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/HomeScreen/Manager/manager_home_screen.fxml"));
@@ -187,7 +198,7 @@ public class ThirdLiquidationScreenController implements Initializable {
 
     void updateLiquidationHistoryTable() {
         listInventory = FXCollections.observableArrayList();
-        if(liquidationDeviceTB.getSelectionModel().getSelectedItem() != null) {
+        if (liquidationDeviceTB.getSelectionModel().getSelectedItem() != null) {
             DEVICE selectedItem = liquidationDeviceTB.getSelectionModel().getSelectedItem();
 
             var deviceId = selectedItem.getDeviceId();
@@ -196,7 +207,11 @@ public class ThirdLiquidationScreenController implements Initializable {
                 listInventory = FXCollections.observableArrayList(inventory.selectList(
                         "SELECT  InventoryId, tbDevice.DeviceId, UsableValue,  InventoryDate, DeviceName FROM tbInventory, tbDevice WHERE tbInventory.DeviceId = ? AND tbDevice.DeviceId = tbInventory.DeviceId", deviceId));
             } catch (Exception e) {
-                Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+                FlatAlert information = new FlatAlert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+
+                JMetro jMetro = new JMetro(Style.LIGHT);
+                jMetro.setScene(information.getDialogPane().getScene());
+
                 information.showAndWait();
                 return;
             }
@@ -239,6 +254,29 @@ public class ThirdLiquidationScreenController implements Initializable {
         sortedList.comparatorProperty().bind(liquidationDeviceTB.comparatorProperty());
 
         liquidationDeviceTB.setItems(sortedList);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
     }
 }
 

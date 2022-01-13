@@ -13,9 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
@@ -158,7 +160,9 @@ public class SecondInventoryScreenController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
+            scene = new Scene(fxmlLoader.load(), 1280, 745);
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -186,7 +190,7 @@ public class SecondInventoryScreenController implements Initializable {
 
     @FXML
     void cbbOnChangeListener(ActionEvent event) {
-        DEPARTMENT selectedDepartment = (DEPARTMENT)departmentCbb.getValue();
+        DEPARTMENT selectedDepartment = (DEPARTMENT) departmentCbb.getValue();
         departmentId = selectedDepartment.getDepartmentId();
         getDataInTableView();
     }
@@ -213,7 +217,7 @@ public class SecondInventoryScreenController implements Initializable {
         ObservableList<TRANSFER> listTransfer;
         ArrayList<String> listDeviceId = new ArrayList<>();
         try {
-            if(departmentId == null || departmentId.equals("All Department")) {
+            if (departmentId == null || departmentId.equals("All Department")) {
                 listTransfer = FXCollections.observableArrayList(transfer.selectList("SELECT DeviceId FROM TBTRANSFER"));
                 String[] listDeviceIdTemp;
                 for (int i = 0; i < listTransfer.size(); i++) {
@@ -223,8 +227,7 @@ public class SecondInventoryScreenController implements Initializable {
                         listDeviceId.add(listDeviceIdTemp[j]);
                     }
                 }
-            }
-            else{
+            } else {
                 listTransfer = FXCollections.observableArrayList(transfer.selectList("SELECT DeviceId FROM TBTRANSFER WHERE DepartmentId = '" + departmentId + "'"));
                 String[] listDeviceIdTemp;
                 for (int i = 0; i < listTransfer.size(); i++) {
@@ -235,23 +238,21 @@ public class SecondInventoryScreenController implements Initializable {
                     }
                 }
             }
-
         } catch (Exception e) {
-            Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+            FlatAlert information = new FlatAlert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
             information.showAndWait();
             return;
         }
 
         try {
-            if(!listDeviceId.isEmpty()) {
+            if (!listDeviceId.isEmpty()) {
                 StringBuilder selectString = new StringBuilder("SELECT DEVICEID, DEVICENAME, DEVICESTATUS, YEARUSED, YEARMANUFACTURE, PRICE, SPECIFICATION, PercentDamage FROM tbDevice WHERE  deviceId =  '" + listDeviceId.get(0).toString() + "'");
                 for (int i = 1; i < listDeviceId.size(); i++) {
                     selectString.append(" OR deviceId =  '").append(listDeviceId.get(i).toString()).append("'");
 
                 }
                 listDevice = FXCollections.observableArrayList(devices.selectList(selectString.toString()));
-            }
-            else{
+            } else {
                 listDevice.clear();
             }
         } catch (Exception e) {
@@ -301,4 +302,29 @@ public class SecondInventoryScreenController implements Initializable {
 
         existedDeviceTB.setItems(sortedList);
     }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+
 }

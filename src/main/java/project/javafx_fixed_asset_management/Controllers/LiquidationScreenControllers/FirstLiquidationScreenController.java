@@ -191,7 +191,7 @@ public class FirstLiquidationScreenController implements Initializable {
         isRowSelected = true;
         addNewPersonBtn.setDisable(true);
         PERSON selectedPerson = existedPeopleTV.getSelectionModel().getSelectedItem();
-        if(selectedPerson != null) {
+        if (selectedPerson != null) {
             nameTF.setText(selectedPerson.getName());
             departmentTF.setText(selectedPerson.getDepartmentName());
             titleTF.setText(selectedPerson.getTitle());
@@ -239,12 +239,12 @@ public class FirstLiquidationScreenController implements Initializable {
         stage.show();
     }
 
-    boolean validateData(){
-        if(listLiquidationPeople.isEmpty())  {
+    boolean validateData() {
+        if (listLiquidationPeople.isEmpty()) {
             errorLabel.setVisible(true);
             errorLabel.setText("Please add people to liquidation!");
             return false;
-        } else if(dateOfLiquidationDtp.getValue() == null) {
+        } else if (dateOfLiquidationDtp.getValue() == null) {
             errorLabel.setVisible(true);
             errorLabel.setText("Please select date of liquidation!");
             return false;
@@ -255,7 +255,7 @@ public class FirstLiquidationScreenController implements Initializable {
 
     @FXML
     void continueButtonAction(ActionEvent event) {
-        if(validateData() == true) {
+        if (validateData() == true) {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/LiquidationScreen/second_liquidation_screen.fxml"));
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
@@ -384,4 +384,28 @@ public class FirstLiquidationScreenController implements Initializable {
     void deletePeopleButtonAction(ActionEvent event) {
 
     }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
 }

@@ -30,9 +30,15 @@
     -fx-font-size: 1em;
 }
 
+.error-text {
+    -fx-font-family: 'consolas', sans-serif;
+    -fx-font-size: 1.2em;
+    -fx-underline: true;
+}
+
 /* TABLE VIEW */
 .table-view {
-    -fx-font-family: 'consolas', sans-serif;
+    -fx-font-family: cursive;
     -fx-border-color: gray;
 }
 
@@ -154,6 +160,9 @@
     -fx-border-color: gray;
 }
 
+.combo-box{
+    -fx-font-family: 'consolas', sans-serif;
+}
 
 .top-button:{
     -fx-border-radius: 0 0 0 1;

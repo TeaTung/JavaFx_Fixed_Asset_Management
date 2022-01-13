@@ -17,8 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.Style;
+import jfxtras.styles.jmetro.*;
 import project.javafx_fixed_asset_management.Controllers.LiquidationScreenControllers.ThirdLiquidationScreenController;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -57,7 +56,9 @@ public class SignInScreenController implements Initializable {
 
     @FXML
     void closeBtnHandler(MouseEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to exit the application? " , ButtonType.YES, ButtonType.CANCEL);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION, "Are you sure to exit the application? " , ButtonType.YES, ButtonType.CANCEL);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
