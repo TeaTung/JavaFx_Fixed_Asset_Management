@@ -108,7 +108,7 @@
 
 /* CHART */
 .chart {
-    -fx-padding: 8px;
+    -fx-padding: 0.5px;
     -fx-background-color: white;
     -fx-font-family: 'consolas';
     -fx-background-radius: 10px;
@@ -171,6 +171,9 @@
 
 .top-button .text{
     -fx-font-size: 1em;
+            -fx-text-fill: #CD5C5C;
+             -fx-background-color: transparent;
+
 }
 
 .top-button:hover {
@@ -187,10 +190,6 @@
 .top-button:{
     -fx-border-radius: 0 0 0 1;
     -fx-font-size: 2em;
-}
-
-.top-button .text{
-    -fx-font-size: 1em;
 }
 
 .top-button:hover {
