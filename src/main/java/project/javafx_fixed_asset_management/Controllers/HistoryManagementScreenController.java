@@ -7,12 +7,14 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -41,8 +43,7 @@ public class HistoryManagementScreenController implements Initializable {
     public VBox transferBarChartVB;
     public ComboBox<Integer> yearGraphCB;
     public ComboBox<Month> monthGraphCB;
-    public VBox RepairDeviceAreaChartVB;
-    private LineChart<Number, Number> lineChart = new LineChart<>(new NumberAxis(), new NumberAxis());
+    public HBox repairDeviceAreaChartVB;
 
     public void setUpDeviceLineChart() {
         final NumberAxis xAxis = new NumberAxis();
@@ -52,6 +53,7 @@ public class HistoryManagementScreenController implements Initializable {
         yAxis.setLabel("Device per week");
 
         //creating the chart
+        LineChart<Number, Number> lineChart = new LineChart<>(new NumberAxis(), new NumberAxis());
         lineChart =
                 new LineChart<Number, Number>(xAxis, yAxis);
         lineChart.setTitle("Device Sumary");
@@ -103,6 +105,75 @@ public class HistoryManagementScreenController implements Initializable {
         transferBarChartVB.getChildren().add(bc);
     }
 
+    public void setUpRepairLineChart() {
+        var db = new DATABASE_DAO<>(REPAIR_GRAPH_HISTORY.class);
+        var week_history = FXCollections.observableArrayList(db.selectList(
+                "select Department " +
+                        ",sum(quantityDevice) as quantity  from " +
+                        "tbDevice " +
+                        "inner join ( " +
+                        "select tbRepair.RepairDate, value deviceId from tbRepair  " +
+                        "CROSS APPLY STRING_SPLIT(deviceId, ',')  " +
+                        ") s  on tbDevice.deviceId = s.deviceId " +
+                        "INNER JOIN ( " +
+                        "select department ,value deviceId from tbTransfer  " +
+                        "CROSS APPLY STRING_SPLIT(deviceId, ',')  " +
+                        ") d on s.DeviceId = d.deviceId " +
+                        "where MONTH(s.RepairDate) = ? AND YEAR(s.repairDate) = ? " +
+                        "group by Department",
+                String.valueOf(monthGraphCB.getSelectionModel().getSelectedItem().getValue()), yearGraphCB.getValue().toString()
+        ));
+
+
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList();
+
+        int length = week_history.size();
+        for (int i = 0; i < length; i++) {
+            pieChartData.add(new PieChart.Data(
+                    week_history.get(i).getDepartment(),
+                    week_history.get(i).getQuantity()));
+        }
+
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setClockwise(true);
+        chart.setStartAngle(40);
+        chart.setTitle("Department Repair");
+        repairDeviceAreaChartVB.getChildren().add(0, chart);
+
+
+        var db_inventory = new DATABASE_DAO<>(INVENTORY_GRAPH_INVENTORY.class);
+        var inventory_history = FXCollections.observableArrayList(db_inventory.selectList(
+                "select department, sum(quantityDevice) as quantity from tbInventory " +
+                        "inner join tbDevice on tbDevice.deviceId = tbInventory.deviceID " +
+                        "inner join tbTransfer on tbDevice.DeviceId= tbTransfer.DeviceId " +
+                        "where MONTH(TransferDate) = ? AND YEAR(TransferDate) = ? " +
+                        "group by department",
+                String.valueOf(monthGraphCB.getSelectionModel().getSelectedItem().getValue()), yearGraphCB.getValue().toString()
+        ));
+
+
+        ObservableList<PieChart.Data> pieChartDataInventory =
+                FXCollections.observableArrayList();
+
+
+        int length_inventory = inventory_history.size();
+        for (int i = 0; i < length_inventory; i++) {
+            pieChartDataInventory.add(new PieChart.Data(
+                    inventory_history.get(i).getDepartment(),
+                    inventory_history.get(i).getQuantity()));
+        }
+
+
+        final PieChart chart2 = new PieChart(pieChartDataInventory);
+        chart.setTitle("Department Inventory");
+        chart2.setClockwise(true);
+        chart2.setStartAngle(-40);
+        repairDeviceAreaChartVB.getChildren().add(1, chart2);
+
+
+    }
+
     public XYChart.Series<Number, Number> getLineChartDataFromList(ObservableList<WEEK_DEVICE_HISTORY> observableList, String seriesName) {
         XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
         series.setName(seriesName);
@@ -112,6 +183,7 @@ public class HistoryManagementScreenController implements Initializable {
         }
         return series;
     }
+
 
     public XYChart.Series getTransferBarChartDataFromList(ObservableList<TRANSFER_BAR_CHART_HISTORY> observableList, String seriesName) {
 
@@ -701,8 +773,10 @@ public class HistoryManagementScreenController implements Initializable {
 
             transferBarChartVB.getChildren().clear();
             weekDeviceLineChartVB.getChildren().clear();
+            repairDeviceAreaChartVB.getChildren().clear();
             setUpDeviceLineChart();
             setUpTransferBarChart();
+            setUpRepairLineChart();
         }
     }
 
