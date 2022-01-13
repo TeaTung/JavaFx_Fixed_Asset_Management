@@ -4,14 +4,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Models.*;
 
 import java.util.Optional;
 
 public class ConfirmTransferDevicesDialogController {
+    public TextField transferIDTF;
+    public TextField deptNameTF;
+    public TextField dateTF;
+    JMetro jMetro = new JMetro(Style.LIGHT);
     @FXML
     Label transferIdLbl;
 
@@ -64,9 +73,9 @@ public class ConfirmTransferDevicesDialogController {
         System.out.println("DEPARTMENT: " + departmentId);
         System.out.println("DATE: " + date);
 
-        transferIdLbl.setText(id);
-        departmentLbl.setText(departmentName);
-        repairDateLbl.setText(date);
+        transferIDTF.setText(id);
+        deptNameTF.setText(departmentName);
+        dateTF.setText(date);
         setTableView(listTransformDevice);
     }
 
@@ -79,12 +88,9 @@ public class ConfirmTransferDevicesDialogController {
     }
 
     public void confirmButtonAction(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-
-        alert.setTitle("Transform Device");
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Are you sure to transform devices");
-
+        jMetro.setScene(alert.getDialogPane().getScene());
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == null) {
         } else if (option.get() == ButtonType.OK) {
@@ -104,9 +110,9 @@ public class ConfirmTransferDevicesDialogController {
             changeDeviceStatus(listDevice);
             transformSQL.insert(insertSQL(transform));
 
-            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Transfer Devices");
+            FlatAlert alert1 = new FlatAlert(Alert.AlertType.INFORMATION);
             alert1.setHeaderText("Transfer Successfully");
+            jMetro.setScene(alert1.getDialogPane().getScene());
             alert1.show();
 
             backPreviousScreen(event);
@@ -118,10 +124,10 @@ public class ConfirmTransferDevicesDialogController {
         }
     }
 
-    public void changeDeviceStatus (ObservableList<String> listDevice) {
+    public void changeDeviceStatus(ObservableList<String> listDevice) {
         var devices = new DATABASE_DAO<>(DEVICE.class);
         for (String device : listDevice) {
-            devices.update("UPDATE tbDevice SET tbDevice.DeviceStatus = ? WHERE deviceId = ?","Transferred", device);
+            devices.update("UPDATE tbDevice SET tbDevice.DeviceStatus = ? WHERE deviceId = ?", "Transferred", device);
         }
     }
 
@@ -136,8 +142,36 @@ public class ConfirmTransferDevicesDialogController {
         }
         System.out.println("LIST: " + list);
 
-        return "insert into tbTransfer (TransferId, DepartmentId, DeviceId, TransferDate, Department) values ('" + transform.getTransformId() + "','" + transform.getDepartmentId() + "','" + list + "','" + transform.getTransformDate() + "','" + transform.getDepartment()+ "')";
+        return "insert into tbTransfer (TransferId, DepartmentId, DeviceId, TransferDate, Department) values ('" + transform.getTransformId() + "','" + transform.getDepartmentId() + "','" + list + "','" + dateTF.getText() + "','" + transform.getDepartment() + "')";
     }
 
 
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onCloseWinBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.close();
+    }
 }

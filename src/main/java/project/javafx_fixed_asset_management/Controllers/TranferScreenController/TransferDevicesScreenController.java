@@ -13,9 +13,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
@@ -106,6 +110,9 @@ public class TransferDevicesScreenController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         Scene scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
         stage.setTitle("Add department");
 
         JMetro jMetro = new JMetro(Style.LIGHT);
@@ -116,6 +123,7 @@ public class TransferDevicesScreenController implements Initializable {
 
         init();
     }
+
     public void removeDeviceButtonAction(ActionEvent event) {
         DEVICE addingDevice = deviceTransferTableView.getSelectionModel().getSelectedItem();
 
@@ -147,10 +155,12 @@ public class TransferDevicesScreenController implements Initializable {
 
     public void validateField(ActionEvent event) throws IOException {
         if (isAllTextFieldEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            FlatAlert alert = new FlatAlert(Alert.AlertType.WARNING);
             alert.setTitle("Transform Device");
             alert.setHeaderText("Make sure you fill up all field");
             alert.setContentText("Some field wasn't inserted");
+            JMetro jMetro = new JMetro(Style.LIGHT);
+            jMetro.setScene(alert.getDialogPane().getScene());
             alert.show();
         } else if (listTransferDevice.size() == 0) {
             warningTxt.setVisible(true);
@@ -173,8 +183,10 @@ public class TransferDevicesScreenController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         Parent confirmRepairDevicesController = fxmlLoader.load();
         Scene scene = new Scene(confirmRepairDevicesController);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
         ConfirmTransferDevicesDialogController controller = fxmlLoader.getController();
-        controller.setInit(listTransferDevice, transformIdTF.getText(), departmentCbb.getValue().toString(),transferDateDTP.getValue().toString(),getDepartmentId(departmentCbb.getValue().toString()));
+        controller.setInit(listTransferDevice, transformIdTF.getText(), departmentCbb.getValue().toString(), transferDateDTP.getValue().toString(), getDepartmentId(departmentCbb.getValue().toString()));
         stage.setTitle("Are you sure about that?");
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
@@ -236,7 +248,7 @@ public class TransferDevicesScreenController implements Initializable {
                 "SELECT * FROM tbDepartment"
         ));
         listDevice = FXCollections.observableArrayList(devices.selectList(
-                "SELECT DeviceId, DeviceName, Specification FROM tbDevice WHERE tbDevice.DeviceStatus <>  ?","Transferred"));
+                "SELECT DeviceId, DeviceName, Specification FROM tbDevice WHERE tbDevice.DeviceStatus <>  ?", "Transferred"));
         listTransferDevice = FXCollections.observableArrayList();
         listTransform = FXCollections.observableArrayList(transform.selectList(
                 "SELECT * FROM tbTransfer"));
@@ -291,7 +303,7 @@ public class TransferDevicesScreenController implements Initializable {
 
         warningTxt.setVisible(false);
 
-        ObservableList<String> list =  FXCollections.observableArrayList();
+        ObservableList<String> list = FXCollections.observableArrayList();
         for (DEPARTMENT department : listDepartment) {
             list.add(department.getDepartmentName());
         }
@@ -314,5 +326,28 @@ public class TransferDevicesScreenController implements Initializable {
             return randomId;
         }
         return randomId;
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
     }
 }

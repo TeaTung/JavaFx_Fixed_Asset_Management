@@ -15,7 +15,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.JMetroStyleClass;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
@@ -97,7 +99,9 @@ public class FirstLiquidationScreenController implements Initializable {
     @FXML
     void addNewButtonAction(ActionEvent event) {
         String personToAdd = "Name: " + nameTF.getText() + "\n" + "Department: " + departmentTF.getText() + "\n" + "Title: " + titleTF.getText();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to add this new person? \n" + personToAdd, ButtonType.YES, ButtonType.CANCEL);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION, "Are you sure to add this new person? \n" + personToAdd, ButtonType.YES, ButtonType.CANCEL);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
 
 
@@ -109,7 +113,8 @@ public class FirstLiquidationScreenController implements Initializable {
             try {
                 departmentData = department.selectOne("SELECT TOP 1 * FROM tbDepartment WHERE DepartmentName = ?", departmentName);
             } catch (Exception e) {
-                Alert information = new Alert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+                FlatAlert information = new FlatAlert(Alert.AlertType.ERROR, "Something went wrong! Detail information below: \n" + e.toString(), ButtonType.OK);
+                jMetro.setScene(information.getDialogPane().getScene());
                 information.showAndWait();
                 return;
             }
