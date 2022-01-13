@@ -1,22 +1,14 @@
 package project.javafx_fixed_asset_management.Controllers;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-
 import jfxtras.styles.jmetro.JMetro;
-
-import jfxtras.styles.jmetro.MDL2IconFont;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountDialogController;
 import project.javafx_fixed_asset_management.Main;
@@ -24,10 +16,9 @@ import project.javafx_fixed_asset_management.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
 public class ManagerHomeScreenController implements Initializable {
-    int userId = 1;
+    String userId = "1";
 
     public void openDeviceScreenButtonAction(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/DeviceScreen/device_screen.fxml"));
@@ -141,7 +132,6 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 740);
-            scene.setFill(Color.TRANSPARENT);
             JMetro jMetro = new JMetro(Style.LIGHT);
             jMetro.setScene(scene);
         } catch (IOException e) {

@@ -20,7 +20,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
-import project.javafx_fixed_asset_management.Controllers.RepairScreenController.ConfirmRepairDevicesDialogController;
 import project.javafx_fixed_asset_management.Main;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEVICE;
@@ -124,7 +123,7 @@ public class RepairDevicesScreenController implements Initializable {
     public void init() {
         resetLabel();
 
-        getDataInTableView();
+        setDataInTableView();
 
         setSearchInTableView();
 
@@ -164,7 +163,7 @@ public class RepairDevicesScreenController implements Initializable {
     }
 
 
-    public void getDataInTableView() {
+    public void setDataInTableView() {
         var devices = new DATABASE_DAO<>(DEVICE.class);
         var repairs = new DATABASE_DAO<>(REPAIR.class);
 

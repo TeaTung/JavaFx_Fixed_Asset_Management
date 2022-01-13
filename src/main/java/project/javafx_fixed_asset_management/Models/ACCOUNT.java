@@ -4,6 +4,15 @@ public class ACCOUNT {
     String email;
     String password;
     String accountId;
+    String accountType;
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
 
     public String getEmail() {
         return email;
