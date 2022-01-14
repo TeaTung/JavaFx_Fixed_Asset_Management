@@ -40,3 +40,4 @@ insert into tbDeliveryNote(DeliveryId, DeviceId, DepartmentId, DeliveryDate) val
 INSERT INTO TBINVENTORY(InventoryId, DeviceId, UsableValue, InventoryDate) VALUES ('inven1', 'device1', 90, 2020-1-10)
 INSERT INTO TBINVENTORY(InventoryId, DeviceId, UsableValue, InventoryDate) VALUES ('inven2', 'device1', 90, 2020-1-10)
 INSERT INTO TBINVENTORY(InventoryId, DeviceId, UsableValue, InventoryDate) VALUES ('inven3', 'device2', 50, 2020-1-10)
+
