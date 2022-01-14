@@ -3,15 +3,19 @@ package project.javafx_fixed_asset_management.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import jfxtras.styles.jmetro.JMetro;
@@ -22,6 +26,7 @@ import project.javafx_fixed_asset_management.Utils.Utils;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Month;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -34,7 +39,161 @@ public class HistoryManagementScreenController implements Initializable {
     public TableColumn<LIQUIDATION_HISTORY, String> dateLiquidationColumn;
     private static double xOffset = 0;
     private static double yOffset = 0;
+    public VBox weekDeviceLineChartVB;
+    public VBox transferBarChartVB;
+    public ComboBox<Integer> yearGraphCB;
+    public ComboBox<Month> monthGraphCB;
+    public HBox repairDeviceAreaChartVB;
 
+    public void setUpDeviceLineChart() {
+        final NumberAxis xAxis = new NumberAxis();
+
+        final NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Number of week");
+        yAxis.setLabel("Device per week");
+
+        //creating the chart
+        LineChart<Number, Number> lineChart = new LineChart<>(new NumberAxis(), new NumberAxis());
+        lineChart =
+                new LineChart<Number, Number>(xAxis, yAxis);
+        lineChart.setTitle("Device Sumary");
+        XYChart.Series series = new XYChart.Series();
+        series.setName("My portfolio");
+        var db = new DATABASE_DAO<>(WEEK_DEVICE_HISTORY.class);
+
+
+        var week_history = FXCollections.observableArrayList(db.selectList(
+                "SELECT top 20 " +
+                        "( datepart(day, datediff(day, 0, importDate)/7 * 7)/7 + 1 )  as weekNumber, " +
+                        "SUM(tbDevice.quantityDevice)  as numberOfDevice  " +
+                        "FROM tbContract inner join tbDevice on tbContract.contractId = tbDevice.contractId " +
+                        "where MONTH(importDate) = ? AND YEAR (importDate) = ? " +
+                        "group by ( datepart(day, datediff(day, 0, importDate)/7 * 7)/7 + 1 ) " +
+                        "order by ( datepart(day, datediff(day, 0, importDate)/7 * 7)/7 + 1 )",
+                String.valueOf(monthGraphCB.getSelectionModel().getSelectedItem().getValue()), yearGraphCB.getValue().toString()
+        ));
+
+        var data = (getLineChartDataFromList(week_history, "quantity"));
+        lineChart.getData().add(data);
+        weekDeviceLineChartVB.getChildren().add(lineChart);
+
+    }
+
+    public void setUpTransferBarChart() {
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String, Number> bc =
+                new BarChart<String, Number>(xAxis, yAxis);
+        bc.setTitle("Department Summary");
+        yAxis.setLabel("Device per Department");
+
+
+        var db = new DATABASE_DAO<>(TRANSFER_BAR_CHART_HISTORY.class);
+        var transfer_list = FXCollections.observableArrayList(db.selectList("select s.department,  SUM(quantityDevice) as quantity from  " +
+                "tbDevice inner join ( " +
+                "select Department,value deviceId from tbTransfer  " +
+                "CROSS APPLY STRING_SPLIT(deviceId, ',')  " +
+                "WHERE MONTH(tbTransfer.TransferDate) = ?  AND YEAR(tbTransfer.TransferDate) = ? " +
+                ") s  on tbDevice.deviceId = s.deviceId  " +
+                "GROUP BY Department " +
+                "order by SUM(quantityDevice) DESC" +
+                ";", String.valueOf(monthGraphCB.getSelectionModel().getSelectedItem().getValue()), yearGraphCB.getValue().toString()));
+
+        bc.getData().addAll(getTransferBarChartDataFromList(transfer_list, "Department"));
+        bc.setMinHeight(590);
+        transferBarChartVB.getChildren().add(bc);
+    }
+
+    public void setUpRepairLineChart() {
+        var db = new DATABASE_DAO<>(REPAIR_GRAPH_HISTORY.class);
+        var week_history = FXCollections.observableArrayList(db.selectList(
+                "select Department " +
+                        ",sum(quantityDevice) as quantity  from " +
+                        "tbDevice " +
+                        "inner join ( " +
+                        "select tbRepair.RepairDate, value deviceId from tbRepair  " +
+                        "CROSS APPLY STRING_SPLIT(deviceId, ',')  " +
+                        ") s  on tbDevice.deviceId = s.deviceId " +
+                        "INNER JOIN ( " +
+                        "select department ,value deviceId from tbTransfer  " +
+                        "CROSS APPLY STRING_SPLIT(deviceId, ',')  " +
+                        ") d on s.DeviceId = d.deviceId " +
+                        "where MONTH(s.RepairDate) = ? AND YEAR(s.repairDate) = ? " +
+                        "group by Department",
+                String.valueOf(monthGraphCB.getSelectionModel().getSelectedItem().getValue()), yearGraphCB.getValue().toString()
+        ));
+
+
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList();
+
+        int length = week_history.size();
+        for (int i = 0; i < length; i++) {
+            pieChartData.add(new PieChart.Data(
+                    week_history.get(i).getDepartment(),
+                    week_history.get(i).getQuantity()));
+        }
+
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setClockwise(true);
+        chart.setStartAngle(40);
+        chart.setTitle("Department Repair");
+        repairDeviceAreaChartVB.getChildren().add(0, chart);
+
+
+        var db_inventory = new DATABASE_DAO<>(INVENTORY_GRAPH_INVENTORY.class);
+        var inventory_history = FXCollections.observableArrayList(db_inventory.selectList(
+                "select department, sum(quantityDevice) as quantity from tbInventory " +
+                        "inner join tbDevice on tbDevice.deviceId = tbInventory.deviceID " +
+                        "inner join tbTransfer on tbDevice.DeviceId= tbTransfer.DeviceId " +
+                        "where MONTH(TransferDate) = ? AND YEAR(TransferDate) = ? " +
+                        "group by department",
+                String.valueOf(monthGraphCB.getSelectionModel().getSelectedItem().getValue()), yearGraphCB.getValue().toString()
+        ));
+
+
+        ObservableList<PieChart.Data> pieChartDataInventory =
+                FXCollections.observableArrayList();
+
+
+        int length_inventory = inventory_history.size();
+        for (int i = 0; i < length_inventory; i++) {
+            pieChartDataInventory.add(new PieChart.Data(
+                    inventory_history.get(i).getDepartment(),
+                    inventory_history.get(i).getQuantity()));
+        }
+
+
+        final PieChart chart2 = new PieChart(pieChartDataInventory);
+        chart2.setTitle("Department Inventory");
+        chart2.setClockwise(true);
+        chart2.setStartAngle(-40);
+        repairDeviceAreaChartVB.getChildren().add(1, chart2);
+
+
+    }
+
+    public XYChart.Series<Number, Number> getLineChartDataFromList(ObservableList<WEEK_DEVICE_HISTORY> observableList, String seriesName) {
+        XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
+        series.setName(seriesName);
+        var length = observableList.size();
+        for (int i = 0; i < length; i++) {
+            series.getData().add(new XYChart.Data(Integer.parseInt(observableList.get(i).getWeekNumber()), Integer.parseInt(observableList.get(i).getNumberOfDevice())));
+        }
+        return series;
+    }
+
+
+    public XYChart.Series getTransferBarChartDataFromList(ObservableList<TRANSFER_BAR_CHART_HISTORY> observableList, String seriesName) {
+
+        XYChart.Series series = new XYChart.Series();
+        series.setName(seriesName);
+        var length = observableList.size();
+        for (int i = 0; i < length; i++) {
+            series.getData().add(new XYChart.Data(observableList.get(i).getDepartment(), observableList.get(i).getQuantity()));
+        }
+        return series;
+    }
 
     //<editor-fold desc="TAB LIQUIDATION">
 
@@ -546,23 +705,6 @@ public class HistoryManagementScreenController implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        new Thread(
-                () -> {
-                    setUpRepair();
-                    setUpInventory();
-                    setUpLiquidation();
-                    setUpTransfer();
-                }
-        ).start();
-
-        // SET UP CONVERTER
-        inventoryDateOfInventoryDP.setConverter(Utils.getConverter(inventoryDateOfInventoryDP));
-        liquidationDateOfLiquidationDTP.setConverter(Utils.getConverter(liquidationDateOfLiquidationDTP));
-    }
-
-
     public void panelMousePressOnAction(MouseEvent event) {
         Node node = (Node) event.getSource();
         Stage primaryStage = (Stage) node.getScene().getWindow();
@@ -593,4 +735,51 @@ public class HistoryManagementScreenController implements Initializable {
     //</editor-fold>
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        new Thread(
+                () -> {
+                    setUpRepair();
+                    setUpInventory();
+                    setUpLiquidation();
+                    setUpTransfer();
+                }
+
+        ).start();
+
+
+        monthGraphCB.setItems(FXCollections.observableArrayList(Month.values()));
+        yearGraphCB.getItems().add(2019);
+        yearGraphCB.getItems().add(2020);
+        yearGraphCB.getItems().add(2021);
+        yearGraphCB.getItems().add(2022);
+        yearGraphCB.getItems().add(2023);
+
+        yearGraphCB.getSelectionModel().select(2);
+        monthGraphCB.getSelectionModel().select(11);
+
+
+        // SET UP CONVERTER
+        inventoryDateOfInventoryDP.setConverter(Utils.getConverter(inventoryDateOfInventoryDP));
+        liquidationDateOfLiquidationDTP.setConverter(Utils.getConverter(liquidationDateOfLiquidationDTP));
+
+    }
+
+
+    public void onTabChanged(Event event) {
+        System.out.println(myTabPane.getSelectionModel().getSelectedIndex());
+        if (myTabPane.getSelectionModel().getSelectedIndex() == 4) {
+
+            transferBarChartVB.getChildren().clear();
+            weekDeviceLineChartVB.getChildren().clear();
+            repairDeviceAreaChartVB.getChildren().clear();
+            setUpDeviceLineChart();
+            setUpTransferBarChart();
+            setUpRepairLineChart();
+        }
+    }
+
+    public void comboBoxChanged(ActionEvent actionEvent) {
+        onTabChanged(null);
+    }
 }

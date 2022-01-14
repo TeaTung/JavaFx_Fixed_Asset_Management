@@ -9,6 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 import project.javafx_fixed_asset_management.Models.DEVICE;
 import project.javafx_fixed_asset_management.Models.REPAIR;
@@ -83,10 +86,13 @@ public class ConfirmRepairDevicesDialogController {
 
     @FXML
     public void confirmButtonAction(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Repair Device");
         alert.setHeaderText("Are you sure to repair devices");
 
+
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(alert.getDialogPane().getScene());
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == null) {
         } else if (option.get() == ButtonType.OK) {
@@ -107,9 +113,10 @@ public class ConfirmRepairDevicesDialogController {
             repair.setListDevice(listDevice);
             repairSQL.insert(insertSQL(repair));
 
-            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Repair Devices");
-            alert1.setHeaderText("Repair Successfully");
+            FlatAlert alert1 = new FlatAlert(Alert.AlertType.INFORMATION);
+            jMetro.setScene(alert1.getDialogPane().getScene());
+            alert1.setHeaderText("Repair Devices");
+            alert1.setContentText("Repair Successfully");
             alert1.show();
 
             backPreviousScreen(event);

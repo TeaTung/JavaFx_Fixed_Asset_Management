@@ -46,7 +46,7 @@
                 <Font size="25.0" />
             </font>
         </Button>
-      <Text layoutX="41.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="CONFIRM REPAIR" textAlignment="CENTER" wrappingWidth="241.5999999999999">
+      <Text layoutX="34.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title" text="CONFIRM REPAIR" textAlignment="CENTER" wrappingWidth="241.5999999999999">
          <font>
             <Font size="25.0" />
          </font>
