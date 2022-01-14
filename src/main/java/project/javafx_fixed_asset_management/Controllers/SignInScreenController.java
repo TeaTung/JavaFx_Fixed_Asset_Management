@@ -56,7 +56,7 @@ public class SignInScreenController implements Initializable {
 
     @FXML
     void closeBtnHandler(MouseEvent event) {
-        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION, "Are you sure to exit the application? " , ButtonType.YES, ButtonType.CANCEL);
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION, "Are you sure to exit the application? ", ButtonType.YES, ButtonType.CANCEL);
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(alert.getDialogPane().getScene());
         alert.showAndWait();
@@ -70,11 +70,11 @@ public class SignInScreenController implements Initializable {
 
     @FXML
     void loginBtnAction(ActionEvent event) {
-        if(verifyInput()) {
+        if (verifyInput()) {
             String username = usernameTF.getText();
             String password = passwordTF.getText();
             AUTHENTICATION authentication = verifyLogin(username, password);
-            if(authentication == null){
+            if (authentication == null) {
                 noticeLabel.setVisible(true);
                 noticeLabel.setText("Invalid username or password");
                 return;
@@ -108,14 +108,14 @@ public class SignInScreenController implements Initializable {
         return null;
     }
 
-    boolean     verifyInput() {
+    boolean verifyInput() {
         Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         Pattern VALID_PASSWORD_REGEX = Pattern.compile("^(?!.* ).{8,15}$", Pattern.CASE_INSENSITIVE);
 
         Matcher matcherEmail = VALID_EMAIL_ADDRESS_REGEX.matcher(usernameTF.getText());
         Matcher matcherPassword = VALID_PASSWORD_REGEX.matcher(passwordTF.getText());
 
-        if(!matcherEmail.find()) {
+        if (!matcherEmail.find()) {
             noticeLabel.setVisible(true);
             noticeLabel.setText("Invalid email address");
             return false;
@@ -186,6 +186,29 @@ public class SignInScreenController implements Initializable {
         noticeLabel.setAlignment(Pos.CENTER);
     }
 
-    
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+
 }
 

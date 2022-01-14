@@ -12,8 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountDialogController;
@@ -133,6 +135,8 @@ public class ManagerHomeScreenController implements Initializable {
         Scene scene = new Scene(accountDialogController);
         AccountDialogController controller = fxmlLoader.getController();
         controller.init(accountId);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
 
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
@@ -174,7 +178,6 @@ public class ManagerHomeScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
     @Override

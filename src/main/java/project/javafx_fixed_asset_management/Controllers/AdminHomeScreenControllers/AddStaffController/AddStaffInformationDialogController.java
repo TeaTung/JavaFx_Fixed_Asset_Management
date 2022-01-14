@@ -10,7 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
@@ -25,6 +27,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class AddStaffInformationDialogController {
+    JMetro jMetro = new JMetro(Style.LIGHT);
     @FXML
     TextField nameTF;
 
@@ -78,10 +81,10 @@ public class AddStaffInformationDialogController {
 
     public void validateField(ActionEvent event) throws IOException {
         if (areAllTextFieldEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Account Screen");
+            FlatAlert alert = new FlatAlert(Alert.AlertType.WARNING);
             alert.setHeaderText("Make sure you fill up all field");
             alert.setContentText("Some field wasn't inserted");
+            jMetro.setScene(alert.getDialogPane().getScene());
             alert.show();
         } else {
             confirmButtonAction(event);
@@ -90,18 +93,22 @@ public class AddStaffInformationDialogController {
     }
 
     public void confirmButtonAction(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Create Account");
-        alert.setHeaderText("Are you sure to creat account");
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Create Account");
+        alert.setContentText("Are you sure to creat account");
+        jMetro.setScene(alert.getDialogPane().getScene());
+
         // option != null.
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == null) {
         } else if (option.get() == ButtonType.OK) {
             insertAccount();
 
-            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-            alert1.setTitle("Create Account");
-            alert1.setHeaderText("Create Successfully");
+            FlatAlert alert1 = new FlatAlert(Alert.AlertType.INFORMATION);
+            alert1.setHeaderText("Create Account");
+            alert1.setContentText("Create Successfully");
+            jMetro.setScene(alert.getDialogPane().getScene());
+
             alert1.show();
 
             backToPreviousScreen(event);
@@ -112,7 +119,7 @@ public class AddStaffInformationDialogController {
         }
     }
 
-    public void backToPreviousScreen (ActionEvent event) throws IOException {
+    public void backToPreviousScreen(ActionEvent event) throws IOException {
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 
@@ -166,4 +173,30 @@ public class AddStaffInformationDialogController {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+
 }
