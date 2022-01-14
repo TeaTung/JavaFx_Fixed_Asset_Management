@@ -45,8 +45,8 @@ public class AccountDialogController {
     PROFILE userProfile;
     String userId;
 
-    public void backButtonAction (ActionEvent event) {
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    public void backButtonAction(ActionEvent event) {
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 
     public void init(String id) {
@@ -61,7 +61,7 @@ public class AccountDialogController {
         setLabelValue(userProfile);
     }
 
-    public void setLabelValue (PROFILE profile) {
+    public void setLabelValue(PROFILE profile) {
         nameLbl.setText(profile.getName());
         birthdayLbl.setText(profile.getBirthDay());
         phoneNumberLbl.setText(profile.getPhoneNumber());
@@ -72,10 +72,10 @@ public class AccountDialogController {
     public String getDepartment(String departmentId) {
         var departmentDAO = new DATABASE_DAO<>(DEPARTMENT.class);
         DEPARTMENT department = departmentDAO.selectOne("SELECT TOP 1 * FROM tbDepartment WHERE departmentId = ?", departmentId);
-        return  department.getDepartmentName();
+        return department.getDepartmentName();
     }
 
-    public void updateButtonAction (ActionEvent event) throws IOException {
+    public void updateButtonAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Views/AccountScreen/update_account_information_dialog.fxml"));
         Node node = (Node) event.getSource();
 

@@ -3,41 +3,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane onMouseDragged="#panelMouseDraggedOnAction" onMousePressed="#panelMousePressOnAction" prefHeight="450.0"
+            prefWidth="550.0" style="-fx-background-color: white;" styleClass="panel-custom-dialog"
+            stylesheets="@../../HistoryAndManagementScreen/font.css" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="project.javafx_fixed_asset_management.Controllers.AdminHomeScreenControllers.AddStaffController.AddStaffInformationDialogController">
     <children>
-        <Text layoutX="144.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STAFF INFORMATION"
-              wrappingWidth="263.0" AnchorPane.topAnchor="30.0">
-            <font>
-                <Font name="System Bold" size="25.0"/>
-            </font>
-        </Text>
-        <Label layoutX="40.0" layoutY="90.0" text="Name" AnchorPane.leftAnchor="40.0">
-            <font>
-                <Font name="System Bold" size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="40.0" layoutY="150.0" text="Birthday" AnchorPane.leftAnchor="40.0">
-            <font>
-                <Font name="System Bold" size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="40.0" layoutY="210.0" text="Phone number" AnchorPane.leftAnchor="40.0">
-            <font>
-                <Font name="System Bold" size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="40.0" layoutY="270.0" text="Address" AnchorPane.leftAnchor="40.0">
-            <font>
-                <Font name="System Bold" size="16.0"/>
-            </font>
-        </Label>
         <Button fx:id="confirmBtn" layoutX="421.0" layoutY="412.0" mnemonicParsing="false" onAction="#validateField"
                 prefHeight="33.0" prefWidth="89.0" text="Confirm" textFill="#0d00ff" AnchorPane.bottomAnchor="30.0"
                 AnchorPane.rightAnchor="40.0">
@@ -52,18 +29,35 @@
                 <Font size="14.0"/>
             </font>
         </Button>
-        <TextField fx:id="nameTF" layoutX="170.0" layoutY="90.0" prefHeight="33.0" prefWidth="340.0"
-                   AnchorPane.rightAnchor="40.0"/>
-        <TextField fx:id="phoneNumberTF" layoutX="170.0" layoutY="210.0" prefHeight="33.0" prefWidth="340.0"
-                   AnchorPane.rightAnchor="40.0"/>
-        <TextField fx:id="addressTF" layoutX="170.0" layoutY="270.0" prefHeight="33.0" prefWidth="340.0"
-                   AnchorPane.rightAnchor="40.0"/>
-        <Label layoutX="40.0" layoutY="330.0" text="Department" AnchorPane.leftAnchor="40.0">
+        <TextField fx:id="nameTF" layoutX="193.0" layoutY="85.0" prefHeight="43.0" prefWidth="314.0"
+                   AnchorPane.rightAnchor="42.60000000000002"/>
+        <TextField fx:id="phoneNumberTF" layoutX="194.0" layoutY="203.0" prefHeight="43.0" prefWidth="314.0"
+                   AnchorPane.rightAnchor="41.60000000000002"/>
+        <TextField fx:id="addressTF" layoutX="194.0" layoutY="265.0" prefHeight="43.0" prefWidth="314.0"
+                   AnchorPane.rightAnchor="41.60000000000002"/>
+        <DatePicker fx:id="birthdayDTP" layoutX="193.0" layoutY="146.0" prefHeight="43.0" prefWidth="314.0"
+                    AnchorPane.rightAnchor="42.60000000000002"/>
+        <ComboBox fx:id="departmentCbb" layoutX="194.0" layoutY="325.0" prefHeight="43.0" prefWidth="314.0"
+                  AnchorPane.rightAnchor="41.60000000000002"/>
+        <Text layoutX="41.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="my-title"
+              text="STAFF INFORMATION" textAlignment="CENTER" wrappingWidth="299.60003662109375">
             <font>
-                <Font name="System Bold" size="16.0"/>
+                <Font size="25.0"/>
             </font>
-        </Label>
-        <DatePicker fx:id="birthdayDTP" layoutX="170.0" layoutY="146.0" prefHeight="33.0" prefWidth="340.0"/>
-        <ComboBox fx:id="departmentCbb" layoutX="170.0" layoutY="330.0" prefHeight="33.0" prefWidth="340.0"/>
+        </Text>
+        <TextField editable="false" focusTraversable="false" layoutX="24.0" layoutY="85.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="134.0" text="Name" AnchorPane.leftAnchor="40.0"/>
+        <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="146.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="134.0" text="Birthday" AnchorPane.leftAnchor="40.0"/>
+        <TextField editable="false" focusTraversable="false" layoutX="24.0" layoutY="203.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="134.0" text="Phone number" AnchorPane.leftAnchor="40.0"/>
+        <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="265.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="134.0" text="Address" AnchorPane.leftAnchor="40.0"/>
+        <TextField editable="false" focusTraversable="false" layoutX="41.0" layoutY="325.0" mouseTransparent="true"
+                   prefHeight="43.0" prefWidth="134.0" text="Department" AnchorPane.leftAnchor="40.0"/>
     </children>
+
+    <effect>
+        <SepiaTone level="0.55"/>
+    </effect>
 </AnchorPane>

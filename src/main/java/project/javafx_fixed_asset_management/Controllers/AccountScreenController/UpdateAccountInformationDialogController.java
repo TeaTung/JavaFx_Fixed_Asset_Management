@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.FlatAlert;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Main;
@@ -29,6 +30,8 @@ import java.util.Optional;
 public class UpdateAccountInformationDialogController {
     @FXML
     TextField nameTF;
+    JMetro jMetro = new JMetro(Style.LIGHT);
+
 
     @FXML
     DatePicker birthdayDTP;
@@ -70,9 +73,11 @@ public class UpdateAccountInformationDialogController {
     }
 
     public void confirmButtonAction(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Update Account Information");
-        alert.setHeaderText("Are you sure to update information");
+        FlatAlert alert = new FlatAlert(Alert.AlertType.CONFIRMATION);
+
+        alert.setHeaderText("Update Account Information");
+        alert.setContentText("Are you sure to update information");
+        jMetro.setScene(alert.getDialogPane().getScene());
         // option != null.
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == null) {
@@ -87,15 +92,19 @@ public class UpdateAccountInformationDialogController {
 
     public void validateField(ActionEvent event) throws IOException {
         if (areAllTextFieldEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Account Screen");
-            alert.setHeaderText("Make sure you fill up all field");
+            FlatAlert alert = new FlatAlert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Account Screen");
+            alert.setContentText("Make sure you fill up all field");
             alert.setContentText("Some field wasn't inserted");
+            jMetro.setScene(alert.getDialogPane().getScene());
+
             alert.show();
         } else if (!isAnyThingChange()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Update Account Screen");
-            alert.setHeaderText("Nothing changed");
+            FlatAlert alert = new FlatAlert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Update Account Screen");
+            alert.setContentText("Nothing changed");
+            jMetro.setScene(alert.getDialogPane().getScene());
+
             alert.show();
         } else {
             confirmButtonAction(event);
@@ -134,15 +143,17 @@ public class UpdateAccountInformationDialogController {
         profile.update("UPDATE tbProfile SET Name = ?, PhoneNumber = ?, DepartmentId = ?, Address = ?, Birthday = ? WHERE ProfileId = ?",
                 nameTF.getText(), phoneNumberTF.getText(), getDepartmentId(departmentCbb.getValue().toString()), addressTF.getText(), birthdayDTP.getValue().toString(), userProfile.getProfileId());
 
-        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-        alert1.setTitle("Update Profile");
-        alert1.setHeaderText("Update Successfully");
+        FlatAlert alert1 = new FlatAlert(Alert.AlertType.INFORMATION);
+        alert1.setHeaderText("Update Profile");
+        alert1.setContentText("Update Successfully");
+        jMetro.setScene(alert1.getDialogPane().getScene());
+
         alert1.show();
 
         backToPreviousDialog(event);
     }
 
-    public void init(PROFILE profile, String id ) {
+    public void init(PROFILE profile, String id) {
         userProfile = profile;
         userId = id;
 
@@ -191,7 +202,7 @@ public class UpdateAccountInformationDialogController {
         return department.getDepartmentId();
     }
 
-    public void setProperty () {
+    public void setProperty() {
         phoneNumberTF.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String newValue, String t1) {
@@ -218,5 +229,12 @@ public class UpdateAccountInformationDialogController {
         primaryStage.setX(event.getScreenX() + xOffset);
         primaryStage.setY(event.getScreenY() + yOffset);
     }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
 
 }
