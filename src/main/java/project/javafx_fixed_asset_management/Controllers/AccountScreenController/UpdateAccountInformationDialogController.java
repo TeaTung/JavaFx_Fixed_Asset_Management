@@ -219,4 +219,11 @@ public class UpdateAccountInformationDialogController {
         primaryStage.setY(event.getScreenY() + yOffset);
     }
 
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+
 }

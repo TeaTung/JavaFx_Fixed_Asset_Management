@@ -1,6 +1,7 @@
 package project.javafx_fixed_asset_management.Controllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,8 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import project.javafx_fixed_asset_management.Controllers.AccountScreenController.AccountDialogController;
@@ -134,6 +137,9 @@ public class ManagerHomeScreenController implements Initializable {
         AccountDialogController controller = fxmlLoader.getController();
         controller.init(accountId);
 
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
 
@@ -176,7 +182,6 @@ public class ManagerHomeScreenController implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -197,4 +202,11 @@ public class ManagerHomeScreenController implements Initializable {
         primaryStage.setX(event.getScreenX() + xOffset);
         primaryStage.setY(event.getScreenY() + yOffset);
     }
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
 }
