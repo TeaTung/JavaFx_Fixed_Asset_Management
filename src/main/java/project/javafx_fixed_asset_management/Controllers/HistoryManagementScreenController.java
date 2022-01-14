@@ -79,7 +79,6 @@ public class HistoryManagementScreenController implements Initializable {
 
     }
 
-
     public void setUpTransferBarChart() {
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -166,7 +165,7 @@ public class HistoryManagementScreenController implements Initializable {
 
 
         final PieChart chart2 = new PieChart(pieChartDataInventory);
-        chart.setTitle("Department Inventory");
+        chart2.setTitle("Department Inventory");
         chart2.setClockwise(true);
         chart2.setStartAngle(-40);
         repairDeviceAreaChartVB.getChildren().add(1, chart2);

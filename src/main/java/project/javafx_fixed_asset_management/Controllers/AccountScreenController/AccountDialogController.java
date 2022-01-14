@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
@@ -20,19 +22,19 @@ import java.io.IOException;
 
 public class AccountDialogController {
     @FXML
-    Label nameLbl;
+    TextField nameLbl;
 
     @FXML
-    Label birthdayLbl;
+    TextField birthdayLbl;
 
     @FXML
-    Label phoneNumberLbl;
+    TextField phoneNumberLbl;
 
     @FXML
-    Label addressLbl;
+    TextField addressLbl;
 
     @FXML
-    Label departmentNameLbl;
+    TextField departmentNameLbl;
 
     @FXML
     Button backBtn;
@@ -90,5 +92,30 @@ public class AccountDialogController {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    public void onMinimizeBtnOnAction(ActionEvent actionEvent) {
+        Node node = (Node) actionEvent.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setIconified(true);
+    }
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    public void panelMousePressOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        xOffset = primaryStage.getX() - event.getScreenX();
+        yOffset = primaryStage.getY() - event.getScreenY();
+    }
+
+    public void panelMouseDraggedOnAction(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.setX(event.getScreenX() + xOffset);
+        primaryStage.setY(event.getScreenY() + yOffset);
+    }
+
 
 }
