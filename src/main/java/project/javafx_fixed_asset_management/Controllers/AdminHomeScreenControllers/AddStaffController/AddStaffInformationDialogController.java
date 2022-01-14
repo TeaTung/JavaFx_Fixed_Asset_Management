@@ -20,6 +20,7 @@ import project.javafx_fixed_asset_management.Models.DEPARTMENT;
 import project.javafx_fixed_asset_management.Models.PROFILE;
 
 import java.io.IOException;
+import java.security.MessageDigest;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -121,11 +122,27 @@ public class AddStaffInformationDialogController {
         var profile = new DATABASE_DAO<>(PROFILE.class);
 
         var accountId = UUID.randomUUID().toString().substring(0, 10);
-        account.insert("insert into tbAccount (AccountId, Email, Password, AccountType) values (? , ? , ?, ?)", accountId, email, password, accountType);
+        account.insert("insert into tbAccount (AccountId, Email, Password, AccountType) values (? , ? , ?, ?)", accountId, email, md5(password), accountType);
         var profileId = UUID.randomUUID().toString().substring(0, 10);
         profile.insert("insert into tbProfile (ProfileId, Name, DepartmentId, Address, AccountId, Birthday,PhoneNumber) values (? , ? , ?, ?, ?,?, ?)",
                 profileId, nameTF.getText(), getDepartmentId(departmentCbb.getValue().toString()), addressTF.getText(), accountId, birthdayDTP.getValue().toString(), phoneNumberTF.getText());
 
+    }
+
+    String md5(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                hexString.append(String.format("%02X", 0xFF & b));
+            }
+            System.out.println(hexString.toString());
+            return hexString.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public boolean areAllTextFieldEmpty() {

@@ -8,6 +8,7 @@ import project.javafx_fixed_asset_management.Models.ACCOUNT;
 import project.javafx_fixed_asset_management.Models.DATABASE_DAO;
 
 import java.io.IOException;
+import java.security.MessageDigest;
 import java.util.Optional;
 
 public class ChangePasswordDialogController {
@@ -55,9 +56,23 @@ public class ChangePasswordDialogController {
 
     public void updatePassword() {
         var account = new DATABASE_DAO<>(ACCOUNT.class);
-        account.update("UPDATE tbAccount SET Password = ? WHERE AccountId = ?", newPasswordPF.getText().trim(),accountId);
+        account.update("UPDATE tbAccount SET Password = ? WHERE AccountId = ?", md5(newPasswordPF.getText().trim()),accountId);
     }
-
+    String md5(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                hexString.append(String.format("%02X", 0xFF & b));
+            }
+            System.out.println(hexString.toString());
+            return hexString.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
     public void validateField(ActionEvent event) throws IOException {
         if (areAllTextFieldEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -112,7 +127,7 @@ public class ChangePasswordDialogController {
         System.out.println("OLD PASSWORD IN DATABASE: " + account().getPassword());
         System.out.println("OLD PASSWORD: " + oldPasswordPF.getText().trim());
 
-        if (oldPasswordPF.getText().trim().equalsIgnoreCase(account().getPassword())){
+        if (md5(oldPasswordPF.getText()).trim().equalsIgnoreCase(account().getPassword())){
             return true;
         }
         return false;
